@@ -170,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   defaultAlpha: 0
   hoverAlpha: 0.4
-  sceneToLoad: Scene 1
+  sceneToLoad: DesktopUI
 --- !u!1 &304071716
 GameObject:
   m_ObjectHideFlags: 0
