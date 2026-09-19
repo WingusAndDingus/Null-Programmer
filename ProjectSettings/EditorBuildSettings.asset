@@ -11,5 +11,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scene 1.unity
     guid: 9353530f80fb2284ab0349a969c8549d
+  - enabled: 1
+    path: Assets/Scenes/Left Monitor.unity
+    guid: 9aed759ecdf76104982402d7dc141162
+  - enabled: 1
+    path: Assets/Scenes/Right Monitor.unity
+    guid: b2372bd6cfce03a4aae32e7c6e68f4d3
+  - enabled: 1
+    path: Assets/Scenes/DesktopUI.unity
+    guid: 806c57ce2a4236641839c97727edbeea
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
