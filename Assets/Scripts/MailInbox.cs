@@ -54,7 +54,7 @@ public class MailInbox : MonoBehaviour
 
     public void OpenInbox()
     {
-        // Opens the inbox, but wont mark as read till the actuall message is clicked on
+        // Opens the inbox, but won't mark it as read until the actual message is clicked.
         readingPane.SetActive(false);
         placeholder.SetActive(true);
         window.SetActive(true);
