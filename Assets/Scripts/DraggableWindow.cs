@@ -20,6 +20,20 @@ public class DraggableWindow : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private float depth;
     private int dragPointerId;
     private bool warnedAboutSize;
+    
+    
+    public Transform WindowRoot => windowRoot;
+    public Transform DesktopBottomLeft => desktopBottomLeft;
+    public Transform DesktopTopRight => desktopTopRight;
+    public bool DraggingAllowed { get; private set; } = true;
+
+    
+    public void SetDraggingAllowed(bool allowed)
+    {
+        DraggingAllowed = allowed;
+        if (!allowed)
+            dragCamera = null;
+    }
 
     private void OnEnable()
     {
@@ -37,7 +51,8 @@ public class DraggableWindow : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         windowRenderers = windowRoot.GetComponentsInChildren<Renderer>();
         warnedAboutSize = false;
         BringToFront();
-        MoveWithinDesktop(windowRoot.position);
+        if(DraggingAllowed)
+            MoveWithinDesktop(windowRoot.position);
     }
     
     private void OnDisable()
@@ -55,7 +70,7 @@ public class DraggableWindow : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (eventData.button != PointerEventData.InputButton.Left
+        if (eventData.button != PointerEventData.InputButton.Left || !DraggingAllowed
             || windowRoot == null || dragCamera != null)
             return;
 
@@ -71,7 +86,7 @@ public class DraggableWindow : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (eventData.button != PointerEventData.InputButton.Left
+        if (eventData.button != PointerEventData.InputButton.Left || !DraggingAllowed
             || dragCamera == null || eventData.pointerId != dragPointerId)
             return;
 
@@ -151,7 +166,7 @@ public class DraggableWindow : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         windowRoot.position += movement;
     }
     
-    private bool TryGetWindowBounds(out Bounds bounds)
+    public bool TryGetWindowBounds(out Bounds bounds)
     {
         bounds = default;
         bool found = false;
