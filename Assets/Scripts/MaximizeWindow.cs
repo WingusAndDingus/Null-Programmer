@@ -4,6 +4,9 @@ using System.Collections.Generic;
 [DisallowMultipleComponent]
 public class MaximizeWindow : MonoBehaviour
 {
+    [Header("Persistence")]
+    [SerializeField] private string windowId;
+
     [Header("Required")]
     [SerializeField] private DraggableWindow draggableWindow;
     [SerializeField] private SpriteRenderer windowBody;
@@ -33,6 +36,18 @@ public class MaximizeWindow : MonoBehaviour
         public SpriteRenderer sprite;
         public Bounds spriteBounds;
     }
+
+    private void Start()
+    {
+        if (GameManager.Instance == null)
+            return;
+
+        if (GameManager.Instance.IsWindowMaximized(windowId))
+        {
+            Maximize();
+        }
+    }
+
     private void Reset()
     {
         windowBody = GetComponent<SpriteRenderer>();
@@ -139,15 +154,26 @@ public class MaximizeWindow : MonoBehaviour
         }
 
         IsMaximized = true;
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.SetWindowMaximized(windowId, true);
+        }
     }
-    
+
     public void Restore()
     {
         RestoreLayout();
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.SetWindowMaximized(windowId, false);
+        }
+
         if (isActiveAndEnabled)
             BringToFront();
     }
-    
+
     private void OnDisable()
     {
         // Closing and reopening a window returns it to its normal layout.
