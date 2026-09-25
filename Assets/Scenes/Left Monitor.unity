@@ -307,7 +307,6 @@ GameObject:
   - component: {fileID: 554698687}
   - component: {fileID: 554698686}
   - component: {fileID: 554698685}
-  - component: {fileID: 554698688}
   m_Layer: 0
   m_Name: MonitorClickableArea
   m_TagString: Untagged
@@ -389,20 +388,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &554698688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 554698684}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b4b981cc7c9bfb42b5774517ebc8ac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ClickableCameraMove
-  mainCamera: {fileID: 1152140537}
-  newCameraPosition: {x: 0, y: 1}
 --- !u!1 &719277669
 GameObject:
   m_ObjectHideFlags: 0
