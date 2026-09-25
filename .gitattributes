@@ -1,2 +1,4 @@
+*.unity merge=unityyamlmerge
+*.prefab merge=unityyamlmerge
 .mp4 filter=lfs diff=lfs merge=lfs -text
 *.mp4 filter=lfs diff=lfs merge=lfs -text
