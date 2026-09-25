@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public bool IsZoomedIn { get; private set; }
     private Dictionary<string, bool> windowMaximizedStates =
         new Dictionary<string, bool>();
+    private Dictionary<string, bool> windowOpenStates =
+        new Dictionary<string, bool>();
 
     private void Awake()
     {
@@ -44,5 +46,22 @@ public class GameManager : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void SetWindowOpen(string windowId, bool isOpen)
+    {
+        windowOpenStates[windowId] = isOpen;
+    }
+
+    public bool IsWindowOpen(string windowId)
+    {
+        if (windowOpenStates.TryGetValue(windowId, out bool isOpen))
+        {
+            return isOpen;
+        }
+
+        // If the GameManager has never seen this window before,
+        // assume it should initially be open.
+        return true;
     }
 }
