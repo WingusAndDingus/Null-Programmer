@@ -115,8 +115,15 @@ public class DraggableWindow : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         openWindows.RemoveAll(window => window == null || !window.isActiveAndEnabled);
         for (int i = 0; i < openWindows.Count; i++)
         {
-            if (openWindows[i].windowGroup != null)
-                openWindows[i].windowGroup.sortingOrder = FirstWindowOrder + i;
+            if (openWindows[i].windowGroup == null) continue;
+            openWindows[i].windowGroup.sortingOrder = FirstWindowOrder + i * 10;
+            // Reserve the next sorting slot for this window's world-space UI.
+            foreach (Canvas canvas in openWindows[i].windowRoot.GetComponentsInChildren<Canvas>(true))
+            {
+                if (canvas.renderMode != RenderMode.WorldSpace || !canvas.overrideSorting) continue;
+                canvas.sortingLayerID = openWindows[i].windowGroup.sortingLayerID;
+                canvas.sortingOrder = FirstWindowOrder + i * 10 + 1;
+            }
         }
     }
 
