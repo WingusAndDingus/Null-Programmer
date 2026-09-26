@@ -2,17 +2,38 @@ using UnityEngine;
 
 public class PersistentWindow : MonoBehaviour
 {
-    [SerializeField] private string windowId;
+    [SerializeField] private WindowIdentity windowIdentity;
     [SerializeField] private GameObject windowRoot;
-    [SerializeField] private DraggableWindow draggableWindow;
+    //[SerializeField] private DraggableWindow draggableWindow;
+
+    private void Awake()
+    {
+        if (windowIdentity == null &&
+            windowRoot != null)
+        {
+            windowIdentity =
+                windowRoot.GetComponent<WindowIdentity>();
+        }
+    }
 
     private void Start()
     {
         if (GameManager.Instance == null)
             return;
 
+        if (windowIdentity == null ||
+            !windowIdentity.HasValidId)
+        {
+            Debug.LogError(
+                "PersistentWindow needs a valid WindowIdentity.",
+                this);
+
+            return;
+        }
+
         bool shouldBeOpen =
-            GameManager.Instance.IsWindowOpen(windowId);
+            GameManager.Instance.IsWindowOpen(
+                windowIdentity.Id);
 
         windowRoot.SetActive(shouldBeOpen);
     }
@@ -21,10 +42,14 @@ public class PersistentWindow : MonoBehaviour
     {
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.SetWindowOpen(windowId, false);
+            GameManager.Instance.SetWindowOpen(
+                windowIdentity.Id,
+                false);
 
-            // Closing the window also forgets its maximized state.
-            GameManager.Instance.SetWindowMaximized(windowId, false);
+            // Closed windows reopen at normal size
+            GameManager.Instance.SetWindowMaximized(
+                windowIdentity.Id,
+                false);
         }
 
         windowRoot.SetActive(false);
@@ -34,10 +59,13 @@ public class PersistentWindow : MonoBehaviour
     {
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.SetWindowOpen(windowId, true);
+            GameManager.Instance.SetWindowOpen(
+                windowIdentity.Id,
+                true);
 
-            // Reopening counts as bringing this window to the foreground.
-            GameManager.Instance.BringWindowToFront(windowId);
+            // Reopening puts it in the foreground
+            GameManager.Instance.BringWindowToFront(
+                windowIdentity.Id);
         }
 
         windowRoot.SetActive(true);
