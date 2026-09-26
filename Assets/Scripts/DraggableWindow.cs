@@ -7,7 +7,7 @@ using UnityEngine.Rendering;
 public class DraggableWindow : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler
 {
     [Header("Persistence")]
-    [SerializeField] private string windowId;
+    [SerializeField] private WindowIdentity windowIdentity;
 
     [SerializeField] private Transform windowRoot;
     [SerializeField] private Transform desktopBottomLeft;
@@ -30,7 +30,16 @@ public class DraggableWindow : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public Transform DesktopTopRight => desktopTopRight;
     public bool DraggingAllowed { get; private set; } = true;
 
-    
+
+    private void Awake()
+    {
+        if (windowIdentity == null)
+        {
+            windowIdentity =
+                GetComponentInParent<WindowIdentity>();
+        }
+    }
+
     public void SetDraggingAllowed(bool allowed)
     {
         DraggingAllowed = allowed;
@@ -43,6 +52,14 @@ public class DraggableWindow : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         if (windowRoot == null)
         {
             Debug.LogError("Assign WindowRoot to DraggableWindow", this);
+            return;
+        }
+
+        if (windowIdentity == null || !windowIdentity.HasValidId)
+        {
+            Debug.LogError(
+                "DraggableWindow needs a valid WindowIdentity.", this);
+
             return;
         }
 
@@ -59,7 +76,7 @@ public class DraggableWindow : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         // Make sure this window has a persistent stack position.
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.GetOrCreateWindowStackOrder(windowId);
+            GameManager.Instance.GetOrCreateWindowStackOrder(windowIdentity.Id);
         }
 
         // Register this scene's instance WITHOUT moving it to the front.
@@ -75,7 +92,7 @@ public class DraggableWindow : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         {
             if (GameManager.Instance != null
                 && GameManager.Instance.TryGetWindowPosition(
-                    windowId,
+                    windowIdentity.Id,
                     out Vector2 savedPosition))
             {
                 RestoreWindowPosition(savedPosition);
@@ -142,7 +159,7 @@ public class DraggableWindow : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.BringWindowToFront(windowId);
+            GameManager.Instance.BringWindowToFront(windowIdentity.Id);
         }
 
         if (!openWindows.Contains(this))
@@ -164,11 +181,11 @@ public class DraggableWindow : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             {
                 int aOrder =
                     GameManager.Instance.GetOrCreateWindowStackOrder(
-                        a.windowId);
+                        a.windowIdentity.Id);
 
                 int bOrder =
                     GameManager.Instance.GetOrCreateWindowStackOrder(
-                        b.windowId);
+                        b.windowIdentity.Id);
 
                 return aOrder.CompareTo(bOrder);
             });
@@ -258,8 +275,10 @@ public class DraggableWindow : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         if (GameManager.Instance == null)
             return;
 
-        if (string.IsNullOrEmpty(windowId))
+        if (windowIdentity == null || !windowIdentity.HasValidId)
+        {
             return;
+        }
 
         if (!TryGetAllowedPositionRange(
             out float minX,
@@ -277,7 +296,7 @@ public class DraggableWindow : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             Mathf.InverseLerp(minY, maxY, windowRoot.position.y);
 
         GameManager.Instance.SetWindowPosition(
-            windowId,
+            windowIdentity.Id,
             new Vector2(normalizedX, normalizedY));
     }
 

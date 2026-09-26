@@ -6,19 +6,32 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public bool IsZoomedIn { get; private set; }
-    private Dictionary<string, bool> windowMaximizedStates =
-        new Dictionary<string, bool>();
-    private Dictionary<string, bool> windowOpenStates =
-        new Dictionary<string, bool>();
-    private Dictionary<string, Vector2> windowPositions =
-        new Dictionary<string, Vector2>();
-    private Dictionary<string, int> windowStackOrders =
-        new Dictionary<string, int>();
+
+    // All persistent state belonging to one logical window.
+    private class WindowState
+    {
+        public bool IsOpen = true;
+        public bool IsMaximized = false;
+
+        public bool HasPosition = false;
+        public Vector2 Position;
+
+        public bool HasStackOrder = false;
+        public int StackOrder;
+    }
+
+    // One WindowState for each logical window ID.
+    private readonly Dictionary<string, WindowState> windowStates =
+        new Dictionary<string, WindowState>();
+
+    // Used to determine which window was most recently brought forward.
     private int nextWindowStackOrder = 0;
+
 
     private void Awake()
     {
-        // If another GameManager already exists, destroy this duplicate.
+        // If another GameManager already exists,
+        // destroy this duplicate.
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -31,73 +44,113 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+
+    // =========================================================
+    // Camera Zoom
+    // =========================================================
+
     public void SetZoomedIn(bool zoomedIn)
     {
         IsZoomedIn = zoomedIn;
     }
 
+
+    // =========================================================
+    // Window State
+    // =========================================================
+
+    private WindowState GetWindowState(string windowId)
+    {
+        if (!windowStates.TryGetValue(windowId, out WindowState state))
+        {
+            state = new WindowState();
+            windowStates[windowId] = state;
+        }
+
+        return state;
+    }
+
+
+    // =========================================================
+    // Maximized State
+    // =========================================================
+
     public void SetWindowMaximized(string windowId, bool maximized)
     {
-        windowMaximizedStates[windowId] = maximized;
+        GetWindowState(windowId).IsMaximized = maximized;
     }
 
     public bool IsWindowMaximized(string windowId)
     {
-        // If we've never seen this window before,
-        // assume it starts unmaximized.
-        if (windowMaximizedStates.TryGetValue(windowId, out bool maximized))
-        {
-            return maximized;
-        }
-
-        return false;
+        return GetWindowState(windowId).IsMaximized;
     }
+
+
+    // =========================================================
+    // Open / Closed State
+    // =========================================================
 
     public void SetWindowOpen(string windowId, bool isOpen)
     {
-        windowOpenStates[windowId] = isOpen;
+        GetWindowState(windowId).IsOpen = isOpen;
     }
 
     public bool IsWindowOpen(string windowId)
     {
-        if (windowOpenStates.TryGetValue(windowId, out bool isOpen))
-        {
-            return isOpen;
-        }
-
-        // If the GameManager has never seen this window before,
-        // assume it should initially be open.
-        return true;
+        return GetWindowState(windowId).IsOpen;
     }
+
+
+    // =========================================================
+    // Window Position
+    // =========================================================
 
     public void SetWindowPosition(string windowId, Vector2 normalizedPosition)
     {
-        windowPositions[windowId] = normalizedPosition;
+        WindowState state = GetWindowState(windowId);
+
+        state.Position = normalizedPosition;
+        state.HasPosition = true;
     }
 
     public bool TryGetWindowPosition(string windowId, out Vector2 normalizedPosition)
     {
-        return windowPositions.TryGetValue(windowId, out normalizedPosition);
+        WindowState state = GetWindowState(windowId);
+
+        if (state.HasPosition)
+        {
+            normalizedPosition = state.Position;
+            return true;
+        }
+
+        normalizedPosition = default;
+        return false;
     }
+
+
+    // =========================================================
+    // Window Stack Order
+    // =========================================================
 
     public int GetOrCreateWindowStackOrder(string windowId)
     {
-        if (windowStackOrders.TryGetValue(windowId, out int order))
+        WindowState state = GetWindowState(windowId);
+
+        if (!state.HasStackOrder)
         {
-            return order;
+            state.StackOrder = nextWindowStackOrder;
+            state.HasStackOrder = true;
+            nextWindowStackOrder++;
         }
 
-        order = nextWindowStackOrder;
-        nextWindowStackOrder++;
-
-        windowStackOrders[windowId] = order;
-
-        return order;
+        return state.StackOrder;
     }
 
     public void BringWindowToFront(string windowId)
     {
-        windowStackOrders[windowId] = nextWindowStackOrder;
+        WindowState state = GetWindowState(windowId);
+        state.StackOrder = nextWindowStackOrder;
+        state.HasStackOrder = true;
         nextWindowStackOrder++;
     }
 }

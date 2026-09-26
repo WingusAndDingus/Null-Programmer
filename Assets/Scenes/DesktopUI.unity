@@ -476,6 +476,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &320154106
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 320154107}
+  - component: {fileID: 320154108}
+  m_Layer: 0
+  m_Name: WindowIdentity
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &320154107
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320154106}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 925617094}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &320154108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320154106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad72445c5bd70da478b13eccd4bf3db5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WindowIdentity
+  windowId: EmailWindow
 --- !u!1 &320947924
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,9 +565,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad50b9c9f16efd04b92ee07f5e1959d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PersistentWindow
-  windowId: Email Window
+  windowIdentity: {fileID: 320154108}
   windowRoot: {fileID: 925617093}
-  draggableWindow: {fileID: 1898208212}
 --- !u!1 &403919669
 GameObject:
   m_ObjectHideFlags: 0
@@ -1791,6 +1835,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1898208210}
+  - {fileID: 320154107}
   m_Father: {fileID: 1580805756}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &925617095
@@ -1878,7 +1923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b61db3f69d31204d8ecde894c5c8dab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MaximizeWindow
-  windowId: Email Window
+  windowIdentity: {fileID: 320154108}
   draggableWindow: {fileID: 1898208212}
   windowBody: {fileID: 925617095}
   titleBar: {fileID: 1898208211}
@@ -1921,6 +1966,7 @@ Transform:
   m_Children:
   - {fileID: 2103916633}
   - {fileID: 1954569206}
+  - {fileID: 1693863860}
   m_Father: {fileID: 1580805756}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &950594682
@@ -2008,7 +2054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b61db3f69d31204d8ecde894c5c8dab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MaximizeWindow
-  windowId: IDE Window
+  windowIdentity: {fileID: 1693863861}
   draggableWindow: {fileID: 2103916635}
   windowBody: {fileID: 950594682}
   titleBar: {fileID: 2103916634}
@@ -2992,6 +3038,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!1 &1693863859
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1693863860}
+  - component: {fileID: 1693863861}
+  m_Layer: 0
+  m_Name: WindowIdentity
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1693863860
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693863859}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 950594681}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1693863861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693863859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad72445c5bd70da478b13eccd4bf3db5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WindowIdentity
+  windowId: IDEWindow
 --- !u!1 &1798894329
 GameObject:
   m_ObjectHideFlags: 0
@@ -3314,7 +3405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e24de49ddb74496bc6526507870fb0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DraggableWindow
-  windowId: Email Window
+  windowIdentity: {fileID: 320154108}
   windowRoot: {fileID: 925617094}
   desktopBottomLeft: {fileID: 1798894330}
   desktopTopRight: {fileID: 1464356008}
@@ -3657,9 +3748,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad50b9c9f16efd04b92ee07f5e1959d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PersistentWindow
-  windowId: IDE Window
+  windowIdentity: {fileID: 1693863861}
   windowRoot: {fileID: 950594680}
-  draggableWindow: {fileID: 2103916635}
 --- !u!1 &2025419144
 GameObject:
   m_ObjectHideFlags: 0
@@ -4074,7 +4164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e24de49ddb74496bc6526507870fb0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DraggableWindow
-  windowId: IDE Window
+  windowIdentity: {fileID: 1693863861}
   windowRoot: {fileID: 950594681}
   desktopBottomLeft: {fileID: 1798894330}
   desktopTopRight: {fileID: 1464356008}

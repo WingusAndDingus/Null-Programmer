@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class MaximizeWindow : MonoBehaviour
 {
     [Header("Persistence")]
-    [SerializeField] private string windowId;
+    [SerializeField] private WindowIdentity windowIdentity;
 
     [Header("Required")]
     [SerializeField] private DraggableWindow draggableWindow;
@@ -37,23 +37,42 @@ public class MaximizeWindow : MonoBehaviour
         public Bounds spriteBounds;
     }
 
+    private void Awake()
+    {
+        if (windowIdentity == null)
+        {
+            windowIdentity = GetComponent<WindowIdentity>();
+        }
+    }
+
     private void Start()
     {
-        if (GameManager.Instance == null)
-            return;
-
-        if (GameManager.Instance.IsWindowMaximized(windowId))
+        if (GameManager.Instance == null ||
+            windowIdentity == null)
         {
-            Maximize();
+            return;
+        }
+
+        if (GameManager.Instance.IsWindowMaximized(
+            windowIdentity.Id))
+        {
+            // Restore maximized state without changing
+            // persistent foreground order.
+            ApplyMaximize(false);
         }
     }
 
     private void Reset()
     {
+        windowIdentity = GetComponent<WindowIdentity>();
+
         windowBody = GetComponent<SpriteRenderer>();
-        draggableWindow = GetComponentInChildren<DraggableWindow>(true);
+        draggableWindow =
+            GetComponentInChildren<DraggableWindow>(true);
+
         if (draggableWindow != null)
-            titleBar = draggableWindow.GetComponent<SpriteRenderer>();
+            titleBar =
+                draggableWindow.GetComponent<SpriteRenderer>();
     }
 
     public void ToggleMaximize()
@@ -72,8 +91,13 @@ public class MaximizeWindow : MonoBehaviour
         if (draggableWindow != null)
             draggableWindow.BringToFront();
     }
-    
+
     public void Maximize()
+    {
+        ApplyMaximize(true);
+    }
+
+    private void ApplyMaximize(bool bringToFront)
     {
         if (IsMaximized || !isActiveAndEnabled || !ValidateSetup())
             return;
@@ -110,8 +134,12 @@ public class MaximizeWindow : MonoBehaviour
 
         previousDraggingAllowed = draggableWindow.DraggingAllowed;
         draggableWindow.SetDraggingAllowed(false);
-        BringToFront();
         
+        if (bringToFront)
+        {
+            BringToFront();
+        }
+
         foreach (PartState state in savedLayout)
         {
             Vector3 targetPosition = state.worldPosition +
@@ -157,7 +185,7 @@ public class MaximizeWindow : MonoBehaviour
 
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.SetWindowMaximized(windowId, true);
+            GameManager.Instance.SetWindowMaximized(windowIdentity.Id, true);
         }
     }
 
@@ -167,7 +195,7 @@ public class MaximizeWindow : MonoBehaviour
 
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.SetWindowMaximized(windowId, false);
+            GameManager.Instance.SetWindowMaximized(windowIdentity.Id, false);
         }
 
         if (isActiveAndEnabled)
