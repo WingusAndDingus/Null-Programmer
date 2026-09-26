@@ -1,0 +1,678 @@
+fileFormatVersion: 2
+guid: fbed412d7629b004aa879e5be8572d6a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2517909235877449213
+    second: Pragmatist Image_0
+  - first:
+      213: 3119193836581375867
+    second: Pragmatist Image_1
+  - first:
+      213: -7323346383124832682
+    second: Pragmatist Image_2
+  - first:
+      213: -6868918706069943490
+    second: Pragmatist Image_3
+  - first:
+      213: 3418796880718161709
+    second: Pragmatist Image_4
+  - first:
+      213: -701511706629644693
+    second: Pragmatist Image_5
+  - first:
+      213: -7761279034175104594
+    second: Pragmatist Image_6
+  - first:
+      213: -1710051176173444252
+    second: Pragmatist Image_7
+  - first:
+      213: -7229254026486989092
+    second: Pragmatist Image_8
+  - first:
+      213: -760429963227947435
+    second: Pragmatist Image_9
+  - first:
+      213: 4630715418195607950
+    second: Pragmatist Image_10
+  - first:
+      213: -718830316431615981
+    second: Pragmatist Image_11
+  - first:
+      213: 538491714106291529
+    second: Pragmatist Image_12
+  - first:
+      213: 3701685921429784813
+    second: Pragmatist Image_13
+  - first:
+      213: 2194889139205760196
+    second: Pragmatist Image_14
+  - first:
+      213: -3285315170794776941
+    second: Pragmatist Image_15
+  - first:
+      213: 453201794632139515
+    second: Pragmatist Image_16
+  - first:
+      213: -2105350537681484907
+    second: Pragmatist Image_17
+  - first:
+      213: -8292226655968991344
+    second: Pragmatist Image_18
+  - first:
+      213: -7003219393054586376
+    second: Pragmatist Image_19
+  - first:
+      213: 7911402568025905742
+    second: Pragmatist Image_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Pragmatist Image_0
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 1213
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfd862d0c1961f220800000000000000
+      internalID: 2517909235877449213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pragmatist Image_1
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 1221
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7f4507a44a994b20800000000000000
+      internalID: 3119193836581375867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pragmatist Image_2
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 1199
+        width: 108
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65ed3bae34f3e5a90800000000000000
+      internalID: -7323346383124832682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pragmatist Image_3
+      rect:
+        serializedVersion: 2
+        x: 892
+        y: 1165
+        width: 63
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3b4aa574d2bca0a0800000000000000
+      internalID: -6868918706069943490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pragmatist Image_4
+      rect:
+        serializedVersion: 2
+        x: 1129
+        y: 1195
+        width: 10
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d276b6246a1027f20800000000000000
+      internalID: 3418796880718161709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pragmatist Image_5
+      rect:
+        serializedVersion: 2
+        x: 1178
+        y: 1207
+        width: 57
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6edf80d1dab346f0800000000000000
+      internalID: -701511706629644693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pragmatist Image_6
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 1201
+        width: 35
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea95e45e6d56a4490800000000000000
+      internalID: -7761279034175104594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pragmatist Image_7
+      rect:
+        serializedVersion: 2
+        x: 665
+        y: 1197
+        width: 31
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4636178f38da448e0800000000000000
+      internalID: -1710051176173444252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pragmatist Image_8
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 1191
+        width: 23
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cde3e20e3c78cab90800000000000000
+      internalID: -7229254026486989092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pragmatist Image_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1254
+        height: 1198
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55e1c353af86275f0800000000000000
+      internalID: -760429963227947435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pragmatist Image_10
+      rect:
+        serializedVersion: 2
+        x: 735
+        y: 1183
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e814975632b934040800000000000000
+      internalID: 4630715418195607950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pragmatist Image_11
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 1175
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 318df4fb2a33606f0800000000000000
+      internalID: -718830316431615981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pragmatist Image_12
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 1155
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 945fbc56c5b197700800000000000000
+      internalID: 538491714106291529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pragmatist Image_13
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 1148
+        width: 8
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de803e0bbb70f5330800000000000000
+      internalID: 3701685921429784813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pragmatist Image_14
+      rect:
+        serializedVersion: 2
+        x: 1206
+        y: 1156
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c4e8b70b00d57e10800000000000000
+      internalID: 2194889139205760196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pragmatist Image_15
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 642
+        width: 63
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 396539d22473862d0800000000000000
+      internalID: -3285315170794776941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pragmatist Image_16
+      rect:
+        serializedVersion: 2
+        x: 1212
+        y: 652
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf24e9c81a81a4600800000000000000
+      internalID: 453201794632139515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pragmatist Image_17
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 630
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59341d137da48c2e0800000000000000
+      internalID: -2105350537681484907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pragmatist Image_18
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 349
+        width: 279
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09761fd5ac71cec80800000000000000
+      internalID: -8292226655968991344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pragmatist Image_19
+      rect:
+        serializedVersion: 2
+        x: 1210
+        y: 339
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f9cad011119fce90800000000000000
+      internalID: -7003219393054586376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pragmatist Image_20
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 278
+        width: 43
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4a1c4e18b2facd60800000000000000
+      internalID: 7911402568025905742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Pragmatist Image_0: 2517909235877449213
+      Pragmatist Image_1: 3119193836581375867
+      Pragmatist Image_10: 4630715418195607950
+      Pragmatist Image_11: -718830316431615981
+      Pragmatist Image_12: 538491714106291529
+      Pragmatist Image_13: 3701685921429784813
+      Pragmatist Image_14: 2194889139205760196
+      Pragmatist Image_15: -3285315170794776941
+      Pragmatist Image_16: 453201794632139515
+      Pragmatist Image_17: -2105350537681484907
+      Pragmatist Image_18: -8292226655968991344
+      Pragmatist Image_19: -7003219393054586376
+      Pragmatist Image_2: -7323346383124832682
+      Pragmatist Image_20: 7911402568025905742
+      Pragmatist Image_3: -6868918706069943490
+      Pragmatist Image_4: 3418796880718161709
+      Pragmatist Image_5: -701511706629644693
+      Pragmatist Image_6: -7761279034175104594
+      Pragmatist Image_7: -1710051176173444252
+      Pragmatist Image_8: -7229254026486989092
+      Pragmatist Image_9: -760429963227947435
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
