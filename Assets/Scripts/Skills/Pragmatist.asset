@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eb7f85e32204448a153d4731c4de54c, type: 3}
+  m_Name: Pragmatist
+  m_EditorClassIdentifier: Assembly-CSharp::PersonalityDefinition
+  personality: 1
+  displayName: The Pragmatist
+  description: Wants the fastest solution to finish the workday. He may help if the player sees he has no chance of finishing on time, but he misuses global variables, tends to code with magic numbers, and finds quick patches with AI that if relied on too much will break the code and not know why.
+  levelUnlocks:
+  - Level 1 Prag
+  - Level 2 Prag
+  - Level 3 Prag
+  - Level 4 Prag
