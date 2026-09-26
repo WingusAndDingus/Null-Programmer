@@ -4,6 +4,7 @@ public class PersistentWindow : MonoBehaviour
 {
     [SerializeField] private string windowId;
     [SerializeField] private GameObject windowRoot;
+    [SerializeField] private DraggableWindow draggableWindow;
 
     private void Start()
     {
@@ -34,6 +35,9 @@ public class PersistentWindow : MonoBehaviour
         if (GameManager.Instance != null)
         {
             GameManager.Instance.SetWindowOpen(windowId, true);
+
+            // Reopening counts as bringing this window to the foreground.
+            GameManager.Instance.BringWindowToFront(windowId);
         }
 
         windowRoot.SetActive(true);
