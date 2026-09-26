@@ -10,6 +10,11 @@ public class GameManager : MonoBehaviour
         new Dictionary<string, bool>();
     private Dictionary<string, bool> windowOpenStates =
         new Dictionary<string, bool>();
+    private Dictionary<string, Vector2> windowPositions =
+        new Dictionary<string, Vector2>();
+    private Dictionary<string, int> windowStackOrders =
+        new Dictionary<string, int>();
+    private int nextWindowStackOrder = 0;
 
     private void Awake()
     {
@@ -63,5 +68,36 @@ public class GameManager : MonoBehaviour
         // If the GameManager has never seen this window before,
         // assume it should initially be open.
         return true;
+    }
+
+    public void SetWindowPosition(string windowId, Vector2 normalizedPosition)
+    {
+        windowPositions[windowId] = normalizedPosition;
+    }
+
+    public bool TryGetWindowPosition(string windowId, out Vector2 normalizedPosition)
+    {
+        return windowPositions.TryGetValue(windowId, out normalizedPosition);
+    }
+
+    public int GetOrCreateWindowStackOrder(string windowId)
+    {
+        if (windowStackOrders.TryGetValue(windowId, out int order))
+        {
+            return order;
+        }
+
+        order = nextWindowStackOrder;
+        nextWindowStackOrder++;
+
+        windowStackOrders[windowId] = order;
+
+        return order;
+    }
+
+    public void BringWindowToFront(string windowId)
+    {
+        windowStackOrders[windowId] = nextWindowStackOrder;
+        nextWindowStackOrder++;
     }
 }
