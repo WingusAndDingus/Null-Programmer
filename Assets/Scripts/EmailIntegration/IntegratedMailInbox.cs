@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
 
@@ -14,10 +15,15 @@ public sealed class IntegratedMailInbox : MonoBehaviour
     [SerializeField] private Canvas notificationCanvas;
     [SerializeField] private RectTransform unreadBadge;
     [SerializeField] private Text inboxLabel;
+    [SerializeField] private TMP_Text inboxLabelTMP;
     [SerializeField] private Text rowLabel;
+    [SerializeField] private TMP_Text rowLabelTMP;
     [SerializeField] private Text subjectLabel;
+    [SerializeField] private TMP_Text subjectLabelTMP;
     [SerializeField] private Text senderLabel;
+    [SerializeField] private TMP_Text senderLabelTMP;
     [SerializeField] private Text bodyLabel;
+    [SerializeField] private TMP_Text bodyLabelTMP;
     [SerializeField] private GameObject readingPane;
     [SerializeField] private GameObject prompt;
     [SerializeField] private Button emailButton;
@@ -31,23 +37,30 @@ public sealed class IntegratedMailInbox : MonoBehaviour
         "Hi,\n\nYou're leading our new Minesweeper project, built in C++ using SFML 3.0. We'll review the finished application at the end of the next two weeks.\n\nFor today, get the development environment ready and confirm that you can open an SFML window. We'll send additional requirements as the project progresses.\n\nSteve will be working alongside you. He's eager to learn how you approach a project like this, so please keep him involved.\n\nWith your experience, I'm sure we're in good hands.\n\nBest,\nProject Management";
 
     public bool IsRead { get; private set; }
+    public GameObject WindowObject => window;
     public DraggableWindow Drag => drag;
     public Canvas ContentCanvas => contentCanvas;
     public SpriteRenderer WindowBody => windowBody;
+
+    private static void SetLabel(Text legacy, TMP_Text tmp, string value)
+    {
+        if (tmp != null) tmp.text = value;
+        else if (legacy != null) legacy.text = value;
+    }
 
     private void Awake()
     {
         if (window == null || windowBody == null || titleBar == null || drag == null ||
             contentCanvas == null || notificationCanvas == null || unreadBadge == null ||
-            inboxLabel == null || rowLabel == null || subjectLabel == null ||
-            senderLabel == null || bodyLabel == null || readingPane == null ||
+            (inboxLabel == null && inboxLabelTMP == null) || (rowLabel == null && rowLabelTMP == null) || (subjectLabel == null && subjectLabelTMP == null) ||
+            (senderLabel == null && senderLabelTMP == null) || (bodyLabel == null && bodyLabelTMP == null) || readingPane == null ||
             prompt == null || emailButton == null || bodyScroll == null)
         {
             Debug.LogError("Integrated Mail references are incomplete. Restore the missing objects or undo the installation.", this);
             enabled = false;
             return;
         }
-        IsRead = false;
+        IsRead = GameManager.EnsureInstance().EmailRead;
         emailButton.onClick.AddListener(ReadEmail);
         Refresh();
     }
@@ -72,6 +85,7 @@ public sealed class IntegratedMailInbox : MonoBehaviour
     {
         if (!enabled) return;
         IsRead = true;
+        GameManager.EnsureInstance().MarkEmailRead();
         prompt.SetActive(false);
         readingPane.SetActive(true);
         drag.BringToFront();
@@ -83,12 +97,13 @@ public sealed class IntegratedMailInbox : MonoBehaviour
     private void Refresh()
     {
         unreadBadge.gameObject.SetActive(!IsRead);
-        inboxLabel.text = IsRead ? "Inbox" : "Inbox (1 unread)";
-        rowLabel.text = (IsRead ? "READ" : "NEW") + "\n\n" + sender + "\n\n" + subject;
-        rowLabel.fontStyle = IsRead ? FontStyle.Normal : FontStyle.Bold;
-        subjectLabel.text = subject;
-        senderLabel.text = "From: " + sender;
-        bodyLabel.text = body;
+        SetLabel(inboxLabel, inboxLabelTMP, IsRead ? "Inbox" : "Inbox (1 unread)");
+        SetLabel(rowLabel, rowLabelTMP, (IsRead ? "READ" : "NEW") + "\n\n" + sender + "\n\n" + subject);
+        if (rowLabelTMP != null) rowLabelTMP.fontStyle = IsRead ? FontStyles.Normal : FontStyles.Bold;
+        else if (rowLabel != null) rowLabel.fontStyle = IsRead ? FontStyle.Normal : FontStyle.Bold;
+        SetLabel(subjectLabel, subjectLabelTMP, subject);
+        SetLabel(senderLabel, senderLabelTMP, "From: " + sender);
+        SetLabel(bodyLabel, bodyLabelTMP, body);
     }
 
     private void LateUpdate()
