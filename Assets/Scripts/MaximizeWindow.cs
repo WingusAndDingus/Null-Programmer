@@ -175,6 +175,10 @@ public class MaximizeWindow : MonoBehaviour
     
     private void CaptureLayout(Transform part)
     {
+        // Canvas layout follows the resized body independently. Don't capture and
+        // reposition its anchored UI elements as though they were loose sprites.
+        if (part != transform && part.GetComponent<Canvas>() != null)
+            return;
         SpriteRenderer sprite = part.GetComponent<SpriteRenderer>();
         savedLayout.Add(new PartState
         {
