@@ -6,8 +6,12 @@ using UnityEngine.Video;
 [System.Serializable]
 public class VideoDialogueCue
 {
-    [Tooltip("Timestamp in seconds where video seamlessly pauses")]
-    public double pauseTimestampSeconds; 
+    [Tooltip("Timestamp in seconds when this dialogue triggers")]
+    public double triggerTimestampSeconds;
+
+    [Tooltip("If checked, the video freezes while dialogue plays. If unchecked, the video continues playing.")]
+    public bool pauseVideo = true;
+
     public DialogueLine dialogue;
 }
 
@@ -23,7 +27,7 @@ public class ZoomScreenShareController : MonoBehaviour
 
     [Header("Video Settings")]
     [SerializeField] private VideoPlayer screenShareVideoPlayer;
-    
+
     [Header("Script Header / Sequence Configuration")]
     [Tooltip("Define all pauses and dialogue directly in the inspector")]
     public List<VideoDialogueCue> dialogueCues = new List<VideoDialogueCue>();
@@ -40,15 +44,11 @@ public class ZoomScreenShareController : MonoBehaviour
 
     private void Start()
     {
-        // Scene initialization: hide all Zoom elements
+        // Hide all Zoom UI elements by default on startup
         if (incomingCallPopup != null) incomingCallPopup.SetActive(false);
         if (zoomPanel != null) zoomPanel.SetActive(false);
         if (screensharePopup != null) screensharePopup.SetActive(false);
         if (screenShareDisplay != null) screenShareDisplay.SetActive(false);
-
-        // Optional: Call StartZoomCallSequence() here for testing, 
-        // or let your Game Manager invoke it.
-        TriggerIncomingCall();
     }
 
     private void Update()
@@ -56,9 +56,21 @@ public class ZoomScreenShareController : MonoBehaviour
         if (!isScreenSharingActive || isPausedForDialogue || currentCueIndex >= dialogueCues.Count) return;
 
         // Monitor video playback time during active screenshare
-        if (screenShareVideoPlayer != null && screenShareVideoPlayer.time >= dialogueCues[currentCueIndex].pauseTimestampSeconds)
+        if (screenShareVideoPlayer != null && screenShareVideoPlayer.time >= dialogueCues[currentCueIndex].triggerTimestampSeconds)
         {
-            StartCoroutine(ExecutePauseAndDialogue(dialogueCues[currentCueIndex]));
+            VideoDialogueCue currentCue = dialogueCues[currentCueIndex];
+            currentCueIndex++;
+
+            if (currentCue.pauseVideo)
+            {
+                // Pause video and wait for dialogue line to complete
+                StartCoroutine(ExecutePauseAndDialogue(currentCue));
+            }
+            else
+            {
+                // Play dialogue asynchronously without pausing video playback
+                StartCoroutine(DialogueManager.Instance.PlayDialogueLine(currentCue.dialogue));
+            }
         }
     }
 
@@ -160,8 +172,7 @@ public class ZoomScreenShareController : MonoBehaviour
         {
             screenShareVideoPlayer.Play();
         }
-        
-        currentCueIndex++;
+
         isPausedForDialogue = false;
     }
 }
