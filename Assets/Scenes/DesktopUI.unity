@@ -963,8 +963,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 566432503}
-  - component: {fileID: 566432504}
   - component: {fileID: 566432505}
+  - component: {fileID: 566432506}
+  - component: {fileID: 566432507}
   m_Layer: 0
   m_Name: ScreenShareDisplay
   m_TagString: Untagged
@@ -980,30 +981,65 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 566432502}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.519, y: -0.148, z: 0}
-  m_LocalScale: {x: 0.98201, y: 0.59671205, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.9579953, y: 0.56635445, z: -0.1}
+  m_LocalScale: {x: 32.795532, y: 19.927996, z: 33.396336}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1243040977}
+  m_Father: {fileID: 1580805756}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &566432504
-SpriteRenderer:
-  serializedVersion: 3
+--- !u!328 &566432505
+VideoPlayer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 566432502}
   m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
+  m_VideoClip: {fileID: 32900000, guid: 0913b1c29477c8645b41206cfe7311ff, type: 3}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: 275be8cf2979d0449b563bdb37da3293, type: 2}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 566432506}
+  m_TargetMaterialProperty: _BaseMap
+  m_RenderMode: 3
+  m_AspectRatio: 2
+  m_DataSource: 0
+  m_TimeUpdateMode: 2
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 0
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
+  m_Url: 
+  m_EnabledAudioTracks: 01o
+  m_DirectAudioMutes: 00o
+  m_ControlledAudioTrackCount: 1
+  m_PlayOnAwake: 1
+  m_SkipOnDrop: 1
+  m_Looping: 0
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
+  m_VideoShaders: []
+--- !u!23 &566432506
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566432502}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
+  m_RayTracingMode: 2
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
@@ -1026,7 +1062,7 @@ SpriteRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
+  m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -1034,55 +1070,17 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 13
+  m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.3, g: 0.3, b: 0.3, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
-  m_BlendShapeWeights: []
---- !u!328 &566432505
-VideoPlayer:
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &566432507
+MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 566432502}
-  m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 576e99f25b373ea44b7a8cd90115f897, type: 3}
-  m_TargetCameraAlpha: 1
-  m_TargetCamera3DLayout: 0
-  m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 8400000, guid: 275be8cf2979d0449b563bdb37da3293, type: 2}
-  m_TimeReference: 0
-  m_TargetMaterialRenderer: {fileID: 0}
-  m_TargetMaterialProperty: <noninit>
-  m_RenderMode: 2
-  m_AspectRatio: 2
-  m_DataSource: 0
-  m_TimeUpdateMode: 2
-  m_PlaybackSpeed: 1
-  m_AudioOutputMode: 2
-  m_TargetAudioSources:
-  - {fileID: 0}
-  m_DirectAudioVolumes:
-  - 1
-  m_Url: 
-  m_EnabledAudioTracks: 01o
-  m_DirectAudioMutes: 00o
-  m_ControlledAudioTrackCount: 1
-  m_PlayOnAwake: 0
-  m_SkipOnDrop: 1
-  m_Looping: 0
-  m_WaitForFirstFrame: 1
-  m_FrameReadyEventEnabled: 0
-  m_VideoShaders: []
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &629476854
 GameObject:
   m_ObjectHideFlags: 0
@@ -2942,7 +2940,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1728579802}
-  - {fileID: 566432503}
   - {fileID: 1866471387}
   - {fileID: 1314323071}
   m_Father: {fileID: 1580805756}
@@ -3057,7 +3054,140 @@ MonoBehaviour:
   screensharePopup: {fileID: 1866471386}
   screenShareDisplay: {fileID: 566432502}
   screenShareVideoPlayer: {fileID: 566432505}
-  dialogueCues: []
+  dialogueCues:
+  - triggerTimestampSeconds: 3
+    pauseVideo: 0
+    dialogue:
+      speakerName: Steve
+      personality: 0
+      text: "Alright, first things first\u2014head over to sfml-dev.org and download the SFML 3 package that matches your C++ toolchain."
+      voiceClip: {fileID: 0}
+      displayDuration: 14
+  - triggerTimestampSeconds: 19
+    pauseVideo: 0
+    dialogue:
+      speakerName: Steve
+      personality: 0
+      text: Then, you can just export it/unzip the libary folder
+      voiceClip: {fileID: 0}
+      displayDuration: 10
+  - triggerTimestampSeconds: 30
+    pauseVideo: 1
+    dialogue:
+      speakerName: The Architect
+      personality: 2
+      text: Notice how he extracts the library directly into an external/ directory inside the project root. Keeping third-party libraries localized avoids dirtying global system paths
+      voiceClip: {fileID: 0}
+      displayDuration: 10
+  - triggerTimestampSeconds: 31
+    pauseVideo: 1
+    dialogue:
+      speakerName: The Pragmatist
+      personality: 3
+      text: Who cares...
+      voiceClip: {fileID: 0}
+      displayDuration: 1.8
+  - triggerTimestampSeconds: 33
+    pauseVideo: 0
+    dialogue:
+      speakerName: Steve
+      personality: 0
+      text: Alright, so when you make your new CLion Project, make sure to use C++17 or 20
+      voiceClip: {fileID: 0}
+      displayDuration: 7
+  - triggerTimestampSeconds: 40
+    pauseVideo: 1
+    dialogue:
+      speakerName: Steve
+      personality: 0
+      text: And always make sure your project and all its dependencies finish loading before doing anything.
+      voiceClip: {fileID: 0}
+      displayDuration: 10
+  - triggerTimestampSeconds: 51
+    pauseVideo: 0
+    dialogue:
+      speakerName: Steve
+      personality: 0
+      text: Open CMakeLists.txt. We'll set SFML_DIR to point to our external/SFML folder, then use find_package() to pull in Graphics, Audio, Window, and System
+      voiceClip: {fileID: 0}
+      displayDuration: 10
+  - triggerTimestampSeconds: 130
+    pauseVideo: 1
+    dialogue:
+      speakerName: The Sentinel
+      personality: 4
+      text: Pay attention to target_link_libraries. Linking SFML targets directly to your executable scope ensures proper symbol resolution and prevents runtime memory leaks from dangling dependencies
+      voiceClip: {fileID: 0}
+      displayDuration: 10
+  - triggerTimestampSeconds: 137
+    pauseVideo: 1
+    dialogue:
+      speakerName: Steve
+      personality: 0
+      text: And that should be it! Please correct me if I did anything wrong sir. I'm here to learn from you
+      voiceClip: {fileID: 0}
+      displayDuration: 5
+  - triggerTimestampSeconds: 138
+    pauseVideo: 1
+    dialogue:
+      speakerName: The Pragmatist
+      personality: 3
+      text: 'Whatever, I''m sure we could''ve just asked chatpgt '
+      voiceClip: {fileID: 0}
+      displayDuration: 5
+  - triggerTimestampSeconds: 138.5
+    pauseVideo: 1
+    dialogue:
+      speakerName: The Detective
+      personality: 6
+      text: Maybe we could ask this Mr.GPT who we are? He seems like a well-informed fellow
+      voiceClip: {fileID: 0}
+      displayDuration: 5
+--- !u!1 &1286764874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1286764876}
+  - component: {fileID: 1286764875}
+  m_Layer: 0
+  m_Name: ZoomTestManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1286764875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286764874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb8d747e6db54e48a32e8c213885dbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ZoomTestManager
+  note: Use Context Menu (3 dots) during Play Mode
+--- !u!4 &1286764876
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286764874}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 571.67, y: 306.62454, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1301849689
 GameObject:
   m_ObjectHideFlags: 0
@@ -3175,12 +3305,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aba4b8b49a27984e8737dce3ffeff40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
+  dialoguePanel: {fileID: 961457923}
+  panelImage: {fileID: 961457925}
   speakerText: {fileID: 1622935425}
   dialogueText: {fileID: 1944962277}
-  dialogueBackground: {fileID: 0}
   internalMonologueOverlay: {fileID: 837577757}
   speechAudioSource: {fileID: 2027175925}
-  defaultTextColor: {r: 1, g: 1, b: 1, a: 1}
+  screenShareVideoPlayer: {fileID: 566432505}
+  defaultPanelColor: {r: 0.1, g: 0.1, b: 0.1, a: 0.8}
   architectColor: {r: 0.2, g: 0.8, b: 1, a: 1}
   pragmatistColor: {r: 1, g: 0.6, b: 0.2, a: 1}
   sentinelColor: {r: 0.3, g: 0.9, b: 0.3, a: 1}
@@ -3823,6 +3955,7 @@ Transform:
   - {fileID: 1645664231}
   - {fileID: 925617094}
   - {fileID: 950594681}
+  - {fileID: 566432503}
   - {fileID: 1243040977}
   m_Father: {fileID: 2033525337}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5833,3 +5966,4 @@ SceneRoots:
   - {fileID: 2033525337}
   - {fileID: 1301849693}
   - {fileID: 2027175926}
+  - {fileID: 1286764876}
