@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eb7f85e32204448a153d4731c4de54c, type: 3}
+  m_Name: Detective
+  m_EditorClassIdentifier: Assembly-CSharp::PersonalityDefinition
+  personality: 4
+  displayName: The Detective
+  description: "Focused on finding out about your past and why you have amnesia. Doesn\u2019t really care about coding."
+  levelUnlocks:
+  - Level 1 Det
+  - Level 2 Det
+  - Level 3 Det
+  - Level 4 Det
