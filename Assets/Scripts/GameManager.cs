@@ -1,11 +1,55 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Shared session state: player stats, monitor zoom, window state, and the email reply demo.
+/// </summary>
+[DefaultExecutionOrder(-1000)]
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    // =========================================================
+    // Camera Zoom
+    // =========================================================
+
     public bool IsZoomedIn { get; private set; }
+
+
+    // =========================================================
+    // Player / Game Stats
+    // =========================================================
+
+    public int GrandArchitectStat { get; private set; }
+    public int PragmatistStat { get; private set; }
+    public int SentinelStat { get; private set; }
+    public int GeniusStat { get; private set; }
+    public int DetectiveStat { get; private set; }
+    public int SteveSuspicion { get; private set; }
+    public int CodeQuality { get; private set; }
+    public int Connectedness { get; private set; }
+
+    public const int MaxSuspicion = 100;
+
+    public event Action<int> SuspicionChanged;
+    public event Action SteveCrisis;
+
+
+    // =========================================================
+    // Email Reply Demo
+    // =========================================================
+
+    public bool EmailRead { get; private set; }
+    public bool ReplyAvailable { get; private set; }
+    public int ReplyStage { get; private set; }
+    public bool ReplyCompleted => ReplyStage >= 2;
+    public string LastReplyFeedback { get; private set; } = "";
+
+
+    // =========================================================
+    // Window State
+    // =========================================================
 
     // All persistent state belonging to one logical window.
     private class WindowState
@@ -28,20 +72,65 @@ public class GameManager : MonoBehaviour
     private int nextWindowStackOrder = 0;
 
 
+    // =========================================================
+    // Singleton / Lifetime
+    // =========================================================
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetStatics()
+    {
+        Instance = null;
+    }
+
+    public static GameManager EnsureInstance()
+    {
+        if (Instance != null)
+        {
+            return Instance;
+        }
+
+        var existing = FindFirstObjectByType<GameManager>();
+
+        if (existing != null)
+        {
+            existing.Initialize();
+            return Instance;
+        }
+
+        return new GameObject("GameManager").AddComponent<GameManager>();
+    }
+
     private void Awake()
     {
-        // If another GameManager already exists,
-        // destroy this duplicate.
+        Initialize();
+    }
+
+    private void Initialize()
+    {
         if (Instance != null && Instance != this)
         {
-            Destroy(gameObject);
+            // Keep unrelated components on an authored scene object intact.
+            Destroy(this);
             return;
         }
 
         Instance = this;
 
-        // Keep this GameManager when scenes change.
+        // A persistent manager must be a root object.
+        if (transform.parent != null)
+        {
+            transform.SetParent(null);
+        }
+
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            Instance = null;
+        }
     }
 
 
@@ -49,14 +138,131 @@ public class GameManager : MonoBehaviour
     // Camera Zoom
     // =========================================================
 
-    public void SetZoomedIn(bool zoomedIn)
+    public void SetZoomedIn(bool value)
     {
-        IsZoomedIn = zoomedIn;
+        IsZoomedIn = value;
     }
 
 
     // =========================================================
-    // Window State
+    // Player / Game Stats
+    // =========================================================
+
+    public void ChangeGrandArchitectStat(int value)
+    {
+        GrandArchitectStat += value;
+    }
+
+    public void ChangePragmatistStat(int value)
+    {
+        PragmatistStat += value;
+    }
+
+    public void ChangeSentinelStat(int value)
+    {
+        SentinelStat += value;
+    }
+
+    public void ChangeGeniusStat(int value)
+    {
+        GeniusStat += value;
+    }
+
+    public void ChangeDetectiveStat(int value)
+    {
+        DetectiveStat += value;
+    }
+
+    public void ChangeCodeQualityStat(int value)
+    {
+        CodeQuality += value;
+    }
+
+    public void ChangeConnectednessStat(int value)
+    {
+        Connectedness += value;
+    }
+
+    public void ChangeSteveSuspicion(int value)
+    {
+        int previous = SteveSuspicion;
+
+        SteveSuspicion = (int)Math.Max(
+            0L,
+            Math.Min(MaxSuspicion, (long)previous + value)
+        );
+
+        if (previous == SteveSuspicion)
+        {
+            return;
+        }
+
+        SuspicionChanged?.Invoke(SteveSuspicion);
+
+        if (previous < MaxSuspicion && SteveSuspicion == MaxSuspicion)
+        {
+            SteveCrisis?.Invoke();
+        }
+    }
+
+
+    // =========================================================
+    // Email Reply Demo
+    // =========================================================
+
+    public void MarkEmailRead()
+    {
+        EmailRead = true;
+    }
+
+    public void MarkReadEmailClosed()
+    {
+        if (EmailRead && !ReplyCompleted)
+        {
+            ReplyAvailable = true;
+        }
+    }
+
+    // Expected stage prevents repeated clicks/reopening
+    // from applying the same choice twice.
+    public bool TryApplyReply(
+        int expectedStage,
+        int suspicionDelta,
+        string feedback
+    )
+    {
+        if (!ReplyAvailable ||
+            ReplyCompleted ||
+            ReplyStage != expectedStage)
+        {
+            return false;
+        }
+
+        ReplyStage++;
+        LastReplyFeedback = feedback;
+
+        if (ReplyCompleted)
+        {
+            ReplyAvailable = false;
+        }
+
+        ChangeSteveSuspicion(suspicionDelta);
+        return true;
+    }
+
+    // Developer-only UI calls this explicitly;
+    // leaves mail read and zoom state alone.
+    public void RestartReplyTest()
+    {
+        ChangeSteveSuspicion(-SteveSuspicion);
+        ReplyStage = 0;
+        ReplyAvailable = false;
+        LastReplyFeedback = "";
+    }
+
+
+    // =========================================================
+    // Window State Helpers
     // =========================================================
 
     private WindowState GetWindowState(string windowId)
@@ -113,7 +319,10 @@ public class GameManager : MonoBehaviour
         state.HasPosition = true;
     }
 
-    public bool TryGetWindowPosition(string windowId, out Vector2 normalizedPosition)
+    public bool TryGetWindowPosition(
+        string windowId,
+        out Vector2 normalizedPosition
+    )
     {
         WindowState state = GetWindowState(windowId);
 
@@ -149,6 +358,7 @@ public class GameManager : MonoBehaviour
     public void BringWindowToFront(string windowId)
     {
         WindowState state = GetWindowState(windowId);
+
         state.StackOrder = nextWindowStackOrder;
         state.HasStackOrder = true;
         nextWindowStackOrder++;
