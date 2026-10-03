@@ -5,6 +5,15 @@ using UnityEngine;
 /// <summary>
 /// Shared session state: player stats, monitor zoom, window state, and the email reply demo.
 /// </summary>
+
+public enum WeekendChoice
+{
+    Steve,
+    Study,
+    PersonalConnections,
+    Wallow
+}
+
 [DefaultExecutionOrder(-1000)]
 public class GameManager : MonoBehaviour
 {
@@ -27,14 +36,91 @@ public class GameManager : MonoBehaviour
     public int SentinelStat { get; private set; }
     public int GeniusStat { get; private set; }
     public int DetectiveStat { get; private set; }
+
+    public int SteveFriendship { get; private set; }
     public int SteveSuspicion { get; private set; }
+
     public int CodeQuality { get; private set; }
     public int Connectedness { get; private set; }
 
     public const int MaxSuspicion = 100;
+    public const int MaxFriendship = 100;
 
     public event Action<int> SuspicionChanged;
     public event Action SteveCrisis;
+
+    // =========================================================
+    // Weekend Choice
+    // =========================================================
+
+    public WeekendChoice? SelectedWeekendChoice { get; private set; }
+
+    public bool HasSelectedWeekendChoice => SelectedWeekendChoice.HasValue;
+
+    // =========================================================
+    // Weekend Choice Availability
+    // =========================================================
+
+    public bool CanSpendWeekendWithSteve()
+    {
+        return SteveFriendship > 50 &&
+               SteveSuspicion < 50;
+    }
+
+    public bool CanStudyThisWeekend()
+    {
+        return GrandArchitectStat > 3 ||
+               SentinelStat > 3;
+    }
+
+    public bool CanReconnectThisWeekend()
+    {
+        return Connectedness > 50;
+    }
+
+    public bool CanWallowThisWeekend()
+    {
+        return true;
+    }
+
+    public bool IsWeekendChoiceAvailable(WeekendChoice choice)
+    {
+        switch (choice)
+        {
+            case WeekendChoice.Steve:
+                return CanSpendWeekendWithSteve();
+
+            case WeekendChoice.Study:
+                return CanStudyThisWeekend();
+
+            case WeekendChoice.PersonalConnections:
+                return CanReconnectThisWeekend();
+
+            case WeekendChoice.Wallow:
+                return CanWallowThisWeekend();
+
+            default:
+                return false;
+        }
+    }
+
+    public bool TryConfirmWeekendChoice(WeekendChoice choice)
+    {
+        // Weekend choice has already been permanently committed.
+        if (HasSelectedWeekendChoice)
+        {
+            return false;
+        }
+
+        // Protect against trying to select a locked path.
+        if (!IsWeekendChoiceAvailable(choice))
+        {
+            return false;
+        }
+
+        SelectedWeekendChoice = choice;
+        return true;
+    }
 
 
     // =========================================================
@@ -218,6 +304,15 @@ public class GameManager : MonoBehaviour
         {
             SteveCrisis?.Invoke();
         }
+    }
+
+    public void ChangeSteveFriendship(int value)
+    {
+        SteveFriendship = Mathf.Clamp(
+            SteveFriendship + value,
+            0,
+            MaxFriendship
+        );
     }
 
 
