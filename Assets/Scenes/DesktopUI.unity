@@ -4517,6 +4517,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5369607735899138843, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: screenShareVideoPlayer
+      value: 
+      objectReference: {fileID: 1177480455}
     - target: {fileID: 6268270705485556892, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
       propertyPath: m_Name
       value: Dialogue Canvas
