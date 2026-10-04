@@ -21,7 +21,19 @@ EditorBuildSettings:
     path: Assets/Scenes/DesktopUI.unity
     guid: 806c57ce2a4236641839c97727edbeea
   - enabled: 1
-    path: Assets/Scenes/WakeUp Screen.unity
-    guid: cc0a900e998cadd4ab82a9b2f29c21e2
+    path: Assets/Scenes/Weekend Choice.unity
+    guid: bb755b4dd7a478a428b4989d59cf6218
+  - enabled: 1
+    path: Assets/Scenes/WeekendSteve.unity
+    guid: 2975e13064e6e784ea2d9e1f9f808a86
+  - enabled: 1
+    path: Assets/Scenes/WeekendStudy.unity
+    guid: e2f7d691887ff9e4194a35755de8d7bf
+  - enabled: 1
+    path: Assets/Scenes/WeekendConnections.unity
+    guid: 0a97c5063145992458dcc299fc548cba
+  - enabled: 1
+    path: Assets/Scenes/WeekendWallow.unity
+    guid: 2cab33aaaf9876c43bb80df9a68ac652
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
