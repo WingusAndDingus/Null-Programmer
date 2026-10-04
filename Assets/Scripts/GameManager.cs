@@ -20,7 +20,8 @@ public class GameManager : MonoBehaviour
     // =========================================================
     // Player / Game Stats
     // =========================================================
-
+    public int CurrentDay { get; private set; } = 1;
+    public string CurrentStep { get; private set; } = "Start";
     public int GrandArchitectStat { get; private set; }
     public int PragmatistStat { get; private set; }
     public int SentinelStat { get; private set; }
@@ -89,7 +90,7 @@ public class GameManager : MonoBehaviour
             return Instance;
         }
 
-        var existing = FindFirstObjectByType<GameManager>();
+        var existing = FindAnyObjectByType<GameManager>(); //earlier function had become obsolete
 
         if (existing != null)
         {
@@ -147,7 +148,21 @@ public class GameManager : MonoBehaviour
     // =========================================================
     // Player / Game Stats
     // =========================================================
+    public void setCurrentDay(int day)
+    {
+        CurrentDay = Mathf.Max(1, day);
+    }
 
+    public void setStep(string stepName)
+    {
+        CurrentStep = stepName;
+    }
+
+    public void AdvanceToNextDay()
+    {
+        CurrentDay++;
+        CurrentStep = "Start"; //reset for new day
+    }
     public void ChangeGrandArchitectStat(int value)
     {
         GrandArchitectStat += value;

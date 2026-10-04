@@ -20,3 +20,9 @@ public class DialogueLine
     public AudioClip voiceClip; // Optional audio clip for Steve/NPCs
     public float displayDuration = 3.0f; // Default time or click-to-advance
 }
+[System.Serializable]
+public struct DialogueChoiceOption
+{
+    public string text;
+    public HeadPersonality personality;
+}
