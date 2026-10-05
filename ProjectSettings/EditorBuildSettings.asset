@@ -20,5 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DesktopUI.unity
     guid: 806c57ce2a4236641839c97727edbeea
+  - enabled: 1
+    path: Assets/Scenes/WakeUp Screen.unity
+    guid: cc0a900e998cadd4ab82a9b2f29c21e2
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
