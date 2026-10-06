@@ -1958,7 +1958,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 500
+  m_SortingOrder: 50
   m_TargetDisplay: 0
 --- !u!224 &511888389
 RectTransform:
@@ -4395,7 +4395,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &950594681
 Transform:
   m_ObjectHideFlags: 0
@@ -4635,6 +4635,10 @@ PrefabInstance:
     - target: {fileID: 6268270705485556892, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
       propertyPath: m_Name
       value: Dialogue Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 9180191505814602805, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9079,7 +9083,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1946025654}
   - component: {fileID: 1946025653}
-  - component: {fileID: 1946025655}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -9114,22 +9117,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1946025655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1946025652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f8b690493e4e9048973250066692f53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DayControllerLoader
-  dayControllerTypeNames:
-  - DayOneController
-  - DayTwoController
-  - DayThreeController
 --- !u!1 &1954569205
 GameObject:
   m_ObjectHideFlags: 0

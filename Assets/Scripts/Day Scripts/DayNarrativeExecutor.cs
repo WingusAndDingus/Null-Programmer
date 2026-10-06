@@ -31,13 +31,18 @@ public class DayNarrativeExecutor : MonoBehaviour
         currentDayData = daySequences[targetIndex];
         _ = RunCurrentStepAsync();
     }
+    private void ApplySuspicion(int amount)
+    {
+        if (amount == 0 || GameManager.Instance == null) return;
+        GameManager.Instance.ChangeSteveSuspicion(amount); // Ensure GameManager has a suspicion modifier method
+    }
 
     private async Task RunCurrentStepAsync()
     {
         if (currentDayData == null) return;
 
         string currentStepID = GameManager.Instance.CurrentStep;
-
+        Debug.Log($"[DayNarrativeExecutor] Attempting to run step: '{currentStepID}'");
         if (currentStepID == lastExecutedStepID && DialogueManager.Instance != null && DialogueManager.Instance.IsTypingComplete)
         {
             return;
@@ -80,27 +85,51 @@ public class DayNarrativeExecutor : MonoBehaviour
         // 3. WAIT FOR GAMEPLAY EVENTS (NEW BLOCK)
         switch (stepData.stepType)
         {
+            case NarrativeStepType.DelaySeconds:
+                // Uses the custom delayDuration set in the Inspector for this specific step (fallback to 5s if <= 0)
+                float waitTime = stepData.delayDuration > 0 ? stepData.delayDuration : 5f;
+
+                Debug.Log($"[DayNarrativeExecutor] Delaying for {waitTime} seconds on step '{stepData.stepID}'...");
+
+                float elapsed = 0f;
+                while (elapsed < waitTime)
+                {
+                    elapsed += Time.deltaTime;
+                    await Task.Yield();
+                }
+                break;
+
             case NarrativeStepType.WaitUntilZoomCall:
-                // Optional: Automatically prompt the call UI if assigned
                 if (ZoomScreenShareController.Instance != null)
                 {
                     ZoomScreenShareController.Instance.TriggerIncomingCall();
                 }
-                // Halted until user clicks Accept Call!
                 await NarrativeWaitHelpers.WaitForZoomCall();
                 break;
 
+            case NarrativeStepType.StartScreenShare:
+                if (ZoomScreenShareController.Instance != null)
+                {
+                    ZoomScreenShareController.Instance.StartScreenShare();
+                }
+                break;
+
+            case NarrativeStepType.WaitUntilScreenShareEnd:
+                await NarrativeWaitHelpers.WaitForScreenShareEnd();
+                break;
+
             case NarrativeStepType.WaitUntilCodeCompiled:
-                // Halted until your IDE script fires GameplayEvents.TriggerCodeCompiled("SUCCESS")
                 await NarrativeWaitHelpers.WaitForCodeCompilation();
                 break;
 
             case NarrativeStepType.DialogueLine:
             case NarrativeStepType.PresentChoices:
-                // Standard progression
+                // Standard progression - handled before/after switch
                 break;
         }
 
+        // Apply suspicion shift after the step condition resolves
+        ApplySuspicion(stepData.suspicionChange);
         // 4. Present Choices or Auto-Advance
         if (stepData.choices != null && stepData.choices.Count > 0)
         {

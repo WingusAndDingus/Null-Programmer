@@ -39,4 +39,22 @@ public class NarrativeWaitHelpers
         GameplayEvents.OnCodeCompiled += handler;
         return tcs.Task;
     }
+
+    /// <summary>
+    /// Pauses sequence until Steve's screen share video finishes.
+    /// </summary>
+    public static Task WaitForScreenShareEnd()
+    {
+        var tcs = new TaskCompletionSource<bool>();
+
+        Action handler = null;
+        handler = () =>
+        {
+            GameplayEvents.OnScreenShareEnded -= handler;
+            tcs.TrySetResult(true);
+        };
+
+        GameplayEvents.OnScreenShareEnded += handler;
+        return tcs.Task;
+    }
 }

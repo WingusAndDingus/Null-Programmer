@@ -35,7 +35,7 @@ public class PersistentWindow : MonoBehaviour
             GameManager.Instance.IsWindowOpen(
                 windowIdentity.Id);
 
-        windowRoot.SetActive(shouldBeOpen);
+        //windowRoot.SetActive(shouldBeOpen); Don't have it open when it starts
     }
 
     public void CloseWindow()

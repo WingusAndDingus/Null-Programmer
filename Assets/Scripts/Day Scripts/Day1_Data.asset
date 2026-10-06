@@ -14,11 +14,181 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DaySequenceData
   dayNumber: 1
   steps:
-  - stepID: 
+  - stepID: Start
     speakerName: 
     personality: 0
     lineText: 
     displayDuration: 0
     choices: []
+    nextStepID: Day1_SitDown
+    awardSkillKey: 
+    stepType: 4
+    suspicionChange: 0
+    delayDuration: 2
+  - stepID: Day1_SitDown
+    speakerName: The Pragmatist
+    personality: 3
+    lineText: Looks like we have an email unread.
+    displayDuration: 3
+    choices: []
+    nextStepID: Day1_ReadEmail
+    awardSkillKey: 
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: Day1_ReadEmail
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    choices: []
+    nextStepID: Day1_WaitZoom
+    awardSkillKey: 
+    stepType: 4
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: Day1_WaitZoom
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    choices: []
+    nextStepID: Day1_FirstChoice
+    awardSkillKey: 
+    stepType: 1
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: Day1_FirstChoice
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    choices:
+    - choiceText: '"It has been a while since I''ve set up an SFML project, can you show me how you usually do it?'
+      personality: 2
+      targetStepOnClick: Day1_GeniusWarning
+      suspicionChange: 5
+    - choiceText: '"Uhh ok, so where do we start?"'
+      personality: 3
+      targetStepOnClick: Day1_GeniusWarning
+      suspicionChange: 20
     nextStepID: 
     awardSkillKey: 
+    stepType: 2
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: Day1_GeniusWarning
+    speakerName: The Genius
+    personality: 5
+    lineText: Looks like if we let on too much about our current predicament, Steve might wizen up to us. Who knows if we can trust him? Don't worry though, I always know what to say to sound smart.
+    displayDuration: 6
+    choices: []
+    nextStepID: Day1_SteveScreenShareRequest
+    awardSkillKey: 
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: Day1_SteveScreenShareRequest
+    speakerName: Steve
+    personality: 0
+    lineText: Uh ok sir, just to make sure you approve of how I do it, let me share my screen.
+    displayDuration: 4
+    choices: []
+    nextStepID: Day1_RunScreenShare
+    awardSkillKey: 
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: Day1_RunScreenShare
+    speakerName: Steve
+    personality: 0
+    lineText: Uh ok sir, just to make sure you approve of how I do it, let me share my screen.
+    displayDuration: 4
+    choices: []
+    nextStepID: Day1_WaitScreenShare
+    awardSkillKey: 
+    stepType: 5
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: Day1_WaitScreenShare
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    choices: []
+    nextStepID: Day1_SFMLQuiz
+    awardSkillKey: 
+    stepType: 6
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: Day1_SFMLQuiz
+    speakerName: Grand Architect
+    personality: 2
+    lineText: So, how do should we set up SFML?
+    displayDuration: 3
+    choices:
+    - choiceText: The Correct Answer :)
+      personality: 0
+      targetStepOnClick: SFMLQuiz_Correct
+      suspicionChange: 0
+    - choiceText: The Wrong Answer :(
+      personality: 0
+      targetStepOnClick: SFMLQuiz_InCorrect
+      suspicionChange: 0
+    nextStepID: 
+    awardSkillKey: 
+    stepType: 2
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: SFMLQuiz_Correct
+    speakerName: The Pragmatist
+    personality: 3
+    lineText: Why are you even wasting our time?
+    displayDuration: 3
+    choices: []
+    nextStepID: Day1_SteveNextQuestion
+    awardSkillKey: SFMLQuiz_Correct
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: SFMLQuiz_InCorrect
+    speakerName: The Pragmatist
+    personality: 3
+    lineText: Ughh, we can just google it anyway!
+    displayDuration: 3
+    choices: []
+    nextStepID: Day1_SteveNextQuestion
+    awardSkillKey: 
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: Day1_SteveNextQuestion
+    speakerName: Steve
+    personality: 0
+    lineText: Ok, so where should we start?
+    displayDuration: 3
+    choices: []
+    nextStepID: Day1_SecondChoice
+    awardSkillKey: 
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: Day1_SecondChoice
+    speakerName: 
+    personality: 0
+    lineText: Ok, so where should we start?
+    displayDuration: 0
+    choices:
+    - choiceText: '"We should plan out what functionalities the game has and if we can represent them with classes. Let me look over the SFML documentation."'
+      personality: 2
+      targetStepOnClick: 
+      suspicionChange: -10
+    - choiceText: '"Let''s just start coding, we have a deadline."'
+      personality: 3
+      targetStepOnClick: 
+      suspicionChange: 5
+    nextStepID: 
+    awardSkillKey: 
+    stepType: 2
+    suspicionChange: 0
+    delayDuration: 10

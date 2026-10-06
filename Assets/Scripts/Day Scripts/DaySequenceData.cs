@@ -8,6 +8,7 @@ public class DialogueStepChoice
     public string choiceText;
     public HeadPersonality personality;
     public string targetStepOnClick;
+    public int suspicionChange = 0;
 }
 
 [Serializable]
@@ -34,6 +35,13 @@ public class NarrativeStep
 
     [Header("What needs to happen for the script to continue?")]
     public NarrativeStepType stepType;
+
+    [Header("Suspicion Settings")]
+    public int suspicionChange = 0;
+
+    [Header("Delay Settings")]
+    [Tooltip("Custom delay in seconds for DelaySeconds step type")]
+    public float delayDuration = 10f;
 }
 
 public enum NarrativeStepType
@@ -41,7 +49,10 @@ public enum NarrativeStepType
     DialogueLine,
     WaitUntilZoomCall,
     PresentChoices,
-    WaitUntilCodeCompiled
+    WaitUntilCodeCompiled,
+    DelaySeconds,           // For simulate reading email (10s)
+    StartScreenShare,       // Calls ZoomScreenShareController.Instance.StartScreenShare()
+    WaitUntilScreenShareEnd // Halts until screenshare video completes
 }
 
 [CreateAssetMenu(fileName = "DaySequence_Day0", menuName = "Narrative/Day Sequence Data")]

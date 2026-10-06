@@ -136,8 +136,18 @@ public class ZoomScreenShareController : MonoBehaviour
 
         if (screenShareVideoPlayer != null)
         {
+            // Bind video end callback without altering your play order
+            screenShareVideoPlayer.loopPointReached -= OnVideoEnd;
+            screenShareVideoPlayer.loopPointReached += OnVideoEnd;
+
             screenShareVideoPlayer.Play();
         }
+    }
+
+    private void OnVideoEnd(VideoPlayer vp)
+    {
+        vp.loopPointReached -= OnVideoEnd;
+        EndScreenShare();
     }
 
     /// <summary>
