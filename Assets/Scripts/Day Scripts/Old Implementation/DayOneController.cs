@@ -8,10 +8,9 @@ public class DayOneController : DayScriptBase
         dayNumber = 1;
     }
 
-    protected override async void RunDaySequence()
+    protected override async Task RunDaySequenceAsync()
     {
         GameManager.EnsureInstance();
-
         string step = GameManager.Instance.CurrentStep;
 
         switch (step)
@@ -38,16 +37,13 @@ public class DayOneController : DayScriptBase
     {
         await PlayLineAsync("Me", HeadPersonality.InternalMonologue, "Ugh... My head is pounding. Where am I?", 4.0f);
 
-        // Update state before switching monitor scene
+        // Progress to next step only when interaction/gameplay event signals completion
         GameManager.Instance.setStep("Task1_In_Progress");
     }
 
     private async Task RunTask1Step()
     {
-        // Dialogue or interactions for Task 1
         await PlayLineAsync("Clown", HeadPersonality.None, "Let's inspect the monitor setup.", 3.0f);
-
-        GameManager.Instance.setStep("ReadyForSleep");
     }
 
     private async Task RunEndOfDayStep()
@@ -59,8 +55,5 @@ public class DayOneController : DayScriptBase
         {
             skillsEarnedDay1.AwardPoint("Day_1_Complete");
         }
-
-        GameManager.Instance.AdvanceToNextDay();
-        SwitchMonitorScene("Sleep");
     }
 }

@@ -17,6 +17,7 @@ public class DialogueBubble : MonoBehaviour
     private int optionIndex;
     private Vector3 initialPosition;
     private float timeOffset;
+    private bool isInitialized = false;
 
     private void Awake()
     {
@@ -28,15 +29,27 @@ public class DialogueBubble : MonoBehaviour
     public void Setup(DialogueChoiceOption option, int index, Color color, Action<int> callback)
     {
         optionIndex = index;
-        optionText.text = option.text;
-        bubbleImage.color = color;
+        if (optionText != null) optionText.text = option.text;
+        if (bubbleImage != null) bubbleImage.color = color;
         onSelectCallback = callback;
-        initialPosition = transform.localPosition;
+    }
+
+    /// <summary>
+    /// Call this after DialogueManager sets transform.localPosition
+    /// so floating undulates around the assigned layout spot.
+    /// </summary>
+    public void SetInitialPosition(Vector3 position)
+    {
+        transform.localPosition = position;
+        initialPosition = position;
+        isInitialized = true;
     }
 
     private void Update()
     {
-        // Smooth floating motion
+        if (!isInitialized) return;
+
+        // Smooth floating motion (sine wave undulation)
         float newY = initialPosition.y + Mathf.Sin((Time.unscaledTime + timeOffset) * floatSpeed) * floatDistance;
         transform.localPosition = new Vector3(initialPosition.x, newY, initialPosition.z);
     }
@@ -44,5 +57,13 @@ public class DialogueBubble : MonoBehaviour
     private void OnClicked()
     {
         onSelectCallback?.Invoke(optionIndex);
+    }
+
+    private void OnDestroy()
+    {
+        if (button != null)
+        {
+            button.onClick.RemoveListener(OnClicked);
+        }
     }
 }

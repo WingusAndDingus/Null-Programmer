@@ -94,6 +94,9 @@ public class ZoomScreenShareController : MonoBehaviour
         if (incomingCallPopup != null) incomingCallPopup.SetActive(false);
         if (zoomPanel != null) zoomPanel.SetActive(true);
 
+        // FIRE EVENT TO UNBLOCK NarrativeWaitHelpers
+        GameplayEvents.TriggerZoomCallStarted();
+
         // Trigger opening dialogue from Steve
         DialogueLine initialGreeting = new DialogueLine
         {

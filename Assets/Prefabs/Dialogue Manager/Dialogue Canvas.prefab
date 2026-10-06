@@ -155,8 +155,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Dialogue Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a955fef1bcd6e054587b9708286ae21b, type: 2}
+  m_sharedMaterial: {fileID: -4705930410839072653, guid: a955fef1bcd6e054587b9708286ae21b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -252,14 +252,14 @@ RectTransform:
   m_GameObject: {fileID: 2400113411804864353}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.6912, y: 4.283583, z: 2.6912}
+  m_LocalScale: {x: 3.0241015, y: 5.836323, z: 3.0241015}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2564426781295140510}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -662, y: 377}
+  m_AnchoredPosition: {x: -629, y: 410}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5650385992141047332
@@ -292,8 +292,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Speaker Name
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2adcf3d3b0eb9f24ea81f04066062281, type: 2}
+  m_sharedMaterial: {fileID: 4099161945256202071, guid: 2adcf3d3b0eb9f24ea81f04066062281, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -325,7 +325,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
@@ -389,7 +389,7 @@ RectTransform:
   m_GameObject: {fileID: 3772027912824202676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.33331, z: 1}
+  m_LocalScale: {x: 1, y: 0.5416288, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1273500686769823983}
@@ -562,7 +562,13 @@ MonoBehaviour:
   dialogueText: {fileID: 5706249870221420968}
   internalMonologueOverlay: {fileID: 679255636114674494}
   speechAudioSource: {fileID: 0}
-  screenShareVideoPlayer: {fileID: 0}
+  choiceContainer: {fileID: 0}
+  choiceBubblePrefab: {fileID: 0}
+  bubblePositions:
+  - {x: -200, y: 0}
+  - {x: 200, y: 0}
+  - {x: 0, y: 150}
+  - {x: 0, y: -150}
   defaultPanelColor: {r: 0.1, g: 0.1, b: 0.1, a: 0.8}
   architectColor: {r: 0.2, g: 0.8, b: 1, a: 1}
   pragmatistColor: {r: 1, g: 0.6, b: 0.2, a: 1}

@@ -749,7 +749,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &78330339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3441,7 +3441,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2579448009193996578, guid: 06669c172752dd44197d241e50fc24da, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1177480458}
   m_SourcePrefab: {fileID: 100100000, guid: 06669c172752dd44197d241e50fc24da, type: 3}
 --- !u!4 &747102659 stripped
 Transform:
@@ -4513,6 +4516,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5064182711307269253, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_Color.a
+      value: 0.050980393
+      objectReference: {fileID: 0}
+    - target: {fileID: 5064182711307269253, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_Color.b
+      value: 0.6320754
+      objectReference: {fileID: 0}
+    - target: {fileID: 5064182711307269253, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6320754
+      objectReference: {fileID: 0}
+    - target: {fileID: 5064182711307269253, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_Color.r
+      value: 0.6320754
+      objectReference: {fileID: 0}
     - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -4593,6 +4612,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5369607735899138843, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: choiceContainer
+      value: 
+      objectReference: {fileID: 32414775}
+    - target: {fileID: 5369607735899138843, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: speechAudioSource
+      value: 
+      objectReference: {fileID: 1303940878}
+    - target: {fileID: 5369607735899138843, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: choiceBubblePrefab
+      value: 
+      objectReference: {fileID: 1331882823}
     - target: {fileID: 5369607735899138843, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
       propertyPath: screenShareVideoPlayer
       value: 
@@ -5706,6 +5737,19 @@ VideoPlayer:
   m_CorrespondingSourceObject: {fileID: 5060981208308740012, guid: 06669c172752dd44197d241e50fc24da, type: 3}
   m_PrefabInstance: {fileID: 747102658}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1177480458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177480452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da03ef53ebeaed44f92cf2a55d507730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MonitorVideoRegister
+  videoPlayer: {fileID: 1177480455}
 --- !u!1 &1206424387
 GameObject:
   m_ObjectHideFlags: 0
@@ -6574,6 +6618,11 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!82 &1303940878 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8641181869353745588, guid: 57be1b0a52a2adc4397742ffade80d89, type: 3}
+  m_PrefabInstance: {fileID: 950093788}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1310308185
 GameObject:
   m_ObjectHideFlags: 0
@@ -10129,6 +10178,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: NarrativeManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7904637182536935973, guid: c8dd5049553ca2d43ab8e8c45b839c89, type: 3}
+      propertyPath: daySequences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7904637182536935973, guid: c8dd5049553ca2d43ab8e8c45b839c89, type: 3}
+      propertyPath: 'daySequences.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: d3eea0271f402664aa2af5f4404ab3b8, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

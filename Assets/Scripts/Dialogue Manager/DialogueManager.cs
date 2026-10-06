@@ -11,6 +11,12 @@ public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance;
 
+    // Track active state for seamless transitions across monitor views/scenes
+    public DialogueState activeDialogueState = new DialogueState();
+    public string CurrentText { get; private set; } = "";
+    public int CurrentVisibleCharacters { get; private set; } = 0;
+    public bool IsTypingComplete { get; private set; } = false;
+
     [Header("UI Panel References")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private Image panelImage;
@@ -22,6 +28,7 @@ public class DialogueManager : MonoBehaviour
     [Header("Choice Bubbles Setup")]
     [SerializeField] private Transform choiceContainer;       // Canvas/Parent transform for bubbles
     [SerializeField] private GameObject choiceBubblePrefab;  // Prefab with DialogueBubble attached
+
     [SerializeField]
     private List<Vector2> bubblePositions = new List<Vector2>
     {
@@ -31,8 +38,19 @@ public class DialogueManager : MonoBehaviour
         new Vector2(0, -150)
     };
 
-    [Header("Video Control")]
-    [SerializeField] private VideoPlayer screenShareVideoPlayer;
+    // Zoom & Tutorial are only on one monitor
+    private VideoPlayer activeVideoPlayer;
+
+    public void RegisterVideoPlayer(VideoPlayer player)
+    {
+        activeVideoPlayer = player;
+    }
+
+    public void UnregisterVideoPlayer(VideoPlayer player)
+    {
+        if (activeVideoPlayer == player)
+            activeVideoPlayer = null;
+    }
 
     [Header("Personality Colors")]
     [SerializeField] private Color defaultPanelColor = new Color(0.1f, 0.1f, 0.1f, 0.8f);
@@ -44,50 +62,106 @@ public class DialogueManager : MonoBehaviour
 
     private Coroutine activeDialogueCoroutine;
     private List<GameObject> activeBubbles = new List<GameObject>();
+    private DialogueLine currentPlayingLine;
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
+        if (Instance == null)
+        {
+            Instance = this;
+
+            // Ensure this object sits at root so DontDestroyOnLoad works
+            if (transform.parent != null)
+            {
+                transform.SetParent(null);
+            }
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
         HideDialogueUI();
     }
 
     public void DisplayLine(DialogueLine line)
     {
+        if (line == null) return;
+
+        // If the exact same text is currently typing, don't restart the coroutine!
+        if (CurrentText == line.text && activeDialogueCoroutine != null && !IsTypingComplete)
+        {
+            return;
+        }
+
         if (activeDialogueCoroutine != null)
         {
             StopCoroutine(activeDialogueCoroutine);
         }
+
+        currentPlayingLine = line;
         activeDialogueCoroutine = StartCoroutine(PlayDialogueLine(line));
     }
 
     public IEnumerator PlayDialogueLine(DialogueLine line)
     {
         if (dialoguePanel != null) dialoguePanel.SetActive(true);
-        speakerText.text = line.speakerName;
+        if (speakerText != null) speakerText.text = line.speakerName;
 
         SetPersonalityStyle(line.personality);
 
         float audioDuration = 0f;
         if (line.voiceClip != null && speechAudioSource != null)
         {
-            speechAudioSource.clip = line.voiceClip;
-            speechAudioSource.Play();
+            // Don't restart audio if the exact same clip is already playing
+            if (!speechAudioSource.isPlaying || speechAudioSource.clip != line.voiceClip)
+            {
+                speechAudioSource.clip = line.voiceClip;
+                speechAudioSource.Play();
+            }
             audioDuration = line.voiceClip.length;
         }
 
-        dialogueText.text = "";
-        char[] characters = line.text.ToCharArray();
-        float typeSpeed = 0.02f;
-        float typingTotalTime = characters.Length * typeSpeed;
-
-        foreach (char c in characters)
+        // Assign full text to TMP
+        if (dialogueText != null)
         {
-            dialogueText.text += c;
+            dialogueText.text = line.text;
+        }
+
+        // Determine starting character index:
+        // If we are re-entering the exact same text and it wasn't finished, resume typing from CurrentVisibleCharacters
+        int startIndex = 0;
+        if (CurrentText == line.text && !IsTypingComplete)
+        {
+            startIndex = CurrentVisibleCharacters;
+        }
+        else
+        {
+            UpdateProgress(line.text, 0, false);
+        }
+
+        if (dialogueText != null)
+        {
+            dialogueText.maxVisibleCharacters = startIndex;
+        }
+
+        float typeSpeed = 0.02f;
+        int totalChars = line.text != null ? line.text.Length : 0;
+
+        for (int i = startIndex; i <= totalChars; i++)
+        {
+            if (dialogueText != null)
+            {
+                dialogueText.maxVisibleCharacters = i;
+            }
+
+            UpdateProgress(line.text, i, i == totalChars);
             yield return new WaitForSecondsRealtime(typeSpeed);
         }
 
+        float typingTotalTime = totalChars * typeSpeed;
         float targetDuration = line.displayDuration > 0 ? line.displayDuration : Mathf.Max(2.0f, audioDuration);
         float remainingHoldTime = Mathf.Max(0.5f, targetDuration - typingTotalTime);
 
@@ -95,6 +169,14 @@ public class DialogueManager : MonoBehaviour
 
         HideDialogueUI();
         activeDialogueCoroutine = null;
+        currentPlayingLine = null;
+    }
+
+    public void UpdateProgress(string text, int visibleChars, bool complete)
+    {
+        CurrentText = text;
+        CurrentVisibleCharacters = visibleChars;
+        IsTypingComplete = complete;
     }
 
     /// <summary>
@@ -108,8 +190,8 @@ public class DialogueManager : MonoBehaviour
         if (internalMonologueOverlay != null)
             internalMonologueOverlay.SetActive(true);
 
-        if (screenShareVideoPlayer != null)
-            screenShareVideoPlayer.Pause();
+        if (activeVideoPlayer != null)
+            activeVideoPlayer.Pause();
 
         TaskCompletionSource<int> choiceTask = new TaskCompletionSource<int>();
 
@@ -119,10 +201,11 @@ public class DialogueManager : MonoBehaviour
             activeBubbles.Add(bubbleObj);
 
             // Position bubble
-            if (i < bubblePositions.Count)
-                bubbleObj.transform.localPosition = bubblePositions[i];
-            else
-                bubbleObj.transform.localPosition = new Vector2(0, i * -80);
+            Vector3 targetPos = (i < bubblePositions.Count)
+                ? (Vector3)bubblePositions[i]
+                : new Vector3(0, i * -80f, 0);
+
+            bubbleObj.transform.localPosition = targetPos;
 
             DialogueBubble bubble = bubbleObj.GetComponent<DialogueBubble>();
             Color personalityColor = GetPersonalityColor(options[i].personality);
@@ -131,13 +214,21 @@ public class DialogueManager : MonoBehaviour
             {
                 choiceTask.TrySetResult(selectedIndex);
             });
+
+            // Lock in position for floating sine wave animation
+            bubble.SetInitialPosition(targetPos);
         }
 
         int selectedOption = await choiceTask.Task;
 
         ClearChoices();
+
         if (internalMonologueOverlay != null)
             internalMonologueOverlay.SetActive(false);
+
+        // Resume video playback when dialogue choice resolves
+        if (activeVideoPlayer != null && !activeVideoPlayer.isPlaying)
+            activeVideoPlayer.Play();
 
         return selectedOption;
     }
@@ -159,14 +250,15 @@ public class DialogueManager : MonoBehaviour
             activeDialogueCoroutine = null;
         }
 
+        currentPlayingLine = null;
         ClearChoices();
 
         if (dialoguePanel != null) dialoguePanel.SetActive(false);
         if (internalMonologueOverlay != null) internalMonologueOverlay.SetActive(false);
 
-        if (screenShareVideoPlayer != null && !screenShareVideoPlayer.isPlaying)
+        if (activeVideoPlayer != null && !activeVideoPlayer.isPlaying)
         {
-            screenShareVideoPlayer.Play();
+            activeVideoPlayer.Play();
         }
     }
 
@@ -190,12 +282,12 @@ public class DialogueManager : MonoBehaviour
         if (internalMonologueOverlay != null)
             internalMonologueOverlay.SetActive(isInternal);
 
-        if (screenShareVideoPlayer != null)
+        if (activeVideoPlayer != null)
         {
             if (isInternal)
-                screenShareVideoPlayer.Pause();
-            else if (!screenShareVideoPlayer.isPlaying)
-                screenShareVideoPlayer.Play();
+                activeVideoPlayer.Pause();
+            else if (!activeVideoPlayer.isPlaying)
+                activeVideoPlayer.Play();
         }
 
         if (panelImage != null)

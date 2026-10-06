@@ -11,22 +11,36 @@ public abstract class DayScriptBase : MonoBehaviour
 
     protected virtual void Start()
     {
-        // Ensure GameManager exists in memory
         GameManager.EnsureInstance();
-        // Run the narrative loop for this specific monitor/day
-        RunDaySequence();
+
+        // Execute narrative sequence safely on start
+        _ = ExecuteDaySequenceAsync();
+    }
+
+    private async Task ExecuteDaySequenceAsync()
+    {
+        await RunDaySequenceAsync();
     }
 
     /// <summary>
-    /// Executes the full async flow for the day.
+    /// Executes the full async flow for the day safely.
     /// </summary>
-    protected abstract void RunDaySequence();
+    protected abstract Task RunDaySequenceAsync();
 
     /// <summary>
-    /// Displays a line via DialogueManager.
+    /// Displays a line via DialogueManager only if it hasn't already completed/played.
     /// </summary>
     protected async Task PlayLineAsync(string speaker, HeadPersonality personality, string text, float duration = 3.5f)
     {
+        // If this exact text is currently active or typing, don't re-trigger!
+        if (DialogueManager.Instance != null && DialogueManager.Instance.CurrentText == text)
+        {
+            if (DialogueManager.Instance.IsTypingComplete)
+            {
+                return; // Line already finished playing earlier in this step
+            }
+        }
+
         DialogueLine line = new DialogueLine
         {
             speakerName = speaker,
@@ -39,9 +53,6 @@ public abstract class DayScriptBase : MonoBehaviour
         await Task.Delay((int)(duration * 1000));
     }
 
-    /// <summary>
-    /// Presents dialogue choices to the player.
-    /// </summary>
     protected async Task<int> PresentChoicesAsync(params (string text, HeadPersonality personality)[] choices)
     {
         DialogueChoiceOption[] options = new DialogueChoiceOption[choices.Length];
@@ -57,9 +68,6 @@ public abstract class DayScriptBase : MonoBehaviour
         return await DialogueManager.Instance.PresentChoices(options);
     }
 
-    /// <summary>
-    /// Modifies personality stats in GameManager without altering GameManager.cs.
-    /// </summary>
     protected void ApplyPersonalityStat(HeadPersonality personality, int points = 1)
     {
         if (GameManager.Instance == null) return;
@@ -84,9 +92,6 @@ public abstract class DayScriptBase : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Helper to transition between monitors/scenes while preserving window state in GameManager.
-    /// </summary>
     protected void SwitchMonitorScene(string targetSceneName)
     {
         SceneManager.LoadScene(targetSceneName);

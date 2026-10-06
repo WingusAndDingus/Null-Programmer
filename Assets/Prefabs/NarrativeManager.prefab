@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1170812653409060764}
-  - component: {fileID: 4530847477475553060}
+  - component: {fileID: 7904637182536935973}
   m_Layer: 0
   m_Name: NarrativeManager
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4530847477475553060
+--- !u!114 &7904637182536935973
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4401811571239777800}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f19dc53edf8f5a7488fafef8d3d859fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 91809c457dfa09f41bd8ff6d5fd5d759, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DayOneController
-  dayNumber: 1
+  m_EditorClassIdentifier: Assembly-CSharp::DayNarrativeExecutor
+  daySequences: []
