@@ -24,10 +24,10 @@ public class GameEndTester : MonoBehaviour
             endManager.SetupEndScreen(successTitle, successText, standardUMLPlaceholder, standardUMLPlaceholder);
         }
 
-        // Test Coupled & Bricked ending
+        // Test Coupled & Deprecated ending
         if (Keyboard.current.fKey.wasPressedThisFrame)
         {
-            string failTitle = "Coupled & Bricked";
+            string failTitle = "Coupled And Deprecated";
             string failText = "Management: 'Steve demonstrated real senior dev talent and upstaged your project. You have clearly lost your edge. You are terminated'\n\nResult: You let The Pragmatist cram everything into main.cpp, making it unmaintainable.";
             
             endManager.SetupEndScreen(failTitle, failText, bloatedUMLPlaceholder, standardUMLPlaceholder);
