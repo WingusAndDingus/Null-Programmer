@@ -122,6 +122,15 @@ public class DayNarrativeExecutor : MonoBehaviour
                 await NarrativeWaitHelpers.WaitForCodeCompilation();
                 break;
 
+            case NarrativeStepType.TriggerGameEnd:
+                Debug.Log("[DayNarrativeExecutor] Triggering Final Evaluation...");
+                GameEndEvaluator evaluator = FindAnyObjectByType<GameEndEvaluator>();
+                if (evaluator != null)
+                {
+                    evaluator.TriggerFinalEvaluation();
+                }
+                break;
+
             case NarrativeStepType.DialogueLine:
             case NarrativeStepType.PresentChoices:
                 // Standard progression - handled before/after switch

@@ -23,5 +23,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WakeUp Screen.unity
     guid: cc0a900e998cadd4ab82a9b2f29c21e2
+  - enabled: 1
+    path: Assets/Scenes/GameEndScreen.unity
+    guid: 4b3cb68886dfc5643bfe309c2c038770
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
