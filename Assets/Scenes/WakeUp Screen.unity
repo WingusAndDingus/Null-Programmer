@@ -1875,6 +1875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WakeUpSequence
   desktopButton: {fileID: 241532175}
+  sleepButton: {fileID: 1655168632}
 --- !u!4 &2011739653
 Transform:
   m_ObjectHideFlags: 0

@@ -1,16 +1,24 @@
+using System;
 using System.Collections;
+using Unity.Tutorials.Editor;
 using UnityEngine;
 
 public class WakeUpSequence : MonoBehaviour
 {
     [Header("Desktop Reference")]
     [SerializeField] private Startbutton desktopButton;
+    [SerializeField] private Startbutton sleepButton;
 
     private void Awake()
     {
         if (desktopButton != null)
         {
             desktopButton.canInteract = false;
+        }
+
+        if (sleepButton != null)
+        {
+            sleepButton.canInteract = false;
         }
     }
 
@@ -62,6 +70,7 @@ public class WakeUpSequence : MonoBehaviour
         if (desktopButton != null)
         {
             desktopButton.canInteract = true;
+            sleepButton.canInteract = true;
         }
     }
 

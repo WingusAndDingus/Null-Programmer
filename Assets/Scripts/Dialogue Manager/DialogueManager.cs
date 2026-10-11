@@ -29,14 +29,10 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Transform choiceContainer;       // Canvas/Parent transform for bubbles
     [SerializeField] private GameObject choiceBubblePrefab;  // Prefab with DialogueBubble attached
 
-    [SerializeField]
-    private List<Vector2> bubblePositions = new List<Vector2>
-    {
-        new Vector2(-200, 0),
-        new Vector2(200, 0),
-        new Vector2(0, 150),
-        new Vector2(0, -150)
-    };
+    [Header("Bubble Layout Positions")]
+    [SerializeField] private Vector2[] twoBubbleLayout = new Vector2[] { new Vector2(-350, 0), new Vector2(350, 0) };
+    [SerializeField] private Vector2[] threeBubbleLayout = new Vector2[] { new Vector2(-350, -50), new Vector2(350, -50), new Vector2(0, 200) };
+    [SerializeField] private Vector2[] fourBubbleLayout = new Vector2[] { new Vector2(-350, 150), new Vector2(350, 150), new Vector2(-350, -150), new Vector2(350, -150) };
 
     // Zoom & Tutorial are only on one monitor
     private VideoPlayer activeVideoPlayer;
@@ -166,10 +162,27 @@ public class DialogueManager : MonoBehaviour
         float remainingHoldTime = Mathf.Max(0.5f, targetDuration - typingTotalTime);
 
         yield return new WaitForSecondsRealtime(remainingHoldTime);
-
-        HideDialogueUI();
+        // Debugging
+        /*if (activeBubbles == null || activeBubbles.Count == 0)
+        {
+            HideDialogueUI();
+        }*/
+        HideDialoguePanel();
         activeDialogueCoroutine = null;
         currentPlayingLine = null;
+    }
+    // To help with Dialogue after Fixing Choice Bubbles 
+    public void HideDialoguePanel()
+    {
+        if (dialoguePanel != null)
+        {
+            dialoguePanel.SetActive(false);
+        }
+
+        if (internalMonologueOverlay != null)
+        {
+            internalMonologueOverlay.SetActive(false);
+        }
     }
 
     public void UpdateProgress(string text, int visibleChars, bool complete)
@@ -185,32 +198,30 @@ public class DialogueManager : MonoBehaviour
     /// </summary>
     public async Task<int> PresentChoices(DialogueChoiceOption[] options)
     {
+        Debug.Log($"[DialogueManager] PresentChoices called with {options?.Length ?? 0} options.");
         ClearChoices();
-
-        if (internalMonologueOverlay != null)
-            internalMonologueOverlay.SetActive(true);
 
         if (activeVideoPlayer != null)
             activeVideoPlayer.Pause();
 
         TaskCompletionSource<int> choiceTask = new TaskCompletionSource<int>();
+        int count = options.Length;
 
-        for (int i = 0; i < options.Length; i++)
+        for (int i = 0; i < count; i++)
         {
             GameObject bubbleObj = Instantiate(choiceBubblePrefab, choiceContainer);
             activeBubbles.Add(bubbleObj);
 
-            // Position bubble
-            Vector3 targetPos = (i < bubblePositions.Count)
-                ? (Vector3)bubblePositions[i]
-                : new Vector3(0, i * -80f, 0);
+            // Dynamically compute vector based on total choice count
+            Vector3 targetPos = GetDynamicBubblePosition(i, count);
 
             bubbleObj.transform.localPosition = targetPos;
 
             DialogueBubble bubble = bubbleObj.GetComponent<DialogueBubble>();
             Color personalityColor = GetPersonalityColor(options[i].personality);
 
-            bubble.Setup(options[i], i, personalityColor, (selectedIndex) =>
+            int optionIndex = i; // Local copy for closure
+            bubble.Setup(options[i], optionIndex, personalityColor, (selectedIndex) =>
             {
                 choiceTask.TrySetResult(selectedIndex);
             });
@@ -232,7 +243,68 @@ public class DialogueManager : MonoBehaviour
 
         return selectedOption;
     }
+    /// <summary>
+    /// Returns screen coordinates mapped cleanly based on total choice count.
+    /// </summary>
+    // private Vector3 GetDynamicBubblePosition(int index, int totalChoices)
+    // {
+    //     switch (totalChoices)
+    //     {
+    //         case 1:
+    //             // Single choice in the center
+    //             return new Vector2(0, 0);
 
+    //         case 2:
+    //             // Left and Right
+    //             Vector2[] layout2 = new Vector2[]
+    //             {
+    //             new Vector2(-350, 0), // Choice 1: Left
+    //             new Vector2(350, 0)   // Choice 2: Right
+    //             };
+    //             return layout2[Mathf.Clamp(index, 0, layout2.Length - 1)];
+
+    //         case 3:
+    //             // Left, Right, Center-Top
+    //             Vector2[] layout3 = new Vector2[]
+    //             {
+    //             new Vector2(-350, -50), // Choice 1: Left
+    //             new Vector2(350, -50),  // Choice 2: Right
+    //             new Vector2(0, 200)     // Choice 3: Center Top
+    //             };
+    //             return layout3[Mathf.Clamp(index, 0, layout3.Length - 1)];
+
+    //         case 4:
+    //             // 4 Quadrants / Corners
+    //             Vector2[] layout4 = new Vector2[]
+    //             {
+    //             new Vector2(-350, 150),  // Choice 1: Top-Left
+    //             new Vector2(350, 150),   // Choice 2: Top-Right
+    //             new Vector2(-350, -150), // Choice 3: Bottom-Left
+    //             new Vector2(350, -150)   // Choice 4: Bottom-Right
+    //             };
+    //             return layout4[Mathf.Clamp(index, 0, layout4.Length - 1)];
+
+    //         default:
+    //             // Vertical stack fallback for 5+ items
+    //             return new Vector3(0, 150 - (index * 100f), 0);
+    //     }
+    // }
+    private Vector3 GetDynamicBubblePosition(int index, int totalChoices)
+    {
+        switch (totalChoices)
+        {
+            case 1:
+                return new Vector2(0, 0);
+            case 2:
+                return twoBubbleLayout[Mathf.Clamp(index, 0, twoBubbleLayout.Length - 1)];
+            case 3:
+                return threeBubbleLayout[Mathf.Clamp(index, 0, threeBubbleLayout.Length - 1)];
+            case 4:
+                return fourBubbleLayout[Mathf.Clamp(index, 0, fourBubbleLayout.Length - 1)];
+            default:
+                return new Vector3(0, 150 - (index * 100f), 0);
+        }
+    }
     private void ClearChoices()
     {
         foreach (var bubble in activeBubbles)
