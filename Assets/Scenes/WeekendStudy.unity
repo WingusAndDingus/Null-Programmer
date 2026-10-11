@@ -256,6 +256,263 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!1001 &606099392
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6268270705485556892, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_Name
+      value: Dialogue Canvas
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+--- !u!114 &606099393 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5369607735899138843, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+  m_PrefabInstance: {fileID: 606099392}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aba4b8b49a27984e8737dce3ffeff40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
+--- !u!1 &621650121
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 621650123}
+  - component: {fileID: 621650122}
+  - component: {fileID: 621650124}
+  m_Layer: 0
+  m_Name: StudyDialogueController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &621650122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621650121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49bbf9239f63e494e90b8a4ed92de9bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueTestBootstrap
+  dialogueManagerPrefab: {fileID: 606099393}
+--- !u!4 &621650123
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621650121}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &621650124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621650121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f171e33e35658f44abd7388d1510231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeekendStudyDialogue
+  lines:
+  - speakerName: Narrator
+    personality: 0
+    text: The Protagonist sits at his desk, studying the SFML documentation. He's trying to figure out how to implement his Battleship game. Five familiar voices offer their unsolicited opinions as he struggles to concentrate.
+    voiceClip: {fileID: 0}
+    displayDuration: 10
+  - speakerName: Me
+    personality: 1
+    text: Okay. SFML. Simple and Fast Multimedia Library. Graphics, windows, events... Let's see how much of this I remember.
+    voiceClip: {fileID: 0}
+    displayDuration: 6
+  - speakerName: The Genius
+    personality: 5
+    text: Apparently not much. We're starting with the beginner tutorials. How inspiring.
+    voiceClip: {fileID: 0}
+    displayDuration: 6
+  - speakerName: Me
+    personality: 1
+    text: Quiet. So first I create a window, then enter a loop that runs while the window is open...
+    voiceClip: {fileID: 0}
+    displayDuration: 6
+  - speakerName: The Grand Architect
+    personality: 2
+    text: Ah, the main loop! The beating heart of our Battleship game! From this humble foundation, we shall construct a magnificent software architecture!
+    voiceClip: {fileID: 0}
+    displayDuration: 7
+  - speakerName: The Pragmatist
+    personality: 3
+    text: How about we get a grid on the screen before building the Titanic?
+    voiceClip: {fileID: 0}
+    displayDuration: 6
+  - speakerName: Me
+    personality: 1
+    text: Right. Clear the window, draw the objects, then display the frame. But where does the event handling fit in?
+    voiceClip: {fileID: 0}
+    displayDuration: 7
+  - speakerName: The Detective
+    personality: 6
+    text: An interesting question. Observe that clicking a square generates a mouse event, but the window must keep updating even when nobody clicks anything.
+    voiceClip: {fileID: 0}
+    displayDuration: 8
+  - speakerName: Me
+    personality: 1
+    text: So the event loop handles input, while the game loop keeps everything running. And if I want to determine which square the player clicked...
+    voiceClip: {fileID: 0}
+    displayDuration: 8
+  - speakerName: The Genius
+    personality: 5
+    text: Oh, this should be good.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Me
+    personality: 1
+    text: Wait a minute. Of course! I can take the mouse coordinates, subtract the grid's position, then divide by the size of each cell! That gives me the row and column the player selected!
+    voiceClip: {fileID: 0}
+    displayDuration: 8
+  - speakerName: The Genius
+    personality: 5
+    text: Eureka! He's rediscovered division! Mathematicians everywhere rejoice!
+    voiceClip: {fileID: 0}
+    displayDuration: 6
+  - speakerName: The Sentinel
+    personality: 4
+    text: Congratulations. Now don't forget to check that the coordinates are actually inside the grid, unless you'd like players firing torpedoes into the void.
+    voiceClip: {fileID: 0}
+    displayDuration: 7
+  - speakerName: Me
+    personality: 1
+    text: And once I know the cell, I can check whether there's a ship there and mark it as a hit or miss. It's strange. Ten minutes ago, none of this made sense, but now it feels... familiar.
+    voiceClip: {fileID: 0}
+    displayDuration: 8
+  - speakerName: The Grand Architect
+    personality: 2
+    text: The knowledge returns! Soon our mighty fleet shall sail again!
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: The Pragmatist
+    personality: 3
+    text: Great. Can we make that grid work now?
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Me
+    personality: 1
+    text: Yeah. Let's start with that.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Narrator
+    personality: 0
+    text: For the first time in a while, the code on the screen feels less like a foreign language and more like an old friend.
+    voiceClip: {fileID: 0}
+    displayDuration: 10
 --- !u!1 &1166657098
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,3 +611,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 296983904}
   - {fileID: 1166657100}
+  - {fileID: 606099392}
+  - {fileID: 621650123}
