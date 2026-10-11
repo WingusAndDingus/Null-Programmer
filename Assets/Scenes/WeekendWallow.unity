@@ -119,6 +119,171 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &87731948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 87731951}
+  - component: {fileID: 87731950}
+  - component: {fileID: 87731949}
+  m_Layer: 0
+  m_Name: StudyDialogueController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &87731949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87731948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f171e33e35658f44abd7388d1510231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeekendStudyDialogue
+  startDelay: 3
+  lines:
+  - speakerName: Narrator
+    personality: 0
+    text: It's Saturday afternoon. The Protagonist lies sprawled across his unmade bed, staring blankly at the wall. His computer sits idle across the room.
+    voiceClip: {fileID: 0}
+    displayDuration: 11
+  - speakerName: Me
+    personality: 1
+    text: I should really get up. I've wasted half the day already. Maybe I could work on Battleship for a while...
+    voiceClip: {fileID: 0}
+    displayDuration: 8
+  - speakerName: The Genius
+    personality: 5
+    text: Ah, yes. Battleship. A technological marvel. A week of development and we can almost draw a functioning grid.
+    voiceClip: {fileID: 0}
+    displayDuration: 8
+  - speakerName: Me
+    personality: 1
+    text: It's more complicated than it looks. The mouse coordinates are still wrong, and I can't get the tiles spreading effect working properly.
+    voiceClip: {fileID: 0}
+    displayDuration: 9
+  - speakerName: The Grand Architect
+    personality: 2
+    text: Behold! Our magnificent naval empire! A fleet of broken squares commanded by an incompetent admiral!
+    voiceClip: {fileID: 0}
+    displayDuration: 8
+  - speakerName: The Pragmatist
+    personality: 3
+    text: Maybe we could start by actually getting out of bed. Revolutionary concept, I know.
+    voiceClip: {fileID: 0}
+    displayDuration: 7
+  - speakerName: Me
+    personality: 1
+    text: What's the point? I used to understand this stuff. Now I'm struggling with things that should be second nature.
+    voiceClip: {fileID: 0}
+    displayDuration: 7
+  - speakerName: The Detective
+    personality: 6
+    text: Fascinating. A man with amnesia discovers he's forgotten things. Truly, a mystery for the ages.
+    voiceClip: {fileID: 0}
+    displayDuration: 7
+  - speakerName: Me
+    personality: 1
+    text: And I still haven't responded to Steve. He probably thinks I'm avoiding him.
+    voiceClip: {fileID: 0}
+    displayDuration: 6
+  - speakerName: The Sentinel
+    personality: 4
+    text: Excellent instincts. Nothing protects a budding friendship quite like ignoring someone until they stop contacting you.
+    voiceClip: {fileID: 0}
+    displayDuration: 8
+  - speakerName: Me
+    personality: 1
+    text: And my other friends... God, how long has it been? Months? They probably think I'm a complete loser.
+    voiceClip: {fileID: 0}
+    displayDuration: 7
+  - speakerName: The Genius
+    personality: 5
+    text: Well, lying in bed all day feeling sorry for yourself certainly makes a compelling counterargument.
+    voiceClip: {fileID: 0}
+    displayDuration: 7
+  - speakerName: Me
+    personality: 1
+    text: Maybe I should message someone. See if anybody wants to get together.
+    voiceClip: {fileID: 0}
+    displayDuration: 6
+  - speakerName: The Pragmatist
+    personality: 3
+    text: Splendid! An actual plan! Shall we execute it sometime this century?
+    voiceClip: {fileID: 0}
+    displayDuration: 6
+  - speakerName: Me
+    personality: 1
+    text: Not today. I just... can't face anyone right now.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: The Grand Architect
+    personality: 2
+    text: Another glorious victory for the forces of mediocrity!
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Me
+    personality: 1
+    text: Just shut up. All of you. Please.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Narrator
+    personality: 0
+    text: He buries his face in the pillow. Across the room, his unfinished Battleship project waits on the computer.
+    voiceClip: {fileID: 0}
+    displayDuration: 7
+  - speakerName: The Detective
+    personality: 6
+    text: Case closed. No progress on the game. No progress with the friends. Another day successfully accounted for.
+    voiceClip: {fileID: 0}
+    displayDuration: 8
+  - speakerName: Me
+    personality: 1
+    text: ...Maybe tomorrow.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Narrator
+    personality: 0
+    text: He closes his eyes. The afternoon slips away.
+    voiceClip: {fileID: 0}
+    displayDuration: 9
+--- !u!114 &87731950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87731948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49bbf9239f63e494e90b8a4ed92de9bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueTestBootstrap
+  dialogueManagerPrefab: {fileID: 1545035137}
+--- !u!4 &87731951
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87731948}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1008867133
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,6 +376,114 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1545035136
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6268270705485556892, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_Name
+      value: Dialogue Canvas
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+--- !u!114 &1545035137 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5369607735899138843, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+  m_PrefabInstance: {fileID: 1545035136}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aba4b8b49a27984e8737dce3ffeff40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
 --- !u!1 &1559662391
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,3 +582,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 1008867136}
   - {fileID: 1559662393}
+  - {fileID: 87731951}
+  - {fileID: 1545035136}

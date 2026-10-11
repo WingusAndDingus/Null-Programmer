@@ -119,6 +119,344 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &359243047
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6268270705485556892, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_Name
+      value: Dialogue Canvas
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+--- !u!114 &359243048 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5369607735899138843, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+  m_PrefabInstance: {fileID: 359243047}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aba4b8b49a27984e8737dce3ffeff40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
+--- !u!1 &580134814
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 580134817}
+  - component: {fileID: 580134816}
+  - component: {fileID: 580134815}
+  m_Layer: 0
+  m_Name: StudyDialogueController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &580134815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580134814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f171e33e35658f44abd7388d1510231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeekendStudyDialogue
+  startDelay: 3
+  lines:
+  - speakerName: Narrator
+    personality: 0
+    text: 'Setting: A beautiful Saturday afternoon at a waterfront restaurant overlooking the Golden Gate Bridge. The Protagonist has arranged to meet four old friends: Rachel (red hair), Maya (hair in a bun), Marcus (green jacket), and Alex (brown jacket). It''s been several months since they''ve all gotten together.'
+    voiceClip: {fileID: 0}
+    displayDuration: 16
+  - speakerName: Rachel
+    personality: 0
+    text: Well, well, well. Look who finally decided to emerge from his programming cave!
+    voiceClip: {fileID: 0}
+    displayDuration: 7
+  - speakerName: Me
+    personality: 0
+    text: (Laughs) Nice to see you too, Rachel.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Marcus
+    personality: 0
+    text: Seriously, man. We were starting to wonder if you'd moved to another country without telling us.
+    voiceClip: {fileID: 0}
+    displayDuration: 8
+  - speakerName: Alex
+    personality: 0
+    text: I figured he'd just uploaded his consciousness to the cloud.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Me
+    personality: 0
+    text: Not yet. Still working out a few bugs.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Maya
+    personality: 0
+    text: (Laughs) It's really good to see you again. We've missed having you around.
+    voiceClip: {fileID: 0}
+    displayDuration: 6
+  - speakerName: Me
+    personality: 0
+    text: Yeah, I've missed you guys too. I've just been so wrapped up in work lately.
+    voiceClip: {fileID: 0}
+    displayDuration: 6
+  - speakerName: Rachel
+    personality: 0
+    text: We know. Every time we invite you somewhere, it's always "Sorry, I'm in the middle of a project."
+    voiceClip: {fileID: 0}
+    displayDuration: 7
+  - speakerName: Alex
+    personality: 0
+    text: Or "Sorry, I just need to fix one little thing."
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Marcus
+    personality: 0
+    text: Which apparently takes six months.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Me
+    personality: 0
+    text: Okay, okay! I get it. I've been a terrible friend.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Maya
+    personality: 0
+    text: No one's saying that. We're just happy you made it out today.
+    voiceClip: {fileID: 0}
+    displayDuration: 6
+  - speakerName: Narrator
+    personality: 0
+    text: The waiter arrives with another plate of food.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Alex
+    personality: 0
+    text: Speaking of which, who ordered enough fries to feed a battleship's company?
+    voiceClip: {fileID: 0}
+    displayDuration: 6
+  - speakerName: Marcus
+    personality: 0
+    text: That would be me. And I regret nothing.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Rachel
+    personality: 0
+    text: You said you were going to start eating healthier!
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Marcus
+    personality: 0
+    text: Potatoes are vegetables.
+    voiceClip: {fileID: 0}
+    displayDuration: 4
+  - speakerName: Me
+    personality: 0
+    text: Technically, he's got a point.
+    voiceClip: {fileID: 0}
+    displayDuration: 4
+  - speakerName: Maya
+    personality: 0
+    text: Oh, don't encourage him!
+    voiceClip: {fileID: 0}
+    displayDuration: 4
+  - speakerName: Narrator
+    personality: 0
+    text: Everyone laughs.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Rachel
+    personality: 0
+    text: So, what's new with you? And don't say "work."
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Me
+    personality: 0
+    text: Actually, I've been trying to get out more. Do things that don't involve staring at a monitor.
+    voiceClip: {fileID: 0}
+    displayDuration: 7
+  - speakerName: Alex
+    personality: 0
+    text: That's a pretty radical lifestyle change.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Me
+    personality: 0
+    text: Tell me about it. I almost didn't recognize the sun.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Marcus
+    personality: 0
+    text: Well, you've picked a pretty good day to get reacquainted with it.
+    voiceClip: {fileID: 0}
+    displayDuration: 6
+  - speakerName: Narrator
+    personality: 0
+    text: Everyone looks out toward the sparkling water and the Golden Gate Bridge.
+    voiceClip: {fileID: 0}
+    displayDuration: 7
+  - speakerName: Maya
+    personality: 0
+    text: We should make this a regular thing. Maybe not every weekend, but at least once a month?
+    voiceClip: {fileID: 0}
+    displayDuration: 7
+  - speakerName: Me
+    personality: 0
+    text: I'd like that, actually.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Rachel
+    personality: 0
+    text: You hear that, everyone? We have a verbal commitment!
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Alex
+    personality: 0
+    text: Should we get it notarized?
+    voiceClip: {fileID: 0}
+    displayDuration: 4
+  - speakerName: Me
+    personality: 0
+    text: (Laughs) You guys are never going to let me live this down, are you?
+    voiceClip: {fileID: 0}
+    displayDuration: 6
+  - speakerName: Marcus
+    personality: 0
+    text: Not a chance. Now pass those fries before I eat them all myself.
+    voiceClip: {fileID: 0}
+    displayDuration: 6
+  - speakerName: Narrator
+    personality: 0
+    text: The conversation continues as everyone enjoys the sunshine, good food, and each other's company. For once, the Protagonist isn't thinking about the code waiting for him at home.
+    voiceClip: {fileID: 0}
+    displayDuration: 13
+--- !u!114 &580134816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580134814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49bbf9239f63e494e90b8a4ed92de9bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueTestBootstrap
+  dialogueManagerPrefab: {fileID: 359243048}
+--- !u!4 &580134817
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580134814}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1364567675
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,3 +647,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 1364567678}
   - {fileID: 1833787106}
+  - {fileID: 580134817}
+  - {fileID: 359243047}

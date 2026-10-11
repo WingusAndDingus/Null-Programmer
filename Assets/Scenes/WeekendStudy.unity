@@ -422,17 +422,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f171e33e35658f44abd7388d1510231, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeekendStudyDialogue
+  startDelay: 3
   lines:
   - speakerName: Narrator
     personality: 0
     text: The Protagonist sits at his desk, studying the SFML documentation. He's trying to figure out how to implement his Battleship game. Five familiar voices offer their unsolicited opinions as he struggles to concentrate.
     voiceClip: {fileID: 0}
-    displayDuration: 10
+    displayDuration: 12
   - speakerName: Me
     personality: 1
     text: Okay. SFML. Simple and Fast Multimedia Library. Graphics, windows, events... Let's see how much of this I remember.
     voiceClip: {fileID: 0}
-    displayDuration: 6
+    displayDuration: 8
   - speakerName: The Genius
     personality: 5
     text: Apparently not much. We're starting with the beginner tutorials. How inspiring.
@@ -447,7 +448,7 @@ MonoBehaviour:
     personality: 2
     text: Ah, the main loop! The beating heart of our Battleship game! From this humble foundation, we shall construct a magnificent software architecture!
     voiceClip: {fileID: 0}
-    displayDuration: 7
+    displayDuration: 8
   - speakerName: The Pragmatist
     personality: 3
     text: How about we get a grid on the screen before building the Titanic?
@@ -477,7 +478,7 @@ MonoBehaviour:
     personality: 1
     text: Wait a minute. Of course! I can take the mouse coordinates, subtract the grid's position, then divide by the size of each cell! That gives me the row and column the player selected!
     voiceClip: {fileID: 0}
-    displayDuration: 8
+    displayDuration: 9
   - speakerName: The Genius
     personality: 5
     text: Eureka! He's rediscovered division! Mathematicians everywhere rejoice!
@@ -487,12 +488,12 @@ MonoBehaviour:
     personality: 4
     text: Congratulations. Now don't forget to check that the coordinates are actually inside the grid, unless you'd like players firing torpedoes into the void.
     voiceClip: {fileID: 0}
-    displayDuration: 7
+    displayDuration: 9
   - speakerName: Me
     personality: 1
     text: And once I know the cell, I can check whether there's a ship there and mark it as a hit or miss. It's strange. Ten minutes ago, none of this made sense, but now it feels... familiar.
     voiceClip: {fileID: 0}
-    displayDuration: 8
+    displayDuration: 10
   - speakerName: The Grand Architect
     personality: 2
     text: The knowledge returns! Soon our mighty fleet shall sail again!

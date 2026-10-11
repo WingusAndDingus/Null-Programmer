@@ -348,9 +348,319 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1718315401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1718315404}
+  - component: {fileID: 1718315403}
+  - component: {fileID: 1718315402}
+  m_Layer: 0
+  m_Name: StudyDialogueController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1718315402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718315401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f171e33e35658f44abd7388d1510231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeekendStudyDialogue
+  startDelay: 3
+  lines:
+  - speakerName: Narrator
+    personality: 0
+    text: It's a sunny afternoon at a coffee shop in Silicon Valley. The Protagonist and Steve sit across from each other with their laptops open, enjoying coffee and talking. Their professional relationship has gradually developed into something more personal.
+    voiceClip: {fileID: 0}
+    displayDuration: 13
+  - speakerName: Steve
+    personality: 0
+    text: You know, I actually managed to fix that bug we were looking at on Thursday.
+    voiceClip: {fileID: 0}
+    displayDuration: 7
+  - speakerName: Me
+    personality: 0
+    text: Oh, yeah? The one that kept crashing our Battleship game?
+    voiceClip: {fileID: 0}
+    displayDuration: 6
+  - speakerName: Steve
+    personality: 0
+    text: That's the one. Turns out it was a problem with how we were updating the game board after a player fired a shot.
+    voiceClip: {fileID: 0}
+    displayDuration: 8
+  - speakerName: Me
+    personality: 0
+    text: Ah, game state management. The gift that keeps on giving.
+    voiceClip: {fileID: 0}
+    displayDuration: 6
+  - speakerName: Steve
+    personality: 0
+    text: (Laughs) Seriously. I spent three hours looking at it before I remembered what you told me about keeping the game logic separate from the SFML rendering code.
+    voiceClip: {fileID: 0}
+    displayDuration: 10
+  - speakerName: Me
+    personality: 0
+    text: Well, there you go. You're starting to think like a seasoned developer.
+    voiceClip: {fileID: 0}
+    displayDuration: 6
+  - speakerName: Steve
+    personality: 0
+    text: I wouldn't go that far. Half the time I still feel like I have no idea what I'm doing.
+    voiceClip: {fileID: 0}
+    displayDuration: 7
+  - speakerName: Me
+    personality: 0
+    text: Want to know a secret? That feeling never entirely goes away.
+    voiceClip: {fileID: 0}
+    displayDuration: 6
+  - speakerName: Steve
+    personality: 0
+    text: That's... not especially reassuring.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Me
+    personality: 0
+    text: (Laughs) The trick isn't knowing everything. It's knowing how to figure things out when you don't.
+    voiceClip: {fileID: 0}
+    displayDuration: 7
+  - speakerName: Steve
+    personality: 0
+    text: I guess that's something I've been learning from you. You never seem to panic when something breaks.
+    voiceClip: {fileID: 0}
+    displayDuration: 8
+  - speakerName: Me
+    personality: 0
+    text: Oh, I panic. I've just gotten better at hiding it.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Steve
+    personality: 0
+    text: (Laughs) Well, whatever you're doing, it's working. Seriously, though, I appreciate you taking the time to help me. Most people at work are too busy with their own stuff.
+    voiceClip: {fileID: 0}
+    displayDuration: 10
+  - speakerName: Me
+    personality: 0
+    text: You're a good developer, Steve. You just need a little more confidence. And besides, I enjoy working with you.
+    voiceClip: {fileID: 0}
+    displayDuration: 8
+  - speakerName: Steve
+    personality: 0
+    text: Thanks, man. That means a lot.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Narrator
+    personality: 0
+    text: Steve takes a sip of his iced coffee.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Steve
+    personality: 0
+    text: Hey, actually, I've been thinking about adding something to our Battleship game. Maybe some animations when a ship gets hit. SFML should make that pretty straightforward, right?
+    voiceClip: {fileID: 0}
+    displayDuration: 11
+  - speakerName: Me
+    personality: 0
+    text: Absolutely. We could use sprites and a little timing logic to make the explosions look pretty good.
+    voiceClip: {fileID: 0}
+    displayDuration: 7
+  - speakerName: Steve
+    personality: 0
+    text: Great! I was hoping you'd help me figure that out sometime.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Me
+    personality: 0
+    text: Of course. Just don't get carried away with the explosions.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Steve
+    personality: 0
+    text: Hey, I learned from the best!
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Narrator
+    personality: 0
+    text: They both laugh.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Steve
+    personality: 0
+    text: Seriously, though, we should do this more often. It's nice talking about programming without feeling like I'm in a job interview.
+    voiceClip: {fileID: 0}
+    displayDuration: 8
+  - speakerName: Me
+    personality: 0
+    text: I'd like that. Same time next week?
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Steve
+    personality: 0
+    text: You're on. Coffee's on me next time.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Me
+    personality: 0
+    text: I'll hold you to that.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Narrator
+    personality: 0
+    text: The two continue chatting as the afternoon sunlight streams through the coffee shop windows.
+    voiceClip: {fileID: 0}
+    displayDuration: 11
+--- !u!114 &1718315403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718315401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49bbf9239f63e494e90b8a4ed92de9bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueTestBootstrap
+  dialogueManagerPrefab: {fileID: 2145512345}
+--- !u!4 &1718315404
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718315401}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2145512344
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5203386290783927219, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6268270705485556892, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_Name
+      value: Dialogue Canvas
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+--- !u!114 &2145512345 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5369607735899138843, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+  m_PrefabInstance: {fileID: 2145512344}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aba4b8b49a27984e8737dce3ffeff40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 117800012}
   - {fileID: 419985858}
+  - {fileID: 1718315404}
+  - {fileID: 2145512344}
