@@ -31,10 +31,11 @@ public class DayNarrativeExecutor : MonoBehaviour
         currentDayData = daySequences[targetIndex];
         _ = RunCurrentStepAsync();
     }
+
     private void ApplySuspicion(int amount)
     {
         if (amount == 0 || GameManager.Instance == null) return;
-        GameManager.Instance.ChangeSteveSuspicion(amount); // Ensure GameManager has a suspicion modifier method
+        GameManager.Instance.ChangeSteveSuspicion(amount);
     }
 
     private async Task RunCurrentStepAsync()
@@ -43,6 +44,7 @@ public class DayNarrativeExecutor : MonoBehaviour
 
         string currentStepID = GameManager.Instance.CurrentStep;
         Debug.Log($"[DayNarrativeExecutor] Attempting to run step: '{currentStepID}'");
+
         if (currentStepID == lastExecutedStepID && DialogueManager.Instance != null && DialogueManager.Instance.IsTypingComplete)
         {
             return;
@@ -68,7 +70,10 @@ public class DayNarrativeExecutor : MonoBehaviour
                 displayDuration = stepData.displayDuration
             };
 
-            DialogueManager.Instance.DisplayLine(line);
+            if (DialogueManager.Instance != null)
+            {
+                DialogueManager.Instance.DisplayLine(line);
+            }
             await Task.Delay((int)(stepData.displayDuration * 1000));
         }
 
@@ -82,13 +87,11 @@ public class DayNarrativeExecutor : MonoBehaviour
             }
         }
 
-        // 3. WAIT FOR GAMEPLAY EVENTS (NEW BLOCK)
+        // 3. WAIT FOR GAMEPLAY EVENTS
         switch (stepData.stepType)
         {
             case NarrativeStepType.DelaySeconds:
-                // Uses the custom delayDuration set in the Inspector for this specific step (fallback to 5s if <= 0)
                 float waitTime = stepData.delayDuration > 0 ? stepData.delayDuration : 5f;
-
                 Debug.Log($"[DayNarrativeExecutor] Delaying for {waitTime} seconds on step '{stepData.stepID}'...");
 
                 float elapsed = 0f;
@@ -133,15 +136,17 @@ public class DayNarrativeExecutor : MonoBehaviour
 
             case NarrativeStepType.DialogueLine:
             case NarrativeStepType.PresentChoices:
-                // Standard progression - handled before/after switch
                 break;
         }
 
         // Apply suspicion shift after the step condition resolves
         ApplySuspicion(stepData.suspicionChange);
+
         // 4. Present Choices or Auto-Advance
         if (stepData.choices != null && stepData.choices.Count > 0)
         {
+            Debug.Log($"[DayNarrativeExecutor] Step '{stepData.stepID}' has {stepData.choices.Count} choices. Presenting...");
+
             (string text, HeadPersonality personality)[] choiceArray = new (string, HeadPersonality)[stepData.choices.Count];
             for (int i = 0; i < stepData.choices.Count; i++)
             {
@@ -165,12 +170,18 @@ public class DayNarrativeExecutor : MonoBehaviour
         else if (!string.IsNullOrEmpty(stepData.nextStepID))
         {
             GameManager.Instance.setStep(stepData.nextStepID);
-            _ = RunCurrentStepAsync(); // Ensure execution loops to next step automatically
+            _ = RunCurrentStepAsync();
         }
     }
 
     private async Task<int> PresentChoicesAsync((string text, HeadPersonality personality)[] choices)
     {
+        if (DialogueManager.Instance == null)
+        {
+            Debug.LogError("[DayNarrativeExecutor] DialogueManager.Instance is NULL! Cannot present choice bubbles.");
+            return -1;
+        }
+
         DialogueChoiceOption[] options = new DialogueChoiceOption[choices.Length];
         for (int i = 0; i < choices.Length; i++)
         {

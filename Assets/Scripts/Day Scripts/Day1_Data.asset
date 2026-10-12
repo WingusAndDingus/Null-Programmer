@@ -76,7 +76,7 @@ MonoBehaviour:
     awardSkillKey: 
     stepType: 2
     suspicionChange: 0
-    delayDuration: 10
+    delayDuration: 0
   - stepID: Day1_GeniusWarning
     speakerName: The Genius
     personality: 5

@@ -13,4 +13,15 @@ MonoBehaviour:
   m_Name: Day2_Data
   m_EditorClassIdentifier: Assembly-CSharp::DaySequenceData
   dayNumber: 1
-  steps: []
+  steps:
+  - stepID: Day_2Start
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    choices: []
+    nextStepID: 
+    awardSkillKey: 
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
