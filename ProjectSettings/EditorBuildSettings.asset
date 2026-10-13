@@ -24,7 +24,13 @@ EditorBuildSettings:
     path: Assets/Scenes/WakeUp Screen.unity
     guid: cc0a900e998cadd4ab82a9b2f29c21e2
   - enabled: 1
-    path: Assets/Scenes/GameEndScreen.unity
-    guid: 4b3cb68886dfc5643bfe309c2c038770
+    path: Assets/Prefabs/Day3_Contents/Day3_Implemented/Wednesday_20261012_030619/Wednesday_Desktop.unity
+    guid: d5090ab41aaea8342b342f80b0c4c3ae
+  - enabled: 1
+    path: Assets/Prefabs/Day3_Contents/Day3_Implemented/Wednesday_20261012_030619/Wednesday_LeftMonitor.unity
+    guid: 3df38f2b037f6d546a8f8dca5ee147a0
+  - enabled: 1
+    path: Assets/Prefabs/Day3_Contents/Day3_Implemented/Wednesday_20261012_030619/Wednesday_RightMonitor.unity
+    guid: 01a5b5dee24a1a14eaa08fd4f7648960
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

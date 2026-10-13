@@ -1,0 +1,219 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f43845818039465992f4535da96d8ead, type: 3}
+  m_Name: Wednesday_Lesson
+  m_EditorClassIdentifier: Assembly-CSharp::NullProgrammer.Day3.Day3LessonData
+  subject: Wednesday - Ship placement
+  email: 'Morning,
+
+
+    Yesterday, we got individual tiles rendering on the screen. Today, we need to organize those tiles into a board and place ships on it.
+
+
+    Ships should fit inside the board and must not overlap. We''ll also need horizontal and vertical placement.
+
+
+    Join the Zoom call when you''ve read this. We''ll go over the plan.
+
+
+    - Steve'
+  call:
+  - speakerName: Steve
+    personality: 0
+    text: Morning. We've got tiles on the screen, but a collection of tiles isn't quite a working board yet.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Steve
+    personality: 0
+    text: The Board should organize the grid and decide whether a ship can be placed. Individual tiles keep track of whether they're occupied.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Steve
+    personality: 0
+    text: Make placement work horizontally and vertically. Test ships hanging off the edge or crossing another ship.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Steve
+    personality: 0
+    text: If a placement fails, the board should stay exactly as it was. No half-placed ships. How will you approach it?
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  introduction:
+  - speakerName: Architect
+    personality: 2
+    text: Yesterday, we gave each tile a position. Today, we give those tiles a structure.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Sentinel
+    personality: 4
+    text: A structure with boundaries. A ship doesn't get to invent an eleventh column.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Architect
+    personality: 2
+    text: The Board handles operations involving several tiles. Each Tile handles its own state.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Sentinel
+    personality: 4
+    text: Read the code, choose a correction, then run the test. Check the entire placement before changing anything.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  conclusion:
+  - speakerName: Architect
+    personality: 2
+    text: The Board organizes the tiles, checks placements, and updates their state. The visualization works because the code follows those rules.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Sentinel
+    personality: 4
+    text: 'Those habits carry into Minesweeper: stay inside the grid, avoid duplicate mine locations, and keep the board''s state consistent.'
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  - speakerName: Architect
+    personality: 2
+    text: Ship orientation belongs to Battleship. Board organization, indexing, and SFML positioning are useful in both games.
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+  exercises:
+  - title: Board ownership
+    reward: 2
+    architect: A Tile needs information about itself. The Board coordinates the whole grid.
+    sentinel: Separate copies of the grid can disagree about occupied cells.
+    faultyCode: '// Fault: every Tile stores its own complete grid.
+
+      class Tile { /* a copy of the entire board */ };'
+    question: Which structure keeps one consistent board?
+    options:
+    - Each Tile stores a separate copy of the complete grid.
+    - Board stores the grid; each Tile stores its own cell state.
+    - The drawing function creates a new empty grid every frame.
+    correctIndex: 1
+    architectHint: Which object coordinates operations across several cells?
+    sentinelHint: Where should a placed ship remain stored on the next frame?
+    success: One Board coordinates the cells. Occupied state survives the next frame.
+    transfer: 'Minesweeper: Board coordinates a grid of tiles; each tile keeps its own mine, flag, and reveal state.'
+    failures:
+    - Independent grid copies disagree about occupied cells.
+    - 
+    - A new grid every frame loses all placed ships.
+  - title: Ship orientation
+    reward: 2
+    architect: Horizontal movement changes columns; vertical movement changes rows.
+    sentinel: Trace all three segments. They must visit different cells in a straight line.
+    faultyCode: 'int checkRow = r + (horizontal ? i : 0);
+
+      int checkCol = c + (horizontal ? 0 : i);'
+    question: 'Replace the coordinate calculation:'
+    options:
+    - 'int checkRow = r + i;
+
+      int checkCol = c + i;'
+    - 'int checkRow = r;
+
+      int checkCol = c;'
+    - 'int checkRow = r + (horizontal ? 0 : i);
+
+      int checkCol = c + (horizontal ? i : 0);'
+    correctIndex: 2
+    architectHint: A horizontal ship stays in one row.
+    sentinelHint: Trace i = 0, 1, 2. Do you visit three unique cells?
+    success: Horizontal advances columns; vertical advances rows.
+    transfer: 'Minesweeper: use row/column indexing consistently. Mines do not have ship orientation.'
+    failures:
+    - Both coordinates advance, producing a diagonal.
+    - All segments target the starting cell.
+    - 
+  - title: Board boundaries
+    reward: 4
+    architect: Indices run from zero to dimension minus one.
+    sentinel: A 10-column board uses columns 0-9. Touching the edge is valid; crossing it is not.
+    faultyCode: '// Negative starts and nonpositive lengths already rejected.
+
+      if (c > cols) return false;'
+    question: Which condition rejects a horizontal ship beyond the right edge?
+    options:
+    - if (c + length > cols) return false;
+    - if (c + length >= cols) return false;
+    - if (c > cols) return false;
+    correctIndex: 0
+    architectHint: Starting at column 7, a length-3 ship uses columns 7, 8, 9.
+    sentinelHint: Test column 7 AND column 8 with length 3.
+    success: An exact-edge placement fits. An over-edge placement is rejected.
+    transfer: 'Minesweeper: check bounds before accessing neighbors of edge or corner tiles.'
+    failures:
+    - 
+    - This rejects ships that fit exactly at the edge.
+    - This only checks the start, not the full length.
+  - title: Overlap checks
+    reward: 4
+    architect: Visit every proposed ship cell using the orientation calculation.
+    sentinel: An empty starting cell does not guarantee that the rest are empty.
+    faultyCode: '// Fault: only the first cell is checked.
+
+      if (grid[r][c].occupied()) return false;'
+    question: Which check prevents a partial overlap?
+    options:
+    - Check only the starting cell.
+    - Check every proposed cell; reject if ANY cell is occupied.
+    - Reject only if ALL proposed cells are occupied.
+    correctIndex: 1
+    architectHint: The loop must cover every ship segment.
+    sentinelHint: One collision is enough. Try a collision in the middle segment.
+    success: A collision in the middle rejects the entire placement.
+    transfer: 'Minesweeper: random mine placement must not count the same occupied tile twice.'
+    failures:
+    - The starting cell is clear, but the middle cell overlaps.
+    - 
+    - A partial overlap is still invalid.
+  - title: Validate before updating
+    reward: 4
+    architect: Separate checking the proposed change from applying it.
+    sentinel: A collision on the last segment must not leave the first segments occupied.
+    faultyCode: '// Fault: mutate each cell before the full check succeeds.
+
+      markOccupied(cell);
+
+      if (collision) return false;'
+    question: 'Choose the safe placement sequence:'
+    options:
+    - Update each cell, then check whether it was valid.
+    - Update the first cell, then validate the rest.
+    - Validate ALL cells; update only after every check passes.
+    correctIndex: 2
+    architectHint: Use a validation pass followed by an update pass.
+    sentinelHint: Compare the board before and after a rejected placement.
+    success: The final-segment collision is rejected. The board remains unchanged.
+    transfer: 'Minesweeper: rejected operations should preserve board state. Flagged tiles, for example, should stay unchanged when left-clicked.'
+    failures:
+    - Earlier cells were changed before discovering the collision.
+    - Even one early update leaves a partial ship.
+    - 
+  - title: SFML positioning
+    reward: 2
+    architect: Grid indices are row/column; SFML position is X/Y. Column controls X.
+    sentinel: Tiles here are 32 pixels square, with the board starting at (0, 0).
+    faultyCode: sprite.setPosition({row * 32.f, col * 32.f});
+    question: Which statement aligns the sprite with its cell?
+    options:
+    - sprite.setPosition({row * 32.f, col * 32.f});
+    - sprite.setPosition({col * 32.f, row * 32.f});
+    - sprite.setPosition({col * 1.f, row * 1.f});
+    correctIndex: 1
+    architectHint: Increasing the column should move right.
+    sentinelHint: At row 2, column 3, expect X = 96, Y = 64.
+    success: Column maps to X, row maps to Y. The sprite aligns with its logical cell.
+    transfer: 'Minesweeper: its tiles are 32 pixels square. SFML 3 setPosition receives one Vector2f; brace initialization supplies it.'
+    failures:
+    - Rows and columns are swapped.
+    - 
+    - The sprite advances one pixel instead of one tile.
