@@ -52,7 +52,8 @@ public enum NarrativeStepType
     WaitUntilCodeCompiled,
     DelaySeconds,           // For simulate reading email (10s)
     StartScreenShare,       // Calls ZoomScreenShareController.Instance.StartScreenShare()
-    WaitUntilScreenShareEnd // Halts until screenshare video completes
+    WaitUntilScreenShareEnd, // Halts until screenshare video completes
+    TriggerGameEnd
 }
 
 [CreateAssetMenu(fileName = "DaySequence_Day0", menuName = "Narrative/Day Sequence Data")]
