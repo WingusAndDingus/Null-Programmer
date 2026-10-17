@@ -20,10 +20,10 @@ public class ZoomScreenShareController : MonoBehaviour
     public static ZoomScreenShareController Instance;
 
     [Header("UI & Window Panels")]
-    [SerializeField] private GameObject incomingCallPopup;   // Popup with "Accept Call" button
-    [SerializeField] private GameObject zoomPanel;            // Steve's avatar/Zoom window frame
-    [SerializeField] private GameObject screensharePopup;     // "Steve is screen sharing..." notification
-    [SerializeField] private GameObject screenShareDisplay;   // Game Object containing the VideoPlayer / Quad / SpriteRenderer
+    [SerializeField] private GameObject incomingCallPopup;
+    [SerializeField] private GameObject zoomPanel;
+    [SerializeField] private GameObject screensharePopup;
+    [SerializeField] private GameObject screenShareDisplay;
 
     [Header("Video Settings")]
     [SerializeField] private VideoPlayer screenShareVideoPlayer;
@@ -35,6 +35,8 @@ public class ZoomScreenShareController : MonoBehaviour
     private int currentCueIndex = 0;
     private bool isPausedForDialogue = false;
     private bool isScreenSharingActive = false;
+    private bool suppressNextAcceptGreeting = false;
+    private bool suppressNextScreenShareVideo = false;
 
     private void Awake()
     {
@@ -44,7 +46,6 @@ public class ZoomScreenShareController : MonoBehaviour
 
     private void Start()
     {
-        // Hide all Zoom UI elements by default on startup
         if (incomingCallPopup != null) incomingCallPopup.SetActive(false);
         if (zoomPanel != null) zoomPanel.SetActive(false);
         if (screensharePopup != null) screensharePopup.SetActive(false);
@@ -55,7 +56,6 @@ public class ZoomScreenShareController : MonoBehaviour
     {
         if (!isScreenSharingActive || isPausedForDialogue || currentCueIndex >= dialogueCues.Count) return;
 
-        // Monitor video playback time during active screenshare
         if (screenShareVideoPlayer != null && screenShareVideoPlayer.time >= dialogueCues[currentCueIndex].triggerTimestampSeconds)
         {
             VideoDialogueCue currentCue = dialogueCues[currentCueIndex];
@@ -63,12 +63,10 @@ public class ZoomScreenShareController : MonoBehaviour
 
             if (currentCue.pauseVideo)
             {
-                // Pause video and wait for dialogue line to complete
                 StartCoroutine(ExecutePauseAndDialogue(currentCue));
             }
-            else
+            else if (DialogueManager.Instance != null)
             {
-                // Play dialogue asynchronously without pausing video playback
                 StartCoroutine(DialogueManager.Instance.PlayDialogueLine(currentCue.dialogue));
             }
         }
@@ -78,12 +76,18 @@ public class ZoomScreenShareController : MonoBehaviour
     // 1. ZOOM CALL FLOW FUNCTIONS
     // ------------------------------------------------------------------------
 
-    /// <summary>
-    /// Displays the incoming call popup ("Steve is starting a Zoom session").
-    /// </summary>
     public void TriggerIncomingCall()
     {
         if (incomingCallPopup != null) incomingCallPopup.SetActive(true);
+    }
+
+    /// <summary>
+    /// One-shot option used by a narrative step when that day's sequence wants to
+    /// provide its own first Steve line. It automatically resets after the call is accepted.
+    /// </summary>
+    public void SetSuppressNextAcceptGreeting(bool suppress)
+    {
+        suppressNextAcceptGreeting = suppress;
     }
 
     /// <summary>
@@ -94,36 +98,57 @@ public class ZoomScreenShareController : MonoBehaviour
         if (incomingCallPopup != null) incomingCallPopup.SetActive(false);
         if (zoomPanel != null) zoomPanel.SetActive(true);
 
-        // FIRE EVENT TO UNBLOCK NarrativeWaitHelpers
+        bool suppressGreeting = suppressNextAcceptGreeting;
+        suppressNextAcceptGreeting = false;
+
         GameplayEvents.TriggerZoomCallStarted();
 
-        // Trigger opening dialogue from Steve
-        DialogueLine initialGreeting = new DialogueLine
+        // Preserve the existing default greeting for all days that do not opt out.
+        if (!suppressGreeting && DialogueManager.Instance != null)
         {
-            speakerName = "Steve",
-            personality = HeadPersonality.None,
-            text = "Hey! Thanks for jumping on the call. Let's get your C++ project environment configured.",
-            displayDuration = 3.5f
-        };
+            DialogueLine initialGreeting = new DialogueLine
+            {
+                speakerName = "Steve",
+                personality = HeadPersonality.None,
+                text = "Hey! Thanks for jumping on the call. Let's get your C++ project environment configured.",
+                displayDuration = 3.5f
+            };
 
-        StartCoroutine(DialogueManager.Instance.PlayDialogueLine(initialGreeting));
+            StartCoroutine(DialogueManager.Instance.PlayDialogueLine(initialGreeting));
+        }
+    }
+
+    public void EndZoomCall()
+    {
+        if (isScreenSharingActive)
+        {
+            EndScreenShare();
+        }
+
+        if (incomingCallPopup != null) incomingCallPopup.SetActive(false);
+        if (zoomPanel != null) zoomPanel.SetActive(false);
+
+        GameplayEvents.TriggerZoomCallEnded();
     }
 
     // ------------------------------------------------------------------------
     // 2. SCREEN SHARE FLOW FUNCTIONS
     // ------------------------------------------------------------------------
 
-    /// <summary>
-    /// Public function to trigger Steve's screen sharing sequence.
-    /// </summary>
-    public void StartScreenShare()
+    public void SetSuppressNextScreenShareVideo(bool suppress)
     {
-        StartCoroutine(ScreenShareRoutine());
+        suppressNextScreenShareVideo = suppress;
     }
 
-    private IEnumerator ScreenShareRoutine()
+    public void StartScreenShare()
     {
-        // Show "Steve is sharing his screen..." popup
+        bool suppressVideo = suppressNextScreenShareVideo;
+        suppressNextScreenShareVideo = false;
+        StartCoroutine(ScreenShareRoutine(suppressVideo));
+    }
+
+    private IEnumerator ScreenShareRoutine(bool suppressVideo)
+    {
         if (screensharePopup != null) screensharePopup.SetActive(true);
 
         yield return new WaitForSeconds(2.0f);
@@ -134,12 +159,10 @@ public class ZoomScreenShareController : MonoBehaviour
         isScreenSharingActive = true;
         currentCueIndex = 0;
 
-        if (screenShareVideoPlayer != null)
+        if (!suppressVideo && screenShareVideoPlayer != null)
         {
-            // Bind video end callback without altering your play order
             screenShareVideoPlayer.loopPointReached -= OnVideoEnd;
             screenShareVideoPlayer.loopPointReached += OnVideoEnd;
-
             screenShareVideoPlayer.Play();
         }
     }
@@ -150,11 +173,12 @@ public class ZoomScreenShareController : MonoBehaviour
         EndScreenShare();
     }
 
-    /// <summary>
-    /// Public function to stop and hide Steve's screen share.
-    /// </summary>
     public void EndScreenShare()
     {
+        bool wasActive = isScreenSharingActive ||
+                         (screenShareDisplay != null && screenShareDisplay.activeSelf) ||
+                         (screensharePopup != null && screensharePopup.activeSelf);
+
         isScreenSharingActive = false;
 
         if (screenShareVideoPlayer != null)
@@ -164,6 +188,13 @@ public class ZoomScreenShareController : MonoBehaviour
 
         if (screenShareDisplay != null) screenShareDisplay.SetActive(false);
         if (screensharePopup != null) screensharePopup.SetActive(false);
+
+        // The original helper waits for this event, so make sure EndScreenShare
+        // actually publishes it. Guard against duplicate end notifications.
+        if (wasActive)
+        {
+            GameplayEvents.TriggerScreenShareEnded();
+        }
     }
 
     // ------------------------------------------------------------------------
@@ -179,7 +210,10 @@ public class ZoomScreenShareController : MonoBehaviour
             screenShareVideoPlayer.Pause();
         }
 
-        yield return StartCoroutine(DialogueManager.Instance.PlayDialogueLine(cue.dialogue));
+        if (DialogueManager.Instance != null)
+        {
+            yield return StartCoroutine(DialogueManager.Instance.PlayDialogueLine(cue.dialogue));
+        }
 
         if (screenShareVideoPlayer != null)
         {

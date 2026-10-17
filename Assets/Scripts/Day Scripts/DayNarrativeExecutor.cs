@@ -38,9 +38,15 @@ public class DayNarrativeExecutor : MonoBehaviour
         GameManager.Instance.ChangeSteveSuspicion(amount);
     }
 
+    private void ApplyFriendship(int amount)
+    {
+        if (amount == 0 || GameManager.Instance == null) return;
+        GameManager.Instance.ChangeSteveFriendship(amount);
+    }
+
     private async Task RunCurrentStepAsync()
     {
-        if (currentDayData == null) return;
+        if (currentDayData == null || GameManager.Instance == null) return;
 
         string currentStepID = GameManager.Instance.CurrentStep;
         Debug.Log($"[DayNarrativeExecutor] Attempting to run step: '{currentStepID}'");
@@ -59,14 +65,15 @@ public class DayNarrativeExecutor : MonoBehaviour
 
         lastExecutedStepID = currentStepID;
 
-        // 1. Play Dialogue Line if text exists
-        if (!string.IsNullOrEmpty(stepData.lineText))
+        // 1. Play Dialogue Line if text exists.
+        string resolvedLineText = ResolveLineText(stepData);
+        if (!string.IsNullOrEmpty(resolvedLineText))
         {
             DialogueLine line = new DialogueLine
             {
                 speakerName = stepData.speakerName,
                 personality = stepData.personality,
-                text = stepData.lineText,
+                text = resolvedLineText,
                 displayDuration = stepData.displayDuration
             };
 
@@ -74,10 +81,11 @@ public class DayNarrativeExecutor : MonoBehaviour
             {
                 DialogueManager.Instance.DisplayLine(line);
             }
+
             await Task.Delay((int)(stepData.displayDuration * 1000));
         }
 
-        // 2. Handle Skill Rewards
+        // 2. Handle Skill Rewards.
         if (!string.IsNullOrEmpty(stepData.awardSkillKey))
         {
             PersonalitySkills skills = FindAnyObjectByType<PersonalitySkills>();
@@ -87,7 +95,7 @@ public class DayNarrativeExecutor : MonoBehaviour
             }
         }
 
-        // 3. WAIT FOR GAMEPLAY EVENTS
+        // 3. Wait for or invoke gameplay events.
         switch (stepData.stepType)
         {
             case NarrativeStepType.DelaySeconds:
@@ -105,6 +113,7 @@ public class DayNarrativeExecutor : MonoBehaviour
             case NarrativeStepType.WaitUntilZoomCall:
                 if (ZoomScreenShareController.Instance != null)
                 {
+                    ZoomScreenShareController.Instance.SetSuppressNextAcceptGreeting(stepData.suppressZoomAcceptGreeting);
                     ZoomScreenShareController.Instance.TriggerIncomingCall();
                 }
                 await NarrativeWaitHelpers.WaitForZoomCall();
@@ -113,6 +122,7 @@ public class DayNarrativeExecutor : MonoBehaviour
             case NarrativeStepType.StartScreenShare:
                 if (ZoomScreenShareController.Instance != null)
                 {
+                    ZoomScreenShareController.Instance.SetSuppressNextScreenShareVideo(stepData.suppressScreenShareVideo);
                     ZoomScreenShareController.Instance.StartScreenShare();
                 }
                 break;
@@ -123,6 +133,24 @@ public class DayNarrativeExecutor : MonoBehaviour
 
             case NarrativeStepType.WaitUntilCodeCompiled:
                 await NarrativeWaitHelpers.WaitForCodeCompilation();
+                break;
+
+            case NarrativeStepType.WaitUntilNarrativeEvent:
+                await NarrativeWaitHelpers.WaitForNarrativeEvent(stepData.narrativeEventKey);
+                break;
+
+            case NarrativeStepType.EndScreenShare:
+                if (ZoomScreenShareController.Instance != null)
+                {
+                    ZoomScreenShareController.Instance.EndScreenShare();
+                }
+                break;
+
+            case NarrativeStepType.EndZoomCall:
+                if (ZoomScreenShareController.Instance != null)
+                {
+                    ZoomScreenShareController.Instance.EndZoomCall();
+                }
                 break;
 
             case NarrativeStepType.TriggerGameEnd:
@@ -139,10 +167,10 @@ public class DayNarrativeExecutor : MonoBehaviour
                 break;
         }
 
-        // Apply suspicion shift after the step condition resolves
+        // Step-level suspicion shift after the step condition resolves.
         ApplySuspicion(stepData.suspicionChange);
 
-        // 4. Present Choices or Auto-Advance
+        // 4. Present Choices or Auto-Advance.
         if (stepData.choices != null && stepData.choices.Count > 0)
         {
             Debug.Log($"[DayNarrativeExecutor] Step '{stepData.stepID}' has {stepData.choices.Count} choices. Presenting...");
@@ -158,7 +186,13 @@ public class DayNarrativeExecutor : MonoBehaviour
             if (selectedIndex >= 0 && selectedIndex < stepData.choices.Count)
             {
                 DialogueStepChoice chosen = stepData.choices[selectedIndex];
+
+                // Existing behavior: a personality-tagged choice awards that personality a point.
                 ApplyPersonalityStat(chosen.personality, 1);
+
+                // These fields already/default to zero, so old choice data behaves exactly as before.
+                ApplySuspicion(chosen.suspicionChange);
+                ApplyFriendship(chosen.friendshipChange);
 
                 if (!string.IsNullOrEmpty(chosen.targetStepOnClick))
                 {
@@ -171,6 +205,36 @@ public class DayNarrativeExecutor : MonoBehaviour
         {
             GameManager.Instance.setStep(stepData.nextStepID);
             _ = RunCurrentStepAsync();
+        }
+    }
+
+    private string ResolveLineText(NarrativeStep stepData)
+    {
+        if (!stepData.usePersonalitySkillVariant || GameManager.Instance == null)
+        {
+            return stepData.lineText;
+        }
+
+        int skillValue = GetPersonalityStat(stepData.personality);
+        bool highSkill = skillValue >= stepData.highSkillThreshold;
+        string variant = highSkill ? stepData.highSkillText : stepData.lowSkillText;
+
+        // Fallback protects existing/partially-authored data from blank dialogue.
+        return string.IsNullOrEmpty(variant) ? stepData.lineText : variant;
+    }
+
+    private int GetPersonalityStat(HeadPersonality personality)
+    {
+        if (GameManager.Instance == null) return 0;
+
+        switch (personality)
+        {
+            case HeadPersonality.GrandArchitect: return GameManager.Instance.GrandArchitectStat;
+            case HeadPersonality.Pragmatist: return GameManager.Instance.PragmatistStat;
+            case HeadPersonality.Sentinel: return GameManager.Instance.SentinelStat;
+            case HeadPersonality.Genius: return GameManager.Instance.GeniusStat;
+            case HeadPersonality.Detective: return GameManager.Instance.DetectiveStat;
+            default: return 0;
         }
     }
 

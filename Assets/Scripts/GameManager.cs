@@ -30,10 +30,13 @@ public class GameManager : MonoBehaviour
     public int SteveSuspicion { get; private set; }
     public int CodeQuality { get; private set; }
     public int Connectedness { get; private set; }
+    public int SteveFriendship { get; private set; }
 
     public const int MaxSuspicion = 100;
+    public const int MaxFriendship = 100;
 
     public event Action<int> SuspicionChanged;
+    public event Action<int> SteveFriendshipChanged;
     public event Action SteveCrisis;
 
 
@@ -196,6 +199,17 @@ public class GameManager : MonoBehaviour
     public void ChangeConnectednessStat(int value)
     {
         Connectedness += value;
+    }
+
+    public void ChangeSteveFriendship(int value)
+    {
+        int previous = SteveFriendship;
+        SteveFriendship = Mathf.Clamp(SteveFriendship + value, 0, MaxFriendship);
+
+        if (previous != SteveFriendship)
+        {
+            SteveFriendshipChanged?.Invoke(SteveFriendship);
+        }
     }
 
     public void ChangeSteveSuspicion(int value)

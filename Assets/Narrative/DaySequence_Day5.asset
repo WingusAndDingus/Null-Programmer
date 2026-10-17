@@ -1,0 +1,889 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 657659d256d74ba448affc6a2a8763d3, type: 3}
+  m_Name: DaySequence_Day5
+  m_EditorClassIdentifier: Assembly-CSharp::DaySequenceData
+  dayNumber: 5
+  steps:
+  - stepID: Start
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_Steve_GoodNews
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 1
+    suppressScreenShareVideo: 0
+    stepType: 1
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Steve_GoodNews
+    speakerName: Steve
+    personality: 0
+    lineText: Hey. Good news. I cleaned up the turn logic.
+    displayDuration: 2.6
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_Protagonist_BadNews
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Protagonist_BadNews
+    speakerName: The Protagonist
+    personality: 0
+    lineText: And the bad news?
+    displayDuration: 2
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_Steve_Bug
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Steve_Bug
+    speakerName: Steve
+    personality: 0
+    lineText: Sometimes the computer shoots you after you've already won.
+    displayDuration: 3
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_Steve_Posthumous
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Steve_Posthumous
+    speakerName: Steve
+    personality: 0
+    lineText: I'm calling it "posthumous retaliation."
+    displayDuration: 2.8
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_Internal_Opening
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Internal_Opening
+    speakerName: The Protagonist
+    personality: 1
+    lineText: Wonderful. He's debugging something he doesn't understand with someone who can't remember understanding it.
+    displayDuration: 3.6
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_Steve_ExplainChange
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Steve_ExplainChange
+    speakerName: Steve
+    personality: 0
+    lineText: I moved a few things around. The original ordering looked unnecessarily picky.
+    displayDuration: 3.1
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_StartShare
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_StartShare
+    speakerName: Steve
+    personality: 0
+    lineText: Here, look at what I changed.
+    displayDuration: 2.2
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_ShareDelay
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 1
+    stepType: 5
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_ShareDelay
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_ArchitectAdvice
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 4
+    suspicionChange: 0
+    delayDuration: 2
+  - stepID: D5_ArchitectAdvice
+    speakerName: The Grand Architect
+    personality: 2
+    lineText: 
+    displayDuration: 3.5
+    usePersonalitySkillVariant: 1
+    highSkillThreshold: 3
+    lowSkillText: Clearly this requires an Input Controller, Turn Controller, State Controller, and perhaps a Controller Controller.
+    highSkillText: 'Ignore the classes. Trace the sequence: an event occurs, the action resolves, the state changes, and only then should control move elsewhere.'
+    choices: []
+    nextStepID: D5_BugQuestion
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_BugQuestion
+    speakerName: Steve
+    personality: 0
+    lineText: The win check is still there. Why does moving it down break anything?
+    displayDuration: 3.2
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices:
+    - choiceText: Because you've started the AI's turn before checking whether the player's attack ended the match.
+      personality: 0
+      targetStepOnClick: D5_BugCorrect
+      suspicionChange: 0
+      friendshipChange: 0
+    - choiceText: executeAITurn() is in the wrong place.
+      personality: 0
+      targetStepOnClick: D5_BugIncomplete
+      suspicionChange: 0
+      friendshipChange: 0
+    - choiceText: SFML is probably processing the player and AI attacks at the same time.
+      personality: 0
+      targetStepOnClick: D5_BugWrong
+      suspicionChange: 2
+      friendshipChange: 0
+    nextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 2
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_BugCorrect
+    speakerName: Steve
+    personality: 0
+    lineText: So the bug isn't that I forgot the win condition. I evaluated it too late.
+    displayDuration: 3.2
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_SFMLSteve
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_BugIncomplete
+    speakerName: Steve
+    personality: 0
+    lineText: Right, but what's wrong with that place?
+    displayDuration: 2.5
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_BugIncompleteExplain
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_BugIncompleteExplain
+    speakerName: The Protagonist
+    personality: 0
+    lineText: The previous action hasn't finished resolving yet. We handed control to the AI before checking its consequences.
+    displayDuration: 3.5
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_SFMLSteve
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_BugWrong
+    speakerName: Steve
+    personality: 0
+    lineText: But the AI doesn't use SFML input.
+    displayDuration: 2.5
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_BugWrongThought
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_BugWrongThought
+    speakerName: The Protagonist
+    personality: 1
+    lineText: He's asking distressingly good questions today.
+    displayDuration: 2.4
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_SFMLSteve
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_SFMLSteve
+    speakerName: Steve
+    personality: 0
+    lineText: So SFML basically tells us, "the mouse was clicked."
+    displayDuration: 2.8
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_SFMLProtagonist
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_SFMLProtagonist
+    speakerName: The Protagonist
+    personality: 0
+    lineText: Right. SFML reports the input event. Our game decides whether the click is a legal attack and what happens afterward.
+    displayDuration: 3.8
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_TraceIntro
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_TraceIntro
+    speakerName: The Protagonist
+    personality: 1
+    lineText: Input. Resolve the action. Update state. Check whether the match ended. Then hand over the turn.
+    displayDuration: 3.4
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_TraceTurn
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_TraceTurn
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_Steve_CheckEverywhere
+    awardSkillKey: 
+    narrativeEventKey: Day5.TraceTurn.Complete
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 8
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Steve_CheckEverywhere
+    speakerName: Steve
+    personality: 0
+    lineText: So should I just keep adding if (!game_over) everywhere?
+    displayDuration: 3
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_SentinelAdvice
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_SentinelAdvice
+    speakerName: The Sentinel
+    personality: 4
+    lineText: 
+    displayDuration: 3.5
+    usePersonalitySkillVariant: 1
+    highSkillThreshold: 3
+    lowSkillText: Yes. Check it everywhere. Before attacks. After attacks. During attacks. Perhaps before lunch.
+    highSkillText: Think in invariants. Once the match reaches a terminal state, neither player may receive another turn.
+    choices: []
+    nextStepID: D5_Protagonist_Invariant
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Protagonist_Invariant
+    speakerName: The Protagonist
+    personality: 0
+    lineText: The important rule isn't to check the Boolean everywhere. Once the match enters a terminal state, nothing should transition it into another turn.
+    displayDuration: 4
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_Steve_StateTransition
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Steve_StateTransition
+    speakerName: Steve
+    personality: 0
+    lineText: So we're defining which state changes are legal.
+    displayDuration: 2.7
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_Protagonist_Exactly
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Protagonist_Exactly
+    speakerName: The Protagonist
+    personality: 0
+    lineText: Exactly.
+    displayDuration: 1.8
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_FrameQuestion
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_FrameQuestion
+    speakerName: Steve
+    personality: 0
+    lineText: If Battleship alternates turns, shouldn't the main loop alternate too? Player loop, AI loop, player loop? Why does this keep running while we're waiting?
+    displayDuration: 4.2
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices:
+    - choiceText: Because the SFML frame loop and the Battleship turn system are separate. Frames keep running while the game waits for an action.
+      personality: 0
+      targetStepOnClick: D5_FrameCorrect
+      suspicionChange: 0
+      friendshipChange: 0
+    - choiceText: Because SFML needs to keep redrawing the window.
+      personality: 0
+      targetStepOnClick: D5_FramePartial
+      suspicionChange: 0
+      friendshipChange: 0
+    - choiceText: Each frame is basically one Battleship turn.
+      personality: 0
+      targetStepOnClick: D5_FrameWrong
+      suspicionChange: 2
+      friendshipChange: 0
+    nextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 2
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_FrameCorrect
+    speakerName: Steve
+    personality: 0
+    lineText: So we could draw sixty frames without completing a single turn.
+    displayDuration: 2.9
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_FrameJoke
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_FrameJoke
+    speakerName: Steve
+    personality: 0
+    lineText: Finally, software that accurately simulates meetings.
+    displayDuration: 2.7
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_FinalIntro
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_FramePartial
+    speakerName: The Protagonist
+    personality: 0
+    lineText: Rendering is part of it, but input and updates keep running too. The important distinction is that a frame isn't a game turn.
+    displayDuration: 3.8
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_FinalIntro
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_FrameWrong
+    speakerName: Steve
+    personality: 0
+    lineText: At sixty frames per second?
+    displayDuration: 2.2
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_FrameWrongThought
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_FrameWrongThought
+    speakerName: The Protagonist
+    personality: 1
+    lineText: Competitive Battleship has become considerably more dangerous.
+    displayDuration: 2.6
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_FinalIntro
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_FinalIntro
+    speakerName: Steve
+    personality: 0
+    lineText: Okay. Let me run it again.
+    displayDuration: 2.2
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_FinalResult
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_FinalResult
+    speakerName: Steve
+    personality: 0
+    lineText: It didn't shoot me.
+    displayDuration: 2.2
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_FinalPromising
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_FinalPromising
+    speakerName: The Protagonist
+    personality: 0
+    lineText: Promising.
+    displayDuration: 1.8
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_FinalJoke
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_FinalJoke
+    speakerName: Steve
+    personality: 0
+    lineText: We've successfully taught artificial intelligence to recognize when it's dead.
+    displayDuration: 3.2
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_FinalResume
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_FinalResume
+    speakerName: The Protagonist
+    personality: 0
+    lineText: "Put it on the r\xE9sum\xE9."
+    displayDuration: 2.1
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_FriendshipIntro1
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_FriendshipIntro1
+    speakerName: Steve
+    personality: 0
+    lineText: I think I'm actually starting to understand this stuff.
+    displayDuration: 2.8
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_FriendshipIntro2
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_FriendshipIntro2
+    speakerName: Steve
+    personality: 0
+    lineText: Which means pretty soon I'll be able to recognize my own terrible code.
+    displayDuration: 3.1
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices:
+    - choiceText: Eventually you'll recognize my terrible code too.
+      personality: 0
+      targetStepOnClick: D5_FriendshipFriendly
+      suspicionChange: 0
+      friendshipChange: 1
+    - choiceText: Let's merge this before either of us has another idea.
+      personality: 0
+      targetStepOnClick: D5_FriendshipDry
+      suspicionChange: 0
+      friendshipChange: 0
+    - choiceText: Just don't rearrange anything else before Monday.
+      personality: 0
+      targetStepOnClick: D5_FriendshipDismissive
+      suspicionChange: 0
+      friendshipChange: -1
+    nextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 2
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_FriendshipFriendly
+    speakerName: Steve
+    personality: 0
+    lineText: Ha. Deal.
+    displayDuration: 2
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_EndShare
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_FriendshipDry
+    speakerName: Steve
+    personality: 0
+    lineText: Best thing you've said all afternoon.
+    displayDuration: 2.4
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_EndShare
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_FriendshipDismissive
+    speakerName: Steve
+    personality: 0
+    lineText: ...Right. Sure.
+    displayDuration: 2.2
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_EndShare
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_EndShare
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_EndCall
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 9
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_EndCall
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_Closing1
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 10
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Closing1
+    speakerName: The Protagonist
+    personality: 1
+    lineText: Action. Resolution. Terminal state. Transition.
+    displayDuration: 2.7
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_Closing2
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Closing2
+    speakerName: The Protagonist
+    personality: 1
+    lineText: I remember the pattern.
+    displayDuration: 2.4
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: D5_Closing3
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Closing3
+    speakerName: The Protagonist
+    personality: 1
+    lineText: That's something.
+    displayDuration: 2.2
+    usePersonalitySkillVariant: 0
+    highSkillThreshold: 3
+    lowSkillText: 
+    highSkillText: 
+    choices: []
+    nextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    suppressZoomAcceptGreeting: 0
+    suppressScreenShareVideo: 0
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 10

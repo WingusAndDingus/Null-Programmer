@@ -5,7 +5,7 @@ using UnityEngine;
 public class NarrativeWaitHelpers
 {
     /// <summary>
-    /// Pauses sequence until Steve's Zoom call is triggered.
+    /// Pauses sequence until Steve's Zoom call is accepted.
     /// </summary>
     public static Task WaitForZoomCall()
     {
@@ -23,7 +23,7 @@ public class NarrativeWaitHelpers
     }
 
     /// <summary>
-    /// Pauses sequence until code compiles successfully.
+    /// Pauses sequence until code compilation reports a result.
     /// </summary>
     public static Task<string> WaitForCodeCompilation()
     {
@@ -41,7 +41,7 @@ public class NarrativeWaitHelpers
     }
 
     /// <summary>
-    /// Pauses sequence until Steve's screen share video finishes.
+    /// Pauses sequence until Steve's screen share ends.
     /// </summary>
     public static Task WaitForScreenShareEnd()
     {
@@ -55,6 +55,36 @@ public class NarrativeWaitHelpers
         };
 
         GameplayEvents.OnScreenShareEnded += handler;
+        return tcs.Task;
+    }
+
+    /// <summary>
+    /// Pauses the narrative until a named gameplay/narrative event is fired.
+    /// This keeps mini-games decoupled from DayNarrativeExecutor.
+    /// </summary>
+    public static Task WaitForNarrativeEvent(string expectedEventKey)
+    {
+        if (string.IsNullOrWhiteSpace(expectedEventKey))
+        {
+            Debug.LogError("[NarrativeWaitHelpers] Cannot wait for an empty narrative event key.");
+            return Task.CompletedTask;
+        }
+
+        var tcs = new TaskCompletionSource<bool>();
+
+        Action<string> handler = null;
+        handler = (receivedKey) =>
+        {
+            if (!string.Equals(receivedKey, expectedEventKey, StringComparison.OrdinalIgnoreCase))
+            {
+                return;
+            }
+
+            GameplayEvents.OnNarrativeEvent -= handler;
+            tcs.TrySetResult(true);
+        };
+
+        GameplayEvents.OnNarrativeEvent += handler;
         return tcs.Task;
     }
 }
