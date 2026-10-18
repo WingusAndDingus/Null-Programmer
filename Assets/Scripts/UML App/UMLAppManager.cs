@@ -1,34 +1,57 @@
 using UnityEngine;
+using TMPro;
 
 public class UMLAppManager : MonoBehaviour
 {
     [Header("Configuration")]
-    [Tooltip("Drag the UML_Canvas here")]
     public Transform umlCanvas;
+
+    [Header("Description Panel UI")]
+    public GameObject descriptionPanel;
+    public TextMeshProUGUI descriptionTitleText;
+    public TextMeshProUGUI descriptionBodyText;
 
     private UMLNode[] allNodes;
 
     private void Start()
     {
-        // Find all UML nodes inside the canvas when the app is created
         if (umlCanvas != null)
         {
             allNodes = umlCanvas.GetComponentsInChildren<UMLNode>(true);
         }
+        
+        // Ensure the panel is hidden when the app first opens
+        if (descriptionPanel != null) descriptionPanel.SetActive(false);
     }
 
-    // Call this when the player opens the app
     public void OnAppOpened()
     {
         if (allNodes == null || allNodes.Length == 0) return;
-
-        // Fetch the current day from your main GameManager (Default to 1 if not found)
         int currentDay = GameManager.Instance != null ? GameManager.Instance.CurrentDay : 1;
 
-        // Update every node's visibility
         foreach (UMLNode node in allNodes)
         {
             node.CheckRevealState(currentDay);
         }
+    }
+
+    // Called by the node when it is clicked
+    public void ShowDescription(string title, string body)
+    {
+        if (descriptionPanel != null)
+        {
+            descriptionPanel.SetActive(true);
+            if (descriptionTitleText != null) descriptionTitleText.text = title + " Overview";
+            if (descriptionBodyText != null) descriptionBodyText.text = body;
+            
+            // Pull the panel to the absolute front of the Canvas
+            descriptionPanel.transform.SetAsLastSibling();
+        }
+    }
+
+    // Call this from a Close button on the panel itself
+    public void CloseDescription()
+    {
+        if (descriptionPanel != null) descriptionPanel.SetActive(false);
     }
 }

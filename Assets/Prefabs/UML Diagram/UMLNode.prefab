@@ -546,10 +546,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.VerticalLayoutGroup
   m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
+    m_Left: 3
+    m_Right: 3
+    m_Top: 3
+    m_Bottom: 3
   m_ChildAlignment: 0
   m_Spacing: 10
   m_ChildForceExpandWidth: 1
@@ -609,11 +609,16 @@ MonoBehaviour:
   title: GameManager
   attributes: 
   methods: Methods here
+  description: 
   unlockDay: 3
   titleText: {fileID: 719850903310235334}
   attributesText: {fileID: 515752212211546032}
   methodsText: {fileID: 8169077469805059440}
   unknownOverlay: {fileID: 4561673789296223613}
+  backgroundImage: {fileID: 2641659684280277078}
+  hoverScaleMultiplier: 1.05
+  hoverColor: {r: 0.4, g: 0.4, b: 0.5, a: 0.9}
+  transitionSpeed: 12
 --- !u!1 &6791201605089028818
 GameObject:
   m_ObjectHideFlags: 0
