@@ -10,7 +10,9 @@ public class Day5TestBootstrap : MonoBehaviour
 {
     [Header("Day / Step")]
     [SerializeField] private bool forceDay5OnPlay = true;
-    [SerializeField] private bool resetNarrativeStep = true;
+    [SerializeField] private bool overrideNarrativeStep = true;
+
+    [SerializeField] private string testStep = "Start";
 
     [Header("Optional Personality Test Values")]
     [Tooltip("Adds these points at Play start so you can test the high-skill Day 5 dialogue variants without playing Days 1-4 first.")]
@@ -24,9 +26,9 @@ public class Day5TestBootstrap : MonoBehaviour
         GameManager gm = GameManager.EnsureInstance();
         gm.setCurrentDay(5);
 
-        if (resetNarrativeStep)
+        if (overrideNarrativeStep)
         {
-            gm.setStep("Start");
+            GameManager.Instance.setStep(testStep);
         }
 
         if (grandArchitectTestPoints > 0)
