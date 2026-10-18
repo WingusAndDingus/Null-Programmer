@@ -4643,7 +4643,7 @@ PrefabInstance:
     - target: {fileID: 5369607735899138843, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
       propertyPath: choiceContainer
       value: 
-      objectReference: {fileID: 2436376387705736449}
+      objectReference: {fileID: 4866850500659702612, guid: 864c8b508a009ea4291d8496476235cd, type: 3}
     - target: {fileID: 5369607735899138843, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
       propertyPath: sentinelColor.a
       value: 0.7058824

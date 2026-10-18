@@ -27,7 +27,7 @@ RectTransform:
   m_GameObject: {fileID: 4024452680387312144}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.23111117, y: 0.32674342, z: 0.35533345}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1738583364452637536}
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -87.8212, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -167,7 +167,7 @@ RectTransform:
   m_GameObject: {fileID: 5284935405109884843}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.0974734, y: 2.1908956, z: 2.0146167}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1503605461396649498}
@@ -176,7 +176,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 520, y: 240}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4421460813520510912
 CanvasRenderer:
@@ -231,11 +231,14 @@ MonoBehaviour:
   button: {fileID: 2358541090002087676}
   bubbleImage: {fileID: 544045728416517247}
   optionText: {fileID: 6453456650235717420}
-  floatSpeed: 1.5
-  floatDistance: 10
-  entranceDuration: 3
-  startScale: 1
-  slideOffset: {x: 0, y: -1000}
+  useRoundedCards: 0
+  textPadding: {x: 30, y: 26}
+  minimumHeight: 160
+  floatSpeed: 0.8
+  floatDistance: 4
+  entranceDuration: 0.25
+  startScale: 0.98
+  slideOffset: {x: 0, y: -18}
 --- !u!114 &2358541090002087676
 MonoBehaviour:
   m_ObjectHideFlags: 0

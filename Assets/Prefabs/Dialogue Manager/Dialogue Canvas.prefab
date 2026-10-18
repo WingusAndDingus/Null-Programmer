@@ -115,15 +115,15 @@ RectTransform:
   m_GameObject: {fileID: 702628722416636451}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.247, y: 9.73285, z: 4.247}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2564426781295140510}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -18.5}
+  m_SizeDelta: {x: -48, y: -73}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3659800330230580530
 CanvasRenderer:
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -180,8 +180,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -90.37354, y: 0, z: -104.67722, w: -14.470039}
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -252,16 +252,16 @@ RectTransform:
   m_GameObject: {fileID: 2400113411804864353}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.0241015, y: 5.836323, z: 3.0241015}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2564426781295140510}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -629, y: 410}
-  m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -18}
+  m_SizeDelta: {x: -48, y: 37}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &5650385992141047332
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -284,7 +284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -317,15 +317,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
@@ -389,18 +389,18 @@ RectTransform:
   m_GameObject: {fileID: 3772027912824202676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.5416288, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1273500686769823983}
   - {fileID: 398665271338529699}
   m_Father: {fileID: 5203386290783927219}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -351}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.02, y: 0.065}
+  m_AnchorMax: {x: 0.98, y: 0.065}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 210}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &7262231232660650748
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -452,6 +452,7 @@ GameObject:
   - component: {fileID: 6002850864614690167}
   - component: {fileID: 6525814824337846154}
   - component: {fileID: 5369607735899138843}
+  - component: {fileID: 753400000000000001}
   m_Layer: 5
   m_Name: Dialogue Canvas
   m_TagString: Untagged
@@ -563,15 +564,35 @@ MonoBehaviour:
   internalMonologueOverlay: {fileID: 679255636114674494}
   speechAudioSource: {fileID: 0}
   choiceContainer: {fileID: 0}
-  choiceBubblePrefab: {fileID: 0}
-  bubblePositions:
-  - {x: -200, y: 0}
-  - {x: 200, y: 0}
-  - {x: 0, y: 150}
-  - {x: 0, y: -150}
+  choiceBubblePrefab: {fileID: 5284935405109884843, guid: 835d22ffd14e85b4caa3c6d69b1e0510, type: 3}
   defaultPanelColor: {r: 0.1, g: 0.1, b: 0.1, a: 0.8}
   architectColor: {r: 0.2, g: 0.8, b: 1, a: 1}
   pragmatistColor: {r: 1, g: 0.6, b: 0.2, a: 1}
   sentinelColor: {r: 0.3, g: 0.9, b: 0.3, a: 1}
   geniusColor: {r: 0.9, g: 0.8, b: 0.2, a: 1}
   detectiveColor: {r: 0.8, g: 0.4, b: 1, a: 1}
+--- !u!114 &753400000000000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6268270705485556892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 108df243e23a41a98b0be581915e8bfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialoguePanelPresentation
+  panel: {fileID: 2564426781295140510}
+  speakerText: {fileID: 227105548730186008}
+  dialogueText: {fileID: 5706249870221420968}
+  speakerPortrait: {fileID: 0}
+  stevePortrait: {fileID: -197049010887534538, guid: e05563952a9d1854284d253fe1ed0fae, type: 3}
+  architectPortrait: {fileID: -8526278668709167713, guid: f447ed638efbada44837a5660926fa47, type: 3}
+  pragmatistPortrait: {fileID: 709442137823021493, guid: dcaf650a7d6c2214a9235234210e0e64, type: 3}
+  detectivePortrait: {fileID: 3422411800943576140, guid: 42343f3ae951fb847850091eb5347188, type: 3}
+  minimumHeight: 190
+  maximumHeight: 270
+  maximumScreenHeight: 0.25
+  portraitSize: 150
+  bodyFontSize: 50
