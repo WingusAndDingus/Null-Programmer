@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class PersonalitySkills : MonoBehaviour
 {
+    public const int MaxLevel = (int)PersonalityLevel.Expert;
+
     [Serializable]
     private class SaveData
     {
@@ -22,8 +24,13 @@ public class PersonalitySkills : MonoBehaviour
 
     private void Awake()
     {
+        data = LoadData();
+    }
+
+    private static SaveData LoadData()
+    {
         string json = PlayerPrefs.GetString(SaveKey, "");
-        data = string.IsNullOrEmpty(json) ? new SaveData() : JsonUtility.FromJson<SaveData>(json);
+        SaveData data = string.IsNullOrEmpty(json) ? new SaveData() : JsonUtility.FromJson<SaveData>(json);
 
         if (data == null)
         {
@@ -35,11 +42,43 @@ public class PersonalitySkills : MonoBehaviour
             data.levels = new int[5];
         }
 
+        for (int i = 0; i < data.levels.Length; i++)
+        {
+            data.levels[i] = Mathf.Clamp(data.levels[i], 0, MaxLevel);
+        }
+
         if (data.rewardedMilestones == null)
         {
             data.rewardedMilestones = new List<string>();
         }
 
+        return data;
+    }
+
+    // Dialogue can read invested levels even when the Sleep scene is not loaded.
+    public static int GetSavedLevel(Personality personality)
+    {
+        return LoadData().levels[(int)personality];
+    }
+
+    public static bool TryAwardMilestone(string milestoneID)
+    {
+        if (string.IsNullOrWhiteSpace(milestoneID)) return false;
+        PersonalitySkills skills = FindAnyObjectByType<PersonalitySkills>();
+        if (skills != null)
+        {
+            if (skills.data.rewardedMilestones.Contains(milestoneID)) return false;
+            skills.AwardPoint(milestoneID);
+            return true;
+        }
+
+        SaveData saved = LoadData();
+        if (saved.rewardedMilestones.Contains(milestoneID)) return false;
+        saved.rewardedMilestones.Add(milestoneID);
+        saved.availablePoints++;
+        PlayerPrefs.SetString(SaveKey, JsonUtility.ToJson(saved));
+        PlayerPrefs.Save();
+        return true;
     }
 
     public int GetLevel(Personality personality)
@@ -80,7 +119,8 @@ public class PersonalitySkills : MonoBehaviour
     {
         return nightAllocationOpen && definition != null && definition.levelUnlocks != null
             && data.availablePoints > 0 
-            && GetLevel(definition.personality) <= definition.levelUnlocks.Length;
+            && GetLevel(definition.personality) < MaxLevel
+            && GetLevel(definition.personality) < definition.levelUnlocks.Length;
     }
 
     public bool TryInvest(PersonalityDefinition definition)

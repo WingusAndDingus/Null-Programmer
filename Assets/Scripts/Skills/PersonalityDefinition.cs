@@ -9,6 +9,15 @@ public enum Personality
     Detective
 }
 
+public enum PersonalityLevel
+{
+    Novice = 0,
+    Beginner = 1,
+    Intermediate = 2,
+    Advanced = 3,
+    Expert = 4
+}
+
 [CreateAssetMenu(menuName = "Null Programmer/Personality")]
 public class PersonalityDefinition : ScriptableObject
 {

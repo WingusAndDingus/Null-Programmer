@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: The Sentinel
   description: "Focuses on safety, wants robust leak-free code. Can teach player about smart pointers and important modern C++ features but will also take much more time, not allow for investigating the mystery of player\u2019s past or his friends/families."
   levelUnlocks:
-  - Level 1 Sent
-  - Level 2 Sent
-  - Level 3 Sent
-  - Level 4 Sent
+  - 
+  - 
+  - 
+  - 
