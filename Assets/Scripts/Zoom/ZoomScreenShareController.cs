@@ -97,6 +97,12 @@ public class ZoomScreenShareController : MonoBehaviour
         // FIRE EVENT TO UNBLOCK NarrativeWaitHelpers
         GameplayEvents.TriggerZoomCallStarted();
 
+        // Day 2 supplies its own greeting through Day2_Data after accepting the call.
+        if (GameManager.EnsureInstance().CurrentDay == 2)
+        {
+            return;
+        }
+
         // Trigger opening dialogue from Steve
         DialogueLine initialGreeting = new DialogueLine
         {

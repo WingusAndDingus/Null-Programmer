@@ -73,12 +73,15 @@ public class NightSkillScreen : MonoBehaviour
             }
 
             int level = skills.GetLevel(card.definition.personality);
-            int maxLevel = card.definition.levelUnlocks.Length;
+            int maxLevel = PersonalitySkills.MaxLevel;
+            string levelName = ((PersonalityLevel)level).ToString();
 
             card.nameText.text = card.definition.displayName;
-            card.levelText.text = $"Level {level}/{maxLevel}";
+            card.levelText.text = $"{levelName} (Level {level})";
             card.nextUnlockText.text = level < maxLevel
-                ? card.definition.levelUnlocks[level]
+                && card.definition.levelUnlocks != null
+                && level < card.definition.levelUnlocks.Length
+                ? $"Next: {(PersonalityLevel)(level + 1)}\n{card.definition.levelUnlocks[level]}"
                 : "Fully Unlocked";
 
             card.investButton.interactable = skills.CanInvest(card.definition);
@@ -90,6 +93,7 @@ public class NightSkillScreen : MonoBehaviour
 
     public void WakeUp()
     {
+        GameManager.EnsureInstance().AdvanceToNextDay();
         CloseNight();
         SceneManager.LoadScene(nextSceneName);
     }
