@@ -15,17 +15,20 @@ public class UMLAppManager : MonoBehaviour
 
     private void Start()
     {
-        if (umlCanvas != null)
-        {
-            allNodes = umlCanvas.GetComponentsInChildren<UMLNode>(true);
-        }
-        
-        // Ensure the panel is hidden when the app first opens
         if (descriptionPanel != null) descriptionPanel.SetActive(false);
     }
 
     public void OnAppOpened()
     {
+        
+        if (allNodes == null || allNodes.Length == 0)
+        {
+            if (umlCanvas != null)
+            {
+                allNodes = umlCanvas.GetComponentsInChildren<UMLNode>(true);
+            }
+        }
+
         if (allNodes == null || allNodes.Length == 0) return;
         int currentDay = GameManager.Instance != null ? GameManager.Instance.CurrentDay : 1;
 
