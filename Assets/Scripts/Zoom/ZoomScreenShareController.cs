@@ -3,6 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 
+public enum SteveExpression
+{
+    DefaultSteve,
+    ImpressedSteve,
+    SuspiciousSteve,
+    HelloSteve,
+    ByeSteve,
+    SteveWatchingOk,
+    SteveWatchingSus
+}
+[System.Serializable]
+public struct SteveSpriteMapping
+{
+    public SteveExpression expression;
+    public Sprite expressionSprite;
+}
 [System.Serializable]
 public class VideoDialogueCue
 {
@@ -21,9 +37,9 @@ public class ZoomScreenShareController : MonoBehaviour
 
     [Header("UI & Window Panels")]
     [SerializeField] private GameObject incomingCallPopup;   // Popup with "Accept Call" button
-    [SerializeField] private GameObject zoomPanel;            // Steve's avatar/Zoom window frame
-    [SerializeField] private GameObject screensharePopup;     // "Steve is screen sharing..." notification
-    [SerializeField] private GameObject screenShareDisplay;   // Game Object containing the VideoPlayer / Quad / SpriteRenderer
+    [SerializeField] private GameObject zoomPanel;           // Steve's avatar/Zoom window frame
+    [SerializeField] private GameObject screensharePopup;    // "Steve is screen sharing..." notification
+    [SerializeField] private GameObject screenShareDisplay;  // Game Object containing the VideoPlayer / Quad / SpriteRenderer
 
     [Header("Video Settings")]
     [SerializeField] private VideoPlayer screenShareVideoPlayer;
@@ -36,6 +52,9 @@ public class ZoomScreenShareController : MonoBehaviour
     private bool isPausedForDialogue = false;
     private bool isScreenSharingActive = false;
 
+    [Header("Steve Expressions")]
+    [SerializeField] private SpriteRenderer zoomAvatarImage; // The UI Image component displaying Steve's window
+    [SerializeField] private List<SteveSpriteMapping> expressionMappings = new List<SteveSpriteMapping>();
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -78,26 +97,18 @@ public class ZoomScreenShareController : MonoBehaviour
     // 1. ZOOM CALL FLOW FUNCTIONS
     // ------------------------------------------------------------------------
 
-    /// <summary>
-    /// Displays the incoming call popup ("Steve is starting a Zoom session").
-    /// </summary>
     public void TriggerIncomingCall()
     {
         if (incomingCallPopup != null) incomingCallPopup.SetActive(true);
     }
 
-    /// <summary>
-    /// Hook this function to the "Pick Up Call" button OnClick event.
-    /// </summary>
     public void AcceptZoomCall()
     {
         if (incomingCallPopup != null) incomingCallPopup.SetActive(false);
         if (zoomPanel != null) zoomPanel.SetActive(true);
 
-        // FIRE EVENT TO UNBLOCK NarrativeWaitHelpers
         GameplayEvents.TriggerZoomCallStarted();
 
-        // Trigger opening dialogue from Steve
         DialogueLine initialGreeting = new DialogueLine
         {
             speakerName = "Steve",
@@ -113,9 +124,6 @@ public class ZoomScreenShareController : MonoBehaviour
     // 2. SCREEN SHARE FLOW FUNCTIONS
     // ------------------------------------------------------------------------
 
-    /// <summary>
-    /// Public function to trigger Steve's screen sharing sequence.
-    /// </summary>
     public void StartScreenShare()
     {
         StartCoroutine(ScreenShareRoutine());
@@ -123,7 +131,6 @@ public class ZoomScreenShareController : MonoBehaviour
 
     private IEnumerator ScreenShareRoutine()
     {
-        // Show "Steve is sharing his screen..." popup
         if (screensharePopup != null) screensharePopup.SetActive(true);
 
         yield return new WaitForSeconds(2.0f);
@@ -136,7 +143,6 @@ public class ZoomScreenShareController : MonoBehaviour
 
         if (screenShareVideoPlayer != null)
         {
-            // Bind video end callback without altering your play order
             screenShareVideoPlayer.loopPointReached -= OnVideoEnd;
             screenShareVideoPlayer.loopPointReached += OnVideoEnd;
 
@@ -150,20 +156,20 @@ public class ZoomScreenShareController : MonoBehaviour
         EndScreenShare();
     }
 
-    /// <summary>
-    /// Public function to stop and hide Steve's screen share.
-    /// </summary>
     public void EndScreenShare()
     {
         isScreenSharingActive = false;
 
-        if (screenShareVideoPlayer != null)
+        if (screenShareVideoPlayer != null && screenShareVideoPlayer.enabled)
         {
             screenShareVideoPlayer.Stop();
         }
 
         if (screenShareDisplay != null) screenShareDisplay.SetActive(false);
         if (screensharePopup != null) screensharePopup.SetActive(false);
+
+        // FIRE EVENT TO UNBLOCK NARRATIVE WAITING FOR SCREEN SHARE END
+        GameplayEvents.TriggerScreenShareEnded();
     }
 
     // ------------------------------------------------------------------------
@@ -174,18 +180,43 @@ public class ZoomScreenShareController : MonoBehaviour
     {
         isPausedForDialogue = true;
 
-        if (screenShareVideoPlayer != null)
+        if (screenShareVideoPlayer != null && screenShareVideoPlayer.enabled)
         {
             screenShareVideoPlayer.Pause();
         }
 
         yield return StartCoroutine(DialogueManager.Instance.PlayDialogueLine(cue.dialogue));
 
-        if (screenShareVideoPlayer != null)
+        if (screenShareVideoPlayer != null && screenShareVideoPlayer.enabled && screenShareVideoPlayer.gameObject.activeInHierarchy)
         {
             screenShareVideoPlayer.Play();
         }
 
         isPausedForDialogue = false;
+    }
+    /// <summary>
+    /// Changes Steve's active Zoom window image based on the selected expression enum.
+    /// </summary>
+    public void SetSteveExpression(SteveExpression expression)
+    {
+        Sprite targetSprite = null;
+
+        foreach (var mapping in expressionMappings)
+        {
+            if (mapping.expression == expression)
+            {
+                targetSprite = mapping.expressionSprite;
+                break;
+            }
+        }
+
+        if (zoomAvatarImage != null && targetSprite != null)
+        {
+            zoomAvatarImage.sprite = targetSprite;
+        }
+        else
+        {
+            Debug.LogWarning($"[ZoomScreenShareController] No sprite found for expression: {expression}");
+        }
     }
 }

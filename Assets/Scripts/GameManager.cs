@@ -148,6 +148,24 @@ public class GameManager : MonoBehaviour
     // =========================================================
     // Player / Game Stats
     // =========================================================
+    public int UnspentSkillPoints { get; private set; } = 0;
+    private readonly HashSet<string> rewardedMilestones = new HashSet<string>();
+    public void AwardSkillPoint(string milestoneID)
+    {
+        if (string.IsNullOrWhiteSpace(milestoneID) || rewardedMilestones.Contains(milestoneID))
+        {
+            return;
+        }
+
+        rewardedMilestones.Add(milestoneID);
+        UnspentSkillPoints++;
+        Debug.Log($"[GameManager] Skill point awarded for '{milestoneID}'. Total unspent: {UnspentSkillPoints}");
+    }
+
+    public void SpendSkillPoint()
+    {
+        UnspentSkillPoints = Mathf.Max(0, UnspentSkillPoints - 1);
+    }
     public void setCurrentDay(int day)
     {
         CurrentDay = Mathf.Max(1, day);
@@ -161,6 +179,7 @@ public class GameManager : MonoBehaviour
     public void AdvanceToNextDay()
     {
         CurrentDay++;
+        UnspentSkillPoints = 0;
         CurrentStep = "Start"; //reset for new day
     }
     public void ChangeGrandArchitectStat(int value)

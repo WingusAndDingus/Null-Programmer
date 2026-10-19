@@ -397,6 +397,248 @@ PrefabInstance:
       propertyPath: screenShareVideoPlayer
       value: 
       objectReference: {fileID: 1177480455}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[2].pauseVideo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[3].pauseVideo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[4].pauseVideo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[5].pauseVideo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[7].pauseVideo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[8].pauseVideo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[9].pauseVideo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[10].pauseVideo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[0].dialogue.text
+      value: 'Alright, first things first: head over to sfml-dev.org and download the SFML 3 package that matches your C++ toolchain.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[1].dialogue.text
+      value: Then, you can just export/unzip the library folder
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[2].dialogue.text
+      value: Notice how he extracts the library directly into an external/ directory inside the project root. Keeping third-party libraries localized avoids dirtying global system paths
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[3].dialogue.text
+      value: 'Who cares...
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[4].dialogue.text
+      value: Alright, so when you make your new CLion Project, make sure to use C++17 or 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[5].dialogue.text
+      value: And always make sure your project and all its dependencies finish loading before doing anything.
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[6].dialogue.text
+      value: Open CMakeLists.txt. We'll set SFML_DIR to point to our external/SFML folder, then use find_package() to pull in Graphics, Audio, Window, and System
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[7].dialogue.text
+      value: Pay attention to target_link_libraries. Linking SFML targets directly to your executable scope ensures proper symbol resolution and prevents runtime memory leaks from dangling dependencies
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[8].dialogue.text
+      value: And that should be it! Please correct me if I did anything wrong sir. I'm here to learn from you
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[9].dialogue.text
+      value: Whatever, I'm sure we could've just asked chatpgt
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[10].dialogue.text
+      value: 'Maybe we could ask this Mr.GPT who we are? He seems like a well-informed fellow '
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[0].dialogue.speakerName
+      value: Steve
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[1].dialogue.speakerName
+      value: Steve
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[2].dialogue.personality
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[2].dialogue.speakerName
+      value: The Architect
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[3].dialogue.personality
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[3].dialogue.speakerName
+      value: The Pragmatist
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[4].dialogue.personality
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[4].dialogue.speakerName
+      value: Steve
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[5].dialogue.speakerName
+      value: Steve
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[6].dialogue.speakerName
+      value: Steve
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[7].dialogue.personality
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[7].dialogue.speakerName
+      value: The Sentinel
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[8].dialogue.personality
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[8].dialogue.speakerName
+      value: Steve
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[9].dialogue.personality
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[9].dialogue.speakerName
+      value: The Pragmatist
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[10].dialogue.personality
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[10].dialogue.speakerName
+      value: The Detective
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[0].triggerTimestampSeconds
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[1].triggerTimestampSeconds
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[2].triggerTimestampSeconds
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[3].triggerTimestampSeconds
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[4].triggerTimestampSeconds
+      value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[5].triggerTimestampSeconds
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[6].triggerTimestampSeconds
+      value: 51
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[7].triggerTimestampSeconds
+      value: 130
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[8].triggerTimestampSeconds
+      value: 135
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[9].triggerTimestampSeconds
+      value: 136
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[0].dialogue.displayDuration
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[10].triggerTimestampSeconds
+      value: 136.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[1].dialogue.displayDuration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[2].dialogue.displayDuration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[3].dialogue.displayDuration
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[4].dialogue.displayDuration
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[5].dialogue.displayDuration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[6].dialogue.displayDuration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[7].dialogue.displayDuration
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[8].dialogue.displayDuration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[9].dialogue.displayDuration
+      value: 2.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.data[10].dialogue.displayDuration
+      value: 4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1192497626828263742, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
       propertyPath: m_Name
       value: Zoom Window
@@ -4471,6 +4713,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 398665271338529699, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 145
+      objectReference: {fileID: 0}
+    - target: {fileID: 1273500686769823983, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 514
+      objectReference: {fileID: 0}
+    - target: {fileID: 2564426781295140510, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -597
+      objectReference: {fileID: 0}
     - target: {fileID: 5064182711307269253, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
       propertyPath: m_Color.a
       value: 0.050980393
@@ -4568,9 +4822,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5369607735899138843, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: geniusColor.a
+      value: 0.80784315
+      objectReference: {fileID: 0}
+    - target: {fileID: 5369607735899138843, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
       propertyPath: choiceContainer
       value: 
       objectReference: {fileID: 2436376387705736449}
+    - target: {fileID: 5369607735899138843, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: sentinelColor.a
+      value: 0.80784315
+      objectReference: {fileID: 0}
+    - target: {fileID: 5369607735899138843, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: architectColor.a
+      value: 0.80784315
+      objectReference: {fileID: 0}
+    - target: {fileID: 5369607735899138843, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: detectiveColor.a
+      value: 0.80784315
+      objectReference: {fileID: 0}
+    - target: {fileID: 5369607735899138843, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: pragmatistColor.a
+      value: 0.80784315
+      objectReference: {fileID: 0}
     - target: {fileID: 5369607735899138843, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
       propertyPath: speechAudioSource
       value: 
@@ -4579,6 +4853,10 @@ PrefabInstance:
       propertyPath: choiceBubblePrefab
       value: 
       objectReference: {fileID: 5284935405109884843, guid: 835d22ffd14e85b4caa3c6d69b1e0510, type: 3}
+    - target: {fileID: 5369607735899138843, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: defaultPanelColor.a
+      value: 0.7294118
+      objectReference: {fileID: 0}
     - target: {fileID: 5369607735899138843, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
       propertyPath: screenShareVideoPlayer
       value: 
@@ -4622,6 +4900,22 @@ PrefabInstance:
     - target: {fileID: 5369607735899138843, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
       propertyPath: twoBubbleLayout.Array.data[1].y
       value: -400
+      objectReference: {fileID: 0}
+    - target: {fileID: 5369607735899138843, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: singleBubbleLayout.Array.data[0].x
+      value: 669
+      objectReference: {fileID: 0}
+    - target: {fileID: 5369607735899138843, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: singleBubbleLayout.Array.data[0].y
+      value: -350
+      objectReference: {fileID: 0}
+    - target: {fileID: 5706249870221420968, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_margin.w
+      value: 2.6735687
+      objectReference: {fileID: 0}
+    - target: {fileID: 5706249870221420968, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: m_margin.x
+      value: -97.0234
       objectReference: {fileID: 0}
     - target: {fileID: 6131928231598695598, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
       propertyPath: m_Enabled

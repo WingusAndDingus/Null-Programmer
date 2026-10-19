@@ -42,6 +42,13 @@ public class NarrativeStep
     [Header("Delay Settings")]
     [Tooltip("Custom delay in seconds for DelaySeconds step type")]
     public float delayDuration = 10f;
+
+    [Header("Delay Settings")]
+    public SteveExpression NewSteveExpression;
+
+    [Header("Scene Transition Settings")]
+    [Tooltip("Name of the night/sleep scene to load")]
+    public string targetSceneName = "Sleep";
 }
 
 public enum NarrativeStepType
@@ -52,7 +59,9 @@ public enum NarrativeStepType
     WaitUntilCodeCompiled,
     DelaySeconds,           // For simulate reading email (10s)
     StartScreenShare,       // Calls ZoomScreenShareController.Instance.StartScreenShare()
-    WaitUntilScreenShareEnd // Halts until screenshare video completes
+    WaitUntilScreenShareEnd, // Halts until screenshare video completes
+    SetSteveExpression,
+    SwitchToNightScene
 }
 
 [CreateAssetMenu(fileName = "DaySequence_Day0", menuName = "Narrative/Day Sequence Data")]

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Unity.VectorGraphics;
 using UnityEngine;
 
 public class DayNarrativeExecutor : MonoBehaviour
@@ -10,10 +11,12 @@ public class DayNarrativeExecutor : MonoBehaviour
 
     private DaySequenceData currentDayData;
     private string lastExecutedStepID = null;
+    private SceneSwitcher sceneSwitch;
 
     private void Start()
     {
         GameManager.EnsureInstance();
+        sceneSwitch = FindAnyObjectByType<SceneSwitcher>();
         int currentDay = GameManager.Instance != null ? GameManager.Instance.CurrentDay : 1;
 
         LoadAndExecuteDay(currentDay);
@@ -80,10 +83,13 @@ public class DayNarrativeExecutor : MonoBehaviour
         // 2. Handle Skill Rewards
         if (!string.IsNullOrEmpty(stepData.awardSkillKey))
         {
-            PersonalitySkills skills = FindAnyObjectByType<PersonalitySkills>();
-            if (skills != null)
+            if (GameManager.Instance != null)
             {
-                skills.AwardPoint(stepData.awardSkillKey);
+                GameManager.Instance.AwardSkillPoint(stepData.awardSkillKey);
+            }
+            else
+            {
+                Debug.LogWarning("[DayNarrativeExecutor] GameManager.Instance is null, cannot award skill point.");
             }
         }
 
@@ -124,7 +130,26 @@ public class DayNarrativeExecutor : MonoBehaviour
             case NarrativeStepType.WaitUntilCodeCompiled:
                 await NarrativeWaitHelpers.WaitForCodeCompilation();
                 break;
+            case NarrativeStepType.SetSteveExpression:
+                if (ZoomScreenShareController.Instance != null)
+                {
+                    ZoomScreenShareController.Instance.SetSteveExpression(stepData.NewSteveExpression);
+                }
+                break;
+            case NarrativeStepType.SwitchToNightScene:
+                string sceneToLoad = !string.IsNullOrEmpty(stepData.targetSceneName) ? stepData.targetSceneName : "NightScene";
+                Debug.Log($"[DayNarrativeExecutor] Transitioning to night scene: '{sceneToLoad}'");
 
+                if (sceneSwitch != null)
+                {
+                    sceneSwitch.LoadScene(sceneToLoad);
+                }
+                else
+                {
+                    // Fallback to Unity's SceneManager if SceneSwitcher reference wasn't bound
+                    UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
+                }
+                break;
             case NarrativeStepType.DialogueLine:
             case NarrativeStepType.PresentChoices:
                 break;

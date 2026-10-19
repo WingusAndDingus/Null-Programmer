@@ -30,6 +30,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject choiceBubblePrefab;  // Prefab with DialogueBubble attached
 
     [Header("Bubble Layout Positions")]
+    [SerializeField] private Vector2[] singleBubbleLayout = new Vector2[] { new Vector2(669, -400) };
     [SerializeField] private Vector2[] twoBubbleLayout = new Vector2[] { new Vector2(-350, 0), new Vector2(350, 0) };
     [SerializeField] private Vector2[] threeBubbleLayout = new Vector2[] { new Vector2(-350, -50), new Vector2(350, -50), new Vector2(0, 200) };
     [SerializeField] private Vector2[] fourBubbleLayout = new Vector2[] { new Vector2(-350, 150), new Vector2(350, 150), new Vector2(-350, -150), new Vector2(350, -150) };
@@ -294,7 +295,7 @@ public class DialogueManager : MonoBehaviour
         switch (totalChoices)
         {
             case 1:
-                return new Vector2(0, 0);
+                return singleBubbleLayout[Mathf.Clamp(index, 0, singleBubbleLayout.Length - 1)];
             case 2:
                 return twoBubbleLayout[Mathf.Clamp(index, 0, twoBubbleLayout.Length - 1)];
             case 3:

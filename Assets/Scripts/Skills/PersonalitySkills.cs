@@ -7,7 +7,6 @@ public class PersonalitySkills : MonoBehaviour
     [Serializable]
     private class SaveData
     {
-        public int availablePoints;
         public int[] levels = new int[5];
         public List<string> rewardedMilestones = new List<string>();
     }
@@ -17,7 +16,8 @@ public class PersonalitySkills : MonoBehaviour
     private SaveData data;
     private bool nightAllocationOpen;
 
-    public int AvailablePoints => data.availablePoints;
+    // Pull available points directly from the persistent GameManager
+    public int AvailablePoints => GameManager.Instance != null ? GameManager.Instance.UnspentSkillPoints : 0;
     public event Action Changed;
 
     private void Awake()
@@ -52,18 +52,18 @@ public class PersonalitySkills : MonoBehaviour
         return GetLevel(personality) >= requiredLevel;
     }
 
-    public void AwardPoint(string milestoneID)
-    {
-        if (string.IsNullOrWhiteSpace(milestoneID) || data.rewardedMilestones.Contains(milestoneID))
-        {
-            return;
-        }
-        
-        data.rewardedMilestones.Add(milestoneID);
-        data.availablePoints++;
-        Save();
+    /* public void AwardPoint(string milestoneID)
+     {
+         if (string.IsNullOrWhiteSpace(milestoneID) || data.rewardedMilestones.Contains(milestoneID))
+         {
+             return;
+         }
 
-    }
+         data.rewardedMilestones.Add(milestoneID);
+         data.availablePoints++;
+         Save();
+
+     }*/
 
     public void BeginNightAllocation()
     {
@@ -79,7 +79,7 @@ public class PersonalitySkills : MonoBehaviour
     public bool CanInvest(PersonalityDefinition definition)
     {
         return nightAllocationOpen && definition != null && definition.levelUnlocks != null
-            && data.availablePoints > 0 
+            && AvailablePoints > 0
             && GetLevel(definition.personality) <= definition.levelUnlocks.Length;
     }
 
@@ -90,7 +90,12 @@ public class PersonalitySkills : MonoBehaviour
             return false;
         }
 
-        data.availablePoints--;
+        // Deduct from GameManager's persistent pool
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.SpendSkillPoint();
+        }
+
         data.levels[(int)definition.personality]++;
         Save();
         return true;
@@ -103,7 +108,7 @@ public class PersonalitySkills : MonoBehaviour
         PlayerPrefs.Save();
         Changed?.Invoke();
     }
-    
+
     [ContextMenu("Reset Skill Progress")]
     private void ResetSkillProgress()
     {
@@ -114,6 +119,6 @@ public class PersonalitySkills : MonoBehaviour
         nightAllocationOpen = false;
         Changed?.Invoke();
     }
-    
+
 
 }
