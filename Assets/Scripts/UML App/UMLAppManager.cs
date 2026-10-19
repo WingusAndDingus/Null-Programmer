@@ -49,7 +49,6 @@ public class UMLAppManager : MonoBehaviour
         }
     }
 
-    // Call this from a Close button on the panel itself
     public void CloseDescription()
     {
         if (descriptionPanel != null) descriptionPanel.SetActive(false);

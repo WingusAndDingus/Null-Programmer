@@ -71,7 +71,7 @@ public class UMLNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     public void OnPointerEnter(PointerEventData eventData) {
         targetScale = originalScale * hoverScaleMultiplier;
         if (backgroundImage != null) targetColor = hoverColor;
-        transform.SetAsLastSibling(); 
+        //transform.SetAsLastSibling(); 
     }
 
     public void OnPointerExit(PointerEventData eventData) {
