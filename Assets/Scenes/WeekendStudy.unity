@@ -426,7 +426,7 @@ MonoBehaviour:
   lines:
   - speakerName: Narrator
     personality: 0
-    text: The Protagonist sits at his desk, studying the SFML documentation. He's trying to figure out how to implement his Battleship game. Five familiar voices offer their unsolicited opinions as he struggles to concentrate.
+    text: The Protagonist sits at his desk, studying the SFML documentation. He's trying to figure out how to implement his Battleship game. Three familiar voices offer their unsolicited opinions as he struggles to concentrate.
     voiceClip: {fileID: 0}
     displayDuration: 12
   - speakerName: Me
@@ -434,8 +434,8 @@ MonoBehaviour:
     text: Okay. SFML. Simple and Fast Multimedia Library. Graphics, windows, events... Let's see how much of this I remember.
     voiceClip: {fileID: 0}
     displayDuration: 8
-  - speakerName: The Genius
-    personality: 5
+  - speakerName: The Detective
+    personality: 6
     text: Apparently not much. We're starting with the beginner tutorials. How inspiring.
     voiceClip: {fileID: 0}
     displayDuration: 6
@@ -469,8 +469,8 @@ MonoBehaviour:
     text: So the event loop handles input, while the game loop keeps everything running. And if I want to determine which square the player clicked...
     voiceClip: {fileID: 0}
     displayDuration: 8
-  - speakerName: The Genius
-    personality: 5
+  - speakerName: The Detective
+    personality: 6
     text: Oh, this should be good.
     voiceClip: {fileID: 0}
     displayDuration: 5
@@ -479,13 +479,13 @@ MonoBehaviour:
     text: Wait a minute. Of course! I can take the mouse coordinates, subtract the grid's position, then divide by the size of each cell! That gives me the row and column the player selected!
     voiceClip: {fileID: 0}
     displayDuration: 9
-  - speakerName: The Genius
-    personality: 5
+  - speakerName: The Detective
+    personality: 6
     text: Eureka! He's rediscovered division! Mathematicians everywhere rejoice!
     voiceClip: {fileID: 0}
     displayDuration: 6
-  - speakerName: The Sentinel
-    personality: 4
+  - speakerName: The Grand Architect
+    personality: 2
     text: Congratulations. Now don't forget to check that the coordinates are actually inside the grid, unless you'd like players firing torpedoes into the void.
     voiceClip: {fileID: 0}
     displayDuration: 9
@@ -612,5 +612,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 296983904}
   - {fileID: 1166657100}
-  - {fileID: 606099392}
   - {fileID: 621650123}
+  - {fileID: 606099392}

@@ -161,8 +161,8 @@ MonoBehaviour:
     text: I should really get up. I've wasted half the day already. Maybe I could work on Battleship for a while...
     voiceClip: {fileID: 0}
     displayDuration: 8
-  - speakerName: The Genius
-    personality: 5
+  - speakerName: The Detective
+    personality: 6
     text: Ah, yes. Battleship. A technological marvel. A week of development and we can almost draw a functioning grid.
     voiceClip: {fileID: 0}
     displayDuration: 8
@@ -196,8 +196,8 @@ MonoBehaviour:
     text: And I still haven't responded to Steve. He probably thinks I'm avoiding him.
     voiceClip: {fileID: 0}
     displayDuration: 6
-  - speakerName: The Sentinel
-    personality: 4
+  - speakerName: The Grand Architect
+    personality: 2
     text: Excellent instincts. Nothing protects a budding friendship quite like ignoring someone until they stop contacting you.
     voiceClip: {fileID: 0}
     displayDuration: 8
@@ -206,8 +206,8 @@ MonoBehaviour:
     text: And my other friends... God, how long has it been? Months? They probably think I'm a complete loser.
     voiceClip: {fileID: 0}
     displayDuration: 7
-  - speakerName: The Genius
-    personality: 5
+  - speakerName: The Detective
+    personality: 6
     text: Well, lying in bed all day feeling sorry for yourself certainly makes a compelling counterargument.
     voiceClip: {fileID: 0}
     displayDuration: 7
