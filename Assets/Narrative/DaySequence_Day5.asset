@@ -1,0 +1,1136 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 657659d256d74ba448affc6a2a8763d3, type: 3}
+  m_Name: DaySequence_Day5
+  m_EditorClassIdentifier: Assembly-CSharp::DaySequenceData
+  dayNumber: 5
+  steps:
+  - stepID: Start
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 3.5
+    lineVariants: []
+    choices: []
+    nextStepID: D5_WaitForCall
+    awardSkillKey: 
+    narrativeEventKey: Day5.Email.Read
+    stepType: 9
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_WaitForCall
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 3.5
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Steve_Turn_Logic
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 1
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Steve_Turn_Logic
+    speakerName: Steve
+    personality: 0
+    lineText: Hey. Good news. I cleaned up the turn logic.
+    displayDuration: 3.8999999
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Me_BadNews
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Me_BadNews
+    speakerName: Me
+    personality: 0
+    lineText: And the bad news?
+    displayDuration: 3
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Steve_Bug
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Steve_Bug
+    speakerName: Steve
+    personality: 0
+    lineText: Sometimes the computer shoots you after you've already won.
+    displayDuration: 4.5
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Me_Efficient
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Me_Efficient
+    speakerName: Me
+    personality: 0
+    lineText: Efficient.
+    displayDuration: 2.5500002
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Steve_Posthumous
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Steve_Posthumous
+    speakerName: Steve
+    personality: 0
+    lineText: I'm calling it "posthumous retaliation."
+    displayDuration: 4.2
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Internal_Opening
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Internal_Opening
+    speakerName: Me
+    personality: 1
+    lineText: Wonderful. He's debugging something he doesn't understand with someone who can't remember understanding it.
+    displayDuration: 5.3999996
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Steve_MovedThings
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Steve_MovedThings
+    speakerName: Steve
+    personality: 0
+    lineText: I moved a few things around. The original order looked unnecessarily picky.
+    displayDuration: 4.8
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Me_ShowMe
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Me_ShowMe
+    speakerName: Me
+    personality: 0
+    lineText: Show me.
+    displayDuration: 2.6999998
+    lineVariants: []
+    choices: []
+    nextStepID: D5_StartShare
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_StartShare
+    speakerName: Steve
+    personality: 0
+    lineText: Here. This is the part.
+    displayDuration: 3.3000002
+    lineVariants: []
+    choices: []
+    nextStepID: D5_ShareDelay
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 5
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_ShareDelay
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 3.5
+    lineVariants: []
+    choices: []
+    nextStepID: D5_BugQuestion
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 4
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 2.1
+  - stepID: D5_BugQuestion
+    speakerName: Steve
+    personality: 0
+    lineText: The win check is still there. Why does moving it down break anything?
+    displayDuration: 4.8
+    lineVariants: []
+    choices: []
+    nextStepID: D5_DetectiveAdvice
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_DetectiveAdvice
+    speakerName: The Detective
+    personality: 6
+    lineText: 
+    displayDuration: 5.7
+    lineVariants:
+    - requiredLevel: 0
+      lineText: We know the corpse fired the gun. Perhaps begin with the deeply suspicious fact that the corpse was supposed to be dead.
+    - requiredLevel: 2
+      lineText: Start at the impossible outcome and work backward. The AI attacks after the winning shot, so trace every call between resolving that shot and declaring victory.
+    choices: []
+    nextStepID: D5_BugChoices
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_BugChoices
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 3.5
+    lineVariants: []
+    choices:
+    - choiceText: Because executeAITurn() is in the wrong place.
+      personality: 0
+      targetStepOnClick: D5_Bug_Incomplete
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: 
+    - choiceText: Because you've already started the AI's turn before checking whether the player's attack ended the match.
+      personality: 0
+      targetStepOnClick: D5_Bug_Correct
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: 
+    - choiceText: Because SFML is processing the player and AI attacks at the same time.
+      personality: 0
+      targetStepOnClick: D5_Bug_Wrong
+      suspicionChange: 5
+      requiredLevel: 0
+      choiceGroup: 
+    nextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 2
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Bug_Correct
+    speakerName: Steve
+    personality: 0
+    lineText: Oh. So I didn't forget the win condition. I just asked the question after I'd already let the AI shoot.
+    displayDuration: 5.55
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Bug_Correct_Me
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Bug_Correct_Me
+    speakerName: Me
+    personality: 0
+    lineText: Exactly.
+    displayDuration: 2.6999998
+    lineVariants: []
+    choices: []
+    nextStepID: D5_SFML_Steve
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Bug_Incomplete
+    speakerName: Steve
+    personality: 0
+    lineText: Okay, but why is that place wrong?
+    displayDuration: 3.8999999
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Bug_Incomplete_Me
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Bug_Incomplete_Me
+    speakerName: Me
+    personality: 0
+    lineText: Because the player's action hasn't finished resolving. You transferred control before checking its consequences.
+    displayDuration: 5.55
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Bug_Incomplete_Steve
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Bug_Incomplete_Steve
+    speakerName: Steve
+    personality: 0
+    lineText: Right. So the placement is wrong because the sequence is wrong.
+    displayDuration: 4.5
+    lineVariants: []
+    choices: []
+    nextStepID: D5_SFML_Steve
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Bug_Wrong
+    speakerName: Steve
+    personality: 0
+    lineText: But the AI doesn't use SFML input.
+    displayDuration: 3.75
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Bug_Wrong_Thought
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Bug_Wrong_Thought
+    speakerName: Me
+    personality: 1
+    lineText: He's asking distressingly good questions today.
+    displayDuration: 3.75
+    lineVariants: []
+    choices: []
+    nextStepID: D5_SFML_Steve
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_SFML_Steve
+    speakerName: Steve
+    personality: 0
+    lineText: So SFML basically tells us, "the mouse was clicked."
+    displayDuration: 4.3500004
+    lineVariants: []
+    choices: []
+    nextStepID: D5_SFML_Me
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_SFML_Me
+    speakerName: Me
+    personality: 0
+    lineText: Right. SFML reports the input event. Our game decides whether that click is legal, what it changes, and whether another turn should happen afterward.
+    displayDuration: 6.2999997
+    lineVariants: []
+    choices: []
+    nextStepID: D5_TraceIntro
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_TraceIntro
+    speakerName: Me
+    personality: 1
+    lineText: All right. Let's trace the turn one step at a time.
+    displayDuration: 4.5
+    lineVariants: []
+    choices: []
+    nextStepID: D5_TraceTurn
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_TraceTurn
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 3.5
+    lineVariants: []
+    choices: []
+    nextStepID: D5_TraceReflection
+    awardSkillKey: 
+    narrativeEventKey: Day5.TraceTurn.Complete
+    stepType: 9
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_TraceReflection
+    speakerName: Me
+    personality: 1
+    lineText: There it is. Input, resolve the action, update the state, check whether the match ended, then hand over control.
+    displayDuration: 7.6499996
+    lineVariants: []
+    choices: []
+    nextStepID: D5_CheckEverywhere
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_CheckEverywhere
+    speakerName: Steve
+    personality: 0
+    lineText: Okay. So should I just keep adding if (!game_over) everywhere?
+    displayDuration: 4.6499996
+    lineVariants: []
+    choices: []
+    nextStepID: D5_ArchitectAdvice
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_ArchitectAdvice
+    speakerName: The Grand Architect
+    personality: 2
+    lineText: 
+    displayDuration: 6
+    lineVariants:
+    - requiredLevel: 0
+      lineText: Checks everywhere would certainly be... thorough. A fortress with seventeen gates and no obvious front door. There ought to be a cleaner rule.
+    - requiredLevel: 2
+      lineText: Think in terms of an invariant. Once the game enters a terminal state, no valid transition should lead from that state into another turn.
+    choices: []
+    nextStepID: D5_InvariantChoices
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_InvariantChoices
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 3.5
+    lineVariants: []
+    choices:
+    - choiceText: Once the game reaches a terminal state, the turn sequence should stop. Don't let control transition to another player after that.
+      personality: 0
+      targetStepOnClick: D5_Invariant_Correct
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: 
+    - choiceText: Adding more checks everywhere is probably safest.
+      personality: 0
+      targetStepOnClick: D5_Invariant_Wrong
+      suspicionChange: 5
+      requiredLevel: 0
+      choiceGroup: 
+    - choiceText: Put the game_over check somewhere central instead of repeating it everywhere.
+      personality: 0
+      targetStepOnClick: D5_Invariant_Incomplete
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: 
+    nextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 2
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Invariant_Correct
+    speakerName: Steve
+    personality: 0
+    lineText: 'So the important thing is the rule: game over means there is no next turn.'
+    displayDuration: 4.8
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Invariant_Correct_Me
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Invariant_Correct_Me
+    speakerName: Me
+    personality: 0
+    lineText: Exactly.
+    displayDuration: 2.6999998
+    lineVariants: []
+    choices: []
+    nextStepID: D5_StateTransition
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Invariant_Incomplete
+    speakerName: Me
+    personality: 0
+    lineText: That would reduce duplication, but the important part is why the check exists.
+    displayDuration: 4.5
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Invariant_Incomplete_Me2
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Invariant_Incomplete_Me2
+    speakerName: Me
+    personality: 0
+    lineText: Once the match reaches a terminal state, nothing should transition it into another turn.
+    displayDuration: 4.95
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Invariant_Incomplete_Steve
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Invariant_Incomplete_Steve
+    speakerName: Steve
+    personality: 0
+    lineText: Right. The structure matters more than where I hide the Boolean.
+    displayDuration: 4.5
+    lineVariants: []
+    choices: []
+    nextStepID: D5_StateTransition
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Invariant_Wrong
+    speakerName: Steve
+    personality: 0
+    lineText: I already tried that. The code started looking like it was afraid of itself.
+    displayDuration: 5.1000004
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Invariant_Wrong_Me
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Invariant_Wrong_Me
+    speakerName: Me
+    personality: 0
+    lineText: A reasonable response under the circumstances. The cleaner rule is that a terminal state has no transition into another turn.
+    displayDuration: 6
+    lineVariants: []
+    choices: []
+    nextStepID: D5_StateTransition
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_StateTransition
+    speakerName: Steve
+    personality: 0
+    lineText: So we're really defining which state changes are legal.
+    displayDuration: 4.2
+    lineVariants: []
+    choices: []
+    nextStepID: D5_StateExactly
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_StateExactly
+    speakerName: Me
+    personality: 0
+    lineText: Exactly.
+    displayDuration: 2.6999998
+    lineVariants: []
+    choices: []
+    nextStepID: D5_FrameQuestion
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_FrameQuestion
+    speakerName: Steve
+    personality: 0
+    lineText: If Battleship alternates turns, shouldn't the main loop alternate too? Player loop, AI loop, player loop? Why does SFML keep running while we're waiting for somebody to move?
+    displayDuration: 10.049999
+    lineVariants: []
+    choices: []
+    nextStepID: D5_PragmatistAdvice
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_PragmatistAdvice
+    speakerName: The Pragmatist
+    personality: 3
+    lineText: 
+    displayDuration: 9.299999
+    lineVariants:
+    - requiredLevel: 0
+      lineText: Because freezing the entire program until somebody clicks would be a spectacularly efficient way to make it look broken.
+    - requiredLevel: 2
+      lineText: Don't confuse the application's heartbeat with the game's turn system. Keep polling events, updating what needs updating, and drawing frames. Advance the Battleship turn only when a valid game action occurs.
+    choices: []
+    nextStepID: D5_FrameChoices
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_FrameChoices
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 3.5
+    lineVariants: []
+    choices:
+    - choiceText: Each frame is basically one Battleship turn.
+      personality: 0
+      targetStepOnClick: D5_Frame_Wrong
+      suspicionChange: 5
+      requiredLevel: 0
+      choiceGroup: 
+    - choiceText: SFML has to keep redrawing the window.
+      personality: 0
+      targetStepOnClick: D5_Frame_Incomplete
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: 
+    - choiceText: The SFML frame loop and the Battleship turn system are separate. Frames keep running even when no gameplay turn changes.
+      personality: 0
+      targetStepOnClick: D5_Frame_Correct
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: 
+    nextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 2
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Frame_Correct
+    speakerName: Steve
+    personality: 0
+    lineText: So we could draw sixty frames without completing a single turn.
+    displayDuration: 4.6499996
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Frame_Correct_Me
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Frame_Correct_Me
+    speakerName: Me
+    personality: 0
+    lineText: Or six hundred.
+    displayDuration: 3
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Frame_Joke
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Frame_Incomplete
+    speakerName: Me
+    personality: 0
+    lineText: Rendering is part of it, but input and updates continue too. The important distinction is that a frame isn't a gameplay turn.
+    displayDuration: 6
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Frame_Incomplete_Steve
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Frame_Incomplete_Steve
+    speakerName: Steve
+    personality: 0
+    lineText: Right. The application keeps running while the game waits.
+    displayDuration: 4.5
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Frame_Joke
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Frame_Wrong
+    speakerName: Steve
+    personality: 0
+    lineText: At sixty frames per second?
+    displayDuration: 3.6000001
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Frame_Wrong_Thought
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Frame_Wrong_Thought
+    speakerName: Me
+    personality: 1
+    lineText: Competitive Battleship has become considerably more dangerous.
+    displayDuration: 4.2
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Frame_Joke
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Frame_Joke
+    speakerName: Steve
+    personality: 0
+    lineText: Finally, software that accurately simulates meetings.
+    displayDuration: 4.2
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Final_Start
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Final_Start
+    speakerName: Steve
+    personality: 0
+    lineText: All right. I moved the terminal check back where it belongs. Running it now.
+    displayDuration: 4.95
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Final_Fires
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Final_Fires
+    speakerName: Steve
+    personality: 0
+    lineText: Player fires...
+    displayDuration: 3
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Final_ShipDown
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Final_ShipDown
+    speakerName: Steve
+    personality: 0
+    lineText: Last ship goes down...
+    displayDuration: 3.3000002
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Final_Victory
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Final_Victory
+    speakerName: Steve
+    personality: 0
+    lineText: Victory screen.
+    displayDuration: 3
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Final_NoReturnFire
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Final_NoReturnFire
+    speakerName: Steve
+    personality: 0
+    lineText: And the computer did not shoot me from beyond the grave.
+    displayDuration: 4.6499996
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Final_Promising
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Final_Promising
+    speakerName: Me
+    personality: 0
+    lineText: Promising.
+    displayDuration: 2.6999998
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Final_DeadAI
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Final_DeadAI
+    speakerName: Steve
+    personality: 0
+    lineText: We've successfully taught artificial intelligence to recognize when it's dead.
+    displayDuration: 5.1000004
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Final_Resume
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Final_Resume
+    speakerName: Me
+    personality: 0
+    lineText: Put it on the resume.
+    displayDuration: 3
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Close_Understand
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Close_Understand
+    speakerName: Steve
+    personality: 0
+    lineText: I think I'm actually starting to understand this stuff.
+    displayDuration: 4.5
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Close_TerribleCode
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Close_TerribleCode
+    speakerName: Steve
+    personality: 0
+    lineText: Which means pretty soon I'll be able to recognize my own terrible code.
+    displayDuration: 4.95
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Close_Choices
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Close_Choices
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 3.5
+    lineVariants: []
+    choices:
+    - choiceText: Eventually you'll recognize my terrible code too.
+      personality: 0
+      targetStepOnClick: D5_Close_Friendly
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: 
+    - choiceText: Let's merge this before either of us has another idea.
+      personality: 0
+      targetStepOnClick: D5_Close_Dry
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: 
+    - choiceText: Just don't rearrange anything else before Monday.
+      personality: 0
+      targetStepOnClick: D5_Close_Dismissive
+      suspicionChange: 5
+      requiredLevel: 0
+      choiceGroup: 
+    nextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 2
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Close_Friendly
+    speakerName: Steve
+    personality: 0
+    lineText: Ha. Deal.
+    displayDuration: 3
+    lineVariants: []
+    choices: []
+    nextStepID: D5_End_StevePush
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Close_Dry
+    speakerName: Steve
+    personality: 0
+    lineText: Best thing you've said all afternoon.
+    displayDuration: 3.6000001
+    lineVariants: []
+    choices: []
+    nextStepID: D5_End_StevePush
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Close_Dismissive
+    speakerName: Steve
+    personality: 0
+    lineText: ...Right. Sure.
+    displayDuration: 3.6000001
+    lineVariants: []
+    choices: []
+    nextStepID: D5_End_StevePush
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_End_StevePush
+    speakerName: Steve
+    personality: 0
+    lineText: I'll push the fix.
+    displayDuration: 3.4499998
+    lineVariants: []
+    choices: []
+    nextStepID: D5_End_GreatWeekend
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_End_GreatWeekend
+    speakerName: Me
+    personality: 0
+    lineText: Awesome. Have a great weekend!
+    displayDuration: 3.75
+    lineVariants: []
+    choices: []
+    nextStepID: D5_End_YouToo
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_End_YouToo
+    speakerName: Steve
+    personality: 0
+    lineText: You too.
+    displayDuration: 2.6999998
+    lineVariants: []
+    choices: []
+    nextStepID: D5_End_RevengeEmail
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_End_RevengeEmail
+    speakerName: Steve
+    personality: 0
+    lineText: And if the AI emails you demanding revenge, don't answer.
+    displayDuration: 4.5
+    lineVariants: []
+    choices: []
+    nextStepID: D5_EndScreenShare
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_EndScreenShare
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 3.5
+    lineVariants: []
+    choices: []
+    nextStepID: D5_EndZoom
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 10
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_EndZoom
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 3.5
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Internal_Action
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 11
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Internal_Action
+    speakerName: Me
+    personality: 1
+    lineText: Action. Resolution. Terminal state. Transition.
+    displayDuration: 4.05
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Internal_Remember
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Internal_Remember
+    speakerName: Me
+    personality: 1
+    lineText: I remember the pattern.
+    displayDuration: 3.6000001
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Internal_NotEverything
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Internal_NotEverything
+    speakerName: Me
+    personality: 1
+    lineText: Not everything.
+    displayDuration: 3
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Internal_UsedToBeMine
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Internal_UsedToBeMine
+    speakerName: Me
+    personality: 1
+    lineText: But enough to know it used to be mine.
+    displayDuration: 4.2
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Internal_Something
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+  - stepID: D5_Internal_Something
+    speakerName: Me
+    personality: 1
+    lineText: That's something.
+    displayDuration: 3.3000002
+    lineVariants: []
+    choices: []
+    nextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10

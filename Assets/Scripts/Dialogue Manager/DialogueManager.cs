@@ -258,6 +258,17 @@ public class DialogueManager : MonoBehaviour
         choiceViewport.SetParent(choiceCanvas.transform, false);
         choiceViewport.anchorMin = new Vector2(0.04f, 0.26f);
         choiceViewport.anchorMax = new Vector2(0.96f, 0.94f);
+
+        GameManager manager = GameManager.Instance;
+        if (manager != null && manager.CurrentDay == 5)
+        {
+            // Day 5 layout.
+            // This keeps the choices lower on the screen so they interfere
+            // less with Steve's shared code.
+            choiceViewport.anchorMin = new Vector2(0.04f, 0.16f);
+            choiceViewport.anchorMax = new Vector2(0.96f, 0.48f);
+        }
+
         choiceViewport.offsetMin = choiceViewport.offsetMax = Vector2.zero;
         var overlayCanvas = viewport.GetComponent<Canvas>();
         overlayCanvas.overrideSorting = true;
