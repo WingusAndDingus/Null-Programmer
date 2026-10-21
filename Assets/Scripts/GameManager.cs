@@ -36,15 +36,12 @@ public class GameManager : MonoBehaviour
     public int SentinelStat { get; private set; }
     public int GeniusStat { get; private set; }
     public int DetectiveStat { get; private set; }
-
-    public int SteveFriendship { get; private set; }
     public int SteveSuspicion { get; private set; }
 
     public int CodeQuality { get; private set; }
     public int Connectedness { get; private set; }
 
     public const int MaxSuspicion = 100;
-    public const int MaxFriendship = 100;
 
     public event Action<int> SuspicionChanged;
     public event Action SteveCrisis;
@@ -63,14 +60,12 @@ public class GameManager : MonoBehaviour
 
     public bool CanSpendWeekendWithSteve()
     {
-        return SteveFriendship > 50 &&
-               SteveSuspicion < 50;
+        return SteveSuspicion < 50;
     }
 
     public bool CanStudyThisWeekend()
     {
-        return GrandArchitectStat > 3 ||
-               SentinelStat > 3;
+        return GrandArchitectStat > 3;
     }
 
     public bool CanReconnectThisWeekend()
@@ -303,17 +298,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ChangeSteveFriendship(int value)
-    {
-        SteveFriendship = Mathf.Clamp(
-            SteveFriendship + value,
-            0,
-            MaxFriendship
-        );
-    }
-
-
-    // =========================================================
+// =========================================================
     // Email Reply Demo / Day 5 Mail State
     // =========================================================
 
