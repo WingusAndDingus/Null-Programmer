@@ -29,10 +29,12 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Transform choiceContainer;       // Canvas/Parent transform for bubbles
     [SerializeField] private GameObject choiceBubblePrefab;  // Prefab with DialogueBubble attached
 
-    [Header("Bubble Layout Positions")]
-    [SerializeField] private Vector2[] twoBubbleLayout = new Vector2[] { new Vector2(-350, 0), new Vector2(350, 0) };
-    [SerializeField] private Vector2[] threeBubbleLayout = new Vector2[] { new Vector2(-350, -50), new Vector2(350, -50), new Vector2(0, 200) };
-    [SerializeField] private Vector2[] fourBubbleLayout = new Vector2[] { new Vector2(-350, 150), new Vector2(350, 150), new Vector2(-350, -150), new Vector2(350, -150) };
+    private RectTransform choiceViewport;
+    private RectTransform choiceContent;
+    private ScrollRect choiceScroll;
+    private Canvas choiceCanvas;
+    private Vector2 lastChoiceViewportSize;
+    private float lastChoiceScale;
 
     // Zoom & Tutorial are only on one monitor
     private VideoPlayer activeVideoPlayer;
@@ -56,6 +58,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Color geniusColor = new Color(0.4f, 0.4f, 0.1f, 0.9f);
     [SerializeField] private Color detectiveColor = new Color(0.3f, 0.1f, 0.4f, 0.9f);
 
+    private DialoguePanelPresentation panelPresentation;
     private Coroutine activeDialogueCoroutine;
     private List<GameObject> activeBubbles = new List<GameObject>();
     private DialogueLine currentPlayingLine;
@@ -79,6 +82,7 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
+        panelPresentation = GetComponent<DialoguePanelPresentation>();
         HideDialogueUI();
     }
 
@@ -87,7 +91,9 @@ public class DialogueManager : MonoBehaviour
         if (line == null) return;
 
         // If the exact same text is currently typing, don't restart the coroutine!
-        if (CurrentText == line.text && activeDialogueCoroutine != null && !IsTypingComplete)
+        if (CurrentText == line.text && activeDialogueCoroutine != null && !IsTypingComplete &&
+            currentPlayingLine != null && currentPlayingLine.speakerName == line.speakerName &&
+            currentPlayingLine.personality == line.personality)
         {
             return;
         }
@@ -126,6 +132,8 @@ public class DialogueManager : MonoBehaviour
             dialogueText.text = line.text;
         }
 
+        if (panelPresentation != null) panelPresentation.Show(line);
+
         // Determine starting character index:
         // If we are re-entering the exact same text and it wasn't finished, resume typing from CurrentVisibleCharacters
         int startIndex = 0;
@@ -151,6 +159,7 @@ public class DialogueManager : MonoBehaviour
             if (dialogueText != null)
             {
                 dialogueText.maxVisibleCharacters = i;
+                if (panelPresentation != null) panelPresentation.FollowTyping(i);
             }
 
             UpdateProgress(line.text, i, i == totalChars);
@@ -198,120 +207,128 @@ public class DialogueManager : MonoBehaviour
     /// </summary>
     public async Task<int> PresentChoices(DialogueChoiceOption[] options)
     {
-        Debug.Log($"[DialogueManager] PresentChoices called with {options?.Length ?? 0} options.");
+        if (options == null || options.Length == 0)
+            throw new ArgumentException("At least one dialogue choice is required.", nameof(options));
+        if (choiceBubblePrefab == null)
+            throw new InvalidOperationException("Assign the Thought Bubble prefab on the Dialogue Canvas.");
         ClearChoices();
+        EnsureChoiceViewport();
+        choiceViewport.gameObject.SetActive(true);
+        if (activeVideoPlayer != null) activeVideoPlayer.Pause();
 
-        if (activeVideoPlayer != null)
-            activeVideoPlayer.Pause();
-
-        TaskCompletionSource<int> choiceTask = new TaskCompletionSource<int>();
-        int count = options.Length;
-
-        for (int i = 0; i < count; i++)
+        var choiceTask = new TaskCompletionSource<int>();
+        try
         {
-            GameObject bubbleObj = Instantiate(choiceBubblePrefab, choiceContainer);
-            activeBubbles.Add(bubbleObj);
-
-            // Dynamically compute vector based on total choice count
-            Vector3 targetPos = GetDynamicBubblePosition(i, count);
-
-            bubbleObj.transform.localPosition = targetPos;
-
-            DialogueBubble bubble = bubbleObj.GetComponent<DialogueBubble>();
-            Color personalityColor = GetPersonalityColor(options[i].personality);
-
-            int optionIndex = i; // Local copy for closure
-            bubble.Setup(options[i], optionIndex, personalityColor, (selectedIndex) =>
+            for (int i = 0; i < options.Length; i++)
             {
-                choiceTask.TrySetResult(selectedIndex);
-            });
-
-            // Lock in position for floating sine wave animation
-            bubble.SetInitialPosition(targetPos);
+                GameObject bubbleObj = Instantiate(choiceBubblePrefab, choiceContent);
+                activeBubbles.Add(bubbleObj);
+                DialogueBubble bubble = bubbleObj.GetComponent<DialogueBubble>();
+                if (bubble == null) throw new InvalidOperationException("Choice prefab needs DialogueBubble.");
+                bubble.Setup(options[i], i, GetPersonalityColor(options[i].personality),
+                    selectedIndex => choiceTask.TrySetResult(selectedIndex));
+            }
+            Canvas.ForceUpdateCanvases();
+            LayoutChoices(true);
+            return await choiceTask.Task;
         }
-
-        int selectedOption = await choiceTask.Task;
-
-        ClearChoices();
-
-        if (internalMonologueOverlay != null)
-            internalMonologueOverlay.SetActive(false);
-
-        // Resume video playback when dialogue choice resolves
-        if (activeVideoPlayer != null && !activeVideoPlayer.isPlaying)
-            activeVideoPlayer.Play();
-
-        return selectedOption;
-    }
-    /// <summary>
-    /// Returns screen coordinates mapped cleanly based on total choice count.
-    /// </summary>
-    // private Vector3 GetDynamicBubblePosition(int index, int totalChoices)
-    // {
-    //     switch (totalChoices)
-    //     {
-    //         case 1:
-    //             // Single choice in the center
-    //             return new Vector2(0, 0);
-
-    //         case 2:
-    //             // Left and Right
-    //             Vector2[] layout2 = new Vector2[]
-    //             {
-    //             new Vector2(-350, 0), // Choice 1: Left
-    //             new Vector2(350, 0)   // Choice 2: Right
-    //             };
-    //             return layout2[Mathf.Clamp(index, 0, layout2.Length - 1)];
-
-    //         case 3:
-    //             // Left, Right, Center-Top
-    //             Vector2[] layout3 = new Vector2[]
-    //             {
-    //             new Vector2(-350, -50), // Choice 1: Left
-    //             new Vector2(350, -50),  // Choice 2: Right
-    //             new Vector2(0, 200)     // Choice 3: Center Top
-    //             };
-    //             return layout3[Mathf.Clamp(index, 0, layout3.Length - 1)];
-
-    //         case 4:
-    //             // 4 Quadrants / Corners
-    //             Vector2[] layout4 = new Vector2[]
-    //             {
-    //             new Vector2(-350, 150),  // Choice 1: Top-Left
-    //             new Vector2(350, 150),   // Choice 2: Top-Right
-    //             new Vector2(-350, -150), // Choice 3: Bottom-Left
-    //             new Vector2(350, -150)   // Choice 4: Bottom-Right
-    //             };
-    //             return layout4[Mathf.Clamp(index, 0, layout4.Length - 1)];
-
-    //         default:
-    //             // Vertical stack fallback for 5+ items
-    //             return new Vector3(0, 150 - (index * 100f), 0);
-    //     }
-    // }
-    private Vector3 GetDynamicBubblePosition(int index, int totalChoices)
-    {
-        switch (totalChoices)
+        finally
         {
-            case 1:
-                return new Vector2(0, 0);
-            case 2:
-                return twoBubbleLayout[Mathf.Clamp(index, 0, twoBubbleLayout.Length - 1)];
-            case 3:
-                return threeBubbleLayout[Mathf.Clamp(index, 0, threeBubbleLayout.Length - 1)];
-            case 4:
-                return fourBubbleLayout[Mathf.Clamp(index, 0, fourBubbleLayout.Length - 1)];
-            default:
-                return new Vector3(0, 150 - (index * 100f), 0);
+            ClearChoices();
+            if (internalMonologueOverlay != null) internalMonologueOverlay.SetActive(false);
+            if (activeVideoPlayer != null && !activeVideoPlayer.isPlaying) activeVideoPlayer.Play();
         }
     }
+
+    private void EnsureChoiceViewport()
+    {
+        if (choiceViewport != null) return;
+        choiceCanvas = GetComponentInParent<Canvas>();
+        if (choiceCanvas == null && choiceContainer != null)
+            choiceCanvas = choiceContainer.GetComponentInParent<Canvas>();
+        if (choiceCanvas == null)
+            throw new InvalidOperationException("Dialogue choices must be displayed under a Canvas.");
+
+        // The old scene container is only 100 x 100 and offset above the screen.
+        // Use a viewport relative to the canvas instead of inheriting those offsets.
+        var viewport = new GameObject("Responsive Dialogue Choices", typeof(RectTransform),
+            typeof(Canvas), typeof(GraphicRaycaster), typeof(Image), typeof(RectMask2D), typeof(ScrollRect));
+        viewport.layer = choiceCanvas.gameObject.layer;
+        choiceViewport = viewport.GetComponent<RectTransform>();
+        choiceViewport.SetParent(choiceCanvas.transform, false);
+        choiceViewport.anchorMin = new Vector2(0.04f, 0.26f);
+        choiceViewport.anchorMax = new Vector2(0.96f, 0.94f);
+
+        GameManager manager = GameManager.Instance;
+        if (manager != null && manager.CurrentDay == 5)
+        {
+            // Day 5 layout.
+            // This keeps the choices lower on the screen so they interfere
+            // less with Steve's shared code.
+            choiceViewport.anchorMin = new Vector2(0.04f, 0.16f);
+            choiceViewport.anchorMax = new Vector2(0.96f, 0.48f);
+        }
+
+        choiceViewport.offsetMin = choiceViewport.offsetMax = Vector2.zero;
+        var overlayCanvas = viewport.GetComponent<Canvas>();
+        overlayCanvas.overrideSorting = true;
+        overlayCanvas.sortingOrder = 1500; // Above the desktop call, below exercise windows.
+        var hitArea = viewport.GetComponent<Image>();
+        hitArea.color = Color.clear;
+        hitArea.raycastTarget = true; // Lets the player drag a long list between cards.
+
+        var content = new GameObject("Choice Content", typeof(RectTransform));
+        content.layer = viewport.layer;
+        choiceContent = content.GetComponent<RectTransform>();
+        choiceContent.SetParent(choiceViewport, false);
+        choiceContent.anchorMin = choiceContent.anchorMax = new Vector2(0.5f, 1f);
+        choiceContent.pivot = new Vector2(0.5f, 1f);
+        choiceScroll = viewport.GetComponent<ScrollRect>();
+        choiceScroll.viewport = choiceViewport;
+        choiceScroll.content = choiceContent;
+        choiceScroll.horizontal = false;
+        choiceScroll.movementType = ScrollRect.MovementType.Clamped;
+        choiceScroll.scrollSensitivity = 45f;
+    }
+
+    private void LayoutChoices(bool animate)
+    {
+        Vector2 size = choiceViewport.rect.size;
+        float scale = choiceCanvas.rootCanvas.scaleFactor;
+        var plan = DialogueChoiceLayout.Calculate(size, activeBubbles.Count, scale,
+            (i, width, fontSize) => activeBubbles[i].GetComponent<DialogueBubble>().MeasureHeight(width, fontSize));
+        choiceContent.sizeDelta = new Vector2(size.x, plan.contentHeight);
+        choiceContent.anchoredPosition = Vector2.zero;
+        choiceScroll.StopMovement();
+        choiceScroll.vertical = plan.contentHeight > size.y + 0.5f;
+        for (int i = 0; i < activeBubbles.Count; i++)
+        {
+            var bubble = activeBubbles[i].GetComponent<DialogueBubble>();
+            bubble.FitToText(plan.width, plan.fontSize, plan.heights[i]);
+            bubble.SetLayoutPosition(plan.positions[i], animate);
+        }
+        lastChoiceViewportSize = size;
+        lastChoiceScale = scale;
+    }
+
+    private void LateUpdate()
+    {
+        if (activeBubbles.Count == 0 || choiceViewport == null) return;
+        if ((choiceViewport.rect.size - lastChoiceViewportSize).sqrMagnitude > 0.01f ||
+            !Mathf.Approximately(choiceCanvas.rootCanvas.scaleFactor, lastChoiceScale))
+            LayoutChoices(false);
+    }
+
     private void ClearChoices()
     {
         foreach (var bubble in activeBubbles)
         {
-            if (bubble != null) Destroy(bubble);
+            if (bubble == null) continue;
+            bubble.SetActive(false);
+            Destroy(bubble);
         }
         activeBubbles.Clear();
+        if (choiceViewport != null) choiceViewport.gameObject.SetActive(false);
     }
 
     public void HideDialogueUI()

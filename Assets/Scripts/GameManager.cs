@@ -124,10 +124,11 @@ public class GameManager : MonoBehaviour
 
 
     // =========================================================
-    // Email Reply Demo
+    // Email Reply Demo / Day 5 Mail State
     // =========================================================
 
     public bool EmailRead { get; private set; }
+    public bool Day5EmailRead { get; private set; }
     public bool ReplyAvailable { get; private set; }
     public int ReplyStage { get; private set; }
     public bool ReplyCompleted => ReplyStage >= 2;
@@ -138,7 +139,6 @@ public class GameManager : MonoBehaviour
     // Window State
     // =========================================================
 
-    // All persistent state belonging to one logical window.
     private class WindowState
     {
         public bool IsOpen = true;
@@ -151,11 +151,9 @@ public class GameManager : MonoBehaviour
         public int StackOrder;
     }
 
-    // One WindowState for each logical window ID.
     private readonly Dictionary<string, WindowState> windowStates =
         new Dictionary<string, WindowState>();
 
-    // Used to determine which window was most recently brought forward.
     private int nextWindowStackOrder = 0;
 
 
@@ -176,7 +174,7 @@ public class GameManager : MonoBehaviour
             return Instance;
         }
 
-        var existing = FindAnyObjectByType<GameManager>(); //earlier function had become obsolete
+        var existing = FindAnyObjectByType<GameManager>();
 
         if (existing != null)
         {
@@ -196,14 +194,12 @@ public class GameManager : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            // Keep unrelated components on an authored scene object intact.
             Destroy(this);
             return;
         }
 
         Instance = this;
 
-        // A persistent manager must be a root object.
         if (transform.parent != null)
         {
             transform.SetParent(null);
@@ -247,8 +243,9 @@ public class GameManager : MonoBehaviour
     public void AdvanceToNextDay()
     {
         CurrentDay++;
-        CurrentStep = "Start"; //reset for new day
+        CurrentStep = "Start";
     }
+
     public void ChangeGrandArchitectStat(int value)
     {
         GrandArchitectStat += value;
@@ -317,12 +314,17 @@ public class GameManager : MonoBehaviour
 
 
     // =========================================================
-    // Email Reply Demo
+    // Email Reply Demo / Day 5 Mail State
     // =========================================================
 
     public void MarkEmailRead()
     {
         EmailRead = true;
+    }
+
+    public void MarkDay5EmailRead()
+    {
+        Day5EmailRead = true;
     }
 
     public void MarkReadEmailClosed()
@@ -333,8 +335,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Expected stage prevents repeated clicks/reopening
-    // from applying the same choice twice.
     public bool TryApplyReply(
         int expectedStage,
         int suspicionDelta,
@@ -360,8 +360,6 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
-    // Developer-only UI calls this explicitly;
-    // leaves mail read and zoom state alone.
     public void RestartReplyTest()
     {
         ChangeSteveSuspicion(-SteveSuspicion);

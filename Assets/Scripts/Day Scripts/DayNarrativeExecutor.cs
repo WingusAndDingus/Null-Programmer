@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
+using NullProgrammer.Day2;
 using UnityEngine;
 
 public class DayNarrativeExecutor : MonoBehaviour
@@ -10,12 +13,24 @@ public class DayNarrativeExecutor : MonoBehaviour
 
     private DaySequenceData currentDayData;
     private string lastExecutedStepID = null;
+    private readonly CancellationTokenSource lifetime = new CancellationTokenSource();
+    private CancellationToken cancellationToken;
+
+    private void Awake()
+    {
+        cancellationToken = lifetime.Token;
+    }
+
+    private void OnDestroy()
+    {
+        lifetime.Cancel();
+        lifetime.Dispose();
+    }
 
     private void Start()
     {
         GameManager.EnsureInstance();
         int currentDay = GameManager.Instance != null ? GameManager.Instance.CurrentDay : 1;
-
         LoadAndExecuteDay(currentDay);
     }
 
@@ -29,7 +44,14 @@ public class DayNarrativeExecutor : MonoBehaviour
         }
 
         currentDayData = daySequences[targetIndex];
-        _ = RunCurrentStepAsync();
+        _ = RunCurrentStepSafelyAsync();
+    }
+
+    private async Task RunCurrentStepSafelyAsync()
+    {
+        try { await RunCurrentStepAsync(); }
+        catch (OperationCanceledException) { }
+        catch (Exception exception) { Debug.LogException(exception); }
     }
 
     private void ApplySuspicion(int amount)
@@ -40,7 +62,7 @@ public class DayNarrativeExecutor : MonoBehaviour
 
     private async Task RunCurrentStepAsync()
     {
-        if (currentDayData == null) return;
+        if (currentDayData == null || lifetime.IsCancellationRequested) return;
 
         string currentStepID = GameManager.Instance.CurrentStep;
         Debug.Log($"[DayNarrativeExecutor] Attempting to run step: '{currentStepID}'");
@@ -59,14 +81,16 @@ public class DayNarrativeExecutor : MonoBehaviour
 
         lastExecutedStepID = currentStepID;
 
-        // 1. Play Dialogue Line if text exists
-        if (!string.IsNullOrEmpty(stepData.lineText))
+        // 1. Play Dialogue Line if this step has one. Personality advice can select
+        //    a level-dependent line without turning those lines into player choices.
+        string resolvedLineText = ResolveLineText(stepData);
+        if (!string.IsNullOrEmpty(resolvedLineText))
         {
             DialogueLine line = new DialogueLine
             {
                 speakerName = stepData.speakerName,
                 personality = stepData.personality,
-                text = stepData.lineText,
+                text = resolvedLineText,
                 displayDuration = stepData.displayDuration
             };
 
@@ -74,20 +98,16 @@ public class DayNarrativeExecutor : MonoBehaviour
             {
                 DialogueManager.Instance.DisplayLine(line);
             }
-            await Task.Delay((int)(stepData.displayDuration * 1000));
+            await Task.Delay((int)(stepData.displayDuration * 1000), cancellationToken);
         }
 
         // 2. Handle Skill Rewards
         if (!string.IsNullOrEmpty(stepData.awardSkillKey))
         {
-            PersonalitySkills skills = FindAnyObjectByType<PersonalitySkills>();
-            if (skills != null)
-            {
-                skills.AwardPoint(stepData.awardSkillKey);
-            }
+            PersonalitySkills.TryAwardMilestone(stepData.awardSkillKey);
         }
 
-        // 3. WAIT FOR GAMEPLAY EVENTS
+        // 3. WAIT FOR / TRIGGER GAMEPLAY EVENTS
         switch (stepData.stepType)
         {
             case NarrativeStepType.DelaySeconds:
@@ -97,17 +117,19 @@ public class DayNarrativeExecutor : MonoBehaviour
                 float elapsed = 0f;
                 while (elapsed < waitTime)
                 {
+                    cancellationToken.ThrowIfCancellationRequested();
                     elapsed += Time.deltaTime;
                     await Task.Yield();
                 }
                 break;
 
             case NarrativeStepType.WaitUntilZoomCall:
+                Task callStarted = NarrativeWaitHelpers.WaitForZoomCall(cancellationToken);
                 if (ZoomScreenShareController.Instance != null)
                 {
                     ZoomScreenShareController.Instance.TriggerIncomingCall();
                 }
-                await NarrativeWaitHelpers.WaitForZoomCall();
+                await callStarted;
                 break;
 
             case NarrativeStepType.StartScreenShare:
@@ -118,11 +140,42 @@ public class DayNarrativeExecutor : MonoBehaviour
                 break;
 
             case NarrativeStepType.WaitUntilScreenShareEnd:
-                await NarrativeWaitHelpers.WaitForScreenShareEnd();
+                await NarrativeWaitHelpers.WaitForScreenShareEnd(cancellationToken);
                 break;
 
             case NarrativeStepType.WaitUntilCodeCompiled:
-                await NarrativeWaitHelpers.WaitForCodeCompilation();
+                await NarrativeWaitHelpers.WaitForCodeCompilation(cancellationToken);
+                break;
+
+            case NarrativeStepType.WaitUntilNarrativeEvent:
+                await NarrativeWaitHelpers.WaitForNarrativeEvent(stepData.narrativeEventKey, cancellationToken);
+                break;
+
+            case NarrativeStepType.EndScreenShare:
+                if (ZoomScreenShareController.Instance != null)
+                {
+                    ZoomScreenShareController.Instance.EndScreenShare();
+                }
+                break;
+
+            case NarrativeStepType.EndZoomCall:
+                if (ZoomScreenShareController.Instance != null)
+                {
+                    ZoomScreenShareController.Instance.EndZoomCall();
+                }
+                break;
+
+            case NarrativeStepType.Day2Exercise:
+                await Day2ExerciseWindow.RunAsync(stepData.exerciseIndex, cancellationToken);
+                break;
+
+            case NarrativeStepType.TriggerGameEnd:
+                Debug.Log("[DayNarrativeExecutor] Triggering Final Evaluation...");
+                GameEndEvaluator evaluator = FindAnyObjectByType<GameEndEvaluator>();
+                if (evaluator != null)
+                {
+                    evaluator.TriggerFinalEvaluation();
+                }
                 break;
 
             case NarrativeStepType.DialogueLine:
@@ -130,39 +183,109 @@ public class DayNarrativeExecutor : MonoBehaviour
                 break;
         }
 
-        // Apply suspicion shift after the step condition resolves
+        if (lifetime.IsCancellationRequested) return;
+
+        // Apply suspicion shift after the step condition resolves.
         ApplySuspicion(stepData.suspicionChange);
 
         // 4. Present Choices or Auto-Advance
         if (stepData.choices != null && stepData.choices.Count > 0)
         {
-            Debug.Log($"[DayNarrativeExecutor] Step '{stepData.stepID}' has {stepData.choices.Count} choices. Presenting...");
+            var levelCache = new Dictionary<HeadPersonality, int>();
+            List<DialogueStepChoice> availableChoices = NarrativeChoiceFilter.GetAvailableChoices(
+                stepData.choices, personality =>
+                {
+                    if (!levelCache.TryGetValue(personality, out int level))
+                    {
+                        level = GetPersonalityLevel(personality);
+                        levelCache.Add(personality, level);
+                    }
+                    return level;
+                });
 
-            (string text, HeadPersonality personality)[] choiceArray = new (string, HeadPersonality)[stepData.choices.Count];
-            for (int i = 0; i < stepData.choices.Count; i++)
+            if (availableChoices.Count == 0)
             {
-                choiceArray[i] = (stepData.choices[i].choiceText, stepData.choices[i].personality);
+                Debug.LogError($"[DayNarrativeExecutor] No unlocked choices for '{stepData.stepID}'. Add a Novice fallback.");
+                return;
+            }
+
+            Debug.Log($"[DayNarrativeExecutor] Step '{stepData.stepID}' has {availableChoices.Count} unlocked choices.");
+
+            (string text, HeadPersonality personality)[] choiceArray = new (string, HeadPersonality)[availableChoices.Count];
+            for (int i = 0; i < availableChoices.Count; i++)
+            {
+                choiceArray[i] = (availableChoices[i].choiceText, availableChoices[i].personality);
             }
 
             int selectedIndex = await PresentChoicesAsync(choiceArray);
+            if (lifetime.IsCancellationRequested) return;
 
-            if (selectedIndex >= 0 && selectedIndex < stepData.choices.Count)
+            if (selectedIndex >= 0 && selectedIndex < availableChoices.Count)
             {
-                DialogueStepChoice chosen = stepData.choices[selectedIndex];
+                DialogueStepChoice chosen = availableChoices[selectedIndex];
+
+                // Existing behavior: personality-tagged choices can still raise that stat.
+                // Day 5's teaching choices use HeadPersonality.None, so personalities remain advisors.
                 ApplyPersonalityStat(chosen.personality, 1);
+
+                // This field already existed in DialogueStepChoice; apply it now.
+                ApplySuspicion(chosen.suspicionChange);
 
                 if (!string.IsNullOrEmpty(chosen.targetStepOnClick))
                 {
                     GameManager.Instance.setStep(chosen.targetStepOnClick);
-                    _ = RunCurrentStepAsync();
+                    _ = RunCurrentStepSafelyAsync();
                 }
             }
         }
         else if (!string.IsNullOrEmpty(stepData.nextStepID))
         {
             GameManager.Instance.setStep(stepData.nextStepID);
-            _ = RunCurrentStepAsync();
+            _ = RunCurrentStepSafelyAsync();
         }
+    }
+
+    private string ResolveLineText(NarrativeStep stepData)
+    {
+        if (stepData.lineVariants == null || stepData.lineVariants.Count == 0)
+        {
+            return stepData.lineText;
+        }
+
+        int currentLevel = GetPersonalityLevel(stepData.personality);
+        int bestLevel = int.MinValue;
+        string bestText = stepData.lineText;
+
+        foreach (NarrativeLineVariant variant in stepData.lineVariants)
+        {
+            if (variant == null || string.IsNullOrEmpty(variant.lineText)) continue;
+
+            int required = (int)variant.requiredLevel;
+            if (currentLevel >= required && required > bestLevel)
+            {
+                bestLevel = required;
+                bestText = variant.lineText;
+            }
+        }
+
+        return bestText;
+    }
+
+    private int GetPersonalityLevel(HeadPersonality personality)
+    {
+        Personality skill;
+        switch (personality)
+        {
+            case HeadPersonality.GrandArchitect: skill = Personality.Architect; break;
+            case HeadPersonality.Pragmatist: skill = Personality.Pragmatist; break;
+            case HeadPersonality.Sentinel: skill = Personality.Sentinel; break;
+            case HeadPersonality.Genius: skill = Personality.Genius; break;
+            case HeadPersonality.Detective: skill = Personality.Detective; break;
+            default: return 0;
+        }
+
+        PersonalitySkills skills = FindAnyObjectByType<PersonalitySkills>();
+        return skills != null ? skills.GetLevel(skill) : PersonalitySkills.GetSavedLevel(skill);
     }
 
     private async Task<int> PresentChoicesAsync((string text, HeadPersonality personality)[] choices)

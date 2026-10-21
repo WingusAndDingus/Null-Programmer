@@ -9,6 +9,57 @@ public class DialogueStepChoice
     public HeadPersonality personality;
     public string targetStepOnClick;
     public int suspicionChange = 0;
+
+    [Header("Skill Requirement")]
+    public PersonalityLevel requiredLevel = PersonalityLevel.Novice;
+    [Tooltip("Variants with the same nonempty group show only the highest unlocked level. Leave empty for independent choices.")]
+    public string choiceGroup;
+}
+
+[Serializable]
+public class NarrativeLineVariant
+{
+    [Tooltip("This text is available when the speaking personality has at least this level.")]
+    public PersonalityLevel requiredLevel = PersonalityLevel.Novice;
+
+    [TextArea(2, 6)]
+    public string lineText;
+}
+
+public static class NarrativeChoiceFilter
+{
+    public static List<DialogueStepChoice> GetAvailableChoices(
+        List<DialogueStepChoice> choices, Func<HeadPersonality, int> getLevel)
+    {
+        var available = new List<DialogueStepChoice>();
+        var groupIndices = new Dictionary<string, int>(StringComparer.Ordinal);
+        if (choices == null) return available;
+
+        foreach (DialogueStepChoice choice in choices)
+        {
+            if (choice == null || getLevel(choice.personality) < (int)choice.requiredLevel)
+                continue;
+
+            // Existing assets without a group retain all of their independent options.
+            if (string.IsNullOrWhiteSpace(choice.choiceGroup))
+            {
+                available.Add(choice);
+                continue;
+            }
+
+            if (!groupIndices.TryGetValue(choice.choiceGroup, out int index))
+            {
+                groupIndices.Add(choice.choiceGroup, available.Count);
+                available.Add(choice);
+            }
+            else if ((int)choice.requiredLevel > (int)available[index].requiredLevel)
+            {
+                available[index] = choice;
+            }
+        }
+
+        return available;
+    }
 }
 
 [Serializable]
@@ -23,6 +74,10 @@ public class NarrativeStep
     [TextArea(2, 5)] public string lineText;
     public float displayDuration = 3.5f;
 
+    [Header("Level-Based Dialogue (Optional)")]
+    [Tooltip("For personality advice. The executor automatically uses the highest unlocked variant. Leave empty to use Line Text normally.")]
+    public List<NarrativeLineVariant> lineVariants = new List<NarrativeLineVariant>();
+
     [Header("Choices (Optional)")]
     public List<DialogueStepChoice> choices = new List<DialogueStepChoice>();
 
@@ -33,8 +88,14 @@ public class NarrativeStep
     [Header("Events / Skills")]
     public string awardSkillKey;
 
+    [Tooltip("Used by WaitUntilNarrativeEvent steps.")]
+    public string narrativeEventKey;
+
     [Header("What needs to happen for the script to continue?")]
     public NarrativeStepType stepType;
+
+    [Tooltip("Used only for Day2Exercise steps: 0 = positioning, 1 = loops, 2 = resizing, 3 = regression tests.")]
+    public int exerciseIndex;
 
     [Header("Suspicion Settings")]
     public int suspicionChange = 0;
@@ -50,9 +111,16 @@ public enum NarrativeStepType
     WaitUntilZoomCall,
     PresentChoices,
     WaitUntilCodeCompiled,
-    DelaySeconds,           // For simulate reading email (10s)
-    StartScreenShare,       // Calls ZoomScreenShareController.Instance.StartScreenShare()
-    WaitUntilScreenShareEnd // Halts until screenshare video completes
+    DelaySeconds,            // Existing serialized value 4
+    StartScreenShare,        // Existing serialized value 5
+    WaitUntilScreenShareEnd, // Existing serialized value 6
+    TriggerGameEnd,          // Existing serialized value 7
+    Day2Exercise,            // Existing serialized value 8
+
+    // New values are appended so existing serialized DaySequenceData assets keep their meaning.
+    WaitUntilNarrativeEvent,
+    EndScreenShare,
+    EndZoomCall
 }
 
 [CreateAssetMenu(fileName = "DaySequence_Day0", menuName = "Narrative/Day Sequence Data")]
