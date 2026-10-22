@@ -21,13 +21,27 @@ MonoBehaviour:
     displayDuration: 3.5
     lineVariants: []
     choices: []
-    nextStepID: D5_WaitForCall
+    nextStepID: D5_AfterEmailDelay
     awardSkillKey: 
     narrativeEventKey: Day5.Email.Read
     stepType: 9
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
+  - stepID: D5_AfterEmailDelay
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 3.5
+    lineVariants: []
+    choices: []
+    nextStepID: D5_WaitForCall
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 4
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 3
   - stepID: D5_WaitForCall
     speakerName: 
     personality: 0
