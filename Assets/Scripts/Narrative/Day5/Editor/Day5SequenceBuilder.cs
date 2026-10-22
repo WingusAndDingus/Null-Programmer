@@ -16,7 +16,7 @@ public static class Day5SequenceBuilder
     // The user requested Day 5 dialogue to remain 50% longer than the earlier timings.
     private const float DurationMultiplier = 1.5f;
 
-    [MenuItem("Null Programmer/Narrative/Create or Refresh Day 5 Sequence")]
+    [MenuItem("Tools/Null Programmer/Create or Refresh Day 5 Sequence")]
     public static void CreateOrRefresh()
     {
         EnsureFolder("Assets", "Narrative");
@@ -47,9 +47,14 @@ public static class Day5SequenceBuilder
         // ------------------------------------------------------------------
         // Email first. No incoming call appears until this named event fires.
         // ------------------------------------------------------------------
-        NarrativeStep start = Step("Start", NarrativeStepType.WaitUntilNarrativeEvent, "D5_WaitForCall");
+        NarrativeStep start = Step("Start", NarrativeStepType.WaitUntilNarrativeEvent, "D5_AfterEmailDelay");
         start.narrativeEventKey = Day5NarrativeEvents.EmailRead;
         steps.Add(start);
+
+        NarrativeStep afterEmailDelay = Step("D5_AfterEmailDelay", NarrativeStepType.DelaySeconds, "D5_WaitForCall");
+
+        afterEmailDelay.delayDuration = 3.0f;
+        steps.Add(afterEmailDelay);
 
         steps.Add(Step("D5_WaitForCall", NarrativeStepType.WaitUntilZoomCall, "D5_Steve_Turn_Logic"));
 
