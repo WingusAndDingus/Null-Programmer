@@ -5,6 +5,15 @@ using UnityEngine;
 /// <summary>
 /// Shared session state: player stats, monitor zoom, window state, and the email reply demo.
 /// </summary>
+
+public enum WeekendChoice
+{
+    Steve,
+    Study,
+    PersonalConnections,
+    Wallow
+}
+
 [DefaultExecutionOrder(-1000)]
 public class GameManager : MonoBehaviour
 {
@@ -28,6 +37,7 @@ public class GameManager : MonoBehaviour
     public int GeniusStat { get; private set; }
     public int DetectiveStat { get; private set; }
     public int SteveSuspicion { get; private set; }
+
     public int CodeQuality { get; private set; }
     public int Connectedness { get; private set; }
 
@@ -36,12 +46,84 @@ public class GameManager : MonoBehaviour
     public event Action<int> SuspicionChanged;
     public event Action SteveCrisis;
 
+    // =========================================================
+    // Weekend Choice
+    // =========================================================
+
+    public WeekendChoice? SelectedWeekendChoice { get; private set; }
+
+    public bool HasSelectedWeekendChoice => SelectedWeekendChoice.HasValue;
 
     // =========================================================
-    // Email Reply Demo
+    // Weekend Choice Availability
+    // =========================================================
+
+    public bool CanSpendWeekendWithSteve()
+    {
+        return SteveSuspicion < 50;
+    }
+
+    public bool CanStudyThisWeekend()
+    {
+        return GrandArchitectStat > 3;
+    }
+
+    public bool CanReconnectThisWeekend()
+    {
+        return Connectedness > 50;
+    }
+
+    public bool CanWallowThisWeekend()
+    {
+        return true;
+    }
+
+    public bool IsWeekendChoiceAvailable(WeekendChoice choice)
+    {
+        switch (choice)
+        {
+            case WeekendChoice.Steve:
+                return CanSpendWeekendWithSteve();
+
+            case WeekendChoice.Study:
+                return CanStudyThisWeekend();
+
+            case WeekendChoice.PersonalConnections:
+                return CanReconnectThisWeekend();
+
+            case WeekendChoice.Wallow:
+                return CanWallowThisWeekend();
+
+            default:
+                return false;
+        }
+    }
+
+    public bool TryConfirmWeekendChoice(WeekendChoice choice)
+    {
+        // Weekend choice has already been permanently committed.
+        if (HasSelectedWeekendChoice)
+        {
+            return false;
+        }
+
+        // Protect against trying to select a locked path.
+        if (!IsWeekendChoiceAvailable(choice))
+        {
+            return false;
+        }
+
+        SelectedWeekendChoice = choice;
+        return true;
+    }
+
+
+    // =========================================================
+    // Email Reply Demo / Day 5 Mail State
     // =========================================================
 
     public bool EmailRead { get; private set; }
+    public bool Day5EmailRead { get; private set; }
     public bool ReplyAvailable { get; private set; }
     public int ReplyStage { get; private set; }
     public bool ReplyCompleted => ReplyStage >= 2;
@@ -52,7 +134,6 @@ public class GameManager : MonoBehaviour
     // Window State
     // =========================================================
 
-    // All persistent state belonging to one logical window.
     private class WindowState
     {
         public bool IsOpen = true;
@@ -65,11 +146,9 @@ public class GameManager : MonoBehaviour
         public int StackOrder;
     }
 
-    // One WindowState for each logical window ID.
     private readonly Dictionary<string, WindowState> windowStates =
         new Dictionary<string, WindowState>();
 
-    // Used to determine which window was most recently brought forward.
     private int nextWindowStackOrder = 0;
 
 
@@ -90,7 +169,7 @@ public class GameManager : MonoBehaviour
             return Instance;
         }
 
-        var existing = FindAnyObjectByType<GameManager>(); //earlier function had become obsolete
+        var existing = FindAnyObjectByType<GameManager>();
 
         if (existing != null)
         {
@@ -110,14 +189,12 @@ public class GameManager : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            // Keep unrelated components on an authored scene object intact.
             Destroy(this);
             return;
         }
 
         Instance = this;
 
-        // A persistent manager must be a root object.
         if (transform.parent != null)
         {
             transform.SetParent(null);
@@ -161,8 +238,9 @@ public class GameManager : MonoBehaviour
     public void AdvanceToNextDay()
     {
         CurrentDay++;
-        CurrentStep = "Start"; //reset for new day
+        CurrentStep = "Start";
     }
+
     public void ChangeGrandArchitectStat(int value)
     {
         GrandArchitectStat += value;
@@ -220,14 +298,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
-    // =========================================================
-    // Email Reply Demo
+// =========================================================
+    // Email Reply Demo / Day 5 Mail State
     // =========================================================
 
     public void MarkEmailRead()
     {
         EmailRead = true;
+    }
+
+    public void MarkDay5EmailRead()
+    {
+        Day5EmailRead = true;
     }
 
     public void MarkReadEmailClosed()
@@ -238,8 +320,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Expected stage prevents repeated clicks/reopening
-    // from applying the same choice twice.
     public bool TryApplyReply(
         int expectedStage,
         int suspicionDelta,
@@ -265,8 +345,6 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
-    // Developer-only UI calls this explicitly;
-    // leaves mail read and zoom state alone.
     public void RestartReplyTest()
     {
         ChangeSteveSuspicion(-SteveSuspicion);
