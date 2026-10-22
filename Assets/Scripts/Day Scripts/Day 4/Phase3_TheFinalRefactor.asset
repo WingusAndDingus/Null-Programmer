@@ -1,0 +1,208 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Phase3_TheFinalRefactor
+  m_EditorClassIdentifier: Assembly-CSharp::BossBattlePhaseData
+  phaseNumber: 3
+  phaseTitle: Phase 3 - The Final Refactor
+  phaseMusic: {fileID: 8300000, guid: fb0466f6914490745a3d254041ae1e44, type: 3}
+  bpm: 160
+  notes:
+  - hitTime: 2
+    lane: 3
+  - hitTime: 2
+    lane: 1
+  - hitTime: 2.1875
+    lane: 1
+  - hitTime: 2.5625
+    lane: 2
+  - hitTime: 2.9375
+    lane: 0
+  - hitTime: 3.3125
+    lane: 1
+  - hitTime: 3.5
+    lane: 0
+  - hitTime: 3.875
+    lane: 0
+  - hitTime: 4.25
+    lane: 1
+  - hitTime: 4.625
+    lane: 0
+  - hitTime: 4.625
+    lane: 2
+  - hitTime: 4.8125
+    lane: 0
+  - hitTime: 5.1875
+    lane: 2
+  - hitTime: 5.5625
+    lane: 0
+  - hitTime: 5.9375
+    lane: 0
+  - hitTime: 6.125
+    lane: 3
+  - hitTime: 6.5
+    lane: 0
+  - hitTime: 6.875
+    lane: 0
+  - hitTime: 7.25
+    lane: 1
+  - hitTime: 7.25
+    lane: 3
+  - hitTime: 7.4375
+    lane: 1
+  - hitTime: 7.8125
+    lane: 0
+  - hitTime: 8.1875
+    lane: 2
+  - hitTime: 8.5625
+    lane: 1
+  - hitTime: 8.75
+    lane: 2
+  - hitTime: 9.125
+    lane: 0
+  - hitTime: 9.5
+    lane: 0
+  - hitTime: 9.875
+    lane: 2
+  - hitTime: 9.875
+    lane: 0
+  - hitTime: 10.0625
+    lane: 1
+  - hitTime: 10.4375
+    lane: 1
+  - hitTime: 10.8125
+    lane: 2
+  - hitTime: 11.1875
+    lane: 2
+  - hitTime: 11.375
+    lane: 0
+  - hitTime: 11.75
+    lane: 2
+  - hitTime: 12.125
+    lane: 3
+  - hitTime: 12.5
+    lane: 2
+  - hitTime: 12.5
+    lane: 0
+  - hitTime: 12.6875
+    lane: 0
+  - hitTime: 13.0625
+    lane: 2
+  - hitTime: 13.4375
+    lane: 2
+  - hitTime: 13.8125
+    lane: 0
+  - hitTime: 14
+    lane: 0
+  - hitTime: 14.375
+    lane: 1
+  - hitTime: 14.75
+    lane: 2
+  - hitTime: 15.125
+    lane: 2
+  - hitTime: 15.125
+    lane: 0
+  - hitTime: 15.3125
+    lane: 1
+  - hitTime: 15.6875
+    lane: 3
+  - hitTime: 16.0625
+    lane: 0
+  - hitTime: 16.4375
+    lane: 2
+  - hitTime: 16.625
+    lane: 2
+  - hitTime: 17
+    lane: 1
+  - hitTime: 17.375
+    lane: 2
+  - hitTime: 17.75
+    lane: 1
+  - hitTime: 17.75
+    lane: 3
+  - hitTime: 17.9375
+    lane: 0
+  - hitTime: 18.3125
+    lane: 1
+  - hitTime: 18.6875
+    lane: 3
+  - hitTime: 19.0625
+    lane: 3
+  - hitTime: 19.25
+    lane: 3
+  - hitTime: 19.625
+    lane: 1
+  - hitTime: 20
+    lane: 1
+  - hitTime: 20.375
+    lane: 2
+  - hitTime: 20.375
+    lane: 0
+  - hitTime: 20.5625
+    lane: 3
+  - hitTime: 20.9375
+    lane: 0
+  - hitTime: 21.3125
+    lane: 3
+  - hitTime: 21.6875
+    lane: 0
+  - hitTime: 21.875
+    lane: 0
+  - hitTime: 22.25
+    lane: 1
+  - hitTime: 22.625
+    lane: 2
+  - hitTime: 23
+    lane: 2
+  - hitTime: 23
+    lane: 0
+  - hitTime: 23.1875
+    lane: 1
+  - hitTime: 23.5625
+    lane: 1
+  - hitTime: 23.9375
+    lane: 0
+  - hitTime: 24.3125
+    lane: 2
+  - hitTime: 24.5
+    lane: 2
+  - hitTime: 24.875
+    lane: 3
+  - hitTime: 25.25
+    lane: 3
+  - hitTime: 25.625
+    lane: 0
+  - hitTime: 25.625
+    lane: 2
+  - hitTime: 25.8125
+    lane: 2
+  - hitTime: 26.1875
+    lane: 0
+  - hitTime: 26.5625
+    lane: 3
+  - hitTime: 26.9375
+    lane: 0
+  - hitTime: 27.125
+    lane: 0
+  - hitTime: 27.5
+    lane: 3
+  - hitTime: 27.875
+    lane: 0
+  intermissionQuestion:
+    questionText: What is the primary benefit of the GameManager class?
+    options:
+    - It makes the file larger
+    - It separates initialization, polling, updating, and rendering
+    - It runs AI faster
+    - It avoids using SFML
+    correctAnswerIndex: 1
+    explanationText: Separation of Concerns makes code maintainable and bug-free.
