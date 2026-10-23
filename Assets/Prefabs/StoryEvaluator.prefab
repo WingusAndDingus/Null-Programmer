@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8399807063111382268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1376071391578539694}
+  - component: {fileID: 3750261043884817701}
+  m_Layer: 0
+  m_Name: StoryEvaluator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1376071391578539694
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8399807063111382268}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 766.1029, y: 593.48395, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3750261043884817701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8399807063111382268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab24d620435def6498166dd2c47fd473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEndEvaluator
+  standardUmlSprite: {fileID: -2542554413032244280, guid: 10e436621399d9e42aa010d05b86887c, type: 3}
+  bloatedUmlSprite: {fileID: -2542554413032244280, guid: 10e436621399d9e42aa010d05b86887c, type: 3}
+  successTitle: 'Ending: The Perfectionist Trap'
+  successText: 'Steve: ''Your use of OOP kept the code incredibly clean. Because we seperated the project into classes the code is maintainable and reusable.''
+
+
+    Result: You log off at 5:00PM, close your workstation, and enjoy a well earned rest.'
+  failTitle: 'Ending: Coupled and Deprecated'
+  failText: 'Management: ''Steve demonstrated real senior dev talent and upstaged your project. You have clearly lost your edge. You are terminated.''
+
+
+    Result: You let The Pragmatist cram everything into main.cpp, making it unmaintainable.'

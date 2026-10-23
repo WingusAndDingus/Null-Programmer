@@ -12,16 +12,1344 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 657659d256d74ba448affc6a2a8763d3, type: 3}
   m_Name: Day2_Data
   m_EditorClassIdentifier: Assembly-CSharp::DaySequenceData
-  dayNumber: 1
+  dayNumber: 2
   steps:
-  - stepID: Day_2Start
-    speakerName: 
+  - stepID: Start
+    speakerName: Me
     personality: 0
-    lineText: 
+    lineText: Tuesday. The development environment is ready. Today I need to look like someone who knows what to do
+      with it.
+    displayDuration: 7.4
+    choices: []
+    nextStepID: Day2_Morning_Architect
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_Morning_Architect
+    speakerName: The Architect
+    personality: 2
+    lineText: Start with one correct tile. Then repeat the rule. A clean design is only useful if we also check that
+      it behaves correctly.
+    displayDuration: 8.5
+    choices: []
+    nextStepID: Day2_Morning_Pragmatist
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_Morning_Pragmatist
+    speakerName: The Pragmatist
+    personality: 3
+    lineText: Or get a grid on the screen before anyone asks questions. We can make it elegant after it works.
+    displayDuration: 7.0
+    choices: []
+    nextStepID: Day2_Morning_Detective
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_Morning_Detective
+    speakerName: The Detective
+    personality: 6
+    lineText: Steve remembers who we used to be. Watch what he says, and look for familiar details. A little confidence
+      might buy us some breathing room.
+    displayDuration: 9.3
+    choices: []
+    nextStepID: Day2_WaitZoom
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_WaitZoom
+    speakerName: ''
+    personality: 0
+    lineText: ''
     displayDuration: 0
     choices: []
-    nextStepID: 
-    awardSkillKey: 
+    nextStepID: Day2_GridBrief
+    awardSkillKey: ''
+    stepType: 1
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_GridBrief
+    speakerName: Steve
+    personality: 0
+    lineText: Morning! I started trying to draw a grid after yesterday's SFML setup, but I am not sure how to organize
+      the tiles. Could you talk me through how you would approach it? I'd like to understand it before we get to ship
+      placement.
+    displayDuration: 15.9
+    choices: []
+    nextStepID: Day2_GridRequirements
+    awardSkillKey: ''
     stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_GridRequirements
+    speakerName: Steve
+    personality: 0
+    lineText: For my first attempt, I used eight rows, eight columns, forty-pixel cells, and an origin of one hundred,
+      eighty. Would you keep those values together somewhere? I am worried I will have to rewrite the positions if
+      the size changes.
+    displayDuration: 14.8
+    choices: []
+    nextStepID: Day2_ChooseApproach
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_ChooseApproach
+    speakerName: Steve
+    personality: 0
+    lineText: Where would you start? Could you explain your reasoning so I can follow along?
+    displayDuration: 5.2
+    choices:
+    - choiceText: Let us draw one tile first and make sure we understand its position before duplicating it.
+      personality: 2
+      targetStepOnClick: Day2_ChooseApproach_Architect_Novice
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: Day2_ChooseApproach_Architect
+    - choiceText: Use row and column numbers to position each tile, instead of choosing every position by hand.
+      personality: 2
+      targetStepOnClick: Day2_ChooseApproach_Architect_Beginner
+      suspicionChange: 0
+      requiredLevel: 1
+      choiceGroup: Day2_ChooseApproach_Architect
+    - choiceText: Define the origin, cell size, rows, and columns once, then generate the tiles with nested loops.
+      personality: 2
+      targetStepOnClick: Day2_ChooseApproach_Architect_Intermediate
+      suspicionChange: 0
+      requiredLevel: 2
+      choiceGroup: Day2_ChooseApproach_Architect
+    - choiceText: Use shared settings and nested loops, then verify the origin, last cell, and loop bounds before
+        we call it done.
+      personality: 2
+      targetStepOnClick: Day2_ChooseApproach_Architect_Advanced
+      suspicionChange: 0
+      requiredLevel: 3
+      choiceGroup: Day2_ChooseApproach_Architect
+    - choiceText: Separate grid configuration from drawing, generate from one position rule, and verify both square
+        and rectangular dimensions.
+      personality: 2
+      targetStepOnClick: Day2_ChooseApproach_Architect_Expert
+      suspicionChange: 0
+      requiredLevel: 4
+      choiceGroup: Day2_ChooseApproach_Architect
+    - choiceText: I will place the first few squares by eye and copy them until it resembles a grid.
+      personality: 3
+      targetStepOnClick: Day2_ChooseApproach_Pragmatist_Novice
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: Day2_ChooseApproach_Pragmatist
+    - choiceText: Copy the first row, move each copy down forty pixels, and adjust anything that looks wrong.
+      personality: 3
+      targetStepOnClick: Day2_ChooseApproach_Pragmatist_Beginner
+      suspicionChange: 0
+      requiredLevel: 1
+      choiceGroup: Day2_ChooseApproach_Pragmatist
+    - choiceText: Use two short loops with eight and forty written directly into them. We can expose settings later.
+      personality: 3
+      targetStepOnClick: Day2_ChooseApproach_Pragmatist_Intermediate
+      suspicionChange: 0
+      requiredLevel: 2
+      choiceGroup: Day2_ChooseApproach_Pragmatist
+    - choiceText: Make a quick drawing helper, keep the fixed eight-by-eight settings, and check the screenshot.
+      personality: 3
+      targetStepOnClick: Day2_ChooseApproach_Pragmatist_Advanced
+      suspicionChange: 0
+      requiredLevel: 3
+      choiceGroup: Day2_ChooseApproach_Pragmatist
+    - choiceText: Use a compact loop with adjustable row and column counts. Skip the edge-case tests so we can demo
+        immediately.
+      personality: 3
+      targetStepOnClick: Day2_ChooseApproach_Pragmatist_Expert
+      suspicionChange: 0
+      requiredLevel: 4
+      choiceGroup: Day2_ChooseApproach_Pragmatist
+    - choiceText: We got SFML running yesterday. Let us keep using that setup while I review the grid.
+      personality: 6
+      targetStepOnClick: Day2_ChooseApproach_Detective_Novice
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: Day2_ChooseApproach_Detective
+    - choiceText: We already have yesterday's CLion project. Let us keep that environment consistent while I look
+        over the implementation.
+      personality: 6
+      targetStepOnClick: Day2_ChooseApproach_Detective_Beginner
+      suspicionChange: 0
+      requiredLevel: 1
+      choiceGroup: Day2_ChooseApproach_Detective
+    - choiceText: You configured SFML through CMakeLists.txt yesterday. Keep that setup in place while I review how
+        the grid should fit into it.
+      personality: 6
+      targetStepOnClick: Day2_ChooseApproach_Detective_Intermediate
+      suspicionChange: 0
+      requiredLevel: 2
+      choiceGroup: Day2_ChooseApproach_Detective
+    - choiceText: Yesterday you set SFML_DIR for the downloaded library. We can preserve that configuration while
+        I decide how to organize the grid.
+      personality: 6
+      targetStepOnClick: Day2_ChooseApproach_Detective_Advanced
+      suspicionChange: 0
+      requiredLevel: 3
+      choiceGroup: Day2_ChooseApproach_Detective
+    - choiceText: You kept SFML under external/ and connected it through CMake yesterday. Let us retain that environment
+        while I review the drawing approach.
+      personality: 6
+      targetStepOnClick: Day2_ChooseApproach_Detective_Expert
+      suspicionChange: 0
+      requiredLevel: 4
+      choiceGroup: Day2_ChooseApproach_Detective
+    nextStepID: ''
+    awardSkillKey: ''
+    stepType: 2
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_GridTask
+    speakerName: Steve
+    personality: 0
+    lineText: Could I check one calculation with you? For row two, column six, with zero-based indices, forty-pixel
+      cells, and origin one hundred, eighty, how would you find the screen position?
+    displayDuration: 10.7
+    choices: []
+    nextStepID: Day2_Cell_Architect
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_Cell_Architect
+    speakerName: The Architect
+    personality: 2
+    lineText: Before answering, ask whether we understand how a grid index becomes a screen position. The more we
+      know, the better we can explain and test it.
+    displayDuration: 9.6
+    choices: []
+    nextStepID: Day2_Cell_Pragmatist
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_Cell_Pragmatist
+    speakerName: The Pragmatist
+    personality: 3
+    lineText: We only need this tile on the screen right now. We can choose how much of the calculation to tidy up
+      before the demo.
+    displayDuration: 8.9
+    choices: []
+    nextStepID: Day2_Cell_Detective
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_Cell_Detective
+    speakerName: The Detective
+    personality: 6
+    lineText: He knows yesterday's SFML setup. Recalling those details might reassure him, but they will not calculate
+      this tile's position for us.
+    displayDuration: 7.8
+    choices: []
+    nextStepID: Day2_CellChoice
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_CellChoice
+    speakerName: Steve
+    personality: 0
+    lineText: How would you explain the position calculation to me?
+    displayDuration: 4
+    choices:
+    - choiceText: Column six should move the tile right, and row two should move it down. Let us check both offsets
+        from the origin.
+      personality: 2
+      targetStepOnClick: Day2_CellChoice_Architect_Novice
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: Day2_CellChoice_Architect
+    - choiceText: Multiply the column by forty for X and the row by forty for Y, then add the origin.
+      personality: 2
+      targetStepOnClick: Day2_CellChoice_Architect_Beginner
+      suspicionChange: 0
+      requiredLevel: 1
+      choiceGroup: Day2_CellChoice_Architect
+    - choiceText: X is 100 + 6 * 40 = 340. Y is 80 + 2 * 40 = 160. Use those shared settings for every tile.
+      personality: 2
+      targetStepOnClick: Day2_CellChoice_Architect_Intermediate
+      suspicionChange: 0
+      requiredLevel: 2
+      choiceGroup: Day2_CellChoice_Architect
+    - choiceText: Use (340, 160), and test a cell with unequal row and column indices so an axis swap cannot hide.
+      personality: 2
+      targetStepOnClick: Day2_CellChoice_Architect_Advanced
+      suspicionChange: 0
+      requiredLevel: 3
+      choiceGroup: Day2_CellChoice_Architect
+    - choiceText: Use (340, 160). Keep the row-column-to-position conversion in one helper and test it with a different
+        origin and cell size too.
+      personality: 2
+      targetStepOnClick: Day2_CellChoice_Architect_Expert
+      suspicionChange: 0
+      requiredLevel: 4
+      choiceGroup: Day2_CellChoice_Architect
+    - choiceText: Drag the tile until it lines up with the preview. I can adjust it visually.
+      personality: 3
+      targetStepOnClick: Day2_CellChoice_Pragmatist_Novice
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: Day2_CellChoice_Pragmatist
+    - choiceText: Set this tile to (340, 160). I will type the remaining positions individually.
+      personality: 3
+      targetStepOnClick: Day2_CellChoice_Pragmatist_Beginner
+      suspicionChange: 0
+      requiredLevel: 1
+      choiceGroup: Day2_CellChoice_Pragmatist
+    - choiceText: Use x = 100 + column * 40 and y = 80 + row * 40 directly in this drawing loop.
+      personality: 3
+      targetStepOnClick: Day2_CellChoice_Pragmatist_Intermediate
+      suspicionChange: 0
+      requiredLevel: 2
+      choiceGroup: Day2_CellChoice_Pragmatist
+    - choiceText: Put the position calculation in a quick local helper and check this one tile before moving on.
+      personality: 3
+      targetStepOnClick: Day2_CellChoice_Pragmatist_Advanced
+      suspicionChange: 0
+      requiredLevel: 3
+      choiceGroup: Day2_CellChoice_Pragmatist
+    - choiceText: Use the configured origin and size in a short helper. If (2, 6) lines up, ship the preview without
+        testing the corners.
+      personality: 3
+      targetStepOnClick: Day2_CellChoice_Pragmatist_Expert
+      suspicionChange: 0
+      requiredLevel: 4
+      choiceGroup: Day2_CellChoice_Pragmatist
+    - choiceText: Leave the preview open while I check the setup notes from yesterday.
+      personality: 6
+      targetStepOnClick: Day2_CellChoice_Detective_Novice
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: Day2_CellChoice_Detective
+    - choiceText: We can keep the same CLion project from yesterday while I review this position.
+      personality: 6
+      targetStepOnClick: Day2_CellChoice_Detective_Beginner
+      suspicionChange: 0
+      requiredLevel: 1
+      choiceGroup: Day2_CellChoice_Detective
+    - choiceText: CMake already finds SFML with yesterday's configuration. Keep the build output handy while I review
+        the coordinate code.
+      personality: 6
+      targetStepOnClick: Day2_CellChoice_Detective_Intermediate
+      suspicionChange: 0
+      requiredLevel: 2
+      choiceGroup: Day2_CellChoice_Detective
+    - choiceText: Your CMake file already links the SFML targets. We can leave that configuration alone while I verify
+        the position rule.
+      personality: 6
+      targetStepOnClick: Day2_CellChoice_Detective_Advanced
+      suspicionChange: 0
+      requiredLevel: 3
+      choiceGroup: Day2_CellChoice_Detective
+    - choiceText: Yesterday's library path and linking setup are still relevant. Keep those unchanged; I will review
+        the coordinate calculation separately.
+      personality: 6
+      targetStepOnClick: Day2_CellChoice_Detective_Expert
+      suspicionChange: 0
+      requiredLevel: 4
+      choiceGroup: Day2_CellChoice_Detective
+    nextStepID: ''
+    awardSkillKey: ''
+    stepType: 2
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_CellReview
+    speakerName: The Architect
+    personality: 2
+    lineText: A familiar setup detail can make the conversation easier. It cannot replace the position calculation.
+      One correct coordinate is useful; a rule that works for every coordinate is better.
+    displayDuration: 10.7
+    choices: []
+    nextStepID: Day2_Exercise_Loops
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_ResizeBrief
+    speakerName: Steve
+    personality: 0
+    lineText: If we changed this from eight by eight to ten by ten, would you update the loops or redraw the tiles?
+      I would like to keep the same origin and cell size. How would you handle that change?
+    displayDuration: 14.1
+    choices: []
+    nextStepID: Day2_ResizeChoice
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_ResizeChoice
+    speakerName: Steve
+    personality: 0
+    lineText: Which approach would you recommend?
+    displayDuration: 4
+    choices:
+    - choiceText: We need ten rows and ten columns. Let us count the cells instead of only checking the picture.
+      personality: 2
+      targetStepOnClick: Day2_ResizeChoice_Architect_Novice
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: Day2_ResizeChoice_Architect
+    - choiceText: Change both loop limits to ten and make sure each index stops before ten.
+      personality: 2
+      targetStepOnClick: Day2_ResizeChoice_Architect_Beginner
+      suspicionChange: 0
+      requiredLevel: 1
+      choiceGroup: Day2_ResizeChoice_Architect
+    - choiceText: Change the shared rows and columns to ten. The nested loops should then generate one hundred cells
+        without copying code.
+      personality: 2
+      targetStepOnClick: Day2_ResizeChoice_Architect_Intermediate
+      suspicionChange: 0
+      requiredLevel: 2
+      choiceGroup: Day2_ResizeChoice_Architect
+    - choiceText: Update the shared dimensions, check that the count is one hundred, and test the last valid cell
+        at row nine, column nine.
+      personality: 2
+      targetStepOnClick: Day2_ResizeChoice_Architect_Advanced
+      suspicionChange: 0
+      requiredLevel: 3
+      choiceGroup: Day2_ResizeChoice_Architect
+    - choiceText: Update the configuration, test ten by ten, then six by ten. Verify the count, corners, and that
+        each loop uses its own dimension.
+      personality: 2
+      targetStepOnClick: Day2_ResizeChoice_Architect_Expert
+      suspicionChange: 0
+      requiredLevel: 4
+      choiceGroup: Day2_ResizeChoice_Architect
+    - choiceText: Copy more squares around the outside until the larger grid looks full.
+      personality: 3
+      targetStepOnClick: Day2_ResizeChoice_Pragmatist_Novice
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: Day2_ResizeChoice_Pragmatist
+    - choiceText: Copy two more rows and columns, then move anything that overlaps.
+      personality: 3
+      targetStepOnClick: Day2_ResizeChoice_Pragmatist_Beginner
+      suspicionChange: 0
+      requiredLevel: 1
+      choiceGroup: Day2_ResizeChoice_Pragmatist
+    - choiceText: Replace the two hardcoded eights with tens and rerun the same drawing code.
+      personality: 3
+      targetStepOnClick: Day2_ResizeChoice_Pragmatist_Intermediate
+      suspicionChange: 0
+      requiredLevel: 2
+      choiceGroup: Day2_ResizeChoice_Pragmatist
+    - choiceText: Expose row and column counts in the quick helper, resize to ten by ten, and do one visual check.
+      personality: 3
+      targetStepOnClick: Day2_ResizeChoice_Pragmatist_Advanced
+      suspicionChange: 0
+      requiredLevel: 3
+      choiceGroup: Day2_ResizeChoice_Pragmatist
+    - choiceText: Regenerate from the new dimensions, confirm there are one hundred cells, and leave the other sizes
+        for tomorrow.
+      personality: 3
+      targetStepOnClick: Day2_ResizeChoice_Pragmatist_Expert
+      suspicionChange: 0
+      requiredLevel: 4
+      choiceGroup: Day2_ResizeChoice_Pragmatist
+    - choiceText: We can keep using yesterday's SFML window while I review the resize.
+      personality: 6
+      targetStepOnClick: Day2_ResizeChoice_Detective_Novice
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: Day2_ResizeChoice_Detective
+    - choiceText: Getting that first window open yesterday gave us a starting point. Keep the same project while I
+        look at the new size.
+      personality: 6
+      targetStepOnClick: Day2_ResizeChoice_Detective_Beginner
+      suspicionChange: 0
+      requiredLevel: 1
+      choiceGroup: Day2_ResizeChoice_Detective
+    - choiceText: The CMake setup from yesterday should stay as it is. I will review the drawing changes separately.
+      personality: 6
+      targetStepOnClick: Day2_ResizeChoice_Detective_Intermediate
+      suspicionChange: 0
+      requiredLevel: 2
+      choiceGroup: Day2_ResizeChoice_Detective
+    - choiceText: The SFML library configuration can stay unchanged while we prepare the larger preview. I will come
+        back to the grid dimensions.
+      personality: 6
+      targetStepOnClick: Day2_ResizeChoice_Detective_Advanced
+      suspicionChange: 0
+      requiredLevel: 3
+      choiceGroup: Day2_ResizeChoice_Detective
+    - choiceText: Keep the external/ library folder and yesterday's CMake configuration in place. I will review the
+        requested dimensions separately from the build setup.
+      personality: 6
+      targetStepOnClick: Day2_ResizeChoice_Detective_Expert
+      suspicionChange: 0
+      requiredLevel: 4
+      choiceGroup: Day2_ResizeChoice_Detective
+    nextStepID: ''
+    awardSkillKey: ''
+    stepType: 2
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_GridReview
+    speakerName: Steve
+    personality: 0
+    lineText: I think I swapped the axes in another version of the helper. Row two, column six appears at one hundred
+      eighty, three hundred twenty. Could you help me understand what I got wrong and how you would check the fix?
+    displayDuration: 14.8
+    choices: []
+    nextStepID: Day2_ReviewChoice
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_ReviewChoice
+    speakerName: Steve
+    personality: 0
+    lineText: What would you suggest I change or test?
+    displayDuration: 4
+    choices:
+    - choiceText: Moving across columns should change X. Let us check whether the row and column values were swapped.
+      personality: 2
+      targetStepOnClick: Day2_ReviewChoice_Architect_Novice
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: Day2_ReviewChoice_Architect
+    - choiceText: 'Swap the formula inputs: column controls X, and row controls Y.'
+      personality: 2
+      targetStepOnClick: Day2_ReviewChoice_Architect_Beginner
+      suspicionChange: 0
+      requiredLevel: 1
+      choiceGroup: Day2_ReviewChoice_Architect
+    - choiceText: Correct the shared formula to x = originX + column * size and y = originY + row * size; this cell
+        should be (340, 160).
+      personality: 2
+      targetStepOnClick: Day2_ReviewChoice_Architect_Intermediate
+      suspicionChange: 0
+      requiredLevel: 2
+      choiceGroup: Day2_ReviewChoice_Architect
+    - choiceText: Fix the shared conversion and test (0, 0), (2, 6), and the last valid row and column.
+      personality: 2
+      targetStepOnClick: Day2_ReviewChoice_Architect_Advanced
+      suspicionChange: 0
+      requiredLevel: 3
+      choiceGroup: Day2_ReviewChoice_Architect
+    - choiceText: Fix the shared conversion, test unequal dimensions and a changed origin, and verify that neighboring
+        cells differ by exactly one cell size on the expected axis.
+      personality: 2
+      targetStepOnClick: Day2_ReviewChoice_Architect_Expert
+      suspicionChange: 0
+      requiredLevel: 4
+      choiceGroup: Day2_ReviewChoice_Architect
+    - choiceText: Move the wrong-looking tile into place by hand for now.
+      personality: 3
+      targetStepOnClick: Day2_ReviewChoice_Pragmatist_Novice
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: Day2_ReviewChoice_Pragmatist
+    - choiceText: Swap the two displayed values for this tile and patch any other visible mistakes.
+      personality: 3
+      targetStepOnClick: Day2_ReviewChoice_Pragmatist_Beginner
+      suspicionChange: 0
+      requiredLevel: 1
+      choiceGroup: Day2_ReviewChoice_Pragmatist
+    - choiceText: Swap the row and column in the drawing loop, check this tile, and move on.
+      personality: 3
+      targetStepOnClick: Day2_ReviewChoice_Pragmatist_Intermediate
+      suspicionChange: 0
+      requiredLevel: 2
+      choiceGroup: Day2_ReviewChoice_Pragmatist
+    - choiceText: Fix the helper, check this cell and the origin, then get the demo ready.
+      personality: 3
+      targetStepOnClick: Day2_ReviewChoice_Pragmatist_Advanced
+      suspicionChange: 0
+      requiredLevel: 3
+      choiceGroup: Day2_ReviewChoice_Pragmatist
+    - choiceText: Fix the shared conversion and check the known failing cell. Record the remaining edge tests as follow-up
+        work.
+      personality: 3
+      targetStepOnClick: Day2_ReviewChoice_Pragmatist_Expert
+      suspicionChange: 0
+      requiredLevel: 4
+      choiceGroup: Day2_ReviewChoice_Pragmatist
+    - choiceText: Let us keep yesterday's working setup and note this coordinate issue for another pass.
+      personality: 6
+      targetStepOnClick: Day2_ReviewChoice_Detective_Novice
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: Day2_ReviewChoice_Detective
+    - choiceText: We got the SFML window running yesterday. Keep that setup intact while we put the coordinate issue
+        on the review list.
+      personality: 6
+      targetStepOnClick: Day2_ReviewChoice_Detective_Beginner
+      suspicionChange: 0
+      requiredLevel: 1
+      choiceGroup: Day2_ReviewChoice_Detective
+    - choiceText: Keep the library configuration we checked yesterday. We can separate the coordinate review from
+        changes to the build setup.
+      personality: 6
+      targetStepOnClick: Day2_ReviewChoice_Detective_Intermediate
+      suspicionChange: 0
+      requiredLevel: 2
+      choiceGroup: Day2_ReviewChoice_Detective
+    - choiceText: The setup details from yesterday are still in place. Note the coordinate problem, and I will schedule
+        a focused review of that helper.
+      personality: 6
+      targetStepOnClick: Day2_ReviewChoice_Detective_Advanced
+      suspicionChange: 0
+      requiredLevel: 3
+      choiceGroup: Day2_ReviewChoice_Detective
+    - choiceText: Retain yesterday's SFML path and linking configuration. I will review the coordinate helper separately
+        before we depend on it for board work.
+      personality: 6
+      targetStepOnClick: Day2_ReviewChoice_Detective_Expert
+      suspicionChange: 0
+      requiredLevel: 4
+      choiceGroup: Day2_ReviewChoice_Detective
+    nextStepID: ''
+    awardSkillKey: ''
+    stepType: 2
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_Complete
+    speakerName: Me
+    personality: 0
+    lineText: I submitted today's grid. Familiar details helped me manage Steve's suspicion, but tomorrow the code
+      will have to stand on its own. Any shortcuts I left in place may still need work.
+    displayDuration: 11.9
+    choices: []
+    nextStepID: ''
+    awardSkillKey: Day_2_Complete
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_ChooseApproach_Architect_Novice
+    speakerName: Steve
+    personality: 0
+    lineText: Starting with one tile sounds manageable. Could you show me how you decide where it goes?
+    displayDuration: 5.9
+    choices: []
+    nextStepID: Day2_GridTask
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_ChooseApproach_Architect_Beginner
+    speakerName: Steve
+    personality: 0
+    lineText: 'I think I follow: one rule for every tile. How would you write that calculation?'
+    displayDuration: 5.6
+    choices: []
+    nextStepID: Day2_GridTask
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_ChooseApproach_Architect_Intermediate
+    speakerName: Steve
+    personality: 0
+    lineText: So the loops use the settings instead of a list of positions? Could you show me how those pieces fit
+      together?
+    displayDuration: 7.8
+    choices: []
+    nextStepID: Day2_GridTask
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_ChooseApproach_Architect_Advanced
+    speakerName: Steve
+    personality: 0
+    lineText: I had only checked the picture. Which edges would you test before trusting the grid?
+    displayDuration: 5.6
+    choices: []
+    nextStepID: Day2_GridTask
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_ChooseApproach_Architect_Expert
+    speakerName: Steve
+    personality: 0
+    lineText: I had not thought about a rectangular grid. Would that help us catch a loop using the wrong dimension?
+    displayDuration: 7.0
+    choices: []
+    nextStepID: Day2_GridTask
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_ChooseApproach_Pragmatist_Novice
+    speakerName: Steve
+    personality: 0
+    lineText: I can try a rough mockup. How would you keep the spacing consistent if I place the squares by eye?
+    displayDuration: 7.4
+    choices: []
+    nextStepID: Day2_GridTask
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 4
+    delayDuration: 0
+  - stepID: Day2_ChooseApproach_Pragmatist_Beginner
+    speakerName: Steve
+    personality: 0
+    lineText: I can copy the rows for the preview. Would changing the cell size later mean moving them all again?
+    displayDuration: 7.0
+    choices: []
+    nextStepID: Day2_GridTask
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 3
+    delayDuration: 0
+  - stepID: Day2_ChooseApproach_Pragmatist_Intermediate
+    speakerName: Steve
+    personality: 0
+    lineText: That seems quicker. Would you leave those fixed numbers in the loop, or move them into settings later?
+    displayDuration: 6.7
+    choices: []
+    nextStepID: Day2_GridTask
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 2
+    delayDuration: 0
+  - stepID: Day2_ChooseApproach_Pragmatist_Advanced
+    speakerName: Steve
+    personality: 0
+    lineText: A helper would make this easier to follow. How would we know whether it also works for another grid
+      size?
+    displayDuration: 7.4
+    choices: []
+    nextStepID: Day2_GridTask
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 1
+    delayDuration: 0
+  - stepID: Day2_ChooseApproach_Pragmatist_Expert
+    speakerName: Steve
+    personality: 0
+    lineText: I can get that prototype ready. Which skipped checks should I put on our follow-up list?
+    displayDuration: 5.9
+    choices: []
+    nextStepID: Day2_GridTask
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_ChooseApproach_Detective_Novice
+    speakerName: Steve
+    personality: 0
+    lineText: Right, we got the setup running yesterday. Could you help me with the grid part next?
+    displayDuration: 5.9
+    choices: []
+    nextStepID: Day2_GridTask
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: -1
+    delayDuration: 0
+  - stepID: Day2_ChooseApproach_Detective_Beginner
+    speakerName: Steve
+    personality: 0
+    lineText: Yes, I still have that CLion project open. How would you start organizing the tiles in it?
+    displayDuration: 6.3
+    choices: []
+    nextStepID: Day2_GridTask
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: -2
+    delayDuration: 0
+  - stepID: Day2_ChooseApproach_Detective_Intermediate
+    speakerName: Steve
+    personality: 0
+    lineText: Thanks for remembering how I set that up. Could you walk me through the drawing code now?
+    displayDuration: 6.3
+    choices: []
+    nextStepID: Day2_GridTask
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: -3
+    delayDuration: 0
+  - stepID: Day2_ChooseApproach_Detective_Advanced
+    speakerName: Steve
+    personality: 0
+    lineText: That is reassuring; I was wondering whether I should touch the build settings again. What would you
+      do with the grid itself?
+    displayDuration: 8.1
+    choices: []
+    nextStepID: Day2_GridTask
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: -5
+    delayDuration: 0
+  - stepID: Day2_ChooseApproach_Detective_Expert
+    speakerName: Steve
+    personality: 0
+    lineText: You have kept track of the setup better than I expected. Could I watch how you turn that into the tile
+      layout?
+    displayDuration: 8.1
+    choices: []
+    nextStepID: Day2_GridTask
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: -7
+    delayDuration: 0
+  - stepID: Day2_CellChoice_Architect_Novice
+    speakerName: Steve
+    personality: 0
+    lineText: So increasing the column moves right? Could you show me how the origin fits into that?
+    displayDuration: 5.9
+    choices: []
+    nextStepID: Day2_Exercise_Position
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_CellChoice_Architect_Beginner
+    speakerName: Steve
+    personality: 0
+    lineText: I think I see it. Do I add the origin after multiplying each index by the cell size?
+    displayDuration: 6.7
+    choices: []
+    nextStepID: Day2_Exercise_Position
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_CellChoice_Architect_Intermediate
+    speakerName: Steve
+    personality: 0
+    lineText: I get three hundred forty, one hundred sixty too. Would you use the same formula for every tile?
+    displayDuration: 6.7
+    choices: []
+    nextStepID: Day2_Exercise_Position
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_CellChoice_Architect_Advanced
+    speakerName: Steve
+    personality: 0
+    lineText: Using different row and column values makes the swap easier to see, does it not? What other cells would
+      you check?
+    displayDuration: 7.8
+    choices: []
+    nextStepID: Day2_Exercise_Position
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_CellChoice_Architect_Expert
+    speakerName: Steve
+    personality: 0
+    lineText: Would moving the origin and changing the cell size help prove that the helper really uses its settings?
+    displayDuration: 6.7
+    choices: []
+    nextStepID: Day2_Exercise_Position
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_CellChoice_Pragmatist_Novice
+    speakerName: Steve
+    personality: 0
+    lineText: I can line it up by eye for the preview. How would you make the position repeatable in code?
+    displayDuration: 7.0
+    choices: []
+    nextStepID: Day2_Exercise_Position
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 4
+    delayDuration: 0
+  - stepID: Day2_CellChoice_Pragmatist_Beginner
+    speakerName: Steve
+    personality: 0
+    lineText: I can enter that location. Would you calculate the other coordinates separately too?
+    displayDuration: 4.8
+    choices: []
+    nextStepID: Day2_Exercise_Position
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 3
+    delayDuration: 0
+  - stepID: Day2_CellChoice_Pragmatist_Intermediate
+    speakerName: Steve
+    personality: 0
+    lineText: That formula makes sense to me. Would you keep the one hundred, eighty, and forty written directly here?
+    displayDuration: 6.7
+    choices: []
+    nextStepID: Day2_Exercise_Position
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 2
+    delayDuration: 0
+  - stepID: Day2_CellChoice_Pragmatist_Advanced
+    speakerName: Steve
+    personality: 0
+    lineText: I can add the helper. Is this one tile enough for a quick check, or would you try another case?
+    displayDuration: 7.4
+    choices: []
+    nextStepID: Day2_Exercise_Position
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 1
+    delayDuration: 0
+  - stepID: Day2_CellChoice_Pragmatist_Expert
+    speakerName: Steve
+    personality: 0
+    lineText: I can get the preview ready after that. Would you want the corner checks left on the follow-up list?
+    displayDuration: 7.0
+    choices: []
+    nextStepID: Day2_Exercise_Position
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_CellChoice_Detective_Novice
+    speakerName: Steve
+    personality: 0
+    lineText: Sure, I can leave the preview open. Could you talk me through the calculation when you are ready?
+    displayDuration: 6.7
+    choices: []
+    nextStepID: Day2_Exercise_Position
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: -1
+    delayDuration: 0
+  - stepID: Day2_CellChoice_Detective_Beginner
+    speakerName: Steve
+    personality: 0
+    lineText: Yes, that is the project we used yesterday. How does this tile's position follow from its row and column?
+    displayDuration: 7.0
+    choices: []
+    nextStepID: Day2_Exercise_Position
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: -2
+    delayDuration: 0
+  - stepID: Day2_CellChoice_Detective_Intermediate
+    speakerName: Steve
+    personality: 0
+    lineText: Thanks, I was relieved when CMake found the library. Could you help me connect the grid indices to X
+      and Y?
+    displayDuration: 7.8
+    choices: []
+    nextStepID: Day2_Exercise_Position
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: -3
+    delayDuration: 0
+  - stepID: Day2_CellChoice_Detective_Advanced
+    speakerName: Steve
+    personality: 0
+    lineText: I am glad the build setup looks familiar. Could you explain which index belongs in each coordinate?
+    displayDuration: 6.3
+    choices: []
+    nextStepID: Day2_Exercise_Position
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: -5
+    delayDuration: 0
+  - stepID: Day2_CellChoice_Detective_Expert
+    speakerName: Steve
+    personality: 0
+    lineText: That helps me feel better about the setup. Could you show me the position rule so I do not copy it incorrectly?
+    displayDuration: 8.1
+    choices: []
+    nextStepID: Day2_Exercise_Position
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: -7
+    delayDuration: 0
+  - stepID: Day2_ResizeChoice_Architect_Novice
+    speakerName: Steve
+    personality: 0
+    lineText: Ten times ten gives one hundred cells. How would you change the generation code to get that count?
+    displayDuration: 6.7
+    choices: []
+    nextStepID: Day2_Exercise_Resize
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_ResizeChoice_Architect_Beginner
+    speakerName: Steve
+    personality: 0
+    lineText: So zero through nine gives ten entries? Would you put those limits in shared settings afterward?
+    displayDuration: 5.9
+    choices: []
+    nextStepID: Day2_Exercise_Resize
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_ResizeChoice_Architect_Intermediate
+    speakerName: Steve
+    personality: 0
+    lineText: I can change the two settings. Am I right that the drawing code should not need any new coordinates?
+    displayDuration: 7.0
+    choices: []
+    nextStepID: Day2_Exercise_Resize
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_ResizeChoice_Architect_Advanced
+    speakerName: Steve
+    personality: 0
+    lineText: Checking row nine, column nine makes sense. Would that reveal an extra row or column from an inclusive
+      loop?
+    displayDuration: 7.0
+    choices: []
+    nextStepID: Day2_Exercise_Resize
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_ResizeChoice_Architect_Expert
+    speakerName: Steve
+    personality: 0
+    lineText: Would six by ten be a better check for accidentally using rows in both loops? I would like to add that
+      test.
+    displayDuration: 8.1
+    choices: []
+    nextStepID: Day2_Exercise_Resize
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_ResizeChoice_Pragmatist_Novice
+    speakerName: Steve
+    personality: 0
+    lineText: I can add more squares to the preview. How would we notice if one overlaps or is missing?
+    displayDuration: 6.7
+    choices: []
+    nextStepID: Day2_Exercise_Resize
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 4
+    delayDuration: 0
+  - stepID: Day2_ResizeChoice_Pragmatist_Beginner
+    speakerName: Steve
+    personality: 0
+    lineText: I can duplicate the rows. Would you expect us to adjust those positions again if the dimensions change?
+    displayDuration: 6.7
+    choices: []
+    nextStepID: Day2_Exercise_Resize
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 3
+    delayDuration: 0
+  - stepID: Day2_ResizeChoice_Pragmatist_Intermediate
+    speakerName: Steve
+    personality: 0
+    lineText: I can replace the eights with tens. Where else would you look for another fixed value I might miss?
+    displayDuration: 7.0
+    choices: []
+    nextStepID: Day2_Exercise_Resize
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 2
+    delayDuration: 0
+  - stepID: Day2_ResizeChoice_Pragmatist_Advanced
+    speakerName: Steve
+    personality: 0
+    lineText: That would make the change quicker. Would a rectangular example be worth checking before we move on?
+    displayDuration: 6.3
+    choices: []
+    nextStepID: Day2_Exercise_Resize
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 1
+    delayDuration: 0
+  - stepID: Day2_ResizeChoice_Pragmatist_Expert
+    speakerName: Steve
+    personality: 0
+    lineText: I can confirm the one hundred cells. Should I note that the other shapes are still untested?
+    displayDuration: 6.3
+    choices: []
+    nextStepID: Day2_Exercise_Resize
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_ResizeChoice_Detective_Novice
+    speakerName: Steve
+    personality: 0
+    lineText: Yes, we can keep using the SFML window from yesterday. How would you change what it draws?
+    displayDuration: 6.3
+    choices: []
+    nextStepID: Day2_Exercise_Resize
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: -1
+    delayDuration: 0
+  - stepID: Day2_ResizeChoice_Detective_Beginner
+    speakerName: Steve
+    personality: 0
+    lineText: I remember getting that first window open. Could you show me how you would resize the grid inside it?
+    displayDuration: 7.0
+    choices: []
+    nextStepID: Day2_Exercise_Resize
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: -2
+    delayDuration: 0
+  - stepID: Day2_ResizeChoice_Detective_Intermediate
+    speakerName: Steve
+    personality: 0
+    lineText: I am glad we can leave the build configuration alone. Which dimensions should I pass to the drawing
+      function?
+    displayDuration: 7.0
+    choices: []
+    nextStepID: Day2_Exercise_Resize
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: -3
+    delayDuration: 0
+  - stepID: Day2_ResizeChoice_Detective_Advanced
+    speakerName: Steve
+    personality: 0
+    lineText: That reassures me about the setup. Would you mind reviewing the row and column arguments with me?
+    displayDuration: 6.3
+    choices: []
+    nextStepID: Day2_Exercise_Resize
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: -5
+    delayDuration: 0
+  - stepID: Day2_ResizeChoice_Detective_Expert
+    speakerName: Steve
+    personality: 0
+    lineText: Thanks, I would rather not accidentally undo yesterday's setup. Could you show me how you would make
+      the drawing call follow both requested dimensions?
+    displayDuration: 8.9
+    choices: []
+    nextStepID: Day2_Exercise_Resize
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: -7
+    delayDuration: 0
+  - stepID: Day2_ReviewChoice_Architect_Novice
+    speakerName: Steve
+    personality: 0
+    lineText: That would explain why the tile moves in the wrong direction. Where would you make the correction?
+    displayDuration: 6.3
+    choices: []
+    nextStepID: Day2_Exercise_Verification
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_ReviewChoice_Architect_Beginner
+    speakerName: Steve
+    personality: 0
+    lineText: So the shared formula is the part to fix? Would that correct every tile using it?
+    displayDuration: 5.9
+    choices: []
+    nextStepID: Day2_Exercise_Verification
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_ReviewChoice_Architect_Intermediate
+    speakerName: Steve
+    personality: 0
+    lineText: I can follow that calculation now. Could you show me how you would keep me from reintroducing the swap?
+    displayDuration: 7.0
+    choices: []
+    nextStepID: Day2_Exercise_Verification
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_ReviewChoice_Architect_Advanced
+    speakerName: Steve
+    personality: 0
+    lineText: Those seem like useful cases. Would you test the origin, unequal indices, and the edges together?
+    displayDuration: 5.9
+    choices: []
+    nextStepID: Day2_Exercise_Verification
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: -1
+    delayDuration: 0
+  - stepID: Day2_ReviewChoice_Architect_Expert
+    speakerName: Steve
+    personality: 0
+    lineText: That is more thorough than the origin check I wrote. Could you explain how the tests distinguish the
+      fixed helper from the swapped version?
+    displayDuration: 8.9
+    choices: []
+    nextStepID: Day2_Exercise_Verification
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: -1
+    delayDuration: 0
+  - stepID: Day2_ReviewChoice_Pragmatist_Novice
+    speakerName: Steve
+    personality: 0
+    lineText: I can move that tile for the screenshot. Would the same error still appear when another tile uses the
+      helper?
+    displayDuration: 7.4
+    choices: []
+    nextStepID: Day2_Exercise_Verification
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 4
+    delayDuration: 0
+  - stepID: Day2_ReviewChoice_Pragmatist_Beginner
+    speakerName: Steve
+    personality: 0
+    lineText: I can patch the visible ones. How would we avoid missing a bad position that is not on screen?
+    displayDuration: 7.0
+    choices: []
+    nextStepID: Day2_Exercise_Verification
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 3
+    delayDuration: 0
+  - stepID: Day2_ReviewChoice_Pragmatist_Intermediate
+    speakerName: Steve
+    personality: 0
+    lineText: I can swap those inputs. Would you test more than this one cell afterward?
+    displayDuration: 5.2
+    choices: []
+    nextStepID: Day2_Exercise_Verification
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 2
+    delayDuration: 0
+  - stepID: Day2_ReviewChoice_Pragmatist_Advanced
+    speakerName: Steve
+    personality: 0
+    lineText: I can check those two cases. Should I keep the far edge and rectangular grid on the follow-up list?
+    displayDuration: 7.0
+    choices: []
+    nextStepID: Day2_Exercise_Verification
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 1
+    delayDuration: 0
+  - stepID: Day2_ReviewChoice_Pragmatist_Expert
+    speakerName: Steve
+    personality: 0
+    lineText: I can record the remaining checks. Which ones would you want us to finish before using this for ship
+      placement?
+    displayDuration: 7.4
+    choices: []
+    nextStepID: Day2_Exercise_Verification
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_ReviewChoice_Detective_Novice
+    speakerName: Steve
+    personality: 0
+    lineText: All right, I can note it for review. Would you want to check it before we use the grid tomorrow?
+    displayDuration: 7.4
+    choices: []
+    nextStepID: Day2_Exercise_Verification
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: -1
+    delayDuration: 0
+  - stepID: Day2_ReviewChoice_Detective_Beginner
+    speakerName: Steve
+    personality: 0
+    lineText: Yes, I remember that setup step. Could you explain how you would review the coordinate issue when we
+      return to it?
+    displayDuration: 7.8
+    choices: []
+    nextStepID: Day2_Exercise_Verification
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: -2
+    delayDuration: 0
+  - stepID: Day2_ReviewChoice_Detective_Intermediate
+    speakerName: Steve
+    personality: 0
+    lineText: It is reassuring that the build setup is still familiar. How would you separate that from checking the
+      tile calculation?
+    displayDuration: 7.4
+    choices: []
+    nextStepID: Day2_Exercise_Verification
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: -3
+    delayDuration: 0
+  - stepID: Day2_ReviewChoice_Detective_Advanced
+    speakerName: Steve
+    personality: 0
+    lineText: I can keep the review note. When you look at the helper, could you show me a test that catches my mistake?
+    displayDuration: 8.1
+    choices: []
+    nextStepID: Day2_Exercise_Verification
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: -5
+    delayDuration: 0
+  - stepID: Day2_ReviewChoice_Detective_Expert
+    speakerName: Steve
+    personality: 0
+    lineText: Thanks for keeping track of the setup details. Could I watch your review of the coordinate code so I
+      understand the distinction?
+    displayDuration: 8.1
+    choices: []
+    nextStepID: Day2_Exercise_Verification
+    awardSkillKey: ''
+    stepType: 0
+    suspicionChange: -7
+    delayDuration: 0
+  - stepID: Day2_Exercise_Position
+    speakerName: Steve
+    personality: 0
+    lineText: Would you mind showing me which replacement you would use? You can run the tests to check it, then submit
+      the version you want us to keep.
+    displayDuration: 10.0
+    choices: []
+    nextStepID: Day2_CellReview
+    awardSkillKey: ''
+    stepType: 8
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_Exercise_Loops
+    speakerName: Steve
+    personality: 0
+    lineText: I am not confident about these loop bounds. Could you review the alternatives with me? I am especially
+      curious whether the same loop works when rows and columns are different.
+    displayDuration: 11.1
+    choices: []
+    nextStepID: Day2_ResizeBrief
+    awardSkillKey: ''
+    stepType: 8
+    exerciseIndex: 1
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_Exercise_Resize
+    speakerName: Steve
+    personality: 0
+    lineText: I copied the original drawing call, but it still uses eight by eight. Which arguments would you pass
+      instead? I would like to understand how to make this reusable.
+    displayDuration: 10.7
+    choices: []
+    nextStepID: Day2_GridReview
+    awardSkillKey: ''
+    stepType: 8
+    exerciseIndex: 2
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Day2_Exercise_Verification
+    speakerName: Steve
+    personality: 0
+    lineText: My origin test passes even with the swapped version. Am I testing the wrong thing? Could you show me
+      which checks would actually catch that mistake?
+    displayDuration: 9.6
+    choices: []
+    nextStepID: Day2_Complete
+    awardSkillKey: ''
+    stepType: 8
+    exerciseIndex: 3
     suspicionChange: 0
     delayDuration: 0

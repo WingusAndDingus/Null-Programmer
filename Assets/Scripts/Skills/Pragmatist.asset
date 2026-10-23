@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: The Pragmatist
   description: Wants the fastest solution to finish the workday. He may help if the player sees he has no chance of finishing on time, but he misuses global variables, tends to code with magic numbers, and finds quick patches with AI that if relied on too much will break the code and not know why.
   levelUnlocks:
-  - Level 1 Prag
-  - Level 2 Prag
-  - Level 3 Prag
-  - Level 4 Prag
+  - 
+  - 
+  - 
+  - 

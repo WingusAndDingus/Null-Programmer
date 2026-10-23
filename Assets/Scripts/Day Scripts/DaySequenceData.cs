@@ -9,6 +9,47 @@ public class DialogueStepChoice
     public HeadPersonality personality;
     public string targetStepOnClick;
     public int suspicionChange = 0;
+
+    [Header("Skill Requirement")]
+    public PersonalityLevel requiredLevel = PersonalityLevel.Novice;
+    [Tooltip("Variants with the same nonempty group show only the highest unlocked level. Leave empty for independent choices.")]
+    public string choiceGroup;
+}
+
+public static class NarrativeChoiceFilter
+{
+    public static List<DialogueStepChoice> GetAvailableChoices(
+        List<DialogueStepChoice> choices, Func<HeadPersonality, int> getLevel)
+    {
+        var available = new List<DialogueStepChoice>();
+        var groupIndices = new Dictionary<string, int>(StringComparer.Ordinal);
+        if (choices == null) return available;
+
+        foreach (DialogueStepChoice choice in choices)
+        {
+            if (choice == null || getLevel(choice.personality) < (int)choice.requiredLevel)
+                continue;
+
+            // Existing assets without a group retain all of their independent options.
+            if (string.IsNullOrWhiteSpace(choice.choiceGroup))
+            {
+                available.Add(choice);
+                continue;
+            }
+
+            if (!groupIndices.TryGetValue(choice.choiceGroup, out int index))
+            {
+                groupIndices.Add(choice.choiceGroup, available.Count);
+                available.Add(choice);
+            }
+            else if ((int)choice.requiredLevel > (int)available[index].requiredLevel)
+            {
+                available[index] = choice;
+            }
+        }
+
+        return available;
+    }
 }
 
 [Serializable]
@@ -36,6 +77,9 @@ public class NarrativeStep
     [Header("What needs to happen for the script to continue?")]
     public NarrativeStepType stepType;
 
+    [Tooltip("Used only for Day2Exercise steps: 0 = positioning, 1 = loops, 2 = resizing, 3 = regression tests.")]
+    public int exerciseIndex;
+
     [Header("Suspicion Settings")]
     public int suspicionChange = 0;
 
@@ -61,7 +105,9 @@ public enum NarrativeStepType
     StartScreenShare,       // Calls ZoomScreenShareController.Instance.StartScreenShare()
     WaitUntilScreenShareEnd, // Halts until screenshare video completes
     SetSteveExpression,
-    SwitchToNightScene
+    SwitchToNightScene,
+    TriggerGameEnd,
+    Day2Exercise          // Appended to preserve the serialized values of existing steps.
 }
 
 [CreateAssetMenu(fileName = "DaySequence_Day0", menuName = "Narrative/Day Sequence Data")]

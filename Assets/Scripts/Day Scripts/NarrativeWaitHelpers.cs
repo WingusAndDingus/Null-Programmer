@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ public class NarrativeWaitHelpers
     /// <summary>
     /// Pauses sequence until Steve's Zoom call is triggered.
     /// </summary>
-    public static Task WaitForZoomCall()
+    public static async Task WaitForZoomCall(CancellationToken token = default)
     {
         var tcs = new TaskCompletionSource<bool>();
 
@@ -19,13 +20,17 @@ public class NarrativeWaitHelpers
         };
 
         GameplayEvents.OnZoomCallStarted += handler;
-        return tcs.Task;
+        try
+        {
+            using (token.Register(() => tcs.TrySetCanceled())) { await tcs.Task; }
+        }
+        finally { GameplayEvents.OnZoomCallStarted -= handler; }
     }
 
     /// <summary>
     /// Pauses sequence until code compiles successfully.
     /// </summary>
-    public static Task<string> WaitForCodeCompilation()
+    public static async Task<string> WaitForCodeCompilation(CancellationToken token = default)
     {
         var tcs = new TaskCompletionSource<string>();
 
@@ -37,13 +42,17 @@ public class NarrativeWaitHelpers
         };
 
         GameplayEvents.OnCodeCompiled += handler;
-        return tcs.Task;
+        try
+        {
+            using (token.Register(() => tcs.TrySetCanceled())) { return await tcs.Task; }
+        }
+        finally { GameplayEvents.OnCodeCompiled -= handler; }
     }
 
     /// <summary>
     /// Pauses sequence until Steve's screen share video finishes.
     /// </summary>
-    public static Task WaitForScreenShareEnd()
+    public static async Task WaitForScreenShareEnd(CancellationToken token = default)
     {
         var tcs = new TaskCompletionSource<bool>();
 
@@ -55,6 +64,10 @@ public class NarrativeWaitHelpers
         };
 
         GameplayEvents.OnScreenShareEnded += handler;
-        return tcs.Task;
+        try
+        {
+            using (token.Register(() => tcs.TrySetCanceled())) { await tcs.Task; }
+        }
+        finally { GameplayEvents.OnScreenShareEnded -= handler; }
     }
 }
