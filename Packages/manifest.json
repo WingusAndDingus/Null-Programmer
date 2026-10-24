@@ -17,6 +17,10 @@
     "com.unity.timeline": "6.6.0",
     "com.unity.ugui": "2.6.0",
     "com.unity.visualscripting": "1.9.12",
+    "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask#2.5.11",
+    "dev.voltstro.unitywebbrowser": "2.2.8",
+    "dev.voltstro.unitywebbrowser.engine.cef": "2.2.8",
+    "dev.voltstro.unitywebbrowser.engine.cef.win.x64": "2.2.8",
     "com.unity.modules.accessibility": "1.0.0",
     "com.unity.modules.adaptiveperformance": "1.0.0",
     "com.unity.modules.ai": "1.0.0",
@@ -53,5 +57,16 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  }
+  },
+  "scopedRegistries": [
+    {
+      "name": "VoltUPR",
+      "url": "https://upr.voltstro.dev",
+      "scopes": [
+        "dev.voltstro",
+        "org.nuget",
+        "com.cysharp.unitask"
+      ]
+    }
+  ]
 }
