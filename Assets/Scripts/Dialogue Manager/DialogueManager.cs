@@ -299,7 +299,7 @@ public class DialogueManager : MonoBehaviour
 
             // If your team's system uses LayoutChoices, call it here, 
             // or apply your dynamic positions if needed.
-            // LayoutChoices(true); 
+            LayoutChoices(true);
 
             return await choiceTask.Task;
         }
@@ -479,5 +479,29 @@ public class DialogueManager : MonoBehaviour
         {
             panelImage.color = GetPersonalityColor(personality);
         }
+    }
+    //helper method to check if the mouse is currently inside either the dialogue box or the choices viewport:
+    public bool IsPointerOverDialogueUI(Vector2 mousePosition)
+    {
+        // Check main dialogue panel
+        if (dialoguePanel != null && dialoguePanel.activeSelf)
+        {
+            RectTransform panelRect = dialoguePanel.GetComponent<RectTransform>();
+            if (panelRect != null && RectTransformUtility.RectangleContainsScreenPoint(panelRect, mousePosition, null))
+            {
+                return true;
+            }
+        }
+
+        // Check choice viewport if active
+        if (choiceViewport != null && choiceViewport.gameObject.activeSelf)
+        {
+            if (RectTransformUtility.RectangleContainsScreenPoint(choiceViewport, mousePosition, null))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

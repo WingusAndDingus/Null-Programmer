@@ -92,7 +92,9 @@ public class NarrativeStep
 
     [Header("Scene Transition Settings")]
     [Tooltip("Name of the night/sleep scene to load")]
-    public string targetSceneName = "Sleep";
+    public string targetSceneName = "Night Screen";
+    [Header("Steve Coding Challenge (C++ Skill Check)")]
+    public SteveChallengeData steveChallenge;
 }
 
 public enum NarrativeStepType
@@ -107,6 +109,7 @@ public enum NarrativeStepType
     SetSteveExpression,
     SwitchToNightScene,
     TriggerGameEnd,
+    SteveCodingChallenge,
     Day2Exercise          // Appended to preserve the serialized values of existing steps.
 }
 

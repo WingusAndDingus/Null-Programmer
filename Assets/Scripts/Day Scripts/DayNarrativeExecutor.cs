@@ -181,6 +181,16 @@ public class DayNarrativeExecutor : MonoBehaviour
                     UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
                 }
                 break;
+            case NarrativeStepType.SteveCodingChallenge:
+                if (stepData.steveChallenge != null)
+                {
+                    await RunSteveChallengeAsync(stepData.steveChallenge);
+                }
+                else
+                {
+                    Debug.LogWarning($"[DayNarrativeExecutor] Step '{stepData.stepID}' is set to SteveCodingChallenge, but no SteveChallengeData asset was assigned!");
+                }
+                break;
             case NarrativeStepType.DialogueLine:
             case NarrativeStepType.PresentChoices:
                 break;
@@ -292,5 +302,49 @@ public class DayNarrativeExecutor : MonoBehaviour
             case HeadPersonality.Genius: GameManager.Instance.ChangeGeniusStat(points); break;
             case HeadPersonality.Detective: GameManager.Instance.ChangeDetectiveStat(points); break;
         }
+    }
+    // Step type handler for the Steve Skill checks
+    public async Task RunSteveChallengeAsync(SteveChallengeData challenge)
+    {
+        // 1. Trigger Steve's incoming call UI / Audio
+        // 2. Open the IDE interface (waiting for your teammate's final IDE UI plugin)
+
+        // For now, you can hook this task to wait until the player submits text:
+        string playerCode = await SteveScreenShareManager.Instance.PromptPlayerForCodeAsync(challenge);
+
+        // 3. Validate against the accepted answers
+        bool success = ValidatePlayerCode(playerCode, challenge);
+
+        if (success)
+        {
+            Debug.Log("Steve: 'Looks solid! Good job.'");
+            // Reward personality points or proceed to next step
+        }
+        else
+        {
+            Debug.Log("Steve: 'Hmm, that's not quite right. Let's review.'");
+            // Handle retry or failure path
+        }
+    }
+    public bool ValidatePlayerCode(string playerInput, SteveChallengeData challengeData)
+    {
+        if (string.IsNullOrEmpty(playerInput) || challengeData == null || challengeData.acceptedAnswers == null)
+            return false;
+
+        // Normalize player input (trim whitespace, normalize internal spacing if needed)
+        string cleanPlayerInput = playerInput.Trim();
+
+        foreach (string accepted in challengeData.acceptedAnswers)
+        {
+            if (string.IsNullOrEmpty(accepted)) continue;
+
+            string cleanAccepted = accepted.Trim();
+            if (cleanPlayerInput == cleanAccepted)
+            {
+                return true; // Match found!
+            }
+        }
+
+        return false; // No matching pattern found
     }
 }

@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.08077945, b: 0.44025147, a: 0.7058824}
+  m_Color: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 0.105882354}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -373,6 +373,8 @@ GameObject:
   - component: {fileID: 2564426781295140510}
   - component: {fileID: 7262231232660650748}
   - component: {fileID: 6131928231598695598}
+  - component: {fileID: 901204699504264611}
+  - component: {fileID: 779258210889514895}
   m_Layer: 5
   m_Name: DialoguePanel
   m_TagString: Untagged
@@ -422,7 +424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.39607844}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -439,6 +441,74 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &901204699504264611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3772027912824202676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 6131928231598695598}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5369607735899138843}
+        m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
+        m_MethodName: OnDialogueClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!225 &779258210889514895
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3772027912824202676}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6268270705485556892
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,12 +635,26 @@ MonoBehaviour:
   speechAudioSource: {fileID: 0}
   choiceContainer: {fileID: 0}
   choiceBubblePrefab: {fileID: 5284935405109884843, guid: 835d22ffd14e85b4caa3c6d69b1e0510, type: 3}
-  defaultPanelColor: {r: 0.1, g: 0.1, b: 0.1, a: 0.8}
-  architectColor: {r: 0.2, g: 0.8, b: 1, a: 1}
-  pragmatistColor: {r: 1, g: 0.6, b: 0.2, a: 1}
-  sentinelColor: {r: 0.3, g: 0.9, b: 0.3, a: 1}
-  geniusColor: {r: 0.9, g: 0.8, b: 0.2, a: 1}
-  detectiveColor: {r: 0.8, g: 0.4, b: 1, a: 1}
+  singleBubbleLayout:
+  - {x: 669, y: -400}
+  twoBubbleLayout:
+  - {x: -350, y: -400}
+  - {x: 350, y: -400}
+  threeBubbleLayout:
+  - {x: -350, y: -400}
+  - {x: 350, y: -400}
+  - {x: 0, y: -350}
+  fourBubbleLayout:
+  - {x: -350, y: 150}
+  - {x: 350, y: 150}
+  - {x: -350, y: -150}
+  - {x: 350, y: -150}
+  defaultPanelColor: {r: 0.1, g: 0.1, b: 0.1, a: 0.7058824}
+  architectColor: {r: 0.2, g: 0.8, b: 1, a: 0.7058824}
+  pragmatistColor: {r: 1, g: 0.6, b: 0.2, a: 0.7058824}
+  sentinelColor: {r: 0.3, g: 0.9, b: 0.3, a: 0.7058824}
+  geniusColor: {r: 0.9856583, g: 1, b: 0.39999998, a: 0.7058824}
+  detectiveColor: {r: 0.8000001, g: 0.40000004, b: 1, a: 0.7058824}
 --- !u!114 &753400000000000001
 MonoBehaviour:
   m_ObjectHideFlags: 0
