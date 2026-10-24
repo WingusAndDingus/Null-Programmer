@@ -17,87 +17,101 @@ MonoBehaviour:
   - stepID: Start
     speakerName: Me
     personality: 0
-    lineText: Tuesday. The development environment is ready. Today I need to look like someone who knows what to do
-      with it.
+    lineText: Tuesday. The development environment is ready. Today I need to look like someone who knows what to do with it.
     displayDuration: 7.4
     choices: []
     nextStepID: Day2_Morning_Architect
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_Morning_Architect
     speakerName: The Architect
     personality: 2
-    lineText: Start with one correct tile. Then repeat the rule. A clean design is only useful if we also check that
-      it behaves correctly.
+    lineText: Start with one correct tile. Then repeat the rule. A clean design is only useful if we also check that it behaves correctly.
     displayDuration: 8.5
     choices: []
     nextStepID: Day2_Morning_Pragmatist
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_Morning_Pragmatist
     speakerName: The Pragmatist
     personality: 3
     lineText: Or get a grid on the screen before anyone asks questions. We can make it elegant after it works.
-    displayDuration: 7.0
+    displayDuration: 7
     choices: []
     nextStepID: Day2_Morning_Detective
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_Morning_Detective
     speakerName: The Detective
     personality: 6
-    lineText: Steve remembers who we used to be. Watch what he says, and look for familiar details. A little confidence
-      might buy us some breathing room.
+    lineText: Steve remembers who we used to be. Watch what he says, and look for familiar details. A little confidence might buy us some breathing room.
     displayDuration: 9.3
     choices: []
     nextStepID: Day2_WaitZoom
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_WaitZoom
-    speakerName: ''
+    speakerName: 
     personality: 0
-    lineText: ''
+    lineText: 
     displayDuration: 0
     choices: []
     nextStepID: Day2_GridBrief
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 1
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_GridBrief
     speakerName: Steve
     personality: 0
-    lineText: Morning! I started trying to draw a grid after yesterday's SFML setup, but I am not sure how to organize
-      the tiles. Could you talk me through how you would approach it? I'd like to understand it before we get to ship
-      placement.
+    lineText: Morning! I started trying to draw a grid after yesterday's SFML setup, but I am not sure how to organize the tiles. Could you talk me through how you would approach it? I'd like to understand it before we get to ship placement.
     displayDuration: 15.9
     choices: []
     nextStepID: Day2_GridRequirements
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_GridRequirements
     speakerName: Steve
     personality: 0
-    lineText: For my first attempt, I used eight rows, eight columns, forty-pixel cells, and an origin of one hundred,
-      eighty. Would you keep those values together somewhere? I am worried I will have to rewrite the positions if
-      the size changes.
+    lineText: For my first attempt, I used eight rows, eight columns, forty-pixel cells, and an origin of one hundred, eighty. Would you keep those values together somewhere? I am worried I will have to rewrite the positions if the size changes.
     displayDuration: 14.8
     choices: []
     nextStepID: Day2_ChooseApproach
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ChooseApproach
     speakerName: Steve
     personality: 0
@@ -122,15 +136,13 @@ MonoBehaviour:
       suspicionChange: 0
       requiredLevel: 2
       choiceGroup: Day2_ChooseApproach_Architect
-    - choiceText: Use shared settings and nested loops, then verify the origin, last cell, and loop bounds before
-        we call it done.
+    - choiceText: Use shared settings and nested loops, then verify the origin, last cell, and loop bounds before we call it done.
       personality: 2
       targetStepOnClick: Day2_ChooseApproach_Architect_Advanced
       suspicionChange: 0
       requiredLevel: 3
       choiceGroup: Day2_ChooseApproach_Architect
-    - choiceText: Separate grid configuration from drawing, generate from one position rule, and verify both square
-        and rectangular dimensions.
+    - choiceText: Separate grid configuration from drawing, generate from one position rule, and verify both square and rectangular dimensions.
       personality: 2
       targetStepOnClick: Day2_ChooseApproach_Architect_Expert
       suspicionChange: 0
@@ -160,8 +172,7 @@ MonoBehaviour:
       suspicionChange: 0
       requiredLevel: 3
       choiceGroup: Day2_ChooseApproach_Pragmatist
-    - choiceText: Use a compact loop with adjustable row and column counts. Skip the edge-case tests so we can demo
-        immediately.
+    - choiceText: Use a compact loop with adjustable row and column counts. Skip the edge-case tests so we can demo immediately.
       personality: 3
       targetStepOnClick: Day2_ChooseApproach_Pragmatist_Expert
       suspicionChange: 0
@@ -173,95 +184,101 @@ MonoBehaviour:
       suspicionChange: 0
       requiredLevel: 0
       choiceGroup: Day2_ChooseApproach_Detective
-    - choiceText: We already have yesterday's CLion project. Let us keep that environment consistent while I look
-        over the implementation.
+    - choiceText: We already have yesterday's CLion project. Let us keep that environment consistent while I look over the implementation.
       personality: 6
       targetStepOnClick: Day2_ChooseApproach_Detective_Beginner
       suspicionChange: 0
       requiredLevel: 1
       choiceGroup: Day2_ChooseApproach_Detective
-    - choiceText: You configured SFML through CMakeLists.txt yesterday. Keep that setup in place while I review how
-        the grid should fit into it.
+    - choiceText: You configured SFML through CMakeLists.txt yesterday. Keep that setup in place while I review how the grid should fit into it.
       personality: 6
       targetStepOnClick: Day2_ChooseApproach_Detective_Intermediate
       suspicionChange: 0
       requiredLevel: 2
       choiceGroup: Day2_ChooseApproach_Detective
-    - choiceText: Yesterday you set SFML_DIR for the downloaded library. We can preserve that configuration while
-        I decide how to organize the grid.
+    - choiceText: Yesterday you set SFML_DIR for the downloaded library. We can preserve that configuration while I decide how to organize the grid.
       personality: 6
       targetStepOnClick: Day2_ChooseApproach_Detective_Advanced
       suspicionChange: 0
       requiredLevel: 3
       choiceGroup: Day2_ChooseApproach_Detective
-    - choiceText: You kept SFML under external/ and connected it through CMake yesterday. Let us retain that environment
-        while I review the drawing approach.
+    - choiceText: You kept SFML under external/ and connected it through CMake yesterday. Let us retain that environment while I review the drawing approach.
       personality: 6
       targetStepOnClick: Day2_ChooseApproach_Detective_Expert
       suspicionChange: 0
       requiredLevel: 4
       choiceGroup: Day2_ChooseApproach_Detective
-    nextStepID: ''
-    awardSkillKey: ''
+    nextStepID: 
+    awardSkillKey: 
     stepType: 2
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_GridTask
     speakerName: Steve
     personality: 0
-    lineText: Could I check one calculation with you? For row two, column six, with zero-based indices, forty-pixel
-      cells, and origin one hundred, eighty, how would you find the screen position?
+    lineText: Could I check one calculation with you? For row two, column six, with zero-based indices, forty-pixel cells, and origin one hundred, eighty, how would you find the screen position?
     displayDuration: 10.7
     choices: []
     nextStepID: Day2_Cell_Architect
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_Cell_Architect
     speakerName: The Architect
     personality: 2
-    lineText: Before answering, ask whether we understand how a grid index becomes a screen position. The more we
-      know, the better we can explain and test it.
+    lineText: Before answering, ask whether we understand how a grid index becomes a screen position. The more we know, the better we can explain and test it.
     displayDuration: 9.6
     choices: []
     nextStepID: Day2_Cell_Pragmatist
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_Cell_Pragmatist
     speakerName: The Pragmatist
     personality: 3
-    lineText: We only need this tile on the screen right now. We can choose how much of the calculation to tidy up
-      before the demo.
+    lineText: We only need this tile on the screen right now. We can choose how much of the calculation to tidy up before the demo.
     displayDuration: 8.9
     choices: []
     nextStepID: Day2_Cell_Detective
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_Cell_Detective
     speakerName: The Detective
     personality: 6
-    lineText: He knows yesterday's SFML setup. Recalling those details might reassure him, but they will not calculate
-      this tile's position for us.
+    lineText: He knows yesterday's SFML setup. Recalling those details might reassure him, but they will not calculate this tile's position for us.
     displayDuration: 7.8
     choices: []
     nextStepID: Day2_CellChoice
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_CellChoice
     speakerName: Steve
     personality: 0
     lineText: How would you explain the position calculation to me?
     displayDuration: 4
     choices:
-    - choiceText: Column six should move the tile right, and row two should move it down. Let us check both offsets
-        from the origin.
+    - choiceText: Column six should move the tile right, and row two should move it down. Let us check both offsets from the origin.
       personality: 2
       targetStepOnClick: Day2_CellChoice_Architect_Novice
       suspicionChange: 0
@@ -285,8 +302,7 @@ MonoBehaviour:
       suspicionChange: 0
       requiredLevel: 3
       choiceGroup: Day2_CellChoice_Architect
-    - choiceText: Use (340, 160). Keep the row-column-to-position conversion in one helper and test it with a different
-        origin and cell size too.
+    - choiceText: Use (340, 160). Keep the row-column-to-position conversion in one helper and test it with a different origin and cell size too.
       personality: 2
       targetStepOnClick: Day2_CellChoice_Architect_Expert
       suspicionChange: 0
@@ -316,8 +332,7 @@ MonoBehaviour:
       suspicionChange: 0
       requiredLevel: 3
       choiceGroup: Day2_CellChoice_Pragmatist
-    - choiceText: Use the configured origin and size in a short helper. If (2, 6) lines up, ship the preview without
-        testing the corners.
+    - choiceText: Use the configured origin and size in a short helper. If (2, 6) lines up, ship the preview without testing the corners.
       personality: 3
       targetStepOnClick: Day2_CellChoice_Pragmatist_Expert
       suspicionChange: 0
@@ -335,56 +350,60 @@ MonoBehaviour:
       suspicionChange: 0
       requiredLevel: 1
       choiceGroup: Day2_CellChoice_Detective
-    - choiceText: CMake already finds SFML with yesterday's configuration. Keep the build output handy while I review
-        the coordinate code.
+    - choiceText: CMake already finds SFML with yesterday's configuration. Keep the build output handy while I review the coordinate code.
       personality: 6
       targetStepOnClick: Day2_CellChoice_Detective_Intermediate
       suspicionChange: 0
       requiredLevel: 2
       choiceGroup: Day2_CellChoice_Detective
-    - choiceText: Your CMake file already links the SFML targets. We can leave that configuration alone while I verify
-        the position rule.
+    - choiceText: Your CMake file already links the SFML targets. We can leave that configuration alone while I verify the position rule.
       personality: 6
       targetStepOnClick: Day2_CellChoice_Detective_Advanced
       suspicionChange: 0
       requiredLevel: 3
       choiceGroup: Day2_CellChoice_Detective
-    - choiceText: Yesterday's library path and linking setup are still relevant. Keep those unchanged; I will review
-        the coordinate calculation separately.
+    - choiceText: Yesterday's library path and linking setup are still relevant. Keep those unchanged; I will review the coordinate calculation separately.
       personality: 6
       targetStepOnClick: Day2_CellChoice_Detective_Expert
       suspicionChange: 0
       requiredLevel: 4
       choiceGroup: Day2_CellChoice_Detective
-    nextStepID: ''
-    awardSkillKey: ''
+    nextStepID: 
+    awardSkillKey: 
     stepType: 2
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_CellReview
     speakerName: The Architect
     personality: 2
-    lineText: A familiar setup detail can make the conversation easier. It cannot replace the position calculation.
-      One correct coordinate is useful; a rule that works for every coordinate is better.
+    lineText: A familiar setup detail can make the conversation easier. It cannot replace the position calculation. One correct coordinate is useful; a rule that works for every coordinate is better.
     displayDuration: 10.7
     choices: []
     nextStepID: Day2_Exercise_Loops
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ResizeBrief
     speakerName: Steve
     personality: 0
-    lineText: If we changed this from eight by eight to ten by ten, would you update the loops or redraw the tiles?
-      I would like to keep the same origin and cell size. How would you handle that change?
+    lineText: If we changed this from eight by eight to ten by ten, would you update the loops or redraw the tiles? I would like to keep the same origin and cell size. How would you handle that change?
     displayDuration: 14.1
     choices: []
     nextStepID: Day2_ResizeChoice
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ResizeChoice
     speakerName: Steve
     personality: 0
@@ -403,22 +422,19 @@ MonoBehaviour:
       suspicionChange: 0
       requiredLevel: 1
       choiceGroup: Day2_ResizeChoice_Architect
-    - choiceText: Change the shared rows and columns to ten. The nested loops should then generate one hundred cells
-        without copying code.
+    - choiceText: Change the shared rows and columns to ten. The nested loops should then generate one hundred cells without copying code.
       personality: 2
       targetStepOnClick: Day2_ResizeChoice_Architect_Intermediate
       suspicionChange: 0
       requiredLevel: 2
       choiceGroup: Day2_ResizeChoice_Architect
-    - choiceText: Update the shared dimensions, check that the count is one hundred, and test the last valid cell
-        at row nine, column nine.
+    - choiceText: Update the shared dimensions, check that the count is one hundred, and test the last valid cell at row nine, column nine.
       personality: 2
       targetStepOnClick: Day2_ResizeChoice_Architect_Advanced
       suspicionChange: 0
       requiredLevel: 3
       choiceGroup: Day2_ResizeChoice_Architect
-    - choiceText: Update the configuration, test ten by ten, then six by ten. Verify the count, corners, and that
-        each loop uses its own dimension.
+    - choiceText: Update the configuration, test ten by ten, then six by ten. Verify the count, corners, and that each loop uses its own dimension.
       personality: 2
       targetStepOnClick: Day2_ResizeChoice_Architect_Expert
       suspicionChange: 0
@@ -448,8 +464,7 @@ MonoBehaviour:
       suspicionChange: 0
       requiredLevel: 3
       choiceGroup: Day2_ResizeChoice_Pragmatist
-    - choiceText: Regenerate from the new dimensions, confirm there are one hundred cells, and leave the other sizes
-        for tomorrow.
+    - choiceText: Regenerate from the new dimensions, confirm there are one hundred cells, and leave the other sizes for tomorrow.
       personality: 3
       targetStepOnClick: Day2_ResizeChoice_Pragmatist_Expert
       suspicionChange: 0
@@ -461,8 +476,7 @@ MonoBehaviour:
       suspicionChange: 0
       requiredLevel: 0
       choiceGroup: Day2_ResizeChoice_Detective
-    - choiceText: Getting that first window open yesterday gave us a starting point. Keep the same project while I
-        look at the new size.
+    - choiceText: Getting that first window open yesterday gave us a starting point. Keep the same project while I look at the new size.
       personality: 6
       targetStepOnClick: Day2_ResizeChoice_Detective_Beginner
       suspicionChange: 0
@@ -474,37 +488,40 @@ MonoBehaviour:
       suspicionChange: 0
       requiredLevel: 2
       choiceGroup: Day2_ResizeChoice_Detective
-    - choiceText: The SFML library configuration can stay unchanged while we prepare the larger preview. I will come
-        back to the grid dimensions.
+    - choiceText: The SFML library configuration can stay unchanged while we prepare the larger preview. I will come back to the grid dimensions.
       personality: 6
       targetStepOnClick: Day2_ResizeChoice_Detective_Advanced
       suspicionChange: 0
       requiredLevel: 3
       choiceGroup: Day2_ResizeChoice_Detective
-    - choiceText: Keep the external/ library folder and yesterday's CMake configuration in place. I will review the
-        requested dimensions separately from the build setup.
+    - choiceText: Keep the external/ library folder and yesterday's CMake configuration in place. I will review the requested dimensions separately from the build setup.
       personality: 6
       targetStepOnClick: Day2_ResizeChoice_Detective_Expert
       suspicionChange: 0
       requiredLevel: 4
       choiceGroup: Day2_ResizeChoice_Detective
-    nextStepID: ''
-    awardSkillKey: ''
+    nextStepID: 
+    awardSkillKey: 
     stepType: 2
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_GridReview
     speakerName: Steve
     personality: 0
-    lineText: I think I swapped the axes in another version of the helper. Row two, column six appears at one hundred
-      eighty, three hundred twenty. Could you help me understand what I got wrong and how you would check the fix?
+    lineText: I think I swapped the axes in another version of the helper. Row two, column six appears at one hundred eighty, three hundred twenty. Could you help me understand what I got wrong and how you would check the fix?
     displayDuration: 14.8
     choices: []
     nextStepID: Day2_ReviewChoice
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ReviewChoice
     speakerName: Steve
     personality: 0
@@ -523,8 +540,7 @@ MonoBehaviour:
       suspicionChange: 0
       requiredLevel: 1
       choiceGroup: Day2_ReviewChoice_Architect
-    - choiceText: Correct the shared formula to x = originX + column * size and y = originY + row * size; this cell
-        should be (340, 160).
+    - choiceText: Correct the shared formula to x = originX + column * size and y = originY + row * size; this cell should be (340, 160).
       personality: 2
       targetStepOnClick: Day2_ReviewChoice_Architect_Intermediate
       suspicionChange: 0
@@ -536,8 +552,7 @@ MonoBehaviour:
       suspicionChange: 0
       requiredLevel: 3
       choiceGroup: Day2_ReviewChoice_Architect
-    - choiceText: Fix the shared conversion, test unequal dimensions and a changed origin, and verify that neighboring
-        cells differ by exactly one cell size on the expected axis.
+    - choiceText: Fix the shared conversion, test unequal dimensions and a changed origin, and verify that neighboring cells differ by exactly one cell size on the expected axis.
       personality: 2
       targetStepOnClick: Day2_ReviewChoice_Architect_Expert
       suspicionChange: 0
@@ -567,8 +582,7 @@ MonoBehaviour:
       suspicionChange: 0
       requiredLevel: 3
       choiceGroup: Day2_ReviewChoice_Pragmatist
-    - choiceText: Fix the shared conversion and check the known failing cell. Record the remaining edge tests as follow-up
-        work.
+    - choiceText: Fix the shared conversion and check the known failing cell. Record the remaining edge tests as follow-up work.
       personality: 3
       targetStepOnClick: Day2_ReviewChoice_Pragmatist_Expert
       suspicionChange: 0
@@ -580,51 +594,52 @@ MonoBehaviour:
       suspicionChange: 0
       requiredLevel: 0
       choiceGroup: Day2_ReviewChoice_Detective
-    - choiceText: We got the SFML window running yesterday. Keep that setup intact while we put the coordinate issue
-        on the review list.
+    - choiceText: We got the SFML window running yesterday. Keep that setup intact while we put the coordinate issue on the review list.
       personality: 6
       targetStepOnClick: Day2_ReviewChoice_Detective_Beginner
       suspicionChange: 0
       requiredLevel: 1
       choiceGroup: Day2_ReviewChoice_Detective
-    - choiceText: Keep the library configuration we checked yesterday. We can separate the coordinate review from
-        changes to the build setup.
+    - choiceText: Keep the library configuration we checked yesterday. We can separate the coordinate review from changes to the build setup.
       personality: 6
       targetStepOnClick: Day2_ReviewChoice_Detective_Intermediate
       suspicionChange: 0
       requiredLevel: 2
       choiceGroup: Day2_ReviewChoice_Detective
-    - choiceText: The setup details from yesterday are still in place. Note the coordinate problem, and I will schedule
-        a focused review of that helper.
+    - choiceText: The setup details from yesterday are still in place. Note the coordinate problem, and I will schedule a focused review of that helper.
       personality: 6
       targetStepOnClick: Day2_ReviewChoice_Detective_Advanced
       suspicionChange: 0
       requiredLevel: 3
       choiceGroup: Day2_ReviewChoice_Detective
-    - choiceText: Retain yesterday's SFML path and linking configuration. I will review the coordinate helper separately
-        before we depend on it for board work.
+    - choiceText: Retain yesterday's SFML path and linking configuration. I will review the coordinate helper separately before we depend on it for board work.
       personality: 6
       targetStepOnClick: Day2_ReviewChoice_Detective_Expert
       suspicionChange: 0
       requiredLevel: 4
       choiceGroup: Day2_ReviewChoice_Detective
-    nextStepID: ''
-    awardSkillKey: ''
+    nextStepID: 
+    awardSkillKey: 
     stepType: 2
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_Complete
     speakerName: Me
     personality: 0
-    lineText: I submitted today's grid. Familiar details helped me manage Steve's suspicion, but tomorrow the code
-      will have to stand on its own. Any shortcuts I left in place may still need work.
+    lineText: I submitted today's grid. Familiar details helped me manage Steve's suspicion, but tomorrow the code will have to stand on its own. Any shortcuts I left in place may still need work.
     displayDuration: 11.9
     choices: []
-    nextStepID: ''
+    nextStepID: 
     awardSkillKey: Day_2_Complete
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ChooseApproach_Architect_Novice
     speakerName: Steve
     personality: 0
@@ -632,10 +647,13 @@ MonoBehaviour:
     displayDuration: 5.9
     choices: []
     nextStepID: Day2_GridTask
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ChooseApproach_Architect_Beginner
     speakerName: Steve
     personality: 0
@@ -643,22 +661,27 @@ MonoBehaviour:
     displayDuration: 5.6
     choices: []
     nextStepID: Day2_GridTask
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ChooseApproach_Architect_Intermediate
     speakerName: Steve
     personality: 0
-    lineText: So the loops use the settings instead of a list of positions? Could you show me how those pieces fit
-      together?
+    lineText: So the loops use the settings instead of a list of positions? Could you show me how those pieces fit together?
     displayDuration: 7.8
     choices: []
     nextStepID: Day2_GridTask
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ChooseApproach_Architect_Advanced
     speakerName: Steve
     personality: 0
@@ -666,21 +689,27 @@ MonoBehaviour:
     displayDuration: 5.6
     choices: []
     nextStepID: Day2_GridTask
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ChooseApproach_Architect_Expert
     speakerName: Steve
     personality: 0
     lineText: I had not thought about a rectangular grid. Would that help us catch a loop using the wrong dimension?
-    displayDuration: 7.0
+    displayDuration: 7
     choices: []
     nextStepID: Day2_GridTask
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ChooseApproach_Pragmatist_Novice
     speakerName: Steve
     personality: 0
@@ -688,21 +717,27 @@ MonoBehaviour:
     displayDuration: 7.4
     choices: []
     nextStepID: Day2_GridTask
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 4
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ChooseApproach_Pragmatist_Beginner
     speakerName: Steve
     personality: 0
     lineText: I can copy the rows for the preview. Would changing the cell size later mean moving them all again?
-    displayDuration: 7.0
+    displayDuration: 7
     choices: []
     nextStepID: Day2_GridTask
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 3
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ChooseApproach_Pragmatist_Intermediate
     speakerName: Steve
     personality: 0
@@ -710,22 +745,27 @@ MonoBehaviour:
     displayDuration: 6.7
     choices: []
     nextStepID: Day2_GridTask
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 2
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ChooseApproach_Pragmatist_Advanced
     speakerName: Steve
     personality: 0
-    lineText: A helper would make this easier to follow. How would we know whether it also works for another grid
-      size?
+    lineText: A helper would make this easier to follow. How would we know whether it also works for another grid size?
     displayDuration: 7.4
     choices: []
     nextStepID: Day2_GridTask
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 1
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ChooseApproach_Pragmatist_Expert
     speakerName: Steve
     personality: 0
@@ -733,10 +773,13 @@ MonoBehaviour:
     displayDuration: 5.9
     choices: []
     nextStepID: Day2_GridTask
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ChooseApproach_Detective_Novice
     speakerName: Steve
     personality: 0
@@ -744,10 +787,13 @@ MonoBehaviour:
     displayDuration: 5.9
     choices: []
     nextStepID: Day2_GridTask
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: -1
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ChooseApproach_Detective_Beginner
     speakerName: Steve
     personality: 0
@@ -755,10 +801,13 @@ MonoBehaviour:
     displayDuration: 6.3
     choices: []
     nextStepID: Day2_GridTask
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: -2
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ChooseApproach_Detective_Intermediate
     speakerName: Steve
     personality: 0
@@ -766,34 +815,41 @@ MonoBehaviour:
     displayDuration: 6.3
     choices: []
     nextStepID: Day2_GridTask
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: -3
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ChooseApproach_Detective_Advanced
     speakerName: Steve
     personality: 0
-    lineText: That is reassuring; I was wondering whether I should touch the build settings again. What would you
-      do with the grid itself?
+    lineText: That is reassuring; I was wondering whether I should touch the build settings again. What would you do with the grid itself?
     displayDuration: 8.1
     choices: []
     nextStepID: Day2_GridTask
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: -5
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ChooseApproach_Detective_Expert
     speakerName: Steve
     personality: 0
-    lineText: You have kept track of the setup better than I expected. Could I watch how you turn that into the tile
-      layout?
+    lineText: You have kept track of the setup better than I expected. Could I watch how you turn that into the tile layout?
     displayDuration: 8.1
     choices: []
     nextStepID: Day2_GridTask
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: -7
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_CellChoice_Architect_Novice
     speakerName: Steve
     personality: 0
@@ -801,10 +857,13 @@ MonoBehaviour:
     displayDuration: 5.9
     choices: []
     nextStepID: Day2_Exercise_Position
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_CellChoice_Architect_Beginner
     speakerName: Steve
     personality: 0
@@ -812,10 +871,13 @@ MonoBehaviour:
     displayDuration: 6.7
     choices: []
     nextStepID: Day2_Exercise_Position
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_CellChoice_Architect_Intermediate
     speakerName: Steve
     personality: 0
@@ -823,22 +885,27 @@ MonoBehaviour:
     displayDuration: 6.7
     choices: []
     nextStepID: Day2_Exercise_Position
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_CellChoice_Architect_Advanced
     speakerName: Steve
     personality: 0
-    lineText: Using different row and column values makes the swap easier to see, does it not? What other cells would
-      you check?
+    lineText: Using different row and column values makes the swap easier to see, does it not? What other cells would you check?
     displayDuration: 7.8
     choices: []
     nextStepID: Day2_Exercise_Position
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_CellChoice_Architect_Expert
     speakerName: Steve
     personality: 0
@@ -846,21 +913,27 @@ MonoBehaviour:
     displayDuration: 6.7
     choices: []
     nextStepID: Day2_Exercise_Position
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_CellChoice_Pragmatist_Novice
     speakerName: Steve
     personality: 0
     lineText: I can line it up by eye for the preview. How would you make the position repeatable in code?
-    displayDuration: 7.0
+    displayDuration: 7
     choices: []
     nextStepID: Day2_Exercise_Position
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 4
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_CellChoice_Pragmatist_Beginner
     speakerName: Steve
     personality: 0
@@ -868,10 +941,13 @@ MonoBehaviour:
     displayDuration: 4.8
     choices: []
     nextStepID: Day2_Exercise_Position
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 3
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_CellChoice_Pragmatist_Intermediate
     speakerName: Steve
     personality: 0
@@ -879,10 +955,13 @@ MonoBehaviour:
     displayDuration: 6.7
     choices: []
     nextStepID: Day2_Exercise_Position
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 2
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_CellChoice_Pragmatist_Advanced
     speakerName: Steve
     personality: 0
@@ -890,21 +969,27 @@ MonoBehaviour:
     displayDuration: 7.4
     choices: []
     nextStepID: Day2_Exercise_Position
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 1
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_CellChoice_Pragmatist_Expert
     speakerName: Steve
     personality: 0
     lineText: I can get the preview ready after that. Would you want the corner checks left on the follow-up list?
-    displayDuration: 7.0
+    displayDuration: 7
     choices: []
     nextStepID: Day2_Exercise_Position
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_CellChoice_Detective_Novice
     speakerName: Steve
     personality: 0
@@ -912,33 +997,41 @@ MonoBehaviour:
     displayDuration: 6.7
     choices: []
     nextStepID: Day2_Exercise_Position
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: -1
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_CellChoice_Detective_Beginner
     speakerName: Steve
     personality: 0
     lineText: Yes, that is the project we used yesterday. How does this tile's position follow from its row and column?
-    displayDuration: 7.0
+    displayDuration: 7
     choices: []
     nextStepID: Day2_Exercise_Position
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: -2
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_CellChoice_Detective_Intermediate
     speakerName: Steve
     personality: 0
-    lineText: Thanks, I was relieved when CMake found the library. Could you help me connect the grid indices to X
-      and Y?
+    lineText: Thanks, I was relieved when CMake found the library. Could you help me connect the grid indices to X and Y?
     displayDuration: 7.8
     choices: []
     nextStepID: Day2_Exercise_Position
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: -3
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_CellChoice_Detective_Advanced
     speakerName: Steve
     personality: 0
@@ -946,10 +1039,13 @@ MonoBehaviour:
     displayDuration: 6.3
     choices: []
     nextStepID: Day2_Exercise_Position
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: -5
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_CellChoice_Detective_Expert
     speakerName: Steve
     personality: 0
@@ -957,10 +1053,13 @@ MonoBehaviour:
     displayDuration: 8.1
     choices: []
     nextStepID: Day2_Exercise_Position
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: -7
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ResizeChoice_Architect_Novice
     speakerName: Steve
     personality: 0
@@ -968,10 +1067,13 @@ MonoBehaviour:
     displayDuration: 6.7
     choices: []
     nextStepID: Day2_Exercise_Resize
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ResizeChoice_Architect_Beginner
     speakerName: Steve
     personality: 0
@@ -979,45 +1081,55 @@ MonoBehaviour:
     displayDuration: 5.9
     choices: []
     nextStepID: Day2_Exercise_Resize
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ResizeChoice_Architect_Intermediate
     speakerName: Steve
     personality: 0
     lineText: I can change the two settings. Am I right that the drawing code should not need any new coordinates?
-    displayDuration: 7.0
+    displayDuration: 7
     choices: []
     nextStepID: Day2_Exercise_Resize
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ResizeChoice_Architect_Advanced
     speakerName: Steve
     personality: 0
-    lineText: Checking row nine, column nine makes sense. Would that reveal an extra row or column from an inclusive
-      loop?
-    displayDuration: 7.0
+    lineText: Checking row nine, column nine makes sense. Would that reveal an extra row or column from an inclusive loop?
+    displayDuration: 7
     choices: []
     nextStepID: Day2_Exercise_Resize
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ResizeChoice_Architect_Expert
     speakerName: Steve
     personality: 0
-    lineText: Would six by ten be a better check for accidentally using rows in both loops? I would like to add that
-      test.
+    lineText: Would six by ten be a better check for accidentally using rows in both loops? I would like to add that test.
     displayDuration: 8.1
     choices: []
     nextStepID: Day2_Exercise_Resize
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ResizeChoice_Pragmatist_Novice
     speakerName: Steve
     personality: 0
@@ -1025,10 +1137,13 @@ MonoBehaviour:
     displayDuration: 6.7
     choices: []
     nextStepID: Day2_Exercise_Resize
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 4
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ResizeChoice_Pragmatist_Beginner
     speakerName: Steve
     personality: 0
@@ -1036,21 +1151,27 @@ MonoBehaviour:
     displayDuration: 6.7
     choices: []
     nextStepID: Day2_Exercise_Resize
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 3
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ResizeChoice_Pragmatist_Intermediate
     speakerName: Steve
     personality: 0
     lineText: I can replace the eights with tens. Where else would you look for another fixed value I might miss?
-    displayDuration: 7.0
+    displayDuration: 7
     choices: []
     nextStepID: Day2_Exercise_Resize
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 2
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ResizeChoice_Pragmatist_Advanced
     speakerName: Steve
     personality: 0
@@ -1058,10 +1179,13 @@ MonoBehaviour:
     displayDuration: 6.3
     choices: []
     nextStepID: Day2_Exercise_Resize
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 1
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ResizeChoice_Pragmatist_Expert
     speakerName: Steve
     personality: 0
@@ -1069,10 +1193,13 @@ MonoBehaviour:
     displayDuration: 6.3
     choices: []
     nextStepID: Day2_Exercise_Resize
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ResizeChoice_Detective_Novice
     speakerName: Steve
     personality: 0
@@ -1080,33 +1207,41 @@ MonoBehaviour:
     displayDuration: 6.3
     choices: []
     nextStepID: Day2_Exercise_Resize
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: -1
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ResizeChoice_Detective_Beginner
     speakerName: Steve
     personality: 0
     lineText: I remember getting that first window open. Could you show me how you would resize the grid inside it?
-    displayDuration: 7.0
+    displayDuration: 7
     choices: []
     nextStepID: Day2_Exercise_Resize
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: -2
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ResizeChoice_Detective_Intermediate
     speakerName: Steve
     personality: 0
-    lineText: I am glad we can leave the build configuration alone. Which dimensions should I pass to the drawing
-      function?
-    displayDuration: 7.0
+    lineText: I am glad we can leave the build configuration alone. Which dimensions should I pass to the drawing function?
+    displayDuration: 7
     choices: []
     nextStepID: Day2_Exercise_Resize
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: -3
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ResizeChoice_Detective_Advanced
     speakerName: Steve
     personality: 0
@@ -1114,22 +1249,27 @@ MonoBehaviour:
     displayDuration: 6.3
     choices: []
     nextStepID: Day2_Exercise_Resize
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: -5
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ResizeChoice_Detective_Expert
     speakerName: Steve
     personality: 0
-    lineText: Thanks, I would rather not accidentally undo yesterday's setup. Could you show me how you would make
-      the drawing call follow both requested dimensions?
+    lineText: Thanks, I would rather not accidentally undo yesterday's setup. Could you show me how you would make the drawing call follow both requested dimensions?
     displayDuration: 8.9
     choices: []
     nextStepID: Day2_Exercise_Resize
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: -7
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ReviewChoice_Architect_Novice
     speakerName: Steve
     personality: 0
@@ -1137,10 +1277,13 @@ MonoBehaviour:
     displayDuration: 6.3
     choices: []
     nextStepID: Day2_Exercise_Verification
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ReviewChoice_Architect_Beginner
     speakerName: Steve
     personality: 0
@@ -1148,21 +1291,27 @@ MonoBehaviour:
     displayDuration: 5.9
     choices: []
     nextStepID: Day2_Exercise_Verification
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ReviewChoice_Architect_Intermediate
     speakerName: Steve
     personality: 0
     lineText: I can follow that calculation now. Could you show me how you would keep me from reintroducing the swap?
-    displayDuration: 7.0
+    displayDuration: 7
     choices: []
     nextStepID: Day2_Exercise_Verification
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ReviewChoice_Architect_Advanced
     speakerName: Steve
     personality: 0
@@ -1170,45 +1319,55 @@ MonoBehaviour:
     displayDuration: 5.9
     choices: []
     nextStepID: Day2_Exercise_Verification
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: -1
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ReviewChoice_Architect_Expert
     speakerName: Steve
     personality: 0
-    lineText: That is more thorough than the origin check I wrote. Could you explain how the tests distinguish the
-      fixed helper from the swapped version?
+    lineText: That is more thorough than the origin check I wrote. Could you explain how the tests distinguish the fixed helper from the swapped version?
     displayDuration: 8.9
     choices: []
     nextStepID: Day2_Exercise_Verification
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: -1
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ReviewChoice_Pragmatist_Novice
     speakerName: Steve
     personality: 0
-    lineText: I can move that tile for the screenshot. Would the same error still appear when another tile uses the
-      helper?
+    lineText: I can move that tile for the screenshot. Would the same error still appear when another tile uses the helper?
     displayDuration: 7.4
     choices: []
     nextStepID: Day2_Exercise_Verification
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 4
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ReviewChoice_Pragmatist_Beginner
     speakerName: Steve
     personality: 0
     lineText: I can patch the visible ones. How would we avoid missing a bad position that is not on screen?
-    displayDuration: 7.0
+    displayDuration: 7
     choices: []
     nextStepID: Day2_Exercise_Verification
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 3
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ReviewChoice_Pragmatist_Intermediate
     speakerName: Steve
     personality: 0
@@ -1216,33 +1375,41 @@ MonoBehaviour:
     displayDuration: 5.2
     choices: []
     nextStepID: Day2_Exercise_Verification
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 2
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ReviewChoice_Pragmatist_Advanced
     speakerName: Steve
     personality: 0
     lineText: I can check those two cases. Should I keep the far edge and rectangular grid on the follow-up list?
-    displayDuration: 7.0
+    displayDuration: 7
     choices: []
     nextStepID: Day2_Exercise_Verification
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 1
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ReviewChoice_Pragmatist_Expert
     speakerName: Steve
     personality: 0
-    lineText: I can record the remaining checks. Which ones would you want us to finish before using this for ship
-      placement?
+    lineText: I can record the remaining checks. Which ones would you want us to finish before using this for ship placement?
     displayDuration: 7.4
     choices: []
     nextStepID: Day2_Exercise_Verification
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ReviewChoice_Detective_Novice
     speakerName: Steve
     personality: 0
@@ -1250,34 +1417,41 @@ MonoBehaviour:
     displayDuration: 7.4
     choices: []
     nextStepID: Day2_Exercise_Verification
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: -1
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ReviewChoice_Detective_Beginner
     speakerName: Steve
     personality: 0
-    lineText: Yes, I remember that setup step. Could you explain how you would review the coordinate issue when we
-      return to it?
+    lineText: Yes, I remember that setup step. Could you explain how you would review the coordinate issue when we return to it?
     displayDuration: 7.8
     choices: []
     nextStepID: Day2_Exercise_Verification
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: -2
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ReviewChoice_Detective_Intermediate
     speakerName: Steve
     personality: 0
-    lineText: It is reassuring that the build setup is still familiar. How would you separate that from checking the
-      tile calculation?
+    lineText: It is reassuring that the build setup is still familiar. How would you separate that from checking the tile calculation?
     displayDuration: 7.4
     choices: []
     nextStepID: Day2_Exercise_Verification
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: -3
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ReviewChoice_Detective_Advanced
     speakerName: Steve
     personality: 0
@@ -1285,71 +1459,80 @@ MonoBehaviour:
     displayDuration: 8.1
     choices: []
     nextStepID: Day2_Exercise_Verification
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: -5
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_ReviewChoice_Detective_Expert
     speakerName: Steve
     personality: 0
-    lineText: Thanks for keeping track of the setup details. Could I watch your review of the coordinate code so I
-      understand the distinction?
+    lineText: Thanks for keeping track of the setup details. Could I watch your review of the coordinate code so I understand the distinction?
     displayDuration: 8.1
     choices: []
     nextStepID: Day2_Exercise_Verification
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: -7
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_Exercise_Position
     speakerName: Steve
     personality: 0
-    lineText: Would you mind showing me which replacement you would use? You can run the tests to check it, then submit
-      the version you want us to keep.
-    displayDuration: 10.0
+    lineText: Would you mind showing me which replacement you would use? You can run the tests to check it, then submit the version you want us to keep.
+    displayDuration: 10
     choices: []
     nextStepID: Day2_CellReview
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 8
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_Exercise_Loops
     speakerName: Steve
     personality: 0
-    lineText: I am not confident about these loop bounds. Could you review the alternatives with me? I am especially
-      curious whether the same loop works when rows and columns are different.
+    lineText: I am not confident about these loop bounds. Could you review the alternatives with me? I am especially curious whether the same loop works when rows and columns are different.
     displayDuration: 11.1
     choices: []
     nextStepID: Day2_ResizeBrief
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 8
     exerciseIndex: 1
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_Exercise_Resize
     speakerName: Steve
     personality: 0
-    lineText: I copied the original drawing call, but it still uses eight by eight. Which arguments would you pass
-      instead? I would like to understand how to make this reusable.
+    lineText: I copied the original drawing call, but it still uses eight by eight. Which arguments would you pass instead? I would like to understand how to make this reusable.
     displayDuration: 10.7
     choices: []
     nextStepID: Day2_GridReview
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 8
     exerciseIndex: 2
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
   - stepID: Day2_Exercise_Verification
     speakerName: Steve
     personality: 0
-    lineText: My origin test passes even with the swapped version. Am I testing the wrong thing? Could you show me
-      which checks would actually catch that mistake?
+    lineText: My origin test passes even with the swapped version. Am I testing the wrong thing? Could you show me which checks would actually catch that mistake?
     displayDuration: 9.6
     choices: []
     nextStepID: Day2_Complete
-    awardSkillKey: ''
+    awardSkillKey: 
     stepType: 8
     exerciseIndex: 3
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep

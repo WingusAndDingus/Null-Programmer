@@ -1,0 +1,6 @@
+{
+  "name": "NullProgrammer.PlayModeTests",
+  "references": ["NullProgrammer.TestSupport"],
+  "optionalUnityReferences": ["TestAssemblies"],
+  "autoReferenced": false
+}

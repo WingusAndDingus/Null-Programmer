@@ -1,0 +1,7 @@
+{
+  "name": "NullProgrammer.EditModeTests",
+  "references": ["NullProgrammer.TestSupport"],
+  "includePlatforms": ["Editor"],
+  "optionalUnityReferences": ["TestAssemblies"],
+  "autoReferenced": false
+}

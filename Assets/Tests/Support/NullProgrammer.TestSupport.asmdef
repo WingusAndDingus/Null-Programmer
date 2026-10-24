@@ -1,0 +1,5 @@
+{
+  "name": "NullProgrammer.TestSupport",
+  "autoReferenced": false,
+  "optionalUnityReferences": ["TestAssemblies"]
+}
