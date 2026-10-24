@@ -6,6 +6,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using UnityEngine.InputSystem;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -111,7 +112,43 @@ public class DialogueManager : MonoBehaviour
         currentPlayingLine = line;
         activeDialogueCoroutine = StartCoroutine(PlayDialogueLine(line));
     }
+    /// <summary>
+    /// Called when the player clicks the dialogue panel to skip typing or speed up pacing.
+    /// </summary>
+    public void OnDialogueClicked()
+    {
+        if (currentPlayingLine == null) return;
 
+        // If typing is still in progress, instantly finish displaying all characters
+        if (!IsTypingComplete)
+        {
+            // STOP the coroutine so it stops looping and overwriting characters!
+            if (activeDialogueCoroutine != null)
+            {
+                StopCoroutine(activeDialogueCoroutine);
+                activeDialogueCoroutine = null;
+            }
+
+            if (dialogueText != null)
+            {
+                dialogueText.maxVisibleCharacters = dialogueText.text.Length;
+                if (panelPresentation != null)
+                    panelPresentation.FollowTyping(dialogueText.text.Length);
+            }
+            UpdateProgress(currentPlayingLine.text, dialogueText.text.Length, true);
+        }
+        else
+        {
+            // If typing is already complete, clicking closes the line immediately!
+            if (activeDialogueCoroutine != null)
+            {
+                StopCoroutine(activeDialogueCoroutine);
+                activeDialogueCoroutine = null;
+            }
+            currentPlayingLine = null;
+            HideDialoguePanel();
+        }
+    }
     public IEnumerator PlayDialogueLine(DialogueLine line)
     {
         if (dialoguePanel != null) dialoguePanel.SetActive(true);
@@ -212,49 +249,76 @@ public class DialogueManager : MonoBehaviour
     /// </summary>
     public async Task<int> PresentChoices(DialogueChoiceOption[] options)
     {
+        Debug.Log($"[DialogueManager] PresentChoices called with {options?.Length ?? 0} options.");
+
         if (options == null || options.Length == 0)
             throw new ArgumentException("At least one dialogue choice is required.", nameof(options));
         if (choiceBubblePrefab == null)
             throw new InvalidOperationException("Assign the Thought Bubble prefab on the Dialogue Canvas.");
+
         ClearChoices();
+        // ENSURE THE VIEWPORT IS GENERATED IN THE SCENE AT RUNTIME
         EnsureChoiceViewport();
-        choiceViewport.gameObject.SetActive(true);
-        if (activeVideoPlayer != null) activeVideoPlayer.Pause();
+
+        // Team's new viewport/content setup
+        if (choiceViewport != null)
+            choiceViewport.gameObject.SetActive(true);
+
+        if (activeVideoPlayer != null)
+            activeVideoPlayer.Pause();
 
         var choiceTask = new TaskCompletionSource<int>();
         try
         {
             for (int i = 0; i < options.Length; i++)
             {
-                GameObject bubbleObj = Instantiate(choiceBubblePrefab, choiceContent);
+                Transform parentTransform = choiceContent != null ? choiceContent : choiceContainer;
+                // Instantiate without a parent first to avoid the persistent parent error
+                GameObject bubbleObj = Instantiate(choiceBubblePrefab);
+                if (parentTransform != null)
+                {
+                    bubbleObj.transform.SetParent(parentTransform, false);
+                }
+
                 activeBubbles.Add(bubbleObj);
+
                 DialogueBubble bubble = bubbleObj.GetComponent<DialogueBubble>();
-                if (bubble == null) throw new InvalidOperationException("Choice prefab needs DialogueBubble.");
-                bubble.Setup(options[i], i, GetPersonalityColor(options[i].personality),
-                    selectedIndex => choiceTask.TrySetResult(selectedIndex));
+                if (bubble == null)
+                    throw new InvalidOperationException("Choice prefab needs DialogueBubble.");
+
+                Color personalityColor = GetPersonalityColor(options[i].personality);
+                int optionIndex = i; // Local copy for closure
+
+                bubble.Setup(options[i], optionIndex, personalityColor, (selectedIndex) =>
+                {
+                    choiceTask.TrySetResult(selectedIndex);
+                });
             }
+
             Canvas.ForceUpdateCanvases();
-            LayoutChoices(true);
+
+            // If your team's system uses LayoutChoices, call it here, 
+            // or apply your dynamic positions if needed.
+            // LayoutChoices(true); 
+
             return await choiceTask.Task;
         }
         finally
         {
-            case 1:
-                return singleBubbleLayout[Mathf.Clamp(index, 0, singleBubbleLayout.Length - 1)];
-            case 2:
-                return twoBubbleLayout[Mathf.Clamp(index, 0, twoBubbleLayout.Length - 1)];
-            case 3:
-                return threeBubbleLayout[Mathf.Clamp(index, 0, threeBubbleLayout.Length - 1)];
-            case 4:
-                return fourBubbleLayout[Mathf.Clamp(index, 0, fourBubbleLayout.Length - 1)];
-            default:
-                return new Vector3(0, 150 - (index * 100f), 0);
-                ClearChoices();
-                if (internalMonologueOverlay != null) internalMonologueOverlay.SetActive(false);
-                if (activeVideoPlayer != null && !activeVideoPlayer.isPlaying) activeVideoPlayer.Play();
-            }
-        }
+            // Proper cleanup logic goes here
+            ClearChoices();
 
+            if (choiceViewport != null)
+                choiceViewport.gameObject.SetActive(false);
+
+            if (internalMonologueOverlay != null)
+                internalMonologueOverlay.SetActive(false);
+
+            // Resume video playback when dialogue choice resolves
+            if (activeVideoPlayer != null && !activeVideoPlayer.isPlaying)
+                activeVideoPlayer.Play();
+        }
+    }
     private void EnsureChoiceViewport()
     {
         if (choiceViewport != null) return;
@@ -322,7 +386,35 @@ public class DialogueManager : MonoBehaviour
             !Mathf.Approximately(choiceCanvas.rootCanvas.scaleFactor, lastChoiceScale))
             LayoutChoices(false);
     }
+    private void Update()
+    {
+        if (dialoguePanel != null && dialoguePanel.activeSelf)
+        {
+            bool spacePressed = Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame;
+            bool enterPressed = Keyboard.current != null && Keyboard.current.enterKey.wasPressedThisFrame;
 
+            bool clickedOnPanel = false;
+            if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+            {
+                // Check if the mouse click is actually inside the dialogue panel's RectTransform bounds
+                RectTransform panelRect = dialoguePanel.GetComponent<RectTransform>();
+                if (panelRect != null)
+                {
+                    Vector2 mousePos = Mouse.current.position.ReadValue();
+                    // If the click is inside the panel, count it!
+                    if (RectTransformUtility.RectangleContainsScreenPoint(panelRect, mousePos, null))
+                    {
+                        clickedOnPanel = true;
+                    }
+                }
+            }
+
+            if (clickedOnPanel || spacePressed || enterPressed)
+            {
+                OnDialogueClicked();
+            }
+        }
+    }
     private void ClearChoices()
     {
         foreach (var bubble in activeBubbles)

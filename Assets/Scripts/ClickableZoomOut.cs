@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ClickableZoomOut : MonoBehaviour
 {
@@ -6,6 +7,11 @@ public class ClickableZoomOut : MonoBehaviour
 
     private void OnMouseDown()
     {
+        // If the player is clicking on a UI element (like the dialogue panel), ignore the click
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
         cameraZoom.ZoomOut();
     }
 }

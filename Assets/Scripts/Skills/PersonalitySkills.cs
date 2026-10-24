@@ -9,6 +9,7 @@ public class PersonalitySkills : MonoBehaviour
     [Serializable]
     private class SaveData
     {
+        public int availablePoints;
         public int[] levels = new int[5];
         public List<string> rewardedMilestones = new List<string>();
     }
@@ -91,18 +92,26 @@ public class PersonalitySkills : MonoBehaviour
         return GetLevel(personality) >= requiredLevel;
     }
 
-    /* public void AwardPoint(string milestoneID)
-     {
-         if (string.IsNullOrWhiteSpace(milestoneID) || data.rewardedMilestones.Contains(milestoneID))
-         {
-             return;
-         }
+    public void AwardPoint(string milestoneID)
+    {
+        if (string.IsNullOrWhiteSpace(milestoneID) || data.rewardedMilestones.Contains(milestoneID))
+        {
+            return;
+        }
 
-         data.rewardedMilestones.Add(milestoneID);
-         data.availablePoints++;
-         Save();
+        data.rewardedMilestones.Add(milestoneID);
 
-     }*/
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.AwardSkillPoint(milestoneID);
+        }
+        else
+        {
+            data.availablePoints++;
+        }
+
+        Save();
+    }
 
     public void BeginNightAllocation()
     {
@@ -118,7 +127,7 @@ public class PersonalitySkills : MonoBehaviour
     public bool CanInvest(PersonalityDefinition definition)
     {
         return nightAllocationOpen && definition != null && definition.levelUnlocks != null
-            && data.availablePoints > 0
+            && AvailablePoints > 0
             && GetLevel(definition.personality) < MaxLevel
             && GetLevel(definition.personality) < definition.levelUnlocks.Length;
     }
@@ -159,6 +168,4 @@ public class PersonalitySkills : MonoBehaviour
         nightAllocationOpen = false;
         Changed?.Invoke();
     }
-
-
 }
