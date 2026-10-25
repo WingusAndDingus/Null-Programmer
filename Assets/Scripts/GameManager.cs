@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
 
     public event Action<int> SuspicionChanged;
     public event Action SteveCrisis;
+    public event Action<int> DayChanged;
 
 
     // =========================================================
@@ -151,6 +152,7 @@ public class GameManager : MonoBehaviour
     public void setCurrentDay(int day)
     {
         CurrentDay = Mathf.Max(1, day);
+        DayChanged?.Invoke(CurrentDay);
     }
 
     public void setStep(string stepName)
@@ -162,6 +164,7 @@ public class GameManager : MonoBehaviour
     {
         CurrentDay++;
         CurrentStep = "Start"; //reset for new day
+        DayChanged?.Invoke(CurrentDay);
     }
     public void ChangeGrandArchitectStat(int value)
     {
