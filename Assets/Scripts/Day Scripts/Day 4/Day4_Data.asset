@@ -483,7 +483,7 @@ MonoBehaviour:
     displayDuration: 0
     lineVariants: []
     choices: []
-    nextStepID: Refacto_Success
+    nextStepID: Refacto_Failure
     alternateNextStepID: Refacto_Failure
     awardSkillKey: 
     narrativeEventKey: 
@@ -509,7 +509,7 @@ MonoBehaviour:
     displayDuration: 5
     lineVariants: []
     choices: []
-    nextStepID: 
+    nextStepID: day_end
     alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
@@ -535,11 +535,37 @@ MonoBehaviour:
     displayDuration: 4
     lineVariants: []
     choices: []
-    nextStepID: 
+    nextStepID: day_end
     alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: f21b9762d823434fab6d8964aaddf260
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: day_end
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: 
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 10
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
