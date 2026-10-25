@@ -123,25 +123,26 @@ public class NarrativeStep
 
 public enum NarrativeStepType
 {
-    DialogueLine,
-    WaitUntilZoomCall,
-    PresentChoices,
-    WaitUntilCodeCompiled,
-    DelaySeconds,
-    StartScreenShare,
-    WaitUntilScreenShareEnd,
-    TriggerGameEnd,
-
-    // Appended values from all merged branches:
-    Day2Exercise,
-    SetSteveExpression,
-    SwitchToNightScene,
-    SteveCodingChallenge,
-    WaitUntilNarrativeEvent,
-    EndScreenShare,
-    EndZoomCall,
-    WaitUntilRefactoFightCompleted,
-    ReceiveMessage
+    // Explicit values protect serialized day assets from future additions.
+    DialogueLine = 0,
+    WaitUntilZoomCall = 1,
+    PresentChoices = 2,
+    WaitUntilCodeCompiled = 3,
+    DelaySeconds = 4,
+    StartScreenShare = 5,
+    WaitUntilScreenShareEnd = 6,
+    TriggerGameEnd = 7,
+    Day2Exercise = 8,
+    SetSteveExpression = 9,
+    SwitchToNightScene = 10,
+    SteveCodingChallenge = 11,
+    WaitUntilNarrativeEvent = 12,
+    EndScreenShare = 13,
+    EndZoomCall = 14,
+    WaitUntilRefactoFightCompleted = 15,
+    ReceiveMessage = 1000,
+    Day3BoardExercise = 1001,
+    Day3BoardEmail = 1002
 }
 
 [CreateAssetMenu(fileName = "DaySequence_Day0", menuName = "Narrative/Day Sequence Data")]

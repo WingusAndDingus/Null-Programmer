@@ -10559,7 +10559,7 @@ PrefabInstance:
     - target: {fileID: 7904637182536935973, guid: c8dd5049553ca2d43ab8e8c45b839c89, type: 3}
       propertyPath: 'daySequences.Array.data[2]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 1da65bd02f82463c9b4b4a96ee072f91, type: 2}
     - target: {fileID: 7904637182536935973, guid: c8dd5049553ca2d43ab8e8c45b839c89, type: 3}
       propertyPath: 'daySequences.Array.data[3]'
       value: 

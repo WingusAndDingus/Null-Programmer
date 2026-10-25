@@ -1,0 +1,855 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject:
+    fileID: 0
+  m_PrefabInstance:
+    fileID: 0
+  m_PrefabAsset:
+    fileID: 0
+  m_GameObject:
+    fileID: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script:
+    fileID: 11500000
+    guid: 657659d256d74ba448affc6a2a8763d3
+    type: 3
+  m_Name: Day3_BoardWorkshop
+  m_EditorClassIdentifier: Assembly-CSharp::DaySequenceData
+  dayNumber: 3
+  steps:
+  - stepID: Start
+    speakerName: Me
+    personality: 0
+    lineText: Wednesday. The tiles finally form a grid. Steve has sent the next task. I should read his email and
+      close the inbox.
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: D3_Call
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 1002
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_Call
+    speakerName: Me
+    personality: 0
+    lineText: ''
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: D3_SteveBrief
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 1
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_SteveBrief
+    speakerName: Steve
+    personality: 0
+    lineText: Yesterday's Tile grid is working. Today the Board has to coordinate ships across those tiles. I've
+      left an unfinished build in the IDE. Can you test its placement logic?
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: D3_YouBrief
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_YouBrief
+    speakerName: Me
+    personality: 0
+    lineText: I'll check the occupied cells, edge cases, and whether the graphics match the data.
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: D3_SteveRule
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_SteveRule
+    speakerName: Steve
+    personality: 0
+    lineText: 'One important rule: a rejected placement must leave the original board alone. Let me know when the
+      build passes its checks.'
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: D3_EndCall
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_EndCall
+    speakerName: Me
+    personality: 0
+    lineText: ''
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: D3_ArchitectIntro
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 14
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_ArchitectIntro
+    speakerName: The Grand Architect
+    personality: 2
+    lineText: A Tile represents one cell. The Board owns the grid and coordinates operations that involve several
+      cells. Let us start with the direction a ship grows.
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: D3_SentinelIntro
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_SentinelIntro
+    speakerName: The Sentinel
+    personality: 4
+    lineText: We can test privately without pretending everything works. Click the IDE, place a vertical ship, and
+      watch which cells the code actually changes.
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: D3_Test0
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_Test0
+    speakerName: Me
+    personality: 0
+    lineText: ''
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: D3_OrientationReview
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 1001
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_OrientationReview
+    speakerName: The Grand Architect
+    personality: 2
+    lineText: A vertical ship changes its row for each segment; a horizontal ship changes its column. The Board
+      keeps that row/column convention consistent.
+    displayDuration: 4
+    lineVariants:
+    - requiredLevel: 2
+      lineText: The occupied-cell function separates board coordinates from pixels. Each segment is start + i times
+        a direction vector; the tiles need not guess their neighbors.
+    choices: []
+    nextStepID: D3_OrientationCheck
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_Test1
+    speakerName: Me
+    personality: 0
+    lineText: ''
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: D3_BoundsReview
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 1001
+    exerciseIndex: 1
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_BoundsReview
+    speakerName: The Sentinel
+    personality: 4
+    lineText: Checking the starting tile is not enough. Every segment needs a valid row and column before the Board
+      reads or writes that tile.
+    displayDuration: 4
+    lineVariants:
+    - requiredLevel: 2
+      lineText: The invariant is 0 <= row < rows and 0 <= column < columns for every segment. Equal-to-size is outside
+        the array; test a rectangular board and both orientations.
+    choices: []
+    nextStepID: D3_BoundsCheck
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_Test2
+    speakerName: Me
+    personality: 0
+    lineText: ''
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: D3_OverlapReview
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 1001
+    exerciseIndex: 2
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_OverlapReview
+    speakerName: The Sentinel
+    personality: 4
+    lineText: The broken loop wrote the first segments before discovering a collision. Checking the complete footprint
+      first prevents half a ship from surviving a rejected placement.
+    displayDuration: 4
+    lineVariants:
+    - requiredLevel: 2
+      lineText: 'Treat placement as a small transaction: construct the candidate cells, validate all of them, then
+        commit the mutation. Failure preserves the previous board exactly.'
+    choices: []
+    nextStepID: D3_FriendMessage
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_Test3
+    speakerName: Me
+    personality: 0
+    lineText: ''
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: D3_RenderReview
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 1001
+    exerciseIndex: 3
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_RenderReview
+    speakerName: The Grand Architect
+    personality: 2
+    lineText: The Board data was right, but the drawing used the wrong mapping. Columns become x, rows become y,
+      and cellSize converts those units into pixels.
+    displayDuration: 4
+    lineVariants:
+    - requiredLevel: 2
+      lineText: With the shape origin at its top-left and no board offset, setPosition({column * cellSize, row *
+        cellSize}) aligns graphics to data. setSize describes the length along the correct axis.
+    choices: []
+    nextStepID: D3_RenderCheck
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_OrientationCheck
+    speakerName: The Grand Architect
+    personality: 2
+    lineText: If a ship is vertical, which coordinate changes for each segment?
+    displayDuration: 4
+    lineVariants: []
+    choices:
+    - choiceText: The row changes; the column stays fixed.
+      personality: 2
+      targetStepOnClick: D3_OrientationCorrect
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: ''
+    - choiceText: The column changes; the row stays fixed.
+      personality: 0
+      targetStepOnClick: D3_OrientationRetry
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: ''
+    nextStepID: ''
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 2
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_OrientationRetry
+    speakerName: The Grand Architect
+    personality: 2
+    lineText: Columns move left and right. Rows move up and down. Picture the three cells you just tested, then
+      try that explanation again.
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: D3_OrientationCheck
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_OrientationCorrect
+    speakerName: The Sentinel
+    personality: 4
+    lineText: Exactly. Now try the ship near the bottom edge. Even a valid starting cell can produce invalid later
+      segments.
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: D3_Test1
+    alternateNextStepID: ''
+    awardSkillKey: Day3.Board.Knowledge.Orientation
+    narrativeEventKey: ''
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_BoundsCheck
+    speakerName: The Sentinel
+    personality: 4
+    lineText: There are eight columns numbered from zero. Is column eight valid?
+    displayDuration: 4
+    lineVariants: []
+    choices:
+    - choiceText: No. Valid columns are zero through seven.
+      personality: 4
+      targetStepOnClick: D3_BoundsCorrect
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: ''
+    - choiceText: Yes. Eight columns means column eight exists.
+      personality: 0
+      targetStepOnClick: D3_BoundsRetry
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: ''
+    nextStepID: ''
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 2
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_BoundsRetry
+    speakerName: The Sentinel
+    personality: 4
+    lineText: The count is eight, but the last index is seven. Using <= accepts one cell beyond the array.
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: D3_BoundsCheck
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_BoundsCorrect
+    speakerName: The Sentinel
+    personality: 4
+    lineText: Good. Next we need to reject overlap without leaving partial changes. The existing ship is blue; try
+      starting to its left.
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: D3_Test2
+    alternateNextStepID: ''
+    awardSkillKey: Day3.Board.Knowledge.Bounds
+    narrativeEventKey: ''
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_FriendMessage
+    speakerName: Me
+    personality: 0
+    lineText: ''
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: D3_OverlapCheck
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 1000
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+    message:
+      messageId: 96233abcd9f14613a28008f6d99424ba
+      contactKey: friend
+      contactName: Friend
+      portrait:
+        fileID: 21300000
+        guid: aa787758b18f479586e00f1ae714dd74
+        type: 3
+      text: Hey, how is the project going? Remember to take a break when you get a chance.
+      replies:
+      - text: Getting there. I found a bug and actually understand it now.
+        response: That sounds like progress! Catch up after work?
+        connectednessDelta: 5
+        suspicionDelta: 0
+      - text: Still testing. I'll message you later.
+        response: No rush. Good luck with it!
+        connectednessDelta: 0
+        suspicionDelta: 0
+      waitForReply: false
+  - stepID: D3_OverlapCheck
+    speakerName: The Sentinel
+    personality: 4
+    lineText: Why did we separate validation from writing the cells?
+    displayDuration: 4
+    lineVariants: []
+    choices:
+    - choiceText: So failure cannot leave the board partly modified.
+      personality: 4
+      targetStepOnClick: D3_OverlapCorrect
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: ''
+    - choiceText: So the ship graphic draws faster.
+      personality: 0
+      targetStepOnClick: D3_OverlapRetry
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: ''
+    nextStepID: ''
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 2
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_OverlapRetry
+    speakerName: The Sentinel
+    personality: 4
+    lineText: Drawing speed was not the failure. The board claimed a rejected ship did not exist, yet kept some
+      of its cells occupied.
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: D3_OverlapCheck
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_OverlapCorrect
+    speakerName: The Grand Architect
+    personality: 2
+    lineText: The Board now protects its state. Let us check that the SFML graphic communicates the same placement.
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: D3_Test3
+    alternateNextStepID: ''
+    awardSkillKey: Day3.Board.Knowledge.Atomicity
+    narrativeEventKey: ''
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_RenderCheck
+    speakerName: The Grand Architect
+    personality: 2
+    lineText: The occupied cells are correct but the ship appears in the wrong place. Where should we investigate
+      first?
+    displayDuration: 4
+    lineVariants: []
+    choices:
+    - choiceText: The conversion from row/column to pixel position.
+      personality: 2
+      targetStepOnClick: D3_RenderCorrect
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: ''
+    - choiceText: Change the occupied cells until they match the graphic.
+      personality: 0
+      targetStepOnClick: D3_RenderRetry
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: ''
+    nextStepID: ''
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 2
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_RenderRetry
+    speakerName: The Grand Architect
+    personality: 2
+    lineText: The board model already passed its placement checks. Changing correct data to compensate for a drawing
+      error would hide the problem.
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: D3_RenderCheck
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_RenderCorrect
+    speakerName: The Grand Architect
+    personality: 2
+    lineText: 'Exactly. Now run the whole build: orientation, boundaries, overlap, unchanged state on failure, and
+      visual alignment.'
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: D3_Final
+    alternateNextStepID: ''
+    awardSkillKey: Day3.Board.Knowledge.Rendering
+    narrativeEventKey: ''
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_Final
+    speakerName: Me
+    personality: 0
+    lineText: ''
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: D3_FinalVoices
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 1001
+    exerciseIndex: 4
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_FinalVoices
+    speakerName: The Sentinel
+    personality: 4
+    lineText: 'The regression suite passes. You can use the same habit in Minesweeper: keep cell data consistent,
+      protect array boundaries, and make the SFML view reflect that data.'
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: D3_ReportCall
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_ReportCall
+    speakerName: Me
+    personality: 0
+    lineText: ''
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: D3_SteveQuestion
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 1
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_SteveQuestion
+    speakerName: Steve
+    personality: 0
+    lineText: The build looks better. What prevented the overlap bug from leaving partial ships?
+    displayDuration: 4
+    lineVariants: []
+    choices:
+    - choiceText: I validate every target cell before writing any of them.
+      personality: 0
+      targetStepOnClick: D3_ReportGood
+      suspicionChange: -5
+      requiredLevel: 0
+      choiceGroup: ''
+    - choiceText: I made the ship sprite cover the leftover cells.
+      personality: 0
+      targetStepOnClick: D3_ReportClarify
+      suspicionChange: 3
+      requiredLevel: 0
+      choiceGroup: ''
+    nextStepID: ''
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 2
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_ReportGood
+    speakerName: Steve
+    personality: 0
+    lineText: Good. That gives us a reliable Board to build attacks on. Keep those regression cases for tomorrow.
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: D3_CloseFinalCall
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_ReportClarify
+    speakerName: Steve
+    personality: 0
+    lineText: Covering the cells would only hide it. The important fix was checking all cells before changing board
+      data. Keep that distinction in mind.
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: D3_CloseFinalCall
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_CloseFinalCall
+    speakerName: Me
+    personality: 0
+    lineText: ''
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: D3_Complete
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 14
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_Complete
+    speakerName: Me
+    personality: 0
+    lineText: Wednesday complete. The Board can place ships safely, and I can explain why. Tomorrow we can build
+      on it.
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: D3_Night
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0
+  - stepID: D3_Night
+    speakerName: Me
+    personality: 0
+    lineText: ''
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: ''
+    alternateNextStepID: ''
+    awardSkillKey: ''
+    narrativeEventKey: ''
+    stepType: 10
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge:
+      fileID: 0

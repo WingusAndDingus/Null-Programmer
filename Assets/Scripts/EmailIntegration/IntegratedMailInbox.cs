@@ -90,6 +90,13 @@ public sealed class IntegratedMailInbox : MonoBehaviour
         FitContents();
     }
 
+    public void RefreshForCurrentDay()
+    {
+        IsRead = GetStoredReadState();
+        if (window != null) window.SetActive(false);
+        Refresh();
+    }
+
     public void ReadEmail()
     {
         if (!enabled) return;
@@ -100,7 +107,11 @@ public sealed class IntegratedMailInbox : MonoBehaviour
 
         IsRead = true;
 
-        if (day5)
+        if (manager.CurrentDay == 3)
+        {
+            NullProgrammer.Day3Workshop.WorkshopSession.Get().emailRead = true;
+        }
+        else if (day5)
         {
             manager.MarkDay5EmailRead();
 
@@ -131,6 +142,9 @@ public sealed class IntegratedMailInbox : MonoBehaviour
             return IsRead;
         }
 
+        if (GameManager.Instance.CurrentDay == 3)
+            return NullProgrammer.Day3Workshop.WorkshopSession.Get().emailRead;
+
         return GameManager.Instance.CurrentDay == 5
             ? GameManager.Instance.Day5EmailRead
             : GameManager.Instance.EmailRead;
@@ -145,6 +159,14 @@ public sealed class IntegratedMailInbox : MonoBehaviour
 
     private void GetCurrentMessage(out string currentSender, out string currentSubject, out string currentBody)
     {
+        if (Application.isPlaying && GameManager.Instance != null && GameManager.Instance.CurrentDay == 3)
+        {
+            currentSender = "Steve";
+            currentSubject = "Wednesday: ship placement needs a check";
+            currentBody = "Hey,\n\nTuesday's Tile grid is working. Today we need the Board to coordinate ship placement. The unfinished Battleship build has problems with orientation, edge checks, overlap, and drawing ships in the right place.\n\nPlease test the build in the IDE. A rejected placement must leave the board unchanged. Once that works, we can build attacks on top of it.\n\nRead this, close the inbox, and join my call.\n\n- Steve";
+            return;
+        }
+
         if (IsDay5Message())
         {
             currentSender = Day5Sender;

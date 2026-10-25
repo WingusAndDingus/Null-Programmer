@@ -24,7 +24,7 @@ MonoBehaviour:
     nextStepID: D5_AfterEmailDelay
     awardSkillKey: 
     narrativeEventKey: Day5.Email.Read
-    stepType: 9
+    stepType: 12
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
@@ -410,7 +410,7 @@ MonoBehaviour:
     nextStepID: D5_TraceReflection
     awardSkillKey: 
     narrativeEventKey: Day5.TraceTurn.Complete
-    stepType: 9
+    stepType: 12
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
@@ -1060,7 +1060,7 @@ MonoBehaviour:
     nextStepID: D5_EndZoom
     awardSkillKey: 
     narrativeEventKey: 
-    stepType: 10
+    stepType: 13
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
@@ -1074,7 +1074,7 @@ MonoBehaviour:
     nextStepID: D5_Internal_Action
     awardSkillKey: 
     narrativeEventKey: 
-    stepType: 11
+    stepType: 14
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10

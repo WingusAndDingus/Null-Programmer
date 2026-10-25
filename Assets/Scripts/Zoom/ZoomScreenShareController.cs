@@ -113,7 +113,7 @@ public class ZoomScreenShareController : MonoBehaviour
         int currentDay = GameManager.EnsureInstance().CurrentDay;
 
         // Days 2 and 5 own their greeting in DaySequenceData.
-        if (currentDay == 2 || currentDay == 5)
+        if (currentDay == 2 || currentDay == 3 || currentDay == 5)
         {
             return;
         }

@@ -16,6 +16,8 @@ public sealed class EmailReplyGate : MonoBehaviour
     {
         if (state == null || inbox == null || inbox.WindowObject == null) return;
         bool open = inbox.WindowObject.activeInHierarchy;
+        // Wednesday has its own read/close gate and narrative call.
+        if (state.CurrentDay == 3) { wasOpen = open; return; }
         if (inbox.IsRead) state.MarkEmailRead();
         if (wasOpen && !open && inbox.IsRead) state.MarkReadEmailClosed();
         wasOpen = open;
