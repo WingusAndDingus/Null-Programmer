@@ -397,10 +397,34 @@ PrefabInstance:
       propertyPath: screenShareVideoPlayer
       value: 
       objectReference: {fileID: 1177480455}
+    - target: {fileID: 974092297967896654, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: windowIdentity
+      value: 
+      objectReference: {fileID: 1885203712}
+    - target: {fileID: 974092297967896654, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: desktopTopRight
+      value: 
+      objectReference: {fileID: 1464356008}
+    - target: {fileID: 974092297967896654, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: desktopBottomLeft
+      value: 
+      objectReference: {fileID: 1798894330}
     - target: {fileID: 1192497626828263742, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
       propertyPath: m_Name
       value: Zoom Window
       objectReference: {fileID: 0}
+    - target: {fileID: 5303623349588494034, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: windowIdentity
+      value: 
+      objectReference: {fileID: 1885203712}
+    - target: {fileID: 5303623349588494034, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: desktopTopRight
+      value: 
+      objectReference: {fileID: 1464356008}
+    - target: {fileID: 5303623349588494034, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: desktopBottomLeft
+      value: 
+      objectReference: {fileID: 1798894330}
     - target: {fileID: 6973980595638030285, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.798743
@@ -445,6 +469,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9189870688026870596, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1885203712}
     - targetCorrespondingSourceObject: {fileID: 3791215219202832130, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
@@ -8757,6 +8784,24 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1885203708 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9189870688026870596, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+  m_PrefabInstance: {fileID: 34546014}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1885203712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885203708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad72445c5bd70da478b13eccd4bf3db5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WindowIdentity
+  windowId: SteveZoomPic
 --- !u!1 &1885431657
 GameObject:
   m_ObjectHideFlags: 0

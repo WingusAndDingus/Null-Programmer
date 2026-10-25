@@ -92,7 +92,12 @@ public class DialogueManager : MonoBehaviour
         panelPresentation = GetComponent<DialoguePanelPresentation>();
         HideDialogueUI();
     }
-
+    //wrapper to allow old code expecting the old function
+    public IEnumerator PlayDialogueLine(DialogueLine line)
+    {
+        bool isDone = false;
+        yield return StartCoroutine(PlayDialogueLineRoutine(line, () => isDone = true));
+    }
     public void DisplayLine(DialogueLine line)
     {
         _ = DisplayLineAndWaitAsync(line);
