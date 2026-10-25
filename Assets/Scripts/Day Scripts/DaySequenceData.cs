@@ -86,6 +86,9 @@ public class NarrativeStep
     [Tooltip("Step ID to transition to after line completes (Leave empty if choices control step or if step doesn't auto-advance)")]
     public string nextStepID;
 
+    [Tooltip("Step ID to transition to if the player FAILS a minigame/task")]
+    public string alternateNextStepID;
+
     [Header("Events / Skills")]
     public string awardSkillKey;
 
@@ -125,13 +128,16 @@ public enum NarrativeStepType
     StartScreenShare,
     WaitUntilScreenShareEnd,
     TriggerGameEnd,
+
+    // Appended values from all merged branches:
     Day2Exercise,
     SetSteveExpression,
     SwitchToNightScene,
     SteveCodingChallenge,
     WaitUntilNarrativeEvent,
     EndScreenShare,
-    EndZoomCall
+    EndZoomCall,
+    WaitUntilRefactoFightCompleted
 }
 
 [CreateAssetMenu(fileName = "DaySequence_Day0", menuName = "Narrative/Day Sequence Data")]

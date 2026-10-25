@@ -1,0 +1,163 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Phase2_TightCoupling
+  m_EditorClassIdentifier: Assembly-CSharp::BossBattlePhaseData
+  phaseNumber: 2
+  phaseTitle: Phase 2 - Tight Coupling
+  bpm: 140
+  notes:
+  - hitTime: 2
+    lane: 0
+  - hitTime: 2
+    lane: 2
+  - hitTime: 2.4285715
+    lane: 3
+  - hitTime: 2.857143
+    lane: 0
+  - hitTime: 3.2857144
+    lane: 1
+  - hitTime: 3.7142859
+    lane: 2
+  - hitTime: 4.142857
+    lane: 2
+  - hitTime: 4.5714283
+    lane: 1
+  - hitTime: 4.9999995
+    lane: 2
+  - hitTime: 5.4285707
+    lane: 2
+  - hitTime: 5.4285707
+    lane: 0
+  - hitTime: 5.857142
+    lane: 1
+  - hitTime: 6.285713
+    lane: 0
+  - hitTime: 6.7142844
+    lane: 1
+  - hitTime: 7.1428556
+    lane: 1
+  - hitTime: 7.571427
+    lane: 1
+  - hitTime: 7.999998
+    lane: 2
+  - hitTime: 8.42857
+    lane: 1
+  - hitTime: 8.8571415
+    lane: 2
+  - hitTime: 8.8571415
+    lane: 0
+  - hitTime: 9.285713
+    lane: 0
+  - hitTime: 9.714285
+    lane: 2
+  - hitTime: 10.142857
+    lane: 1
+  - hitTime: 10.571428
+    lane: 2
+  - hitTime: 11
+    lane: 3
+  - hitTime: 11.428572
+    lane: 2
+  - hitTime: 11.857143
+    lane: 3
+  - hitTime: 12.285715
+    lane: 3
+  - hitTime: 12.285715
+    lane: 1
+  - hitTime: 12.714287
+    lane: 2
+  - hitTime: 13.1428585
+    lane: 2
+  - hitTime: 13.57143
+    lane: 0
+  - hitTime: 14.000002
+    lane: 3
+  - hitTime: 14.428574
+    lane: 0
+  - hitTime: 14.857145
+    lane: 1
+  - hitTime: 15.285717
+    lane: 2
+  - hitTime: 15.714289
+    lane: 0
+  - hitTime: 15.714289
+    lane: 2
+  - hitTime: 16.14286
+    lane: 0
+  - hitTime: 16.571432
+    lane: 2
+  - hitTime: 17.000004
+    lane: 3
+  - hitTime: 17.428576
+    lane: 0
+  - hitTime: 17.857147
+    lane: 3
+  - hitTime: 18.285719
+    lane: 3
+  - hitTime: 18.71429
+    lane: 3
+  - hitTime: 19.142862
+    lane: 3
+  - hitTime: 19.142862
+    lane: 1
+  - hitTime: 19.571434
+    lane: 1
+  - hitTime: 20.000006
+    lane: 1
+  - hitTime: 20.428577
+    lane: 2
+  - hitTime: 20.85715
+    lane: 0
+  - hitTime: 21.28572
+    lane: 2
+  - hitTime: 21.714293
+    lane: 2
+  - hitTime: 22.142864
+    lane: 0
+  - hitTime: 22.571436
+    lane: 3
+  - hitTime: 22.571436
+    lane: 1
+  - hitTime: 23.000008
+    lane: 0
+  - hitTime: 23.42858
+    lane: 1
+  - hitTime: 23.857151
+    lane: 1
+  - hitTime: 24.285723
+    lane: 1
+  - hitTime: 24.714294
+    lane: 1
+  - hitTime: 25.142866
+    lane: 2
+  - hitTime: 25.571438
+    lane: 1
+  - hitTime: 26.00001
+    lane: 1
+  - hitTime: 26.00001
+    lane: 3
+  - hitTime: 26.428581
+    lane: 2
+  - hitTime: 26.857153
+    lane: 1
+  - hitTime: 27.285725
+    lane: 3
+  intermissionQuestion:
+    questionText: What is Abstraction?
+    options:
+    - Hiding background details and showing only essentials
+    - Making everything public
+    - Copying and pasting code
+    - Using global variables
+    correctAnswerIndex: 0
+    explanationText: Abstraction hides complexity by providing a simplified interface.

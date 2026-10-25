@@ -1,0 +1,288 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 657659d256d74ba448affc6a2a8763d3, type: 3}
+  m_Name: Day4_Data
+  m_EditorClassIdentifier: Assembly-CSharp::DaySequenceData
+  dayNumber: 4
+  steps:
+  - stepID: Start
+    speakerName: Steve
+    personality: 0
+    lineText: '"Goodmorning Sir. I''ve been thinking we need to refactor our battleship code and include a GameManager class."'
+    displayDuration: 5
+    choices:
+    - choiceText: Sounds like a good idea I suppose
+      personality: 0
+      targetStepOnClick: 1a
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: 
+    - choiceText: Hmm sounds like a lot of work
+      personality: 0
+      targetStepOnClick: 1b
+      suspicionChange: 5
+      requiredLevel: 0
+      choiceGroup: 
+    nextStepID: 1
+    alternateNextStepID: 
+    awardSkillKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: 1b
+    speakerName: Steve
+    personality: 0
+    lineText: Well ok.. why don't you take a look in the UML app, I added an outline for the GameManager class.
+    displayDuration: 5
+    choices: []
+    nextStepID: 1-wait
+    alternateNextStepID: 
+    awardSkillKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 1
+  - stepID: 1a
+    speakerName: Steve
+    personality: 0
+    lineText: Great, why don't you take a look in the UML app, I added an outline for the GameManager class.
+    displayDuration: 5
+    choices: []
+    nextStepID: 1-wait
+    alternateNextStepID: 
+    awardSkillKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 1
+  - stepID: 1-wait
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    choices: []
+    nextStepID: 2
+    alternateNextStepID: 
+    awardSkillKey: 
+    stepType: 4
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 1
+  - stepID: 2
+    speakerName: Detective
+    personality: 6
+    lineText: '"Steve wants us to look at the UML app, click the third icon on your taskbar to open it"'
+    displayDuration: 5
+    choices: []
+    nextStepID: 2-wait
+    alternateNextStepID: 
+    awardSkillKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 3
+  - stepID: 2-wait
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    choices: []
+    nextStepID: 3
+    alternateNextStepID: 
+    awardSkillKey: 
+    stepType: 4
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 2
+  - stepID: 3
+    speakerName: Steve
+    personality: 0
+    lineText: '"Are you seeing the UML? Click on the GameManager class at the top to read more about it."'
+    displayDuration: 5
+    choices: []
+    nextStepID: 3-wait
+    alternateNextStepID: 
+    awardSkillKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 2
+  - stepID: 3-wait
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    choices: []
+    nextStepID: 4
+    alternateNextStepID: 
+    awardSkillKey: 
+    stepType: 4
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 2
+  - stepID: 4
+    speakerName: Steve
+    personality: 0
+    lineText: '"The problem is I''m not sure how to implement this...'
+    displayDuration: 5
+    choices: []
+    nextStepID: 4-wait
+    alternateNextStepID: 
+    awardSkillKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: 4-wait
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    choices: []
+    nextStepID: 5
+    alternateNextStepID: 
+    awardSkillKey: 
+    stepType: 4
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 2
+  - stepID: 5
+    speakerName: Steve
+    personality: 0
+    lineText: '"You see I er attempted to implement it but it turned into a bit of a mess... I installed an app on your desktop which should allow you to refactor it, would you mind giving it a shot for me?"'
+    displayDuration: 7
+    choices: []
+    nextStepID: 5-wait
+    alternateNextStepID: 
+    awardSkillKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: 5-wait
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    choices: []
+    nextStepID: 6
+    alternateNextStepID: 
+    awardSkillKey: 
+    stepType: 4
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 2
+  - stepID: 6
+    speakerName: Grand Architect
+    personality: 2
+    lineText: '"This seems like a challenge for me. Let''s checkout this app Steve sent us."'
+    displayDuration: 5
+    choices: []
+    nextStepID: 6-wait
+    alternateNextStepID: 
+    awardSkillKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: 6-wait
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    choices: []
+    nextStepID: 7
+    alternateNextStepID: 
+    awardSkillKey: 
+    stepType: 4
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 1
+  - stepID: 7
+    speakerName: Pragmatist
+    personality: 3
+    lineText: '"Well it couldn''t hurt to give it a try I guess"'
+    displayDuration: 3
+    choices: []
+    nextStepID: 7-wait
+    alternateNextStepID: 
+    awardSkillKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: 7-wait
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    choices: []
+    nextStepID: 8
+    alternateNextStepID: 
+    awardSkillKey: 
+    stepType: 4
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 1
+  - stepID: 8
+    speakerName: 
+    personality: 6
+    lineText: '"Ok let''s open up the app. Click on the new icon on the taskbar. The 4th one"'
+    displayDuration: 5
+    choices: []
+    nextStepID: Play_Minigame
+    alternateNextStepID: 
+    awardSkillKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 3
+  - stepID: Play_Minigame
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    choices: []
+    nextStepID: Refacto_Success
+    alternateNextStepID: Refacto_Failure
+    awardSkillKey: 
+    stepType: 9
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Refacto_Success
+    speakerName: Steve
+    personality: 0
+    lineText: '"Incredible work! I can''t believe you were able to refactor it so quickly! I have a lot to learn still"'
+    displayDuration: 5
+    choices: []
+    nextStepID: 
+    alternateNextStepID: 
+    awardSkillKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+  - stepID: Refacto_Failure
+    speakerName: Steve
+    personality: 0
+    lineText: '"I thought you could do it, I guess I''ll have to fix it myself."'
+    displayDuration: 4
+    choices: []
+    nextStepID: 
+    alternateNextStepID: 
+    awardSkillKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
