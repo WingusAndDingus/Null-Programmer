@@ -285,9 +285,9 @@ public class DayNarrativeExecutor : MonoBehaviour
             {
                 DialogueStepChoice chosen = availableChoices[selectedIndex];
 
-                // Existing behavior: personality-tagged choices can still raise that stat.
-                // Day 5's teaching choices use HeadPersonality.None, so personalities remain advisors.
-                ApplyPersonalityStat(chosen.personality, 1);
+                // Presentation and rewards are separate: a voice may offer an incorrect
+                // suggestion without granting its stat when the player retries.
+                ApplyPersonalityStat(chosen.personality, chosen.personalityStatChange);
 
                 // This field already existed in DialogueStepChoice; apply it now.
                 ApplySuspicion(chosen.suspicionChange);
@@ -420,3 +420,4 @@ public class DayNarrativeExecutor : MonoBehaviour
         return false;
     }
 }
+

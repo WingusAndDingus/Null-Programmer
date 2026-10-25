@@ -7,6 +7,8 @@ public class DialogueStepChoice
 {
     public string choiceText;
     public HeadPersonality personality;
+    [Tooltip("Personality stat gain on selection. Use 0 for an incorrect suggestion that loops back to retry; existing choices default to 1.")]
+    public int personalityStatChange = 1;
     public string targetStepOnClick;
     public int suspicionChange = 0;
 
@@ -158,3 +160,4 @@ public class DaySequenceData : ScriptableObject
         return steps.Find(s => s.stepID.Equals(stepID, StringComparison.OrdinalIgnoreCase));
     }
 }
+

@@ -359,12 +359,14 @@ MonoBehaviour:
       suspicionChange: 0
       requiredLevel: 0
       choiceGroup: ''
+      personalityStatChange: 1
     - choiceText: The column changes; the row stays fixed.
-      personality: 0
+      personality: 4
       targetStepOnClick: D3_OrientationRetry
       suspicionChange: 0
       requiredLevel: 0
       choiceGroup: ''
+      personalityStatChange: 0
     nextStepID: ''
     alternateNextStepID: ''
     awardSkillKey: ''
@@ -380,8 +382,8 @@ MonoBehaviour:
   - stepID: D3_OrientationRetry
     speakerName: The Grand Architect
     personality: 2
-    lineText: Columns move left and right. Rows move up and down. Picture the three cells you just tested, then
-      try that explanation again.
+    lineText: You've swapped the axes, Sentinel. Changing the column moves across the board; a vertical ship changes
+      its row while keeping its column fixed.
     displayDuration: 4
     lineVariants: []
     choices: []
@@ -398,10 +400,10 @@ MonoBehaviour:
     steveChallenge:
       fileID: 0
   - stepID: D3_OrientationCorrect
-    speakerName: The Sentinel
-    personality: 4
-    lineText: Exactly. Now try the ship near the bottom edge. Even a valid starting cell can produce invalid later
-      segments.
+    speakerName: The Grand Architect
+    personality: 2
+    lineText: 'Exactly. Each segment advances one row down the board while staying in the same column. Next, try
+      a ship near the bottom edge: its starting cell can be valid even when later segments are not.'
     displayDuration: 4
     lineVariants: []
     choices: []
@@ -424,18 +426,20 @@ MonoBehaviour:
     displayDuration: 4
     lineVariants: []
     choices:
+    - choiceText: There are eight columns, so column eight should fit.
+      personality: 2
+      targetStepOnClick: D3_BoundsRetry
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: ''
+      personalityStatChange: 0
     - choiceText: No. Valid columns are zero through seven.
       personality: 4
       targetStepOnClick: D3_BoundsCorrect
       suspicionChange: 0
       requiredLevel: 0
       choiceGroup: ''
-    - choiceText: Yes. Eight columns means column eight exists.
-      personality: 0
-      targetStepOnClick: D3_BoundsRetry
-      suspicionChange: 0
-      requiredLevel: 0
-      choiceGroup: ''
+      personalityStatChange: 1
     nextStepID: ''
     alternateNextStepID: ''
     awardSkillKey: ''
@@ -451,7 +455,8 @@ MonoBehaviour:
   - stepID: D3_BoundsRetry
     speakerName: The Sentinel
     personality: 4
-    lineText: The count is eight, but the last index is seven. Using <= accepts one cell beyond the array.
+    lineText: Architect, eight is the number of columns, not the last index. With zero-based indexing the columns
+      are zero through seven, so column eight is outside the board.
     displayDuration: 4
     lineVariants: []
     choices: []
@@ -538,12 +543,14 @@ MonoBehaviour:
       suspicionChange: 0
       requiredLevel: 0
       choiceGroup: ''
+      personalityStatChange: 1
     - choiceText: So the ship graphic draws faster.
-      personality: 0
+      personality: 2
       targetStepOnClick: D3_OverlapRetry
       suspicionChange: 0
       requiredLevel: 0
       choiceGroup: ''
+      personalityStatChange: 0
     nextStepID: ''
     alternateNextStepID: ''
     awardSkillKey: ''
@@ -559,8 +566,8 @@ MonoBehaviour:
   - stepID: D3_OverlapRetry
     speakerName: The Sentinel
     personality: 4
-    lineText: Drawing speed was not the failure. The board claimed a rejected ship did not exist, yet kept some
-      of its cells occupied.
+    lineText: Architect, drawing speed does not explain the leftover cells. Checking and writing one segment at
+      a time can leave a partial ship behind; validate the entire footprint before writing any cells.
     displayDuration: 4
     lineVariants: []
     choices: []
@@ -577,9 +584,10 @@ MonoBehaviour:
     steveChallenge:
       fileID: 0
   - stepID: D3_OverlapCorrect
-    speakerName: The Grand Architect
-    personality: 2
-    lineText: The Board now protects its state. Let us check that the SFML graphic communicates the same placement.
+    speakerName: The Sentinel
+    personality: 4
+    lineText: Exactly. Validate every target cell first, then commit the placement. A rejected ship must leave the
+      board unchanged; next we can check whether the SFML graphic matches those cells.
     displayDuration: 4
     lineVariants: []
     choices: []
@@ -603,18 +611,20 @@ MonoBehaviour:
     displayDuration: 4
     lineVariants: []
     choices:
+    - choiceText: Change the occupied cells until they match the graphic.
+      personality: 4
+      targetStepOnClick: D3_RenderRetry
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: ''
+      personalityStatChange: 0
     - choiceText: The conversion from row/column to pixel position.
       personality: 2
       targetStepOnClick: D3_RenderCorrect
       suspicionChange: 0
       requiredLevel: 0
       choiceGroup: ''
-    - choiceText: Change the occupied cells until they match the graphic.
-      personality: 0
-      targetStepOnClick: D3_RenderRetry
-      suspicionChange: 0
-      requiredLevel: 0
-      choiceGroup: ''
+      personalityStatChange: 1
     nextStepID: ''
     alternateNextStepID: ''
     awardSkillKey: ''
@@ -630,8 +640,8 @@ MonoBehaviour:
   - stepID: D3_RenderRetry
     speakerName: The Grand Architect
     personality: 2
-    lineText: The board model already passed its placement checks. Changing correct data to compensate for a drawing
-      error would hide the problem.
+    lineText: 'Sentinel, moving correct board data would only hide the drawing error. Keep the occupied cells and
+      fix the SFML position: column becomes x and row becomes y, both scaled by cell size.'
     displayDuration: 4
     lineVariants: []
     choices: []
@@ -738,12 +748,14 @@ MonoBehaviour:
       suspicionChange: -5
       requiredLevel: 0
       choiceGroup: ''
+      personalityStatChange: 1
     - choiceText: I made the ship sprite cover the leftover cells.
       personality: 0
       targetStepOnClick: D3_ReportClarify
       suspicionChange: 3
       requiredLevel: 0
       choiceGroup: ''
+      personalityStatChange: 1
     nextStepID: ''
     alternateNextStepID: ''
     awardSkillKey: ''
