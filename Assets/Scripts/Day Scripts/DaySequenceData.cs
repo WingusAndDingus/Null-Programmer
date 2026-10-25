@@ -55,6 +55,9 @@ public static class NarrativeChoiceFilter
 [Serializable]
 public class NarrativeStep
 {
+    [Header("Receive Message")]
+    public NarrativeMessageData message = new NarrativeMessageData();
+
     [Tooltip("Unique identifier matching GameManager.Instance.CurrentStep (e.g. 'Start', 'Task1_In_Progress')")]
     public string stepID;
 
@@ -98,12 +101,15 @@ public enum NarrativeStepType
     StartScreenShare,       // Calls ZoomScreenShareController.Instance.StartScreenShare()
     WaitUntilScreenShareEnd, // Halts until screenshare video completes
     TriggerGameEnd,
-    Day2Exercise          // Appended to preserve the serialized values of existing steps.
+    Day2Exercise,
+    ReceiveMessage = 1000
 }
 
 [CreateAssetMenu(fileName = "DaySequence_Day0", menuName = "Narrative/Day Sequence Data")]
 public class DaySequenceData : ScriptableObject
 {
+    private void OnValidate() { NarrativeMessageIds.Ensure(this); }
+
     public int dayNumber = 1;
     public List<NarrativeStep> steps = new List<NarrativeStep>();
 

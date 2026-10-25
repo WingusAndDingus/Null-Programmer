@@ -5,6 +5,7 @@ public sealed class MessageConversation : ScriptableObject
 {
     public string id = "family_checkin";
     public string contactName = "Family";
+    public Sprite avatar;
     [Min(1)] public int availableFromDay = 1;
     [TextArea(2,8)] public string openingMessage;
     public Reply[] replies;
@@ -17,3 +18,4 @@ public sealed class MessageConversation : ScriptableObject
         public int suspicionDelta;
     }
 }
+

@@ -66,20 +66,23 @@ public sealed class MessagingDesktopApp : MonoBehaviour
             {
                 if (c==null || state.GetThread(c.id)==null) continue;
                 var contact=c; int count=state.Unread(c.id);
-                view.Choice(view.contacts,c.contactName+(count>0 ? " ("+count+")" : ""),()=>Select(contact));
+                var thread=state.GetThread(c.id);
+                string preview=thread!=null && thread.messages.Count>0 ? thread.messages[thread.messages.Count-1].text : "";
+                view.AddContact(contact,preview,count,selected==contact,()=>Select(contact));
             }
-            view.heading.text=selected==null ? "Messages - choose a conversation" : selected.contactName;
-            if (selected==null) view.Label(view.history,"Select a contact to read their messages.");
+            view.SetActiveContact(selected);
+            if (selected==null)
+                view.Label(view.history,"Choose a contact to open the conversation.",view.messageFontSize*.78f,TextAlignmentOptions.Center,new Color(.62f,.69f,.81f));
             else
             {
                 var thread=state.GetThread(selected.id);
                 // Reading was applied before rendering the unread counts.
                 foreach (var entry in thread.messages)
-                    view.Label(view.history,(entry.fromPlayer ? "You" : selected.contactName)+":\n"+entry.text);
+                    view.AddMessage(entry,selected.contactName,selected.avatar);
                 if (!thread.replied && selected.replies!=null)
                     for (int i=0;i<selected.replies.Length;i++)
-                    { int index=i; if (selected.replies[i]!=null) view.Choice(view.replies,selected.replies[i].text,()=>Reply(index)); }
-                else view.Label(view.replies,"Conversation complete for now.",25);
+                    { int index=i; if (selected.replies[i]!=null) view.ReplyChoice(selected.replies[i].text,()=>Reply(index)); }
+                else view.Label(view.replies,"Conversation complete for now.",view.messageFontSize*.67f,TextAlignmentOptions.MidlineLeft,new Color(.62f,.69f,.81f));
             }
             Canvas.ForceUpdateCanvases(); view.scroll.verticalNormalizedPosition=0;
         }
@@ -97,3 +100,4 @@ public sealed class MessagingDesktopApp : MonoBehaviour
     }
     private void OnDestroy() { if(state!=null) state.Changed-=Refresh; }
 }
+
