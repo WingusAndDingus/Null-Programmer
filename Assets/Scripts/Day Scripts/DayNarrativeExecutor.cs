@@ -111,6 +111,10 @@ public class DayNarrativeExecutor : MonoBehaviour
         // 3. WAIT FOR / TRIGGER GAMEPLAY EVENTS
         switch (stepData.stepType)
         {
+            case NarrativeStepType.ReceiveMessage:
+                await NarrativeMessageDelivery.RunAsync(stepData.message, currentDayData.dayNumber, cancellationToken);
+                break;
+
             case NarrativeStepType.DelaySeconds:
                 float waitTime = stepData.delayDuration > 0 ? stepData.delayDuration : 5f;
                 Debug.Log($"[DayNarrativeExecutor] Delaying for {waitTime} seconds on step '{stepData.stepID}'...");

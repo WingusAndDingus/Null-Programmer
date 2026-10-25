@@ -10,6 +10,7 @@ public sealed class MessagingSession : MonoBehaviour
         public string text;
         public bool fromPlayer;
         public bool read;
+        public string timeLabel;
     }
     public sealed class Thread
     {
@@ -31,7 +32,7 @@ public sealed class MessagingSession : MonoBehaviour
     {
         if (conversation == null || string.IsNullOrWhiteSpace(conversation.id) || day < conversation.availableFromDay || threads.ContainsKey(conversation.id)) return;
         var thread = new Thread();
-        thread.messages.Add(new Entry { text = conversation.openingMessage });
+        thread.messages.Add(new Entry { text = conversation.openingMessage, timeLabel = CurrentTimeLabel() });
         threads.Add(conversation.id,thread); Changed?.Invoke();
     }
     public int Unread(string id)
@@ -55,8 +56,8 @@ public sealed class MessagingSession : MonoBehaviour
         if (thread == null || thread.replied || reply == null) return false;
         // Set the guard before invoking game events: repeated clicks never reapply rewards.
         thread.replied = true; thread.replyIndex = index;
-        thread.messages.Add(new Entry { text = reply.text, fromPlayer = true, read = true });
-        if (!string.IsNullOrEmpty(reply.response)) thread.messages.Add(new Entry { text = reply.response });
+        thread.messages.Add(new Entry { text = reply.text, fromPlayer = true, read = true, timeLabel = CurrentTimeLabel() });
+        if (!string.IsNullOrEmpty(reply.response)) thread.messages.Add(new Entry { text = reply.response, timeLabel = CurrentTimeLabel() });
         var gm = GameManager.EnsureInstance();
         gm.ChangeConnectednessStat(reply.connectednessDelta);
         gm.ChangeSteveSuspicion(reply.suspicionDelta);
@@ -66,6 +67,9 @@ public sealed class MessagingSession : MonoBehaviour
     public bool Receive(string id, string text)
     {
         var thread = GetThread(id); if (thread == null || string.IsNullOrEmpty(text)) return false;
-        thread.messages.Add(new Entry { text = text }); Changed?.Invoke(); return true;
+        thread.messages.Add(new Entry { text = text, timeLabel = CurrentTimeLabel() }); Changed?.Invoke(); return true;
     }
+
+    private static string CurrentTimeLabel() => DateTime.Now.ToString("h:mm tt");
 }
+

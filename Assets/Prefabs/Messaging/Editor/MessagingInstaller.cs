@@ -9,7 +9,7 @@ using TMPro;
 
 public static class MessagingInstaller
 {
-    private const string Root="Assets/Messaging";
+    private const string Root="Assets/Prefabs/Messaging";
     [MenuItem("Tools/Null Programmer/Install Messaging In Current Desktop")]
     public static void Install()
     {
@@ -21,7 +21,7 @@ public static class MessagingInstaller
         if(inbox==null || ide==null || inbox.WindowObject==null || inbox.Drag==null) throw new System.InvalidOperationException("Open a desktop scene containing the existing mail window and IDE Icon.");
         if(TMP_Settings.defaultFontAsset==null) throw new System.InvalidOperationException("Import TMP Essential Resources first.");
         var importer=AssetImporter.GetAtPath(Root+"/Art/MessagesIcon.png") as TextureImporter;
-        if(importer==null) throw new System.InvalidOperationException("MessagesIcon.png is missing from Assets/Messaging/Art.");
+        if(importer==null) throw new System.InvalidOperationException("MessagesIcon.png is missing from "+Root+"/Art.");
         importer.textureType=TextureImporterType.Sprite; importer.spriteImportMode=SpriteImportMode.Single;
         importer.filterMode=FilterMode.Point; importer.mipmapEnabled=false; importer.alphaIsTransparency=true;
         importer.textureCompression=TextureImporterCompression.Uncompressed; importer.SaveAndReimport();
@@ -55,7 +55,7 @@ public static class MessagingInstaller
         view=window.AddComponent<MessagingWindowView>(); view.body=body; view.titleBar=bar;
         view.drag=window.GetComponentInChildren<DraggableWindow>(true);
         MatchEmailTypography(view,inbox);
-        BuildUI(view);
+        view.RebuildVisuals();
         view.FitContents();
         // Authored scene references (desktop markers, camera, close handler) are restored below.
         prefab=PrefabUtility.SaveAsPrefabAsset(window,prefabPath);
@@ -159,8 +159,10 @@ public static class MessagingInstaller
     private static MessageConversation MakeConversation(string name,string id,string contact,int day)
     {
         string path=Root+"/Generated/"+name+".asset";
-        var existing=AssetDatabase.LoadAssetAtPath<MessageConversation>(path); if(existing!=null) return existing;
+        var existing=AssetDatabase.LoadAssetAtPath<MessageConversation>(path);
+        if(existing!=null) { existing.avatar=LoadAvatar(id); EditorUtility.SetDirty(existing); return existing; }
         var c=ScriptableObject.CreateInstance<MessageConversation>(); c.id=id; c.contactName=contact; c.availableFromDay=day;
+        c.avatar=LoadAvatar(id);
         c.openingMessage=day==1 ? "Hey, you've been quiet lately. How's the new project going?" : "You've been working all week. Want to catch up this weekend?";
         c.replies=new[] {
             new MessageConversation.Reply { text=day==1 ? "It's been stressful. Can we catch up this weekend?" : "Yes. I'd like to catch up.", response="Of course. You don't have to handle everything alone.",connectednessDelta=10 },
@@ -169,52 +171,11 @@ public static class MessagingInstaller
         };
         AssetDatabase.CreateAsset(c,path); return c;
     }
-    private static void BuildUI(MessagingWindowView view)
+    private static Sprite LoadAvatar(string conversationId)
     {
-        var go=new GameObject("Messages Content",typeof(RectTransform),typeof(Canvas),typeof(GraphicRaycaster));
-        go.transform.SetParent(view.transform,false); view.canvas=go.GetComponent<Canvas>(); view.canvas.renderMode=RenderMode.WorldSpace;
-        var back=Rect("Background",go.transform,Vector2.zero,Vector2.one,Vector2.zero,Vector2.zero);
-        back.gameObject.AddComponent<Image>().color=new Color(.055f,.075f,.105f);
-        var heading=Rect("Header",go.transform,new Vector2(0,1),Vector2.one,new Vector2(18,-65),new Vector2(-18,-8));
-        view.heading=Label("Title",heading,"Messages",Mathf.RoundToInt(view.messageFontSize));
-        view.heading.font=view.messageFont; view.heading.fontSharedMaterial=view.messageFont.material;
-        var left=Rect("Contacts",go.transform,Vector2.zero,new Vector2(.25f,1),new Vector2(12,12),new Vector2(-12,-80));
-        Layout(left); view.contacts=left;
-        var right=Rect("Conversation",go.transform,new Vector2(.27f,0),Vector2.one,new Vector2(0,12),new Vector2(-12,-80));
-        var choices=Rect("Replies",right,Vector2.zero,new Vector2(1,.45f),Vector2.zero,Vector2.zero); 
-        var replyScroll=choices.gameObject.AddComponent<ScrollRect>(); replyScroll.horizontal=false;
-        var replyViewport=Rect("Reply Viewport",choices,Vector2.zero,Vector2.one,Vector2.zero,Vector2.zero);
-        replyViewport.gameObject.AddComponent<Image>().color=new Color(.055f,.075f,.105f);
-        replyViewport.gameObject.AddComponent<RectMask2D>();
-        var replyContent=Rect("Reply Choices",replyViewport,new Vector2(0,1),Vector2.one,Vector2.zero,Vector2.zero);
-        replyContent.pivot=new Vector2(.5f,1); Layout(replyContent);
-        replyContent.gameObject.AddComponent<ContentSizeFitter>().verticalFit=ContentSizeFitter.FitMode.PreferredSize;
-        replyScroll.viewport=replyViewport; replyScroll.content=replyContent; view.replies=replyContent;
-        var scrollRoot=Rect("History Scroll",right,new Vector2(0,.48f),Vector2.one,Vector2.zero,Vector2.zero);
-        var scroll=scrollRoot.gameObject.AddComponent<ScrollRect>(); scroll.horizontal=false;
-        var viewport=Rect("Viewport",scrollRoot,Vector2.zero,Vector2.one,Vector2.zero,Vector2.zero);
-        viewport.gameObject.AddComponent<Image>().color=new Color(.08f,.11f,.15f); viewport.gameObject.AddComponent<RectMask2D>();
-        var content=Rect("History",viewport,new Vector2(0,1),Vector2.one,Vector2.zero,Vector2.zero);
-        content.pivot=new Vector2(.5f,1); Layout(content);
-        var fitter=content.gameObject.AddComponent<ContentSizeFitter>(); fitter.verticalFit=ContentSizeFitter.FitMode.PreferredSize;
-        scroll.viewport=viewport; scroll.content=content; view.scroll=scroll; view.history=content;
-    }
-    private static void Layout(RectTransform rect)
-    {
-        var layout=rect.gameObject.AddComponent<VerticalLayoutGroup>(); layout.spacing=12;
-        layout.padding=new RectOffset(10,10,10,10); layout.childControlWidth=true; layout.childControlHeight=true;
-        layout.childForceExpandWidth=true; layout.childForceExpandHeight=false;
-    }
-    private static RectTransform Rect(string name,Transform parent,Vector2 min,Vector2 max,Vector2 low,Vector2 high)
-    {
-        var go=new GameObject(name,typeof(RectTransform)); go.transform.SetParent(parent,false); var rect=go.GetComponent<RectTransform>();
-        rect.anchorMin=min; rect.anchorMax=max; rect.offsetMin=low; rect.offsetMax=high; return rect;
-    }
-    private static TMP_Text Label(string name,Transform parent,string text,int size)
-    {
-        var rect=Rect(name,parent,Vector2.zero,Vector2.one,Vector2.zero,Vector2.zero);
-        var label=rect.gameObject.AddComponent<TextMeshProUGUI>(); label.font=TMP_Settings.defaultFontAsset; label.fontSharedMaterial=label.font.material;
-        label.text=text; label.fontSize=size; label.color=Color.white; label.raycastTarget=false; return label;
+        string name=conversationId!=null && conversationId.ToLowerInvariant().Contains("friend") ? "FriendAvatar.png" : "FamilyAvatar.png";
+        return AssetDatabase.LoadAssetAtPath<Sprite>(Root+"/Art/"+name);
     }
 }
 #endif
+
