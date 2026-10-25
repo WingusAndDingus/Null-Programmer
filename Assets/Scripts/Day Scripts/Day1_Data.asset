@@ -14,14 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DaySequenceData
   dayNumber: 1
   steps:
-  - stepID: Start
+  - message:
+      messageId: d3f9c58a04e34baf9b2f4caed4fe6cdf
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Start
     speakerName: 
     personality: 0
     lineText: 
     displayDuration: 0
+    lineVariants: []
     choices: []
     nextStepID: Day1_SitDown
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 4
     exerciseIndex: 0
     suspicionChange: 0
@@ -29,14 +40,25 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: NightScene
     steveChallenge: {fileID: 0}
-  - stepID: Day1_SitDown
+  - message:
+      messageId: 03829189c81746ed8c0cb5bbbfb96088
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day1_SitDown
     speakerName: The Pragmatist
     personality: 3
     lineText: Looks like we have an email unread.
     displayDuration: 3
+    lineVariants: []
     choices: []
     nextStepID: Day1_ReadEmail
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
@@ -44,14 +66,25 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: NightScene
     steveChallenge: {fileID: 0}
-  - stepID: Day1_ReadEmail
+  - message:
+      messageId: be4fb2da7ba54aca9f0531bdcc8e497e
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day1_ReadEmail
     speakerName: 
     personality: 0
     lineText: 
     displayDuration: 0
+    lineVariants: []
     choices: []
     nextStepID: SetSteveHello
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 4
     exerciseIndex: 0
     suspicionChange: 0
@@ -59,29 +92,51 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: NightScene
     steveChallenge: {fileID: 0}
-  - stepID: SetSteveHello
+  - message:
+      messageId: 2be2c25ad44a41e980ea66b5db13cb5a
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: SetSteveHello
     speakerName: 
     personality: 0
     lineText: 
     displayDuration: 0
+    lineVariants: []
     choices: []
     nextStepID: Day1_WaitZoom
+    alternateNextStepID: 
     awardSkillKey: 
-    stepType: 7
+    narrativeEventKey: 
+    stepType: 9
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 3
     targetSceneName: NightScene
     steveChallenge: {fileID: 0}
-  - stepID: Day1_WaitZoom
+  - message:
+      messageId: a15ad986724047789ac85f1c169f25a4
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day1_WaitZoom
     speakerName: 
     personality: 0
     lineText: 
     displayDuration: 0
+    lineVariants: []
     choices: []
     nextStepID: Day1_FirstChoice
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 1
     exerciseIndex: 0
     suspicionChange: 0
@@ -89,11 +144,20 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: NightScene
     steveChallenge: {fileID: 0}
-  - stepID: Day1_FirstChoice
+  - message:
+      messageId: 064235bde83841dca8b8c5b0631e8c1e
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day1_FirstChoice
     speakerName: 
     personality: 0
     lineText: 
     displayDuration: 0
+    lineVariants: []
     choices:
     - choiceText: '"It has been a while since I''ve set up an SFML project, can you show me how you usually do it?'
       personality: 2
@@ -108,7 +172,9 @@ MonoBehaviour:
       requiredLevel: 0
       choiceGroup: 
     nextStepID: 
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 2
     exerciseIndex: 0
     suspicionChange: 0
@@ -116,14 +182,25 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: NightScene
     steveChallenge: {fileID: 0}
-  - stepID: FirstChoiceSteveChange
+  - message:
+      messageId: d6064c42f0ae44a0863afe1abc417889
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: FirstChoiceSteveChange
     speakerName: 
     personality: 0
     lineText: 
     displayDuration: 0
+    lineVariants: []
     choices: []
     nextStepID: FirstSteveChangeLilWait
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 7
     exerciseIndex: 0
     suspicionChange: 0
@@ -131,14 +208,25 @@ MonoBehaviour:
     NewSteveExpression: 2
     targetSceneName: NightScene
     steveChallenge: {fileID: 0}
-  - stepID: FirstSteveChangeLilWait
+  - message:
+      messageId: af0f737418f24c0eb41e63c06f9990e1
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: FirstSteveChangeLilWait
     speakerName: 
     personality: 0
     lineText: 
     displayDuration: 0
+    lineVariants: []
     choices: []
     nextStepID: Day1_GeniusWarning
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 4
     exerciseIndex: 0
     suspicionChange: 0
@@ -146,14 +234,25 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: NightScene
     steveChallenge: {fileID: 0}
-  - stepID: Day1_GeniusWarning
+  - message:
+      messageId: 3f97d6f47e934e37ad20920dee393fc7
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day1_GeniusWarning
     speakerName: The Genius
     personality: 5
     lineText: Looks like if we let on too much about our current predicament, Steve might wizen up to us. Who knows if we can trust him? Don't worry though, I always know what to say to sound smart.
     displayDuration: 6
+    lineVariants: []
     choices: []
     nextStepID: SetSteveDefault
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
@@ -161,14 +260,25 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: NightScene
     steveChallenge: {fileID: 0}
-  - stepID: SetSteveDefault
+  - message:
+      messageId: 3aa39aba37e6476681df03602bb0f2df
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: SetSteveDefault
     speakerName: 
     personality: 0
     lineText: 
     displayDuration: 0
+    lineVariants: []
     choices: []
     nextStepID: Day1_SteveScreenShareRequest
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 7
     exerciseIndex: 0
     suspicionChange: 0
@@ -176,14 +286,25 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: NightScene
     steveChallenge: {fileID: 0}
-  - stepID: Day1_SteveScreenShareRequest
+  - message:
+      messageId: 02605586eff548968cd8dc6601419e1d
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day1_SteveScreenShareRequest
     speakerName: Steve
     personality: 0
     lineText: Uh ok sir, just to make sure you approve of how I do it, let me share my screen.
     displayDuration: 4
+    lineVariants: []
     choices: []
     nextStepID: Day1_RunScreenShare
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
@@ -191,14 +312,25 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: NightScene
     steveChallenge: {fileID: 0}
-  - stepID: Day1_RunScreenShare
+  - message:
+      messageId: 6bd1cae0356d4d90b3baacd563ebae19
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day1_RunScreenShare
     speakerName: Steve
     personality: 0
     lineText: 
     displayDuration: 0
+    lineVariants: []
     choices: []
     nextStepID: Day1_WaitScreenShare
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 5
     exerciseIndex: 0
     suspicionChange: 0
@@ -206,14 +338,25 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: NightScene
     steveChallenge: {fileID: 0}
-  - stepID: Day1_WaitScreenShare
+  - message:
+      messageId: d13db127049f438483f3e492800db25a
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day1_WaitScreenShare
     speakerName: 
     personality: 0
     lineText: 
     displayDuration: 0
+    lineVariants: []
     choices: []
     nextStepID: Day1_SFMLQuiz
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 6
     exerciseIndex: 0
     suspicionChange: 0
@@ -221,11 +364,20 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: NightScene
     steveChallenge: {fileID: 0}
-  - stepID: Day1_SFMLQuiz
+  - message:
+      messageId: f1fbf87c8fe64c5caeb024b5998aaa87
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day1_SFMLQuiz
     speakerName: Grand Architect
     personality: 2
     lineText: Were you paying attention? how do we set up SFML?
     displayDuration: 3
+    lineVariants: []
     choices:
     - choiceText: The Correct Answer :)
       personality: 0
@@ -240,7 +392,9 @@ MonoBehaviour:
       requiredLevel: 0
       choiceGroup: 
     nextStepID: 
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 2
     exerciseIndex: 0
     suspicionChange: 0
@@ -248,14 +402,25 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: NightScene
     steveChallenge: {fileID: 0}
-  - stepID: SFMLQuiz_Correct
+  - message:
+      messageId: a500973ce28443eb9f7c30a3a91ac316
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: SFMLQuiz_Correct
     speakerName: The Pragmatist
     personality: 3
     lineText: Why are you even wasting our time?
     displayDuration: 3
+    lineVariants: []
     choices: []
     nextStepID: Day1_SteveNextQuestion
+    alternateNextStepID: 
     awardSkillKey: SFMLQuiz_Correct
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
@@ -263,14 +428,25 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: NightScene
     steveChallenge: {fileID: 0}
-  - stepID: SFMLQuiz_InCorrect
+  - message:
+      messageId: 6ae0dc3228e64c149eb8d8acf30ecfd5
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: SFMLQuiz_InCorrect
     speakerName: The Pragmatist
     personality: 3
     lineText: Ughh, we can just google it anyway!
     displayDuration: 3
+    lineVariants: []
     choices: []
     nextStepID: Day1_SteveNextQuestion
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
@@ -278,14 +454,25 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: NightScene
     steveChallenge: {fileID: 0}
-  - stepID: Day1_SteveNextQuestion
+  - message:
+      messageId: f442812b720846e98fa4c787d9d1ac29
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day1_SteveNextQuestion
     speakerName: Steve
     personality: 0
     lineText: Ok, so where should we start?
     displayDuration: 3
+    lineVariants: []
     choices: []
     nextStepID: Day1_SecondChoices
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
@@ -293,11 +480,20 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: NightScene
     steveChallenge: {fileID: 0}
-  - stepID: Day1_SecondChoices
+  - message:
+      messageId: b02ff3b96fe049c1b6076bff74f46b15
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day1_SecondChoices
     speakerName: 
     personality: 0
     lineText: 
     displayDuration: 0
+    lineVariants: []
     choices:
     - choiceText: '"We should plan out what functionalities the game has and if we can represent them with classes. Let me look over the SFML documentation."'
       personality: 2
@@ -312,7 +508,9 @@ MonoBehaviour:
       requiredLevel: 0
       choiceGroup: 
     nextStepID: 
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 2
     exerciseIndex: 0
     suspicionChange: 0
@@ -320,14 +518,25 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: NightScene
     steveChallenge: {fileID: 0}
-  - stepID: ResponsibleStart
+  - message:
+      messageId: 7fea91dce0804df1ac2d61192595a930
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: ResponsibleStart
     speakerName: Steve
     personality: 0
     lineText: That's a really good mentality. Familiarize yourself with the documentation and let me know when you're done, I'd like to watch you set it up so I can learn.
     displayDuration: 3
+    lineVariants: []
     choices: []
     nextStepID: ReadSFMLDoc
+    alternateNextStepID: 
     awardSkillKey: GreatFirstApproach
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
@@ -335,11 +544,20 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: NightScene
     steveChallenge: {fileID: 0}
-  - stepID: ReadSFMLDoc
+  - message:
+      messageId: 8f2ddfd0d28a4604a8c2571ac9decbe6
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: ReadSFMLDoc
     speakerName: 
     personality: 0
     lineText: 
     displayDuration: 0
+    lineVariants: []
     choices:
     - choiceText: Let Steve know you're done reading the documentation.
       personality: 0
@@ -348,7 +566,9 @@ MonoBehaviour:
       requiredLevel: 0
       choiceGroup: 
     nextStepID: 
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 2
     exerciseIndex: 0
     suspicionChange: 0
@@ -356,14 +576,25 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: NightScene
     steveChallenge: {fileID: 0}
-  - stepID: IrresponsibleStart
+  - message:
+      messageId: 90194176270a46b5864fc1d47c908b42
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: IrresponsibleStart
     speakerName: Steve
     personality: 0
     lineText: Uhh sure. Can I watch you set it up?
     displayDuration: 2
+    lineVariants: []
     choices: []
     nextStepID: ScreenShareEvent
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
@@ -371,14 +602,25 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: NightScene
     steveChallenge: {fileID: 0}
-  - stepID: StevesWatchin
+  - message:
+      messageId: 31cbb0f2a1be4217be50a7cbe2bf6e76
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: StevesWatchin
     speakerName: Steve
     personality: 0
     lineText: 'Ok then, please accept and share your screen '
     displayDuration: 0
+    lineVariants: []
     choices: []
     nextStepID: ScreenShareEvent
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
@@ -386,14 +628,25 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: NightScene
     steveChallenge: {fileID: 0}
-  - stepID: ScreenShareEvent
+  - message:
+      messageId: 3a24d7fce82d4c68be5d92cdd89ccf86
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: ScreenShareEvent
     speakerName: Error
     personality: 0
     lineText: The screenshare event is being reworked to fix some bugs, moving on to the next day (awarding one skill point for proof of concept)
     displayDuration: 3
+    lineVariants: []
     choices: []
     nextStepID: EndDay1
+    alternateNextStepID: 
     awardSkillKey: SkillCheck1Passed
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
@@ -401,14 +654,25 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: 
     steveChallenge: {fileID: 0}
-  - stepID: EndDay
+  - message:
+      messageId: 75dfd136e8ca4640a14a32c23abe2b14
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: EndDay
     speakerName: 
     personality: 0
     lineText: 
     displayDuration: 0
+    lineVariants: []
     choices: []
     nextStepID: 
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 8
     exerciseIndex: 0
     suspicionChange: 0
@@ -416,14 +680,25 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Sleep
     steveChallenge: {fileID: 0}
-  - stepID: EndDay1
+  - message:
+      messageId: ce59974e5bec47fc899239521877750d
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: EndDay1
     speakerName: 
     personality: 0
     lineText: 
     displayDuration: 0
+    lineVariants: []
     choices: []
     nextStepID: EndDay2
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 7
     exerciseIndex: 0
     suspicionChange: 0
@@ -431,14 +706,25 @@ MonoBehaviour:
     NewSteveExpression: 4
     targetSceneName: Sleep
     steveChallenge: {fileID: 0}
-  - stepID: EndDay2
+  - message:
+      messageId: 588785b4cb264435868bbc70145054b6
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: EndDay2
     speakerName: 
     personality: 0
     lineText: 
     displayDuration: 0
+    lineVariants: []
     choices: []
     nextStepID: EndDay3
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 4
     exerciseIndex: 0
     suspicionChange: 0
@@ -446,14 +732,25 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Sleep
     steveChallenge: {fileID: 0}
-  - stepID: EndDay3
+  - message:
+      messageId: b2a17574491745eba14bf5621279dba2
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: EndDay3
     speakerName: 
     personality: 0
     lineText: 
     displayDuration: 0
+    lineVariants: []
     choices: []
     nextStepID: EndDay
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 4
     exerciseIndex: 0
     suspicionChange: 0
@@ -461,14 +758,25 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Sleep
     steveChallenge: {fileID: 0}
-  - stepID: EndDay3
+  - message:
+      messageId: 53e147f0d71d4caf83e17eac76a0375d
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: EndDay3
     speakerName: 
     personality: 0
     lineText: 
     displayDuration: 0
+    lineVariants: []
     choices: []
     nextStepID: EndDay
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 10
     exerciseIndex: 0
     suspicionChange: 0

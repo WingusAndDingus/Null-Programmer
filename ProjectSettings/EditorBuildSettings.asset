@@ -53,5 +53,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RefactoFight.unity
     guid: 6df96ad612f2e8a4ea8098fadb71c464
+  - enabled: 1
+    path: Assets/Scenes/Night Screen.unity
+    guid: 978d8c0d9308e8c4e986483708b013c8
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
