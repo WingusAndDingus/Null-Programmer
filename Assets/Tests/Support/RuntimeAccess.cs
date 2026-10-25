@@ -2,6 +2,7 @@ using System;
 using System.Reflection;
 using System.Runtime.ExceptionServices;
 using UnityEngine;
+using UnityEngine.Assemblies;
 
 namespace NullProgrammer.Tests
 {
@@ -15,7 +16,7 @@ namespace NullProgrammer.Tests
 
         public static Type Type(string name)
         {
-            foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
+            foreach (Assembly assembly in CurrentAssemblies.GetLoadedAssemblies()) // Uses Unity's safe built-in alternative to avoid leaks/errors from stale assemblies
             {
                 Type type = assembly.GetType(name);
                 if (type != null) return type;
