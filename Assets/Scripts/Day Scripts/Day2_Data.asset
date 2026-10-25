@@ -14,109 +14,202 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DaySequenceData
   dayNumber: 2
   steps:
-  - stepID: Start
+  - message:
+      messageId: 099e00c68c4b42969e9b7a7a96ebd25a
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Start
     speakerName: Me
     personality: 0
     lineText: Tuesday. The development environment is ready. Today I need to look like someone who knows what to do with it.
     displayDuration: 7.4
+    lineVariants: []
     choices: []
     nextStepID: Day2_Morning_Architect
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_Morning_Architect
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: c6f6e1fbd2ff4eae90843063b45d7320
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_Morning_Architect
     speakerName: The Architect
     personality: 2
     lineText: Start with one correct tile. Then repeat the rule. A clean design is only useful if we also check that it behaves correctly.
     displayDuration: 8.5
+    lineVariants: []
     choices: []
     nextStepID: Day2_Morning_Pragmatist
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_Morning_Pragmatist
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 6341018761334bedbbfaa3bdfea83421
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_Morning_Pragmatist
     speakerName: The Pragmatist
     personality: 3
     lineText: Or get a grid on the screen before anyone asks questions. We can make it elegant after it works.
     displayDuration: 7
+    lineVariants: []
     choices: []
     nextStepID: Day2_Morning_Detective
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_Morning_Detective
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 57e38e4a025443d08ef594e44891c8a5
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_Morning_Detective
     speakerName: The Detective
     personality: 6
     lineText: Steve remembers who we used to be. Watch what he says, and look for familiar details. A little confidence might buy us some breathing room.
     displayDuration: 9.3
+    lineVariants: []
     choices: []
     nextStepID: Day2_WaitZoom
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_WaitZoom
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: b1381adf97f74be59822f87ab0b55de9
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_WaitZoom
     speakerName: 
     personality: 0
     lineText: 
     displayDuration: 0
+    lineVariants: []
     choices: []
     nextStepID: Day2_GridBrief
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 1
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_GridBrief
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: bffc47b3bbe549c0ad92d7b271cfba97
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_GridBrief
     speakerName: Steve
     personality: 0
     lineText: Morning! I started trying to draw a grid after yesterday's SFML setup, but I am not sure how to organize the tiles. Could you talk me through how you would approach it? I'd like to understand it before we get to ship placement.
     displayDuration: 15.9
+    lineVariants: []
     choices: []
     nextStepID: Day2_GridRequirements
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_GridRequirements
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: a0d23ed7764f40ceb1df0c0ec4df5c1e
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_GridRequirements
     speakerName: Steve
     personality: 0
     lineText: For my first attempt, I used eight rows, eight columns, forty-pixel cells, and an origin of one hundred, eighty. Would you keep those values together somewhere? I am worried I will have to rewrite the positions if the size changes.
     displayDuration: 14.8
+    lineVariants: []
     choices: []
     nextStepID: Day2_ChooseApproach
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ChooseApproach
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: d735f0d417dc4499a5d384346f18b574
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ChooseApproach
     speakerName: Steve
     personality: 0
     lineText: Where would you start? Could you explain your reasoning so I can follow along?
     displayDuration: 5.2
+    lineVariants: []
     choices:
     - choiceText: Let us draw one tile first and make sure we understand its position before duplicating it.
       personality: 2
@@ -209,74 +302,134 @@ MonoBehaviour:
       requiredLevel: 4
       choiceGroup: Day2_ChooseApproach_Detective
     nextStepID: 
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 2
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_GridTask
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: b0e2f9cd091d4f39b3caf0af6ecad1a6
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_GridTask
     speakerName: Steve
     personality: 0
     lineText: Could I check one calculation with you? For row two, column six, with zero-based indices, forty-pixel cells, and origin one hundred, eighty, how would you find the screen position?
     displayDuration: 10.7
+    lineVariants: []
     choices: []
     nextStepID: Day2_Cell_Architect
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_Cell_Architect
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: e55859982f2a445c98fd0db4126cf31b
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_Cell_Architect
     speakerName: The Architect
     personality: 2
     lineText: Before answering, ask whether we understand how a grid index becomes a screen position. The more we know, the better we can explain and test it.
     displayDuration: 9.6
+    lineVariants: []
     choices: []
     nextStepID: Day2_Cell_Pragmatist
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_Cell_Pragmatist
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: f7633ec323c84608889c58422f17d304
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_Cell_Pragmatist
     speakerName: The Pragmatist
     personality: 3
     lineText: We only need this tile on the screen right now. We can choose how much of the calculation to tidy up before the demo.
     displayDuration: 8.9
+    lineVariants: []
     choices: []
     nextStepID: Day2_Cell_Detective
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_Cell_Detective
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 462c70bec00540f7bee5c1616bebaa95
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_Cell_Detective
     speakerName: The Detective
     personality: 6
     lineText: He knows yesterday's SFML setup. Recalling those details might reassure him, but they will not calculate this tile's position for us.
     displayDuration: 7.8
+    lineVariants: []
     choices: []
     nextStepID: Day2_CellChoice
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_CellChoice
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 51a3f83fa8eb49bc9b1b0c780c5b31d2
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_CellChoice
     speakerName: Steve
     personality: 0
     lineText: How would you explain the position calculation to me?
     displayDuration: 4
+    lineVariants: []
     choices:
     - choiceText: Column six should move the tile right, and row two should move it down. Let us check both offsets from the origin.
       personality: 2
@@ -369,46 +522,82 @@ MonoBehaviour:
       requiredLevel: 4
       choiceGroup: Day2_CellChoice_Detective
     nextStepID: 
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 2
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_CellReview
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: e04f1a0c928f4a0bb9e7d826ea92f110
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_CellReview
     speakerName: The Architect
     personality: 2
     lineText: A familiar setup detail can make the conversation easier. It cannot replace the position calculation. One correct coordinate is useful; a rule that works for every coordinate is better.
     displayDuration: 10.7
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Loops
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ResizeBrief
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 3c7e5baadabc4b8aa48c79c327d067e1
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ResizeBrief
     speakerName: Steve
     personality: 0
     lineText: If we changed this from eight by eight to ten by ten, would you update the loops or redraw the tiles? I would like to keep the same origin and cell size. How would you handle that change?
     displayDuration: 14.1
+    lineVariants: []
     choices: []
     nextStepID: Day2_ResizeChoice
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ResizeChoice
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: c4f8ae70b2f9414c9c482f79301eec22
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ResizeChoice
     speakerName: Steve
     personality: 0
     lineText: Which approach would you recommend?
     displayDuration: 4
+    lineVariants: []
     choices:
     - choiceText: We need ten rows and ten columns. Let us count the cells instead of only checking the picture.
       personality: 2
@@ -501,32 +690,56 @@ MonoBehaviour:
       requiredLevel: 4
       choiceGroup: Day2_ResizeChoice_Detective
     nextStepID: 
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 2
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_GridReview
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: a7c46eff27854696b10ca48ccb621635
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_GridReview
     speakerName: Steve
     personality: 0
     lineText: I think I swapped the axes in another version of the helper. Row two, column six appears at one hundred eighty, three hundred twenty. Could you help me understand what I got wrong and how you would check the fix?
     displayDuration: 14.8
+    lineVariants: []
     choices: []
     nextStepID: Day2_ReviewChoice
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ReviewChoice
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 2038e67d6fbf42debf0313e7b9f07482
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ReviewChoice
     speakerName: Steve
     personality: 0
     lineText: What would you suggest I change or test?
     displayDuration: 4
+    lineVariants: []
     choices:
     - choiceText: Moving across columns should change X. Let us check whether the row and column values were swapped.
       personality: 2
@@ -619,920 +832,1703 @@ MonoBehaviour:
       requiredLevel: 4
       choiceGroup: Day2_ReviewChoice_Detective
     nextStepID: 
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 2
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_Complete
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: bb8258811f3a4938b37b5c67c69cb1ca
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_Complete
     speakerName: Me
     personality: 0
     lineText: I submitted today's grid. Familiar details helped me manage Steve's suspicion, but tomorrow the code will have to stand on its own. Any shortcuts I left in place may still need work.
     displayDuration: 11.9
+    lineVariants: []
     choices: []
     nextStepID: 
+    alternateNextStepID: 
     awardSkillKey: Day_2_Complete
-    stepType: 0
+    narrativeEventKey: 
+    stepType: 10
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ChooseApproach_Architect_Novice
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 8a013056446d4c6299c78c82a9d85933
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ChooseApproach_Architect_Novice
     speakerName: Steve
     personality: 0
     lineText: Starting with one tile sounds manageable. Could you show me how you decide where it goes?
     displayDuration: 5.9
+    lineVariants: []
     choices: []
     nextStepID: Day2_GridTask
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ChooseApproach_Architect_Beginner
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: fe96da72a66843349d48595e9cb2721c
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ChooseApproach_Architect_Beginner
     speakerName: Steve
     personality: 0
     lineText: 'I think I follow: one rule for every tile. How would you write that calculation?'
     displayDuration: 5.6
+    lineVariants: []
     choices: []
     nextStepID: Day2_GridTask
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ChooseApproach_Architect_Intermediate
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 8a1d015809544d2a97e2e8aee77e2533
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ChooseApproach_Architect_Intermediate
     speakerName: Steve
     personality: 0
     lineText: So the loops use the settings instead of a list of positions? Could you show me how those pieces fit together?
     displayDuration: 7.8
+    lineVariants: []
     choices: []
     nextStepID: Day2_GridTask
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ChooseApproach_Architect_Advanced
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 733148536de74066ad19c4e268d5e149
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ChooseApproach_Architect_Advanced
     speakerName: Steve
     personality: 0
     lineText: I had only checked the picture. Which edges would you test before trusting the grid?
     displayDuration: 5.6
+    lineVariants: []
     choices: []
     nextStepID: Day2_GridTask
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ChooseApproach_Architect_Expert
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 0bac99144e354ee0a2dd7f2ab7a3d295
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ChooseApproach_Architect_Expert
     speakerName: Steve
     personality: 0
     lineText: I had not thought about a rectangular grid. Would that help us catch a loop using the wrong dimension?
     displayDuration: 7
+    lineVariants: []
     choices: []
     nextStepID: Day2_GridTask
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ChooseApproach_Pragmatist_Novice
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: bd22e2c84b65444fa9efb951de1536c4
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ChooseApproach_Pragmatist_Novice
     speakerName: Steve
     personality: 0
     lineText: I can try a rough mockup. How would you keep the spacing consistent if I place the squares by eye?
     displayDuration: 7.4
+    lineVariants: []
     choices: []
     nextStepID: Day2_GridTask
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 4
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ChooseApproach_Pragmatist_Beginner
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 8ffeea86709745059092dd78dbdda162
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ChooseApproach_Pragmatist_Beginner
     speakerName: Steve
     personality: 0
     lineText: I can copy the rows for the preview. Would changing the cell size later mean moving them all again?
     displayDuration: 7
+    lineVariants: []
     choices: []
     nextStepID: Day2_GridTask
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 3
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ChooseApproach_Pragmatist_Intermediate
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: fa7aa71f95a249c1820a79d76321b596
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ChooseApproach_Pragmatist_Intermediate
     speakerName: Steve
     personality: 0
     lineText: That seems quicker. Would you leave those fixed numbers in the loop, or move them into settings later?
     displayDuration: 6.7
+    lineVariants: []
     choices: []
     nextStepID: Day2_GridTask
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 2
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ChooseApproach_Pragmatist_Advanced
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: c60921c2c9024ce4bbdee81f810f7996
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ChooseApproach_Pragmatist_Advanced
     speakerName: Steve
     personality: 0
     lineText: A helper would make this easier to follow. How would we know whether it also works for another grid size?
     displayDuration: 7.4
+    lineVariants: []
     choices: []
     nextStepID: Day2_GridTask
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 1
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ChooseApproach_Pragmatist_Expert
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: bb48de552ec0455183eac3108dcb3d20
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ChooseApproach_Pragmatist_Expert
     speakerName: Steve
     personality: 0
     lineText: I can get that prototype ready. Which skipped checks should I put on our follow-up list?
     displayDuration: 5.9
+    lineVariants: []
     choices: []
     nextStepID: Day2_GridTask
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ChooseApproach_Detective_Novice
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 57e2cb5e794345b097987a424d62f850
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ChooseApproach_Detective_Novice
     speakerName: Steve
     personality: 0
     lineText: Right, we got the setup running yesterday. Could you help me with the grid part next?
     displayDuration: 5.9
+    lineVariants: []
     choices: []
     nextStepID: Day2_GridTask
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: -1
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ChooseApproach_Detective_Beginner
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 94a99f6596de4e838c8cf434b07370f3
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ChooseApproach_Detective_Beginner
     speakerName: Steve
     personality: 0
     lineText: Yes, I still have that CLion project open. How would you start organizing the tiles in it?
     displayDuration: 6.3
+    lineVariants: []
     choices: []
     nextStepID: Day2_GridTask
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: -2
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ChooseApproach_Detective_Intermediate
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: ea97121f158f444ca2a6d5fe15e7383a
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ChooseApproach_Detective_Intermediate
     speakerName: Steve
     personality: 0
     lineText: Thanks for remembering how I set that up. Could you walk me through the drawing code now?
     displayDuration: 6.3
+    lineVariants: []
     choices: []
     nextStepID: Day2_GridTask
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: -3
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ChooseApproach_Detective_Advanced
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 0eacb5e01adf449fb05bc61fe673d100
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ChooseApproach_Detective_Advanced
     speakerName: Steve
     personality: 0
     lineText: That is reassuring; I was wondering whether I should touch the build settings again. What would you do with the grid itself?
     displayDuration: 8.1
+    lineVariants: []
     choices: []
     nextStepID: Day2_GridTask
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: -5
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ChooseApproach_Detective_Expert
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: b4f53e0da65f47fb8ac7411d2cc5e561
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ChooseApproach_Detective_Expert
     speakerName: Steve
     personality: 0
     lineText: You have kept track of the setup better than I expected. Could I watch how you turn that into the tile layout?
     displayDuration: 8.1
+    lineVariants: []
     choices: []
     nextStepID: Day2_GridTask
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: -7
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_CellChoice_Architect_Novice
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 4797508a65cb4f69b7d3f89b3281b1f6
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_CellChoice_Architect_Novice
     speakerName: Steve
     personality: 0
     lineText: So increasing the column moves right? Could you show me how the origin fits into that?
     displayDuration: 5.9
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Position
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_CellChoice_Architect_Beginner
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 2f11b4e31d7f418ab50bcafab3cc9c77
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_CellChoice_Architect_Beginner
     speakerName: Steve
     personality: 0
     lineText: I think I see it. Do I add the origin after multiplying each index by the cell size?
     displayDuration: 6.7
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Position
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_CellChoice_Architect_Intermediate
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 1450da288a3e482e9bed339c1c2f6426
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_CellChoice_Architect_Intermediate
     speakerName: Steve
     personality: 0
     lineText: I get three hundred forty, one hundred sixty too. Would you use the same formula for every tile?
     displayDuration: 6.7
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Position
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_CellChoice_Architect_Advanced
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 5027461108d14c60be7b8e03fa5361c2
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_CellChoice_Architect_Advanced
     speakerName: Steve
     personality: 0
     lineText: Using different row and column values makes the swap easier to see, does it not? What other cells would you check?
     displayDuration: 7.8
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Position
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_CellChoice_Architect_Expert
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: af9dcc5573f74c9e905d81c200cae83b
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_CellChoice_Architect_Expert
     speakerName: Steve
     personality: 0
     lineText: Would moving the origin and changing the cell size help prove that the helper really uses its settings?
     displayDuration: 6.7
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Position
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_CellChoice_Pragmatist_Novice
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 688fa015e04d49ce939f4b36c7549f4e
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_CellChoice_Pragmatist_Novice
     speakerName: Steve
     personality: 0
     lineText: I can line it up by eye for the preview. How would you make the position repeatable in code?
     displayDuration: 7
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Position
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 4
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_CellChoice_Pragmatist_Beginner
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 37273ab9cf38482ab21421e4b7a828ec
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_CellChoice_Pragmatist_Beginner
     speakerName: Steve
     personality: 0
     lineText: I can enter that location. Would you calculate the other coordinates separately too?
     displayDuration: 4.8
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Position
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 3
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_CellChoice_Pragmatist_Intermediate
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 813abf20edc041e18337270a9c403a07
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_CellChoice_Pragmatist_Intermediate
     speakerName: Steve
     personality: 0
     lineText: That formula makes sense to me. Would you keep the one hundred, eighty, and forty written directly here?
     displayDuration: 6.7
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Position
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 2
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_CellChoice_Pragmatist_Advanced
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 3c5899b98e624fd09d8abe1b4da9ccc8
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_CellChoice_Pragmatist_Advanced
     speakerName: Steve
     personality: 0
     lineText: I can add the helper. Is this one tile enough for a quick check, or would you try another case?
     displayDuration: 7.4
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Position
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 1
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_CellChoice_Pragmatist_Expert
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 11bf3fb5332f4ac99049c5c8801755db
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_CellChoice_Pragmatist_Expert
     speakerName: Steve
     personality: 0
     lineText: I can get the preview ready after that. Would you want the corner checks left on the follow-up list?
     displayDuration: 7
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Position
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_CellChoice_Detective_Novice
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 03d5acfc9b94416199ff94fcf4542600
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_CellChoice_Detective_Novice
     speakerName: Steve
     personality: 0
     lineText: Sure, I can leave the preview open. Could you talk me through the calculation when you are ready?
     displayDuration: 6.7
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Position
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: -1
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_CellChoice_Detective_Beginner
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 88ab2566abb04d70bee44624e0fdf3ff
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_CellChoice_Detective_Beginner
     speakerName: Steve
     personality: 0
     lineText: Yes, that is the project we used yesterday. How does this tile's position follow from its row and column?
     displayDuration: 7
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Position
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: -2
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_CellChoice_Detective_Intermediate
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: dc25827ab5b2462b97d4bf0fb2d3d611
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_CellChoice_Detective_Intermediate
     speakerName: Steve
     personality: 0
     lineText: Thanks, I was relieved when CMake found the library. Could you help me connect the grid indices to X and Y?
     displayDuration: 7.8
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Position
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: -3
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_CellChoice_Detective_Advanced
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 9c2d0eff61694fcda4e29e752d814f33
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_CellChoice_Detective_Advanced
     speakerName: Steve
     personality: 0
     lineText: I am glad the build setup looks familiar. Could you explain which index belongs in each coordinate?
     displayDuration: 6.3
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Position
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: -5
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_CellChoice_Detective_Expert
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 477652a741544bac891547a1e2d1a8c7
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_CellChoice_Detective_Expert
     speakerName: Steve
     personality: 0
     lineText: That helps me feel better about the setup. Could you show me the position rule so I do not copy it incorrectly?
     displayDuration: 8.1
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Position
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: -7
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ResizeChoice_Architect_Novice
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: aec461edc78743bf891d14599f6a685c
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ResizeChoice_Architect_Novice
     speakerName: Steve
     personality: 0
     lineText: Ten times ten gives one hundred cells. How would you change the generation code to get that count?
     displayDuration: 6.7
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Resize
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ResizeChoice_Architect_Beginner
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: fb5f869213404a35af4741f57dd2b1a1
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ResizeChoice_Architect_Beginner
     speakerName: Steve
     personality: 0
     lineText: So zero through nine gives ten entries? Would you put those limits in shared settings afterward?
     displayDuration: 5.9
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Resize
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ResizeChoice_Architect_Intermediate
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: c00cb38fabc342ac9c49daf17c93075b
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ResizeChoice_Architect_Intermediate
     speakerName: Steve
     personality: 0
     lineText: I can change the two settings. Am I right that the drawing code should not need any new coordinates?
     displayDuration: 7
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Resize
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ResizeChoice_Architect_Advanced
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: d6a471de73414b29ac6225733fa07a7e
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ResizeChoice_Architect_Advanced
     speakerName: Steve
     personality: 0
     lineText: Checking row nine, column nine makes sense. Would that reveal an extra row or column from an inclusive loop?
     displayDuration: 7
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Resize
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ResizeChoice_Architect_Expert
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: a331f6dfd1094dfd9c9372c24f0fa761
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ResizeChoice_Architect_Expert
     speakerName: Steve
     personality: 0
     lineText: Would six by ten be a better check for accidentally using rows in both loops? I would like to add that test.
     displayDuration: 8.1
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Resize
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ResizeChoice_Pragmatist_Novice
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: e3b005c73331426aa2d6ab4768b78ab2
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ResizeChoice_Pragmatist_Novice
     speakerName: Steve
     personality: 0
     lineText: I can add more squares to the preview. How would we notice if one overlaps or is missing?
     displayDuration: 6.7
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Resize
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 4
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ResizeChoice_Pragmatist_Beginner
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 85ea463e9ff944cba511f40434ab3837
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ResizeChoice_Pragmatist_Beginner
     speakerName: Steve
     personality: 0
     lineText: I can duplicate the rows. Would you expect us to adjust those positions again if the dimensions change?
     displayDuration: 6.7
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Resize
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 3
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ResizeChoice_Pragmatist_Intermediate
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: f9c7917fd20f4fc7aea7cd8a533189e9
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ResizeChoice_Pragmatist_Intermediate
     speakerName: Steve
     personality: 0
     lineText: I can replace the eights with tens. Where else would you look for another fixed value I might miss?
     displayDuration: 7
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Resize
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 2
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ResizeChoice_Pragmatist_Advanced
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: a62ab8a260ba45f7a1e373e529cb3d2a
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ResizeChoice_Pragmatist_Advanced
     speakerName: Steve
     personality: 0
     lineText: That would make the change quicker. Would a rectangular example be worth checking before we move on?
     displayDuration: 6.3
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Resize
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 1
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ResizeChoice_Pragmatist_Expert
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: b7dd8e8b050c462f95dfd4ad50b96f97
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ResizeChoice_Pragmatist_Expert
     speakerName: Steve
     personality: 0
     lineText: I can confirm the one hundred cells. Should I note that the other shapes are still untested?
     displayDuration: 6.3
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Resize
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ResizeChoice_Detective_Novice
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 47d8a680038e47d383d348574142650d
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ResizeChoice_Detective_Novice
     speakerName: Steve
     personality: 0
     lineText: Yes, we can keep using the SFML window from yesterday. How would you change what it draws?
     displayDuration: 6.3
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Resize
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: -1
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ResizeChoice_Detective_Beginner
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 65d3e6cc405443d7a8460e4aae769d15
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ResizeChoice_Detective_Beginner
     speakerName: Steve
     personality: 0
     lineText: I remember getting that first window open. Could you show me how you would resize the grid inside it?
     displayDuration: 7
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Resize
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: -2
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ResizeChoice_Detective_Intermediate
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 5b8f52138e05468a966acc990602b7fa
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ResizeChoice_Detective_Intermediate
     speakerName: Steve
     personality: 0
     lineText: I am glad we can leave the build configuration alone. Which dimensions should I pass to the drawing function?
     displayDuration: 7
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Resize
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: -3
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ResizeChoice_Detective_Advanced
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 2f60fea643114808a1a2abff7de8fb98
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ResizeChoice_Detective_Advanced
     speakerName: Steve
     personality: 0
     lineText: That reassures me about the setup. Would you mind reviewing the row and column arguments with me?
     displayDuration: 6.3
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Resize
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: -5
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ResizeChoice_Detective_Expert
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 58057697328b4ed8ae7da5928324f505
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ResizeChoice_Detective_Expert
     speakerName: Steve
     personality: 0
     lineText: Thanks, I would rather not accidentally undo yesterday's setup. Could you show me how you would make the drawing call follow both requested dimensions?
     displayDuration: 8.9
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Resize
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: -7
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ReviewChoice_Architect_Novice
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: baf1fc05ebb54869be0b1d066fafad11
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ReviewChoice_Architect_Novice
     speakerName: Steve
     personality: 0
     lineText: That would explain why the tile moves in the wrong direction. Where would you make the correction?
     displayDuration: 6.3
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Verification
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ReviewChoice_Architect_Beginner
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: eeb90624d81347d0b0f661ec63e9b1df
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ReviewChoice_Architect_Beginner
     speakerName: Steve
     personality: 0
     lineText: So the shared formula is the part to fix? Would that correct every tile using it?
     displayDuration: 5.9
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Verification
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ReviewChoice_Architect_Intermediate
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 8944129503f24b3c931ae4ace3edbb4e
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ReviewChoice_Architect_Intermediate
     speakerName: Steve
     personality: 0
     lineText: I can follow that calculation now. Could you show me how you would keep me from reintroducing the swap?
     displayDuration: 7
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Verification
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ReviewChoice_Architect_Advanced
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 13141edbe26e466d92e41dd6ec75ceea
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ReviewChoice_Architect_Advanced
     speakerName: Steve
     personality: 0
     lineText: Those seem like useful cases. Would you test the origin, unequal indices, and the edges together?
     displayDuration: 5.9
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Verification
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: -1
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ReviewChoice_Architect_Expert
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 18a6a6c8980d4c0b9aca29af91acbc74
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ReviewChoice_Architect_Expert
     speakerName: Steve
     personality: 0
     lineText: That is more thorough than the origin check I wrote. Could you explain how the tests distinguish the fixed helper from the swapped version?
     displayDuration: 8.9
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Verification
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: -1
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ReviewChoice_Pragmatist_Novice
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 82a3b74868ff4837808c9fe76ae1334b
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ReviewChoice_Pragmatist_Novice
     speakerName: Steve
     personality: 0
     lineText: I can move that tile for the screenshot. Would the same error still appear when another tile uses the helper?
     displayDuration: 7.4
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Verification
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 4
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ReviewChoice_Pragmatist_Beginner
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 17eef297ffb2471dbd81a5c00b9a7fb2
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ReviewChoice_Pragmatist_Beginner
     speakerName: Steve
     personality: 0
     lineText: I can patch the visible ones. How would we avoid missing a bad position that is not on screen?
     displayDuration: 7
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Verification
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 3
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ReviewChoice_Pragmatist_Intermediate
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 7d7597bda349466e992adbe320cedbb6
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ReviewChoice_Pragmatist_Intermediate
     speakerName: Steve
     personality: 0
     lineText: I can swap those inputs. Would you test more than this one cell afterward?
     displayDuration: 5.2
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Verification
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 2
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ReviewChoice_Pragmatist_Advanced
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 7783bd159abb44bea107bf83c248ca7c
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ReviewChoice_Pragmatist_Advanced
     speakerName: Steve
     personality: 0
     lineText: I can check those two cases. Should I keep the far edge and rectangular grid on the follow-up list?
     displayDuration: 7
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Verification
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 1
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ReviewChoice_Pragmatist_Expert
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 9d6a8365b0f44e1e984240741e9742de
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ReviewChoice_Pragmatist_Expert
     speakerName: Steve
     personality: 0
     lineText: I can record the remaining checks. Which ones would you want us to finish before using this for ship placement?
     displayDuration: 7.4
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Verification
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ReviewChoice_Detective_Novice
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: a80fc544215f4e1b826848a2032439be
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ReviewChoice_Detective_Novice
     speakerName: Steve
     personality: 0
     lineText: All right, I can note it for review. Would you want to check it before we use the grid tomorrow?
     displayDuration: 7.4
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Verification
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: -1
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ReviewChoice_Detective_Beginner
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: c2c3ad86428b46268ed37c2e42de36c7
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ReviewChoice_Detective_Beginner
     speakerName: Steve
     personality: 0
     lineText: Yes, I remember that setup step. Could you explain how you would review the coordinate issue when we return to it?
     displayDuration: 7.8
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Verification
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: -2
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ReviewChoice_Detective_Intermediate
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: e72e454e30e747f9bf927e5ded0ded5c
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ReviewChoice_Detective_Intermediate
     speakerName: Steve
     personality: 0
     lineText: It is reassuring that the build setup is still familiar. How would you separate that from checking the tile calculation?
     displayDuration: 7.4
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Verification
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: -3
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ReviewChoice_Detective_Advanced
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: f2c4153b72744c829eda5c4f34db1e20
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ReviewChoice_Detective_Advanced
     speakerName: Steve
     personality: 0
     lineText: I can keep the review note. When you look at the helper, could you show me a test that catches my mistake?
     displayDuration: 8.1
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Verification
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: -5
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_ReviewChoice_Detective_Expert
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 8f0e97b0a2a04a3f883112fb33d92105
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_ReviewChoice_Detective_Expert
     speakerName: Steve
     personality: 0
     lineText: Thanks for keeping track of the setup details. Could I watch your review of the coordinate code so I understand the distinction?
     displayDuration: 8.1
+    lineVariants: []
     choices: []
     nextStepID: Day2_Exercise_Verification
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: -7
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_Exercise_Position
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: dad9db16d70b437092156cf15cc42b9a
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_Exercise_Position
     speakerName: Steve
     personality: 0
     lineText: Would you mind showing me which replacement you would use? You can run the tests to check it, then submit the version you want us to keep.
     displayDuration: 10
+    lineVariants: []
     choices: []
     nextStepID: Day2_CellReview
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 8
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_Exercise_Loops
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 5accfa26e3b44052aa4889398377198a
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_Exercise_Loops
     speakerName: Steve
     personality: 0
     lineText: I am not confident about these loop bounds. Could you review the alternatives with me? I am especially curious whether the same loop works when rows and columns are different.
     displayDuration: 11.1
+    lineVariants: []
     choices: []
     nextStepID: Day2_ResizeBrief
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 8
     exerciseIndex: 1
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_Exercise_Resize
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 1bb25aebe77549718402011e0ea0d5bf
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_Exercise_Resize
     speakerName: Steve
     personality: 0
     lineText: I copied the original drawing call, but it still uses eight by eight. Which arguments would you pass instead? I would like to understand how to make this reusable.
     displayDuration: 10.7
+    lineVariants: []
     choices: []
     nextStepID: Day2_GridReview
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 8
     exerciseIndex: 2
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-  - stepID: Day2_Exercise_Verification
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 1154a4f8b0be428b879f738379f38a16
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Day2_Exercise_Verification
     speakerName: Steve
     personality: 0
     lineText: My origin test passes even with the swapped version. Am I testing the wrong thing? Could you show me which checks would actually catch that mistake?
     displayDuration: 9.6
+    lineVariants: []
     choices: []
     nextStepID: Day2_Complete
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 8
     exerciseIndex: 3
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
+    steveChallenge: {fileID: 0}
