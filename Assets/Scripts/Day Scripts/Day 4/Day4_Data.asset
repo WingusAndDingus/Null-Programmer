@@ -14,11 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DaySequenceData
   dayNumber: 4
   steps:
-  - stepID: Start
+  - message:
+      messageId: 9447e7332b044eaea720aa0590e62024
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Start
     speakerName: Steve
     personality: 0
     lineText: '"Goodmorning Sir. I''ve been thinking we need to refactor our battleship code and include a GameManager class."'
     displayDuration: 5
+    lineVariants: []
     choices:
     - choiceText: Sounds like a good idea I suppose
       personality: 0
@@ -35,254 +44,505 @@ MonoBehaviour:
     nextStepID: 1
     alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
-  - stepID: 1b
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 2b6d61a82335471aa8dbbe00a193a4da
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: 1b
     speakerName: Steve
     personality: 0
     lineText: Well ok.. why don't you take a look in the UML app, I added an outline for the GameManager class.
     displayDuration: 5
+    lineVariants: []
     choices: []
     nextStepID: 1-wait
     alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 1
-  - stepID: 1a
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: f097be846eee47d794df619aa3679582
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: 1a
     speakerName: Steve
     personality: 0
     lineText: Great, why don't you take a look in the UML app, I added an outline for the GameManager class.
     displayDuration: 5
+    lineVariants: []
     choices: []
     nextStepID: 1-wait
     alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 1
-  - stepID: 1-wait
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 0b7d320a847245ff8a141ae0f52431d8
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: 1-wait
     speakerName: 
     personality: 0
     lineText: 
     displayDuration: 0
+    lineVariants: []
     choices: []
     nextStepID: 2
     alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 4
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 1
-  - stepID: 2
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 02d25f7eb02842fdad6061947b30d841
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: 2
     speakerName: Detective
     personality: 6
     lineText: '"Steve wants us to look at the UML app, click the third icon on your taskbar to open it"'
     displayDuration: 5
+    lineVariants: []
     choices: []
     nextStepID: 2-wait
     alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 3
-  - stepID: 2-wait
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: b7113f81eae54521bd25e56e65dab5de
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: 2-wait
     speakerName: 
     personality: 0
     lineText: 
     displayDuration: 0
+    lineVariants: []
     choices: []
     nextStepID: 3
     alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 4
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 2
-  - stepID: 3
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 0fc64442563445d9b4c71be481001a10
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: 3
     speakerName: Steve
     personality: 0
     lineText: '"Are you seeing the UML? Click on the GameManager class at the top to read more about it."'
     displayDuration: 5
+    lineVariants: []
     choices: []
     nextStepID: 3-wait
     alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 2
-  - stepID: 3-wait
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 3e5e37a8844d4bf5bd306c4c2ce3adde
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: 3-wait
     speakerName: 
     personality: 0
     lineText: 
     displayDuration: 0
+    lineVariants: []
     choices: []
     nextStepID: 4
     alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 4
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 2
-  - stepID: 4
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 9d653d67c3f64e988d28340684eff6c4
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: 4
     speakerName: Steve
     personality: 0
     lineText: '"The problem is I''m not sure how to implement this...'
     displayDuration: 5
+    lineVariants: []
     choices: []
     nextStepID: 4-wait
     alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
-  - stepID: 4-wait
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: a80bbd06395c4dcb9619df50c65cb06c
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: 4-wait
     speakerName: 
     personality: 0
     lineText: 
     displayDuration: 0
+    lineVariants: []
     choices: []
     nextStepID: 5
     alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 4
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 2
-  - stepID: 5
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 370dd438d5cb41e9a9b1b74b6c8ccaba
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: 5
     speakerName: Steve
     personality: 0
     lineText: '"You see I er attempted to implement it but it turned into a bit of a mess... I installed an app on your desktop which should allow you to refactor it, would you mind giving it a shot for me?"'
     displayDuration: 7
+    lineVariants: []
     choices: []
     nextStepID: 5-wait
     alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
-  - stepID: 5-wait
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: c66f163501e740a2865b40a858c3a7ff
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: 5-wait
     speakerName: 
     personality: 0
     lineText: 
     displayDuration: 0
+    lineVariants: []
     choices: []
     nextStepID: 6
     alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 4
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 2
-  - stepID: 6
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 511fab118d104d26a44a5806e7f13c01
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: 6
     speakerName: Grand Architect
     personality: 2
     lineText: '"This seems like a challenge for me. Let''s checkout this app Steve sent us."'
     displayDuration: 5
+    lineVariants: []
     choices: []
     nextStepID: 6-wait
     alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
-  - stepID: 6-wait
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: adf3defad3b242afb0e4481d4215e89a
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: 6-wait
     speakerName: 
     personality: 0
     lineText: 
     displayDuration: 0
+    lineVariants: []
     choices: []
     nextStepID: 7
     alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 4
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 1
-  - stepID: 7
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 4cd0b69b10ae487196de34ed18817d58
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: 7
     speakerName: Pragmatist
     personality: 3
     lineText: '"Well it couldn''t hurt to give it a try I guess"'
     displayDuration: 3
+    lineVariants: []
     choices: []
     nextStepID: 7-wait
     alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
-  - stepID: 7-wait
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 1b2fec4d9d324542bca6670c1fdab88b
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: 7-wait
     speakerName: 
     personality: 0
     lineText: 
     displayDuration: 0
+    lineVariants: []
     choices: []
     nextStepID: 8
     alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 4
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 1
-  - stepID: 8
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 46cda816ac294a2b93115c91b8d174bc
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: 8
     speakerName: 
     personality: 6
     lineText: '"Ok let''s open up the app. Click on the new icon on the taskbar. The 4th one"'
     displayDuration: 5
+    lineVariants: []
     choices: []
     nextStepID: Play_Minigame
     alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 3
-  - stepID: Play_Minigame
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: b2989031cf7b4ebcb132b6812a4cd465
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Play_Minigame
     speakerName: 
     personality: 0
     lineText: 
     displayDuration: 0
+    lineVariants: []
     choices: []
     nextStepID: Refacto_Success
     alternateNextStepID: Refacto_Failure
     awardSkillKey: 
-    stepType: 9
+    narrativeEventKey: 
+    stepType: 15
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
-  - stepID: Refacto_Success
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 869c7a13ca1d415baeacdd0d3edc2103
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Refacto_Success
     speakerName: Steve
     personality: 0
     lineText: '"Incredible work! I can''t believe you were able to refactor it so quickly! I have a lot to learn still"'
     displayDuration: 5
+    lineVariants: []
     choices: []
     nextStepID: 
     alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
-  - stepID: Refacto_Failure
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: c7d4637ef81747adb1f419d1de49f706
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Refacto_Failure
     speakerName: Steve
     personality: 0
     lineText: '"I thought you could do it, I guess I''ll have to fix it myself."'
     displayDuration: 4
+    lineVariants: []
     choices: []
     nextStepID: 
     alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}

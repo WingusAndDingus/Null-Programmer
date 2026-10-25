@@ -2120,10 +2120,10 @@ MonoBehaviour:
   hitPulseColor: {r: 0.3254902, g: 0.5137255, b: 0.9686275, a: 1}
   missPulseColor: {r: 1, g: 0, b: 0, a: 1}
   battlePhases:
-  - {fileID: 11400000, guid: ef2f6ff16e642b346ad9c14eefb63300, type: 2}
-  - {fileID: 11400000, guid: 27a81b7332fe0014fb7dda6bcdcbc8ab, type: 2}
-  - {fileID: 11400000, guid: 8ad9f6fec63b1664098d1f33cd1d9800, type: 2}
-  - {fileID: 11400000, guid: b4a303f8c8a7abc4c84a1fe913584339, type: 2}
+  - {fileID: 11400000, guid: bffb03207fc5dbf4eb622f5db330fa2b, type: 2}
+  - {fileID: 11400000, guid: c7aea844496a2a044bed0efc642ee7ae, type: 2}
+  - {fileID: 11400000, guid: d4fe3519c98b2444488eecfe58710de3, type: 2}
+  - {fileID: 11400000, guid: 31fd6811f98e13946ba8fcbab446a679, type: 2}
 --- !u!82 &699688276
 AudioSource:
   m_ObjectHideFlags: 0

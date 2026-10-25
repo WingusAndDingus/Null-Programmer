@@ -1,0 +1,235 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9da21d5e0b5a879498567aab81e7a70d, type: 3}
+  m_Name: Phase 4
+  m_EditorClassIdentifier: Assembly-CSharp::BossBattlePhaseData
+  phaseNumber: 4
+  phaseTitle: 
+  bpm: 180
+  notes:
+  - hitTime: 2
+    lane: 2
+  - hitTime: 2.1666667
+    lane: 0
+  - hitTime: 2.5
+    lane: 1
+  - hitTime: 2.8333333
+    lane: 1
+  - hitTime: 3.1666665
+    lane: 2
+  - hitTime: 3.3333333
+    lane: 0
+  - hitTime: 3.6666665
+    lane: 1
+  - hitTime: 3.9999998
+    lane: 0
+  - hitTime: 4.333333
+    lane: 2
+  - hitTime: 4.333333
+    lane: 0
+  - hitTime: 4.333333
+    lane: 1
+  - hitTime: 4.333333
+    lane: 3
+  - hitTime: 4.4999995
+    lane: 1
+  - hitTime: 4.833333
+    lane: 2
+  - hitTime: 5.1666665
+    lane: 0
+  - hitTime: 5.5
+    lane: 1
+  - hitTime: 5.6666665
+    lane: 2
+  - hitTime: 6
+    lane: 0
+  - hitTime: 6.3333335
+    lane: 0
+  - hitTime: 6.666667
+    lane: 1
+  - hitTime: 6.666667
+    lane: 0
+  - hitTime: 6.666667
+    lane: 2
+  - hitTime: 6.666667
+    lane: 3
+  - hitTime: 6.8333335
+    lane: 2
+  - hitTime: 7.166667
+    lane: 3
+  - hitTime: 7.5000005
+    lane: 2
+  - hitTime: 7.833334
+    lane: 0
+  - hitTime: 8.000001
+    lane: 0
+  - hitTime: 8.333334
+    lane: 2
+  - hitTime: 8.666667
+    lane: 2
+  - hitTime: 9
+    lane: 3
+  - hitTime: 9
+    lane: 0
+  - hitTime: 9
+    lane: 1
+  - hitTime: 9.166667
+    lane: 3
+  - hitTime: 9.5
+    lane: 3
+  - hitTime: 9.833333
+    lane: 1
+  - hitTime: 10.166666
+    lane: 1
+  - hitTime: 10.333333
+    lane: 2
+  - hitTime: 10.666666
+    lane: 0
+  - hitTime: 10.999999
+    lane: 2
+  - hitTime: 11.333332
+    lane: 3
+  - hitTime: 11.333332
+    lane: 0
+  - hitTime: 11.333332
+    lane: 1
+  - hitTime: 11.333332
+    lane: 2
+  - hitTime: 11.499999
+    lane: 3
+  - hitTime: 11.833332
+    lane: 1
+  - hitTime: 12.166665
+    lane: 2
+  - hitTime: 12.499998
+    lane: 0
+  - hitTime: 12.666665
+    lane: 1
+  - hitTime: 12.999998
+    lane: 0
+  - hitTime: 13.333331
+    lane: 1
+  - hitTime: 13.666664
+    lane: 3
+  - hitTime: 13.666664
+    lane: 1
+  - hitTime: 13.666664
+    lane: 2
+  - hitTime: 13.833331
+    lane: 2
+  - hitTime: 14.166664
+    lane: 3
+  - hitTime: 14.499997
+    lane: 2
+  - hitTime: 14.83333
+    lane: 2
+  - hitTime: 14.999997
+    lane: 0
+  - hitTime: 15.33333
+    lane: 2
+  - hitTime: 15.666663
+    lane: 2
+  - hitTime: 15.999996
+    lane: 1
+  - hitTime: 15.999996
+    lane: 0
+  - hitTime: 15.999996
+    lane: 2
+  - hitTime: 15.999996
+    lane: 3
+  - hitTime: 16.166662
+    lane: 1
+  - hitTime: 16.499996
+    lane: 1
+  - hitTime: 16.83333
+    lane: 2
+  - hitTime: 17.166664
+    lane: 3
+  - hitTime: 17.33333
+    lane: 3
+  - hitTime: 17.666664
+    lane: 0
+  - hitTime: 17.999998
+    lane: 0
+  - hitTime: 18.333332
+    lane: 0
+  - hitTime: 18.333332
+    lane: 2
+  - hitTime: 18.333332
+    lane: 3
+  - hitTime: 18.499998
+    lane: 0
+  - hitTime: 18.833332
+    lane: 2
+  - hitTime: 19.166666
+    lane: 0
+  - hitTime: 19.5
+    lane: 2
+  - hitTime: 19.666666
+    lane: 1
+  - hitTime: 20
+    lane: 3
+  - hitTime: 20.333334
+    lane: 3
+  - hitTime: 20.666668
+    lane: 1
+  - hitTime: 20.666668
+    lane: 0
+  - hitTime: 20.666668
+    lane: 2
+  - hitTime: 20.666668
+    lane: 3
+  - hitTime: 20.833334
+    lane: 2
+  - hitTime: 21.166668
+    lane: 3
+  - hitTime: 21.500002
+    lane: 3
+  - hitTime: 21.833336
+    lane: 0
+  - hitTime: 22.000002
+    lane: 1
+  - hitTime: 22.333336
+    lane: 2
+  - hitTime: 22.66667
+    lane: 1
+  - hitTime: 23.000004
+    lane: 1
+  - hitTime: 23.000004
+    lane: 2
+  - hitTime: 23.000004
+    lane: 3
+  - hitTime: 23.16667
+    lane: 3
+  - hitTime: 23.500004
+    lane: 0
+  - hitTime: 23.833338
+    lane: 1
+  - hitTime: 24.166672
+    lane: 0
+  - hitTime: 24.333338
+    lane: 0
+  - hitTime: 24.666672
+    lane: 1
+  - hitTime: 25.000006
+    lane: 3
+  - hitTime: 25.000006
+    lane: 0
+  - hitTime: 25.000006
+    lane: 1
+  - hitTime: 25.000006
+    lane: 2
+  intermissionQuestion:
+    questionText: 
+    options: []
+    correctAnswerIndex: 0
+    explanationText: 

@@ -9,69 +9,69 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Phase1_RawEventSpam
+  m_Script: {fileID: 11500000, guid: 9da21d5e0b5a879498567aab81e7a70d, type: 3}
+  m_Name: Phase 1
   m_EditorClassIdentifier: Assembly-CSharp::BossBattlePhaseData
   phaseNumber: 1
-  phaseTitle: Phase 1 - Raw Event Spam
+  phaseTitle: 
   bpm: 120
   notes:
   - hitTime: 2
-    lane: 2
+    lane: 0
   - hitTime: 2.5
     lane: 1
   - hitTime: 3
-    lane: 1
+    lane: 3
   - hitTime: 3.5
-    lane: 2
+    lane: 3
   - hitTime: 4
     lane: 0
   - hitTime: 4.5
-    lane: 0
-  - hitTime: 5
-    lane: 1
-  - hitTime: 5.5
     lane: 2
+  - hitTime: 5
+    lane: 3
+  - hitTime: 5.5
+    lane: 3
   - hitTime: 6
     lane: 3
   - hitTime: 6.5
-    lane: 0
-  - hitTime: 7
     lane: 3
+  - hitTime: 7
+    lane: 0
   - hitTime: 7.5
-    lane: 1
+    lane: 2
   - hitTime: 8
     lane: 1
   - hitTime: 8.5
-    lane: 0
-  - hitTime: 9
-    lane: 2
-  - hitTime: 9.5
-    lane: 1
-  - hitTime: 10
-    lane: 1
-  - hitTime: 10.5
     lane: 3
-  - hitTime: 11
+  - hitTime: 9
     lane: 0
+  - hitTime: 9.5
+    lane: 0
+  - hitTime: 10
+    lane: 2
+  - hitTime: 10.5
+    lane: 2
+  - hitTime: 11
+    lane: 2
   - hitTime: 11.5
     lane: 1
   - hitTime: 12
-    lane: 3
+    lane: 2
   - hitTime: 12.5
     lane: 0
   - hitTime: 13
     lane: 2
   - hitTime: 13.5
-    lane: 3
+    lane: 1
   - hitTime: 14
     lane: 3
   - hitTime: 14.5
-    lane: 3
+    lane: 0
   - hitTime: 15
     lane: 0
   - hitTime: 15.5
-    lane: 3
+    lane: 1
   - hitTime: 16
     lane: 0
   - hitTime: 16.5
@@ -81,27 +81,27 @@ MonoBehaviour:
   - hitTime: 17.5
     lane: 2
   - hitTime: 18
-    lane: 0
+    lane: 3
   - hitTime: 18.5
-    lane: 0
+    lane: 3
   - hitTime: 19
-    lane: 3
-  - hitTime: 19.5
-    lane: 2
-  - hitTime: 20
-    lane: 3
-  - hitTime: 20.5
     lane: 1
-  - hitTime: 21
+  - hitTime: 19.5
+    lane: 1
+  - hitTime: 20
+    lane: 1
+  - hitTime: 20.5
     lane: 2
-  - hitTime: 21.5
+  - hitTime: 21
     lane: 3
+  - hitTime: 21.5
+    lane: 0
   intermissionQuestion:
-    questionText: What is Encapsulation?
+    questionText: What is the primary benefit of encapsulation in C++?
     options:
-    - Inheriting traits
-    - Bundling data and methods into a single unit
-    - Exposing all variables
-    - Writing magic numbers
+    - Making variables public
+    - Hiding internal data
+    - Writing code faster
+    - Eliminating constructors
     correctAnswerIndex: 1
-    explanationText: Encapsulation bundles data and the methods that operate on it.
+    explanationText: 

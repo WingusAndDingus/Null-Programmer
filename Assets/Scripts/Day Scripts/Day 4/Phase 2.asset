@@ -9,155 +9,155 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Phase2_TightCoupling
+  m_Script: {fileID: 11500000, guid: 9da21d5e0b5a879498567aab81e7a70d, type: 3}
+  m_Name: Phase 2
   m_EditorClassIdentifier: Assembly-CSharp::BossBattlePhaseData
   phaseNumber: 2
-  phaseTitle: Phase 2 - Tight Coupling
+  phaseTitle: 
   bpm: 140
   notes:
   - hitTime: 2
-    lane: 0
+    lane: 1
   - hitTime: 2
-    lane: 2
-  - hitTime: 2.4285715
     lane: 3
+  - hitTime: 2.4285715
+    lane: 1
   - hitTime: 2.857143
     lane: 0
   - hitTime: 3.2857144
-    lane: 1
+    lane: 3
   - hitTime: 3.7142859
-    lane: 2
+    lane: 0
   - hitTime: 4.142857
-    lane: 2
+    lane: 1
   - hitTime: 4.5714283
     lane: 1
   - hitTime: 4.9999995
-    lane: 2
-  - hitTime: 5.4285707
-    lane: 2
+    lane: 0
   - hitTime: 5.4285707
     lane: 0
+  - hitTime: 5.4285707
+    lane: 2
   - hitTime: 5.857142
-    lane: 1
+    lane: 2
   - hitTime: 6.285713
-    lane: 0
+    lane: 3
   - hitTime: 6.7142844
-    lane: 1
+    lane: 0
   - hitTime: 7.1428556
-    lane: 1
+    lane: 0
   - hitTime: 7.571427
-    lane: 1
+    lane: 3
   - hitTime: 7.999998
-    lane: 2
+    lane: 3
   - hitTime: 8.42857
+    lane: 3
+  - hitTime: 8.8571415
+    lane: 3
+  - hitTime: 8.8571415
     lane: 1
-  - hitTime: 8.8571415
-    lane: 2
-  - hitTime: 8.8571415
-    lane: 0
   - hitTime: 9.285713
-    lane: 0
+    lane: 1
   - hitTime: 9.714285
     lane: 2
   - hitTime: 10.142857
-    lane: 1
+    lane: 0
   - hitTime: 10.571428
-    lane: 2
+    lane: 1
   - hitTime: 11
     lane: 3
   - hitTime: 11.428572
-    lane: 2
+    lane: 0
   - hitTime: 11.857143
-    lane: 3
+    lane: 1
   - hitTime: 12.285715
     lane: 3
   - hitTime: 12.285715
     lane: 1
   - hitTime: 12.714287
-    lane: 2
-  - hitTime: 13.1428585
-    lane: 2
-  - hitTime: 13.57143
-    lane: 0
-  - hitTime: 14.000002
     lane: 3
+  - hitTime: 13.1428585
+    lane: 0
+  - hitTime: 13.57143
+    lane: 3
+  - hitTime: 14.000002
+    lane: 0
   - hitTime: 14.428574
-    lane: 0
+    lane: 2
   - hitTime: 14.857145
-    lane: 1
+    lane: 2
   - hitTime: 15.285717
-    lane: 2
-  - hitTime: 15.714289
     lane: 0
   - hitTime: 15.714289
-    lane: 2
+    lane: 1
+  - hitTime: 15.714289
+    lane: 3
   - hitTime: 16.14286
-    lane: 0
+    lane: 1
   - hitTime: 16.571432
-    lane: 2
+    lane: 0
   - hitTime: 17.000004
     lane: 3
   - hitTime: 17.428576
-    lane: 0
+    lane: 2
   - hitTime: 17.857147
     lane: 3
   - hitTime: 18.285719
-    lane: 3
+    lane: 2
   - hitTime: 18.71429
     lane: 3
   - hitTime: 19.142862
-    lane: 3
-  - hitTime: 19.142862
     lane: 1
+  - hitTime: 19.142862
+    lane: 3
   - hitTime: 19.571434
     lane: 1
   - hitTime: 20.000006
-    lane: 1
+    lane: 0
   - hitTime: 20.428577
-    lane: 2
+    lane: 1
   - hitTime: 20.85715
-    lane: 0
-  - hitTime: 21.28572
-    lane: 2
-  - hitTime: 21.714293
-    lane: 2
-  - hitTime: 22.142864
-    lane: 0
-  - hitTime: 22.571436
     lane: 3
+  - hitTime: 21.28572
+    lane: 1
+  - hitTime: 21.714293
+    lane: 3
+  - hitTime: 22.142864
+    lane: 1
   - hitTime: 22.571436
-    lane: 1
-  - hitTime: 23.000008
+    lane: 2
+  - hitTime: 22.571436
     lane: 0
+  - hitTime: 23.000008
+    lane: 3
   - hitTime: 23.42858
-    lane: 1
+    lane: 0
   - hitTime: 23.857151
-    lane: 1
+    lane: 2
   - hitTime: 24.285723
-    lane: 1
+    lane: 0
   - hitTime: 24.714294
     lane: 1
   - hitTime: 25.142866
-    lane: 2
+    lane: 0
   - hitTime: 25.571438
-    lane: 1
-  - hitTime: 26.00001
-    lane: 1
+    lane: 2
   - hitTime: 26.00001
     lane: 3
+  - hitTime: 26.00001
+    lane: 1
   - hitTime: 26.428581
     lane: 2
   - hitTime: 26.857153
-    lane: 1
+    lane: 2
   - hitTime: 27.285725
-    lane: 3
+    lane: 0
   intermissionQuestion:
-    questionText: What is Abstraction?
+    questionText: Why should game logic be separated from the main event loop?
     options:
-    - Hiding background details and showing only essentials
-    - Making everything public
-    - Copying and pasting code
-    - Using global variables
+    - To keep code maintainable
+    - To avoid writing headers
+    - To make it faster
+    - It shouldn't
     correctAnswerIndex: 0
-    explanationText: Abstraction hides complexity by providing a simplified interface.
+    explanationText: 
