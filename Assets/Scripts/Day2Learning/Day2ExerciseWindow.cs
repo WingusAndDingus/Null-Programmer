@@ -135,10 +135,7 @@ namespace NullProgrammer.Day2
                     int before = manager.SteveSuspicion;
                     manager.ChangeSteveSuspicion(-new[] { 1, 2, 3, 5, 7 }[level]);
                     int change = manager.SteveSuspicion - before;
-                    hintText.text += change < 0 ? "\nSuspicion " + change + ". Your code quality still depends on the submitted answer."
-                        : "\nSuspicion is already zero. Your code quality still depends on the submitted answer.";
                 }
-                else hintText.text += "\nReassurance already used for this exercise; no repeated suspicion reduction.";
             }
             RefreshProgress();
         }
