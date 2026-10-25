@@ -162,6 +162,18 @@ public class DayNarrativeExecutor : MonoBehaviour
             case NarrativeStepType.DialogueLine:
             case NarrativeStepType.PresentChoices:
                 break;
+
+            case NarrativeStepType.WaitUntilRefactoFightCompleted:
+                if (DialogueManager.Instance != null) DialogueManager.Instance.HideDialogueUI();
+                
+                // Pause the story infinitely until the player clicks the desktop icon and finishes the game
+                bool playerWon = await RefactoFightApp.WaitForBattleCompletionAsync(cancellationToken);
+                
+                if (!playerWon && !string.IsNullOrEmpty(stepData.alternateNextStepID))
+                {
+                    stepData.nextStepID = stepData.alternateNextStepID;
+                }
+                break;
         }
 
         if (lifetime.IsCancellationRequested) return;

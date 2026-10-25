@@ -14,19 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossBattlePhaseData
   phaseNumber: 1
   phaseTitle: Phase 1 - Raw Event Spam
-  phaseMusic: {fileID: 8300000, guid: fb0466f6914490745a3d254041ae1e44, type: 3}
   bpm: 120
   notes:
   - hitTime: 2
-    lane: 0
-  - hitTime: 2.5
-    lane: 0
-  - hitTime: 3
     lane: 2
-  - hitTime: 3.5
-    lane: 3
-  - hitTime: 4
+  - hitTime: 2.5
     lane: 1
+  - hitTime: 3
+    lane: 1
+  - hitTime: 3.5
+    lane: 2
+  - hitTime: 4
+    lane: 0
   - hitTime: 4.5
     lane: 0
   - hitTime: 5
@@ -36,13 +35,13 @@ MonoBehaviour:
   - hitTime: 6
     lane: 3
   - hitTime: 6.5
-    lane: 1
+    lane: 0
   - hitTime: 7
     lane: 3
   - hitTime: 7.5
     lane: 1
   - hitTime: 8
-    lane: 0
+    lane: 1
   - hitTime: 8.5
     lane: 0
   - hitTime: 9
@@ -52,51 +51,51 @@ MonoBehaviour:
   - hitTime: 10
     lane: 1
   - hitTime: 10.5
-    lane: 0
+    lane: 3
   - hitTime: 11
-    lane: 2
+    lane: 0
   - hitTime: 11.5
-    lane: 2
+    lane: 1
   - hitTime: 12
-    lane: 0
+    lane: 3
   - hitTime: 12.5
-    lane: 3
+    lane: 0
   - hitTime: 13
-    lane: 3
+    lane: 2
   - hitTime: 13.5
-    lane: 0
+    lane: 3
   - hitTime: 14
-    lane: 2
+    lane: 3
   - hitTime: 14.5
-    lane: 0
+    lane: 3
   - hitTime: 15
-    lane: 1
+    lane: 0
   - hitTime: 15.5
-    lane: 2
+    lane: 3
   - hitTime: 16
-    lane: 3
+    lane: 0
   - hitTime: 16.5
-    lane: 3
+    lane: 2
   - hitTime: 17
-    lane: 3
+    lane: 0
   - hitTime: 17.5
-    lane: 1
+    lane: 2
   - hitTime: 18
-    lane: 2
+    lane: 0
   - hitTime: 18.5
-    lane: 2
+    lane: 0
   - hitTime: 19
     lane: 3
   - hitTime: 19.5
-    lane: 1
+    lane: 2
   - hitTime: 20
-    lane: 2
+    lane: 3
   - hitTime: 20.5
-    lane: 0
-  - hitTime: 21
     lane: 1
-  - hitTime: 21.5
+  - hitTime: 21
     lane: 2
+  - hitTime: 21.5
+    lane: 3
   intermissionQuestion:
     questionText: What is Encapsulation?
     options:

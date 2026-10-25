@@ -13,7 +13,7 @@ public class BossBattleTester : MonoBehaviour
             Debug.Log("Triggering Boss Battle Demo...");
             
             // We use discard (_) because we don't need to wait for the async result in the tester
-            _ = BossBattleManager.Instance.StartBossBattleAsync();
+            _ = RefactoFightManager.Instance.StartBossBattleAsync();
         }
     }
 }

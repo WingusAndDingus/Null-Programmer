@@ -8,9 +8,9 @@ using TMPro;
 using System.Threading.Tasks;
 using UnityEditor.Analytics;
 
-public class BossBattleManager : MonoBehaviour
+public class RefactoFightManager : MonoBehaviour
 {
-    public static BossBattleManager Instance;
+    public static RefactoFightManager Instance;
 
     public enum BattleState { PreStart, Playing, Paused, GameOver }
     public BattleState currentState = BattleState.PreStart;
@@ -21,6 +21,7 @@ public class BossBattleManager : MonoBehaviour
     [SerializeField] private float noteTravelTime = 1.5f;
 
     [Header("UI & Lane Anchors")]
+    [SerializeField] private CanvasGroup mainCanvasGroup;
     [SerializeField] private RectTransform[] laneSpawners; 
     [SerializeField] private RectTransform[] hitLines;     
     [SerializeField] private Slider bossHealthBar;
@@ -131,8 +132,12 @@ public class BossBattleManager : MonoBehaviour
         battleCompletionSource = new TaskCompletionSource<bool>();
         gameObject.SetActive(true);
         
+        // Start invisible, then trigger the fade-in coroutine
+        if (mainCanvasGroup != null) mainCanvasGroup.alpha = 0f;
+        StartCoroutine(FadeInScreenRoutine());
+
         // Show Start Menu instead of starting immediately
-        ShowMenu("MAIN.CPP BOSS BATTLE", "", true, false, false, false);
+        ShowMenu("MAIN.CPP REFACTO-FIGHT!!!", "", true, false, false, false);
         currentState = BattleState.PreStart;
 
         return battleCompletionSource.Task;
@@ -235,13 +240,23 @@ public class BossBattleManager : MonoBehaviour
             while (nextNoteIndex < currentPhase.notes.Count &&
                    currentPhase.notes[nextNoteIndex].hitTime - noteTravelTime <= currentPhaseTime)
             {
-                SpawnNote(currentPhase.notes[nextNoteIndex]);
+                SpawnNote(currentPhase.notes[nextNoteIndex]);//
                 nextNoteIndex++;
             }
 
+            // Trigger MCQ seamlessly when notes run out
             if (nextNoteIndex >= currentPhase.notes.Count && activeNotes.Count == 0)
             {
-                StartMCQ(currentPhase.intermissionQuestion, currentPhaseTime);
+                if (currentPhase.intermissionQuestion.options == null || currentPhase.intermissionQuestion.options.Length == 0)
+                {
+                    // No question for this phase. Seamlessly advance to victory or the next phase!
+                    currentPhaseIndex++;
+                    StartPhase(currentPhaseIndex);
+                }
+                else
+                {
+                    StartMCQ(currentPhase.intermissionQuestion, currentPhaseTime);
+                }
             }
         }
 
@@ -252,9 +267,18 @@ public class BossBattleManager : MonoBehaviour
             float progress = (float)((currentPhaseTime - (an.data.hitTime - noteTravelTime)) / noteTravelTime);
 
             int laneIdx = (int)an.data.lane;
-            Vector3 startPos = laneSpawners[laneIdx].position;
-            Vector3 targetPos = hitLines[laneIdx].position;
-            an.rectTransform.position = Vector3.Lerp(startPos, targetPos, progress);
+
+            // Failsafe check for missing spawner/hitline references
+            if (laneSpawners != null && laneIdx < laneSpawners.Length && laneSpawners[laneIdx] != null &&
+                hitLines != null && laneIdx < hitLines.Length && hitLines[laneIdx] != null)
+            {
+                Vector3 startPos = laneSpawners[laneIdx].position;
+                Vector3 targetPos = hitLines[laneIdx].position;
+                if (an.rectTransform != null)
+                {
+                    an.rectTransform.position = Vector3.Lerp(startPos, targetPos, progress);
+                }
+            }
 
             // Missed Note Logic
             if (currentPhaseTime > an.data.hitTime + GOOD_WINDOW && !an.hit)
@@ -295,9 +319,7 @@ public class BossBattleManager : MonoBehaviour
         menuPanel.SetActive(true);
         menuTitleText.text = title;
         menuStatsText.text = stats;
-        if (stats.Length > 0) 
-        {statsPanel.SetActive(true);}
-        else {statsPanel.SetActive(false);}
+        statsPanel.SetActive(stats.Length > 0);
         startButton.SetActive(start);
         resumeButton.SetActive(resume);
         restartButton.SetActive(restart);
@@ -528,8 +550,8 @@ public class BossBattleManager : MonoBehaviour
         if (fleetHP <= 0) EndBattle(false);
 
         if (sfxSource != null && missSound != null) sfxSource.PlayOneShot(missSound);
-        if (activeBackgroundPulse != null) StopCoroutine(activeBackgroundPulse);
-        activeBackgroundPulse = StartCoroutine(PulseBackgroundRoutine(missPulseColor));
+        //if (activeBackgroundPulse != null) StopCoroutine(activeBackgroundPulse);
+        //activeBackgroundPulse = StartCoroutine(PulseBackgroundRoutine(missPulseColor));
     }
 
     private void UpdateHPUI()
@@ -542,7 +564,10 @@ public class BossBattleManager : MonoBehaviour
     {
         currentState = BattleState.GameOver;
         battleWon = won;
-        if (musicSource != null) musicSource.Stop();
+        
+        // Trigger the smooth fade out (2 seconds)
+        if (musicSource != null) StartCoroutine(FadeOutMusicRoutine(2f));
+
         ClearAllNotes();
         
         string title = won ? "<color=green>MAIN.CPP REFACTORED!</color>" : "<color=red>FLEET DESTROYED</color>";
@@ -550,8 +575,10 @@ public class BossBattleManager : MonoBehaviour
         // Calculate Code Quality Bonus based on stats
         if (won)
         {
-            pendingCodeQuality = 20 + (perfectHits / 2) - (misses * 2);
+            pendingCodeQuality = 10 + (perfectHits / 2) - (misses * 2);
             pendingCodeQuality = Mathf.Max(5, pendingCodeQuality); // Minimum 5 for winning
+            pendingCodeQuality = Mathf.Min(100, pendingCodeQuality); // Maximum 100 for winning
+
         }
         else
         {
@@ -749,5 +776,39 @@ public class BossBattleManager : MonoBehaviour
             yield return null;
         }
         mainBackgroundImage.color = originalBackgroundColor;
+    }
+
+    private IEnumerator FadeOutMusicRoutine(float duration)
+    {
+        if (musicSource == null) yield break;
+
+        float startVolume = musicSource.volume;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            musicSource.volume = Mathf.Lerp(startVolume, 0f, elapsed / duration);
+            yield return null;
+        }
+
+        musicSource.volume = 0f;
+        musicSource.Stop();
+    }
+
+    private IEnumerator FadeInScreenRoutine()
+    {
+        if (mainCanvasGroup == null) yield break;
+
+        float duration = 1.0f; // 1-second fade
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            mainCanvasGroup.alpha = Mathf.Clamp01(elapsed / duration);
+            yield return null;
+        }
+        mainCanvasGroup.alpha = 1f;
     }
 }

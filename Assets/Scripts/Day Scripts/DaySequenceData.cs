@@ -71,6 +71,9 @@ public class NarrativeStep
     [Tooltip("Step ID to transition to after line completes (Leave empty if choices control step or if step doesn't auto-advance)")]
     public string nextStepID;
 
+    [Tooltip("Step ID to transition to if the player FAILS a minigame/task")]
+    public string alternateNextStepID;
+
     [Header("Events / Skills")]
     public string awardSkillKey;
 
@@ -98,7 +101,8 @@ public enum NarrativeStepType
     StartScreenShare,       // Calls ZoomScreenShareController.Instance.StartScreenShare()
     WaitUntilScreenShareEnd, // Halts until screenshare video completes
     TriggerGameEnd,
-    Day2Exercise          // Appended to preserve the serialized values of existing steps.
+    Day2Exercise,          // Appended to preserve the serialized values of existing steps.
+    WaitUntilRefactoFightCompleted
 }
 
 [CreateAssetMenu(fileName = "DaySequence_Day0", menuName = "Narrative/Day Sequence Data")]

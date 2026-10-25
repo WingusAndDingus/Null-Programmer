@@ -8,7 +8,7 @@ public enum RhythmLane { LaneD = 0, LaneF = 1, LaneJ = 2, LaneK = 3 }
 public struct NoteData
 {
     public float hitTime;        // Exact second in the music when note reaches the hit line
-    public RhythmLane lane;     // Which key (D, F, J, K)
+    public RhythmLane lane;     // Which key (D, F, J, K)//
 }
 
 [Serializable]
@@ -25,7 +25,6 @@ public class BossBattlePhaseData : ScriptableObject
 {
     public int phaseNumber;
     public string phaseTitle;
-    public AudioClip phaseMusic;
     public float bpm = 120f;
     public List<NoteData> notes = new List<NoteData>();
     public OOPQuestion intermissionQuestion;
