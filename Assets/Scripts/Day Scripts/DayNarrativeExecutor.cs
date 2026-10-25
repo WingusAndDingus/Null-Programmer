@@ -85,7 +85,7 @@ public class DayNarrativeExecutor : MonoBehaviour
 
         lastExecutedStepID = currentStepID;
 
-        // 1. Play Dialogue Line if text exists
+        // 1. Play Dialogue Line and await player click-to-continue
         if (!string.IsNullOrEmpty(stepData.lineText))
         {
             DialogueLine line = new DialogueLine
@@ -98,9 +98,8 @@ public class DayNarrativeExecutor : MonoBehaviour
 
             if (DialogueManager.Instance != null)
             {
-                DialogueManager.Instance.DisplayLine(line);
+                await DialogueManager.Instance.DisplayLineAndWaitAsync(line);
             }
-            await Task.Delay((int)(stepData.displayDuration * 1000), cancellationToken);
         }
 
         // 2. Handle Skill Rewards
@@ -177,7 +176,6 @@ public class DayNarrativeExecutor : MonoBehaviour
                 }
                 else
                 {
-                    // Fallback to Unity's SceneManager if SceneSwitcher reference wasn't bound
                     UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
                 }
                 break;
@@ -198,7 +196,6 @@ public class DayNarrativeExecutor : MonoBehaviour
 
         if (lifetime.IsCancellationRequested) return;
 
-        // Apply suspicion shift after the step condition resolves
         ApplySuspicion(stepData.suspicionChange);
 
         // 4. Present Choices or Auto-Advance
@@ -303,35 +300,27 @@ public class DayNarrativeExecutor : MonoBehaviour
             case HeadPersonality.Detective: GameManager.Instance.ChangeDetectiveStat(points); break;
         }
     }
-    // Step type handler for the Steve Skill checks
+
     public async Task RunSteveChallengeAsync(SteveChallengeData challenge)
     {
-        // 1. Trigger Steve's incoming call UI / Audio
-        // 2. Open the IDE interface (waiting for your teammate's final IDE UI plugin)
-
-        // For now, you can hook this task to wait until the player submits text:
         string playerCode = await SteveScreenShareManager.Instance.PromptPlayerForCodeAsync(challenge);
-
-        // 3. Validate against the accepted answers
         bool success = ValidatePlayerCode(playerCode, challenge);
 
         if (success)
         {
             Debug.Log("Steve: 'Looks solid! Good job.'");
-            // Reward personality points or proceed to next step
         }
         else
         {
             Debug.Log("Steve: 'Hmm, that's not quite right. Let's review.'");
-            // Handle retry or failure path
         }
     }
+
     public bool ValidatePlayerCode(string playerInput, SteveChallengeData challengeData)
     {
         if (string.IsNullOrEmpty(playerInput) || challengeData == null || challengeData.acceptedAnswers == null)
             return false;
 
-        // Normalize player input (trim whitespace, normalize internal spacing if needed)
         string cleanPlayerInput = playerInput.Trim();
 
         foreach (string accepted in challengeData.acceptedAnswers)
@@ -341,10 +330,10 @@ public class DayNarrativeExecutor : MonoBehaviour
             string cleanAccepted = accepted.Trim();
             if (cleanPlayerInput == cleanAccepted)
             {
-                return true; // Match found!
+                return true;
             }
         }
 
-        return false; // No matching pattern found
+        return false;
     }
 }

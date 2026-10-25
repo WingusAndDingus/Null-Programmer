@@ -62,7 +62,8 @@ public class NarrativeStep
     public string speakerName;
     public HeadPersonality personality = HeadPersonality.None;
     [TextArea(2, 5)] public string lineText;
-    public float displayDuration = 3.5f;
+    [Tooltip("Obsolete: Dialogue now waits for player clicks instead of using timers.")]
+    [HideInInspector] public float displayDuration = 3.5f;
 
     [Header("Choices (Optional)")]
     public List<DialogueStepChoice> choices = new List<DialogueStepChoice>();

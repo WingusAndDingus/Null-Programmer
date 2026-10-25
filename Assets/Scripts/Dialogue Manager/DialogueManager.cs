@@ -68,6 +68,7 @@ public class DialogueManager : MonoBehaviour
     private Coroutine activeDialogueCoroutine;
     private List<GameObject> activeBubbles = new List<GameObject>();
     private DialogueLine currentPlayingLine;
+    private bool waitingForClickToContinue = false;
 
     private void Awake()
     {
@@ -94,15 +95,12 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayLine(DialogueLine line)
     {
-        if (line == null) return;
+        _ = DisplayLineAndWaitAsync(line);
+    }
 
-        // If the exact same text is currently typing, don't restart the coroutine!
-        if (CurrentText == line.text && activeDialogueCoroutine != null && !IsTypingComplete &&
-            currentPlayingLine != null && currentPlayingLine.speakerName == line.speakerName &&
-            currentPlayingLine.personality == line.personality)
-        {
-            return;
-        }
+    public async Task DisplayLineAndWaitAsync(DialogueLine line)
+    {
+        if (line == null) return;
 
         if (activeDialogueCoroutine != null)
         {
@@ -110,11 +108,12 @@ public class DialogueManager : MonoBehaviour
         }
 
         currentPlayingLine = line;
-        activeDialogueCoroutine = StartCoroutine(PlayDialogueLine(line));
+        var tcs = new TaskCompletionSource<bool>();
+        activeDialogueCoroutine = StartCoroutine(PlayDialogueLineRoutine(line, () => tcs.TrySetResult(true)));
+
+        await tcs.Task;
     }
-    /// <summary>
-    /// Called when the player clicks the dialogue panel to skip typing or speed up pacing.
-    /// </summary>
+
     public void OnDialogueClicked()
     {
         if (currentPlayingLine == null) return;
@@ -122,13 +121,7 @@ public class DialogueManager : MonoBehaviour
         // If typing is still in progress, instantly finish displaying all characters
         if (!IsTypingComplete)
         {
-            // STOP the coroutine so it stops looping and overwriting characters!
-            if (activeDialogueCoroutine != null)
-            {
-                StopCoroutine(activeDialogueCoroutine);
-                activeDialogueCoroutine = null;
-            }
-
+            IsTypingComplete = true;
             if (dialogueText != null)
             {
                 dialogueText.maxVisibleCharacters = dialogueText.text.Length;
@@ -137,38 +130,29 @@ public class DialogueManager : MonoBehaviour
             }
             UpdateProgress(currentPlayingLine.text, dialogueText.text.Length, true);
         }
-        else
+        else if (waitingForClickToContinue)
         {
-            // If typing is already complete, clicking closes the line immediately!
-            if (activeDialogueCoroutine != null)
-            {
-                StopCoroutine(activeDialogueCoroutine);
-                activeDialogueCoroutine = null;
-            }
-            currentPlayingLine = null;
-            HideDialoguePanel();
+            // If typing is already complete, clicking proceeds to the next line!
+            waitingForClickToContinue = false;
         }
     }
-    public IEnumerator PlayDialogueLine(DialogueLine line)
+
+    private IEnumerator PlayDialogueLineRoutine(DialogueLine line, Action onComplete)
     {
         if (dialoguePanel != null) dialoguePanel.SetActive(true);
         if (speakerText != null) speakerText.text = line.speakerName;
 
         SetPersonalityStyle(line.personality);
 
-        float audioDuration = 0f;
         if (line.voiceClip != null && speechAudioSource != null)
         {
-            // Don't restart audio if the exact same clip is already playing
             if (!speechAudioSource.isPlaying || speechAudioSource.clip != line.voiceClip)
             {
                 speechAudioSource.clip = line.voiceClip;
                 speechAudioSource.Play();
             }
-            audioDuration = line.voiceClip.length;
         }
 
-        // Assign full text to TMP
         if (dialogueText != null)
         {
             dialogueText.text = line.text;
@@ -176,28 +160,15 @@ public class DialogueManager : MonoBehaviour
 
         if (panelPresentation != null) panelPresentation.Show(line);
 
-        // Determine starting character index:
-        // If we are re-entering the exact same text and it wasn't finished, resume typing from CurrentVisibleCharacters
-        int startIndex = 0;
-        if (CurrentText == line.text && !IsTypingComplete)
-        {
-            startIndex = CurrentVisibleCharacters;
-        }
-        else
-        {
-            UpdateProgress(line.text, 0, false);
-        }
-
-        if (dialogueText != null)
-        {
-            dialogueText.maxVisibleCharacters = startIndex;
-        }
-
-        float typeSpeed = 0.02f;
+        UpdateProgress(line.text, 0, false);
         int totalChars = line.text != null ? line.text.Length : 0;
+        float typeSpeed = 0.02f;
 
-        for (int i = startIndex; i <= totalChars; i++)
+        // Phase 1: Type out characters progressively
+        for (int i = 0; i <= totalChars; i++)
         {
+            if (IsTypingComplete) break;
+
             if (dialogueText != null)
             {
                 dialogueText.maxVisibleCharacters = i;
@@ -208,21 +179,26 @@ public class DialogueManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(typeSpeed);
         }
 
-        float typingTotalTime = totalChars * typeSpeed;
-        float targetDuration = line.displayDuration > 0 ? line.displayDuration : Mathf.Max(2.0f, audioDuration);
-        float remainingHoldTime = Mathf.Max(0.5f, targetDuration - typingTotalTime);
-
-        yield return new WaitForSecondsRealtime(remainingHoldTime);
-        // Debugging
-        /*if (activeBubbles == null || activeBubbles.Count == 0)
+        // Ensure fully visible
+        if (dialogueText != null)
         {
-            HideDialogueUI();
-        }*/
+            dialogueText.maxVisibleCharacters = totalChars;
+        }
+        UpdateProgress(line.text, totalChars, true);
+
+        // Phase 2: Wait indefinitely for player's second click to continue
+        waitingForClickToContinue = true;
+        while (waitingForClickToContinue)
+        {
+            yield return null;
+        }
+
         HideDialoguePanel();
         activeDialogueCoroutine = null;
         currentPlayingLine = null;
+        onComplete?.Invoke();
     }
-    // To help with Dialogue after Fixing Choice Bubbles 
+
     public void HideDialoguePanel()
     {
         if (dialoguePanel != null)
@@ -243,10 +219,6 @@ public class DialogueManager : MonoBehaviour
         IsTypingComplete = complete;
     }
 
-    /// <summary>
-    /// Displays floating choice bubbles and waits until the player picks one.
-    /// Returns the selected index (0 to options.Length - 1).
-    /// </summary>
     public async Task<int> PresentChoices(DialogueChoiceOption[] options)
     {
         Debug.Log($"[DialogueManager] PresentChoices called with {options?.Length ?? 0} options.");
@@ -257,10 +229,8 @@ public class DialogueManager : MonoBehaviour
             throw new InvalidOperationException("Assign the Thought Bubble prefab on the Dialogue Canvas.");
 
         ClearChoices();
-        // ENSURE THE VIEWPORT IS GENERATED IN THE SCENE AT RUNTIME
         EnsureChoiceViewport();
 
-        // Team's new viewport/content setup
         if (choiceViewport != null)
             choiceViewport.gameObject.SetActive(true);
 
@@ -273,7 +243,6 @@ public class DialogueManager : MonoBehaviour
             for (int i = 0; i < options.Length; i++)
             {
                 Transform parentTransform = choiceContent != null ? choiceContent : choiceContainer;
-                // Instantiate without a parent first to avoid the persistent parent error
                 GameObject bubbleObj = Instantiate(choiceBubblePrefab);
                 if (parentTransform != null)
                 {
@@ -287,7 +256,7 @@ public class DialogueManager : MonoBehaviour
                     throw new InvalidOperationException("Choice prefab needs DialogueBubble.");
 
                 Color personalityColor = GetPersonalityColor(options[i].personality);
-                int optionIndex = i; // Local copy for closure
+                int optionIndex = i;
 
                 bubble.Setup(options[i], optionIndex, personalityColor, (selectedIndex) =>
                 {
@@ -296,16 +265,12 @@ public class DialogueManager : MonoBehaviour
             }
 
             Canvas.ForceUpdateCanvases();
-
-            // If your team's system uses LayoutChoices, call it here, 
-            // or apply your dynamic positions if needed.
             LayoutChoices(true);
 
             return await choiceTask.Task;
         }
         finally
         {
-            // Proper cleanup logic goes here
             ClearChoices();
 
             if (choiceViewport != null)
@@ -314,11 +279,11 @@ public class DialogueManager : MonoBehaviour
             if (internalMonologueOverlay != null)
                 internalMonologueOverlay.SetActive(false);
 
-            // Resume video playback when dialogue choice resolves
             if (activeVideoPlayer != null && !activeVideoPlayer.isPlaying)
                 activeVideoPlayer.Play();
         }
     }
+
     private void EnsureChoiceViewport()
     {
         if (choiceViewport != null) return;
@@ -328,8 +293,6 @@ public class DialogueManager : MonoBehaviour
         if (choiceCanvas == null)
             throw new InvalidOperationException("Dialogue choices must be displayed under a Canvas.");
 
-        // The old scene container is only 100 x 100 and offset above the screen.
-        // Use a viewport relative to the canvas instead of inheriting those offsets.
         var viewport = new GameObject("Responsive Dialogue Choices", typeof(RectTransform),
             typeof(Canvas), typeof(GraphicRaycaster), typeof(Image), typeof(RectMask2D), typeof(ScrollRect));
         viewport.layer = choiceCanvas.gameObject.layer;
@@ -340,10 +303,10 @@ public class DialogueManager : MonoBehaviour
         choiceViewport.offsetMin = choiceViewport.offsetMax = Vector2.zero;
         var overlayCanvas = viewport.GetComponent<Canvas>();
         overlayCanvas.overrideSorting = true;
-        overlayCanvas.sortingOrder = 1500; // Above the desktop call, below exercise windows.
+        overlayCanvas.sortingOrder = 1500;
         var hitArea = viewport.GetComponent<Image>();
         hitArea.color = Color.clear;
-        hitArea.raycastTarget = true; // Lets the player drag a long list between cards.
+        hitArea.raycastTarget = true;
 
         var content = new GameObject("Choice Content", typeof(RectTransform));
         content.layer = viewport.layer;
@@ -386,6 +349,7 @@ public class DialogueManager : MonoBehaviour
             !Mathf.Approximately(choiceCanvas.rootCanvas.scaleFactor, lastChoiceScale))
             LayoutChoices(false);
     }
+
     private void Update()
     {
         if (dialoguePanel != null && dialoguePanel.activeSelf)
@@ -396,12 +360,10 @@ public class DialogueManager : MonoBehaviour
             bool clickedOnPanel = false;
             if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
             {
-                // Check if the mouse click is actually inside the dialogue panel's RectTransform bounds
                 RectTransform panelRect = dialoguePanel.GetComponent<RectTransform>();
                 if (panelRect != null)
                 {
                     Vector2 mousePos = Mouse.current.position.ReadValue();
-                    // If the click is inside the panel, count it!
                     if (RectTransformUtility.RectangleContainsScreenPoint(panelRect, mousePos, null))
                     {
                         clickedOnPanel = true;
@@ -415,6 +377,7 @@ public class DialogueManager : MonoBehaviour
             }
         }
     }
+
     private void ClearChoices()
     {
         foreach (var bubble in activeBubbles)
@@ -480,10 +443,9 @@ public class DialogueManager : MonoBehaviour
             panelImage.color = GetPersonalityColor(personality);
         }
     }
-    //helper method to check if the mouse is currently inside either the dialogue box or the choices viewport:
+
     public bool IsPointerOverDialogueUI(Vector2 mousePosition)
     {
-        // Check main dialogue panel
         if (dialoguePanel != null && dialoguePanel.activeSelf)
         {
             RectTransform panelRect = dialoguePanel.GetComponent<RectTransform>();
@@ -493,7 +455,6 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        // Check choice viewport if active
         if (choiceViewport != null && choiceViewport.gameObject.activeSelf)
         {
             if (RectTransformUtility.RectangleContainsScreenPoint(choiceViewport, mousePosition, null))
