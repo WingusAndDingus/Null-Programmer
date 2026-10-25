@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
 
     public event Action<int> SuspicionChanged;
     public event Action SteveCrisis;
-
+    public event Action<int> DayChanged; //Syed's new implementation
     // =========================================================
     // Weekend Choice
     // =========================================================
@@ -245,7 +245,12 @@ public class GameManager : MonoBehaviour
     }
     public void setCurrentDay(int day)
     {
+        int previous = CurrentDay;
         CurrentDay = Mathf.Max(1, day);
+        if (previous != CurrentDay)
+        {
+            DayChanged?.Invoke(CurrentDay); //Syed's new implementation
+        }
     }
 
     public void setStep(string stepName)
@@ -258,6 +263,7 @@ public class GameManager : MonoBehaviour
         CurrentDay++;
         UnspentSkillPoints = 0;
         CurrentStep = "Start"; //reset for new day
+        DayChanged?.Invoke(CurrentDay); //Syed's new implementation
     }
 
     public void ChangeGrandArchitectStat(int value)

@@ -140,7 +140,8 @@ public enum NarrativeStepType
     WaitUntilNarrativeEvent,
     EndScreenShare,
     EndZoomCall,
-    WaitUntilRefactoFightCompleted
+    WaitUntilRefactoFightCompleted,
+    ReceiveMessage
 }
 
 [CreateAssetMenu(fileName = "DaySequence_Day0", menuName = "Narrative/Day Sequence Data")]
