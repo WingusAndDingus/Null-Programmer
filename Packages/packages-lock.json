@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.cysharp.unitask": {
+      "version": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask#2.5.11",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "2e993ff18f28c931602a07292df0b0804eebef99"
+    },
     "com.unity.2d.animation": {
       "version": "16.0.0",
       "depth": 0,
@@ -182,6 +189,13 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "3.2.2",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
     "com.unity.profiling.core": {
       "version": "1.0.3",
       "depth": 2,
@@ -293,6 +307,50 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "dev.voltstro.nativearrayspanextensions": {
+      "version": "1.0.1",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://upr.voltstro.dev"
+    },
+    "dev.voltstro.unitywebbrowser": {
+      "version": "2.2.8",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "dev.voltstro.nativearrayspanextensions": "1.0.1",
+        "com.unity.nuget.newtonsoft-json": "3.2.1",
+        "com.cysharp.unitask": "2.5.10",
+        "org.nuget.voltrpc": "3.2.1"
+      },
+      "url": "https://upr.voltstro.dev"
+    },
+    "dev.voltstro.unitywebbrowser.engine.cef": {
+      "version": "2.2.8",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "dev.voltstro.unitywebbrowser": "2.2.8"
+      },
+      "url": "https://upr.voltstro.dev"
+    },
+    "dev.voltstro.unitywebbrowser.engine.cef.win.x64": {
+      "version": "2.2.8",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "dev.voltstro.unitywebbrowser.engine.cef": "2.2.8"
+      },
+      "url": "https://upr.voltstro.dev"
+    },
+    "org.nuget.voltrpc": {
+      "version": "3.2.1",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://upr.voltstro.dev"
     },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
