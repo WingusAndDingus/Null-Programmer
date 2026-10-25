@@ -34,7 +34,6 @@ public class DayNarrativeExecutor : MonoBehaviour
         GameManager.EnsureInstance();
         sceneSwitch = FindAnyObjectByType<SceneSwitcher>();
         int currentDay = GameManager.Instance != null ? GameManager.Instance.CurrentDay : 1;
-
         LoadAndExecuteDay(currentDay);
     }
 
@@ -84,15 +83,16 @@ public class DayNarrativeExecutor : MonoBehaviour
         }
 
         lastExecutedStepID = currentStepID;
-
-        // 1. Play Dialogue Line and await player click-to-continue
-        if (!string.IsNullOrEmpty(stepData.lineText))
+        // 1. Play Dialogue Line if this step has one. Personality advice can select
+        //    a level-dependent line without turning those lines into player choices.
+        string resolvedLineText = ResolveLineText(stepData);
+        if (!string.IsNullOrEmpty(resolvedLineText))
         {
             DialogueLine line = new DialogueLine
             {
                 speakerName = stepData.speakerName,
                 personality = stepData.personality,
-                text = stepData.lineText,
+                text = resolvedLineText, // <--- Using teammate's resolved text!
                 displayDuration = stepData.displayDuration
             };
 
@@ -108,7 +108,7 @@ public class DayNarrativeExecutor : MonoBehaviour
             PersonalitySkills.TryAwardMilestone(stepData.awardSkillKey);
         }
 
-        // 3. WAIT FOR GAMEPLAY EVENTS
+        // 3. WAIT FOR / TRIGGER GAMEPLAY EVENTS
         switch (stepData.stepType)
         {
             case NarrativeStepType.DelaySeconds:
@@ -146,6 +146,24 @@ public class DayNarrativeExecutor : MonoBehaviour
 
             case NarrativeStepType.WaitUntilCodeCompiled:
                 await NarrativeWaitHelpers.WaitForCodeCompilation(cancellationToken);
+                break;
+
+            case NarrativeStepType.WaitUntilNarrativeEvent:
+                await NarrativeWaitHelpers.WaitForNarrativeEvent(stepData.narrativeEventKey, cancellationToken);
+                break;
+
+            case NarrativeStepType.EndScreenShare:
+                if (ZoomScreenShareController.Instance != null)
+                {
+                    ZoomScreenShareController.Instance.EndScreenShare();
+                }
+                break;
+
+            case NarrativeStepType.EndZoomCall:
+                if (ZoomScreenShareController.Instance != null)
+                {
+                    ZoomScreenShareController.Instance.EndZoomCall();
+                }
                 break;
 
             case NarrativeStepType.Day2Exercise:
@@ -196,6 +214,7 @@ public class DayNarrativeExecutor : MonoBehaviour
 
         if (lifetime.IsCancellationRequested) return;
 
+        // Apply suspicion shift after the step condition resolves.
         ApplySuspicion(stepData.suspicionChange);
 
         // 4. Present Choices or Auto-Advance
@@ -233,7 +252,13 @@ public class DayNarrativeExecutor : MonoBehaviour
             if (selectedIndex >= 0 && selectedIndex < availableChoices.Count)
             {
                 DialogueStepChoice chosen = availableChoices[selectedIndex];
+
+                // Existing behavior: personality-tagged choices can still raise that stat.
+                // Day 5's teaching choices use HeadPersonality.None, so personalities remain advisors.
                 ApplyPersonalityStat(chosen.personality, 1);
+
+                // This field already existed in DialogueStepChoice; apply it now.
+                ApplySuspicion(chosen.suspicionChange);
 
                 if (!string.IsNullOrEmpty(chosen.targetStepOnClick))
                 {
@@ -247,6 +272,32 @@ public class DayNarrativeExecutor : MonoBehaviour
             GameManager.Instance.setStep(stepData.nextStepID);
             _ = RunCurrentStepSafelyAsync();
         }
+    }
+
+    private string ResolveLineText(NarrativeStep stepData)
+    {
+        if (stepData.lineVariants == null || stepData.lineVariants.Count == 0)
+        {
+            return stepData.lineText;
+        }
+
+        int currentLevel = GetPersonalityLevel(stepData.personality);
+        int bestLevel = int.MinValue;
+        string bestText = stepData.lineText;
+
+        foreach (NarrativeLineVariant variant in stepData.lineVariants)
+        {
+            if (variant == null || string.IsNullOrEmpty(variant.lineText)) continue;
+
+            int required = (int)variant.requiredLevel;
+            if (currentLevel >= required && required > bestLevel)
+            {
+                bestLevel = required;
+                bestText = variant.lineText;
+            }
+        }
+
+        return bestText;
     }
 
     private int GetPersonalityLevel(HeadPersonality personality)

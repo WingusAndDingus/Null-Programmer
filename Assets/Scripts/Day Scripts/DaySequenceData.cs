@@ -16,6 +16,16 @@ public class DialogueStepChoice
     public string choiceGroup;
 }
 
+[Serializable]
+public class NarrativeLineVariant
+{
+    [Tooltip("This text is available when the speaking personality has at least this level.")]
+    public PersonalityLevel requiredLevel = PersonalityLevel.Novice;
+
+    [TextArea(2, 6)]
+    public string lineText;
+}
+
 public static class NarrativeChoiceFilter
 {
     public static List<DialogueStepChoice> GetAvailableChoices(
@@ -65,6 +75,10 @@ public class NarrativeStep
     [Tooltip("Obsolete: Dialogue now waits for player clicks instead of using timers.")]
     [HideInInspector] public float displayDuration = 3.5f;
 
+    [Header("Level-Based Dialogue (Optional)")]
+    [Tooltip("For personality advice. The executor automatically uses the highest unlocked variant. Leave empty to use Line Text normally.")]
+    public List<NarrativeLineVariant> lineVariants = new List<NarrativeLineVariant>();
+
     [Header("Choices (Optional)")]
     public List<DialogueStepChoice> choices = new List<DialogueStepChoice>();
 
@@ -74,6 +88,9 @@ public class NarrativeStep
 
     [Header("Events / Skills")]
     public string awardSkillKey;
+
+    [Tooltip("Used by WaitUntilNarrativeEvent steps.")]
+    public string narrativeEventKey;
 
     [Header("What needs to happen for the script to continue?")]
     public NarrativeStepType stepType;
@@ -104,14 +121,17 @@ public enum NarrativeStepType
     WaitUntilZoomCall,
     PresentChoices,
     WaitUntilCodeCompiled,
-    DelaySeconds,           // For simulate reading email (10s)
-    StartScreenShare,       // Calls ZoomScreenShareController.Instance.StartScreenShare()
-    WaitUntilScreenShareEnd, // Halts until screenshare video completes
+    DelaySeconds,
+    StartScreenShare,
+    WaitUntilScreenShareEnd,
+    TriggerGameEnd,
+    Day2Exercise,
     SetSteveExpression,
     SwitchToNightScene,
-    TriggerGameEnd,
     SteveCodingChallenge,
-    Day2Exercise          // Appended to preserve the serialized values of existing steps.
+    WaitUntilNarrativeEvent,
+    EndScreenShare,
+    EndZoomCall
 }
 
 [CreateAssetMenu(fileName = "DaySequence_Day0", menuName = "Narrative/Day Sequence Data")]

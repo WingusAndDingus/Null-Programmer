@@ -30,11 +30,16 @@ public sealed class IntegratedMailInbox : MonoBehaviour
     [SerializeField] private ScrollRect bodyScroll;
     [SerializeField] private float worldUnitsPerPixel;
 
-    [Header("Sample email")]
+    [Header("Default email")]
     [SerializeField] private string sender = "Project Management";
     [SerializeField] private string subject = "Minesweeper Project - Getting Started";
     [SerializeField, TextArea(8, 20)] private string body =
         "Hi,\n\nYou're leading our new Minesweeper project, built in C++ using SFML 3.0. We'll review the finished application at the end of the next two weeks.\n\nFor today, get the development environment ready and confirm that you can open an SFML window. We'll send additional requirements as the project progresses.\n\nSteve will be working alongside you. He's eager to learn how you approach a project like this, so please keep him involved.\n\nWith your experience, I'm sure we're in good hands.\n\nBest,\nProject Management";
+
+    private const string Day5Sender = "Steve";
+    private const string Day5Subject = "Battleship bug - can we talk?";
+    private const string Day5Body =
+        "Hey,\n\nI found a weird regression in Battleship. If the player sinks the computer's last ship, the computer can still fire one more shot before the game ends.\n\nI moved some of the turn logic around yesterday, so I'm reasonably sure this is my fault.\n\nCan you jump on the video call when you see this? I'll share my screen.\n\n- Steve";
 
     public bool IsRead { get; private set; }
     public GameObject WindowObject => window;
@@ -60,7 +65,9 @@ public sealed class IntegratedMailInbox : MonoBehaviour
             enabled = false;
             return;
         }
-        IsRead = GameManager.EnsureInstance().EmailRead;
+
+        GameManager.EnsureInstance();
+        IsRead = GetStoredReadState();
         emailButton.onClick.AddListener(ReadEmail);
         Refresh();
     }
@@ -73,6 +80,8 @@ public sealed class IntegratedMailInbox : MonoBehaviour
     public void OpenInbox()
     {
         if (!enabled || window == null) return;
+
+        IsRead = GetStoredReadState();
         readingPane.SetActive(false);
         prompt.SetActive(true);
         window.SetActive(true);
@@ -84,8 +93,29 @@ public sealed class IntegratedMailInbox : MonoBehaviour
     public void ReadEmail()
     {
         if (!enabled) return;
+
+        GameManager manager = GameManager.EnsureInstance();
+        bool day5 = manager.CurrentDay == 5;
+        bool wasAlreadyRead = day5 ? manager.Day5EmailRead : manager.EmailRead;
+
         IsRead = true;
-        GameManager.EnsureInstance().MarkEmailRead();
+
+        if (day5)
+        {
+            manager.MarkDay5EmailRead();
+
+            // Day 5 begins by waiting for this. The call popup is triggered by the
+            // following WaitUntilZoomCall step, so it cannot appear before the email is opened.
+            if (!wasAlreadyRead || manager.CurrentStep == "Start")
+            {
+                GameplayEvents.TriggerNarrativeEvent(Day5NarrativeEvents.EmailRead);
+            }
+        }
+        else
+        {
+            manager.MarkEmailRead();
+        }
+
         prompt.SetActive(false);
         readingPane.SetActive(true);
         drag.BringToFront();
@@ -94,16 +124,54 @@ public sealed class IntegratedMailInbox : MonoBehaviour
         bodyScroll.verticalNormalizedPosition = 1f;
     }
 
+    private bool GetStoredReadState()
+    {
+        if (!Application.isPlaying || GameManager.Instance == null)
+        {
+            return IsRead;
+        }
+
+        return GameManager.Instance.CurrentDay == 5
+            ? GameManager.Instance.Day5EmailRead
+            : GameManager.Instance.EmailRead;
+    }
+
+    private bool IsDay5Message()
+    {
+        return Application.isPlaying &&
+               GameManager.Instance != null &&
+               GameManager.Instance.CurrentDay == 5;
+    }
+
+    private void GetCurrentMessage(out string currentSender, out string currentSubject, out string currentBody)
+    {
+        if (IsDay5Message())
+        {
+            currentSender = Day5Sender;
+            currentSubject = Day5Subject;
+            currentBody = Day5Body;
+            return;
+        }
+
+        currentSender = sender;
+        currentSubject = subject;
+        currentBody = body;
+    }
+
     private void Refresh()
     {
+        GetCurrentMessage(out string currentSender, out string currentSubject, out string currentBody);
+
         unreadBadge.gameObject.SetActive(!IsRead);
         SetLabel(inboxLabel, inboxLabelTMP, IsRead ? "Inbox" : "Inbox (1 unread)");
-        SetLabel(rowLabel, rowLabelTMP, (IsRead ? "READ" : "NEW") + "\n\n" + sender + "\n\n" + subject);
+        SetLabel(rowLabel, rowLabelTMP, (IsRead ? "READ" : "NEW") + "\n\n" + currentSender + "\n\n" + currentSubject);
+
         if (rowLabelTMP != null) rowLabelTMP.fontStyle = IsRead ? FontStyles.Normal : FontStyles.Bold;
         else if (rowLabel != null) rowLabel.fontStyle = IsRead ? FontStyle.Normal : FontStyle.Bold;
-        SetLabel(subjectLabel, subjectLabelTMP, subject);
-        SetLabel(senderLabel, senderLabelTMP, "From: " + sender);
-        SetLabel(bodyLabel, bodyLabelTMP, body);
+
+        SetLabel(subjectLabel, subjectLabelTMP, currentSubject);
+        SetLabel(senderLabel, senderLabelTMP, "From: " + currentSender);
+        SetLabel(bodyLabel, bodyLabelTMP, currentBody);
     }
 
     private void LateUpdate()
@@ -112,7 +180,6 @@ public sealed class IntegratedMailInbox : MonoBehaviour
         PositionBadge();
     }
 
-    // Called by the installer too, so the UI is visible and editable before Play.
     public void FitContents()
     {
         if (contentCanvas == null || windowBody == null || titleBar == null) return;
@@ -157,7 +224,6 @@ public sealed class IntegratedMailInbox : MonoBehaviour
     }
 
 #if UNITY_EDITOR
-    // Single setup entry point used by the editor installer, not during gameplay.
     public void Configure(GameObject windowObject, SpriteRenderer windowSprite, SpriteRenderer bar,
         DraggableWindow draggable, Canvas canvas, Canvas badgeCanvas, RectTransform badge,
         Text heading, Text row, Text subjectText, Text fromText, Text messageText,
