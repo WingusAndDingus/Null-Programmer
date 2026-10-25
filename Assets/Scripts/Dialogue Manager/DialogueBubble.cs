@@ -114,7 +114,7 @@ public class DialogueBubble : MonoBehaviour
             personalityText.fontStyle = FontStyles.Bold;
             personalityText.enableAutoSizing = false;
             personalityText.richText = false;
-            personalityText.raycastTarget = false;
+            personalityText.raycastTarget = true; //we need this to make sure it can capture a mouse click
             personalityText.alignment = TextAlignmentOptions.TopLeft;
             personalityText.margin = Vector4.zero;
         }
@@ -253,13 +253,13 @@ public class DialogueBubble : MonoBehaviour
         { name = "Dialogue Card", filterMode = FilterMode.Point, hideFlags = HideFlags.DontSave };
         var pixels = new Color32[size * size];
         for (int y = 0; y < size; y++)
-        for (int x = 0; x < size; x++)
-        {
-            float dx = Mathf.Max(radius - x - 0.5f, x + 0.5f - (size - radius));
-            float dy = Mathf.Max(radius - y - 0.5f, y + 0.5f - (size - radius));
-            byte alpha = (byte)(dx <= 0f || dy <= 0f || dx * dx + dy * dy <= radius * radius ? 255 : 0);
-            pixels[y * size + x] = new Color32(255, 255, 255, alpha);
-        }
+            for (int x = 0; x < size; x++)
+            {
+                float dx = Mathf.Max(radius - x - 0.5f, x + 0.5f - (size - radius));
+                float dy = Mathf.Max(radius - y - 0.5f, y + 0.5f - (size - radius));
+                byte alpha = (byte)(dx <= 0f || dy <= 0f || dx * dx + dy * dy <= radius * radius ? 255 : 0);
+                pixels[y * size + x] = new Color32(255, 255, 255, alpha);
+            }
         texture.SetPixels32(pixels);
         texture.Apply();
         roundedSprite = Sprite.Create(texture, new Rect(0, 0, size, size), new Vector2(0.5f, 0.5f),

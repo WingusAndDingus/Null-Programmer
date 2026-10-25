@@ -19,7 +19,8 @@ public class PersonalitySkills : MonoBehaviour
     private SaveData data;
     private bool nightAllocationOpen;
 
-    public int AvailablePoints => data.availablePoints;
+    // Pull available points directly from the persistent GameManager
+    public int AvailablePoints => GameManager.Instance != null ? GameManager.Instance.UnspentSkillPoints : 0;
     public event Action Changed;
 
     private void Awake()
@@ -97,11 +98,19 @@ public class PersonalitySkills : MonoBehaviour
         {
             return;
         }
-        
-        data.rewardedMilestones.Add(milestoneID);
-        data.availablePoints++;
-        Save();
 
+        data.rewardedMilestones.Add(milestoneID);
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.AwardSkillPoint(milestoneID);
+        }
+        else
+        {
+            data.availablePoints++;
+        }
+
+        Save();
     }
 
     public void BeginNightAllocation()
@@ -118,7 +127,7 @@ public class PersonalitySkills : MonoBehaviour
     public bool CanInvest(PersonalityDefinition definition)
     {
         return nightAllocationOpen && definition != null && definition.levelUnlocks != null
-            && data.availablePoints > 0 
+            && AvailablePoints > 0
             && GetLevel(definition.personality) < MaxLevel
             && GetLevel(definition.personality) < definition.levelUnlocks.Length;
     }
@@ -130,7 +139,12 @@ public class PersonalitySkills : MonoBehaviour
             return false;
         }
 
-        data.availablePoints--;
+        // Deduct from GameManager's persistent pool
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.SpendSkillPoint();
+        }
+
         data.levels[(int)definition.personality]++;
         Save();
         return true;
@@ -143,7 +157,7 @@ public class PersonalitySkills : MonoBehaviour
         PlayerPrefs.Save();
         Changed?.Invoke();
     }
-    
+
     [ContextMenu("Reset Skill Progress")]
     private void ResetSkillProgress()
     {
@@ -154,6 +168,4 @@ public class PersonalitySkills : MonoBehaviour
         nightAllocationOpen = false;
         Changed?.Invoke();
     }
-    
-
 }

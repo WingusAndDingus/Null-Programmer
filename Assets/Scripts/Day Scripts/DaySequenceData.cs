@@ -65,7 +65,8 @@ public class NarrativeStep
     public string speakerName;
     public HeadPersonality personality = HeadPersonality.None;
     [TextArea(2, 5)] public string lineText;
-    public float displayDuration = 3.5f;
+    [Tooltip("Obsolete: Dialogue now waits for player clicks instead of using timers.")]
+    [HideInInspector] public float displayDuration = 3.5f;
 
     [Header("Choices (Optional)")]
     public List<DialogueStepChoice> choices = new List<DialogueStepChoice>();
@@ -89,6 +90,15 @@ public class NarrativeStep
     [Header("Delay Settings")]
     [Tooltip("Custom delay in seconds for DelaySeconds step type")]
     public float delayDuration = 10f;
+
+    [Header("Delay Settings")]
+    public SteveExpression NewSteveExpression;
+
+    [Header("Scene Transition Settings")]
+    [Tooltip("Name of the night/sleep scene to load")]
+    public string targetSceneName = "Night Screen";
+    [Header("Steve Coding Challenge (C++ Skill Check)")]
+    public SteveChallengeData steveChallenge;
 }
 
 public enum NarrativeStepType
@@ -100,9 +110,11 @@ public enum NarrativeStepType
     DelaySeconds,           // For simulate reading email (10s)
     StartScreenShare,       // Calls ZoomScreenShareController.Instance.StartScreenShare()
     WaitUntilScreenShareEnd, // Halts until screenshare video completes
+    SetSteveExpression,
+    SwitchToNightScene,
     TriggerGameEnd,
-    Day2Exercise,
-    ReceiveMessage = 1000
+    SteveCodingChallenge,
+    Day2Exercise          // Appended to preserve the serialized values of existing steps.
 }
 
 [CreateAssetMenu(fileName = "DaySequence_Day0", menuName = "Narrative/Day Sequence Data")]

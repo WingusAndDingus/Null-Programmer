@@ -23,8 +23,12 @@ MonoBehaviour:
     nextStepID: Day1_SitDown
     awardSkillKey: 
     stepType: 4
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 2
+    NewSteveExpression: 0
+    targetSceneName: NightScene
+    steveChallenge: {fileID: 0}
   - stepID: Day1_SitDown
     speakerName: The Pragmatist
     personality: 3
@@ -34,9 +38,28 @@ MonoBehaviour:
     nextStepID: Day1_ReadEmail
     awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
+    NewSteveExpression: 0
+    targetSceneName: NightScene
+    steveChallenge: {fileID: 0}
   - stepID: Day1_ReadEmail
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    choices: []
+    nextStepID: SetSteveHello
+    awardSkillKey: 
+    stepType: 4
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+    NewSteveExpression: 0
+    targetSceneName: NightScene
+    steveChallenge: {fileID: 0}
+  - stepID: SetSteveHello
     speakerName: 
     personality: 0
     lineText: 
@@ -44,9 +67,13 @@ MonoBehaviour:
     choices: []
     nextStepID: Day1_WaitZoom
     awardSkillKey: 
-    stepType: 4
+    stepType: 7
+    exerciseIndex: 0
     suspicionChange: 0
-    delayDuration: 10
+    delayDuration: 0
+    NewSteveExpression: 3
+    targetSceneName: NightScene
+    steveChallenge: {fileID: 0}
   - stepID: Day1_WaitZoom
     speakerName: 
     personality: 0
@@ -56,8 +83,12 @@ MonoBehaviour:
     nextStepID: Day1_FirstChoice
     awardSkillKey: 
     stepType: 1
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
+    NewSteveExpression: 0
+    targetSceneName: NightScene
+    steveChallenge: {fileID: 0}
   - stepID: Day1_FirstChoice
     speakerName: 
     personality: 0
@@ -66,28 +97,85 @@ MonoBehaviour:
     choices:
     - choiceText: '"It has been a while since I''ve set up an SFML project, can you show me how you usually do it?'
       personality: 2
-      targetStepOnClick: Day1_GeniusWarning
+      targetStepOnClick: FirstChoiceSteveChange
       suspicionChange: 5
+      requiredLevel: 0
+      choiceGroup: 
     - choiceText: '"Uhh ok, so where do we start?"'
       personality: 3
-      targetStepOnClick: Day1_GeniusWarning
+      targetStepOnClick: FirstChoiceSteveChange
       suspicionChange: 20
+      requiredLevel: 0
+      choiceGroup: 
     nextStepID: 
     awardSkillKey: 
     stepType: 2
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: NightScene
+    steveChallenge: {fileID: 0}
+  - stepID: FirstChoiceSteveChange
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    choices: []
+    nextStepID: FirstSteveChangeLilWait
+    awardSkillKey: 
+    stepType: 7
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 2
+    targetSceneName: NightScene
+    steveChallenge: {fileID: 0}
+  - stepID: FirstSteveChangeLilWait
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    choices: []
+    nextStepID: Day1_GeniusWarning
+    awardSkillKey: 
+    stepType: 4
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 2
+    NewSteveExpression: 0
+    targetSceneName: NightScene
+    steveChallenge: {fileID: 0}
   - stepID: Day1_GeniusWarning
     speakerName: The Genius
     personality: 5
     lineText: Looks like if we let on too much about our current predicament, Steve might wizen up to us. Who knows if we can trust him? Don't worry though, I always know what to say to sound smart.
     displayDuration: 6
     choices: []
-    nextStepID: Day1_SteveScreenShareRequest
+    nextStepID: SetSteveDefault
     awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
+    NewSteveExpression: 0
+    targetSceneName: NightScene
+    steveChallenge: {fileID: 0}
+  - stepID: SetSteveDefault
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    choices: []
+    nextStepID: Day1_SteveScreenShareRequest
+    awardSkillKey: 
+    stepType: 7
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: NightScene
+    steveChallenge: {fileID: 0}
   - stepID: Day1_SteveScreenShareRequest
     speakerName: Steve
     personality: 0
@@ -97,19 +185,27 @@ MonoBehaviour:
     nextStepID: Day1_RunScreenShare
     awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
+    NewSteveExpression: 0
+    targetSceneName: NightScene
+    steveChallenge: {fileID: 0}
   - stepID: Day1_RunScreenShare
     speakerName: Steve
     personality: 0
-    lineText: Uh ok sir, just to make sure you approve of how I do it, let me share my screen.
-    displayDuration: 4
+    lineText: 
+    displayDuration: 0
     choices: []
     nextStepID: Day1_WaitScreenShare
     awardSkillKey: 
     stepType: 5
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
+    NewSteveExpression: 0
+    targetSceneName: NightScene
+    steveChallenge: {fileID: 0}
   - stepID: Day1_WaitScreenShare
     speakerName: 
     personality: 0
@@ -119,27 +215,39 @@ MonoBehaviour:
     nextStepID: Day1_SFMLQuiz
     awardSkillKey: 
     stepType: 6
+    exerciseIndex: 0
     suspicionChange: 0
-    delayDuration: 10
+    delayDuration: 1
+    NewSteveExpression: 0
+    targetSceneName: NightScene
+    steveChallenge: {fileID: 0}
   - stepID: Day1_SFMLQuiz
     speakerName: Grand Architect
     personality: 2
-    lineText: So, how do should we set up SFML?
+    lineText: Were you paying attention? how do we set up SFML?
     displayDuration: 3
     choices:
     - choiceText: The Correct Answer :)
       personality: 0
       targetStepOnClick: SFMLQuiz_Correct
       suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: 
     - choiceText: The Wrong Answer :(
       personality: 0
       targetStepOnClick: SFMLQuiz_InCorrect
       suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: 
     nextStepID: 
     awardSkillKey: 
     stepType: 2
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
+    NewSteveExpression: 0
+    targetSceneName: NightScene
+    steveChallenge: {fileID: 0}
   - stepID: SFMLQuiz_Correct
     speakerName: The Pragmatist
     personality: 3
@@ -149,8 +257,12 @@ MonoBehaviour:
     nextStepID: Day1_SteveNextQuestion
     awardSkillKey: SFMLQuiz_Correct
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
+    NewSteveExpression: 0
+    targetSceneName: NightScene
+    steveChallenge: {fileID: 0}
   - stepID: SFMLQuiz_InCorrect
     speakerName: The Pragmatist
     personality: 3
@@ -160,35 +272,207 @@ MonoBehaviour:
     nextStepID: Day1_SteveNextQuestion
     awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
+    NewSteveExpression: 0
+    targetSceneName: NightScene
+    steveChallenge: {fileID: 0}
   - stepID: Day1_SteveNextQuestion
     speakerName: Steve
     personality: 0
     lineText: Ok, so where should we start?
     displayDuration: 3
     choices: []
-    nextStepID: Day1_SecondChoice
+    nextStepID: Day1_SecondChoices
     awardSkillKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: Day1_SecondChoice
+    NewSteveExpression: 0
+    targetSceneName: NightScene
+    steveChallenge: {fileID: 0}
+  - stepID: Day1_SecondChoices
     speakerName: 
     personality: 0
-    lineText: Ok, so where should we start?
+    lineText: 
     displayDuration: 0
     choices:
     - choiceText: '"We should plan out what functionalities the game has and if we can represent them with classes. Let me look over the SFML documentation."'
       personality: 2
-      targetStepOnClick: 
+      targetStepOnClick: ResponsibleStart
       suspicionChange: -10
+      requiredLevel: 0
+      choiceGroup: 
     - choiceText: '"Let''s just start coding, we have a deadline."'
       personality: 3
-      targetStepOnClick: 
+      targetStepOnClick: IrresponsibleStart
       suspicionChange: 5
+      requiredLevel: 0
+      choiceGroup: 
     nextStepID: 
     awardSkillKey: 
     stepType: 2
+    exerciseIndex: 0
     suspicionChange: 0
-    delayDuration: 10
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: NightScene
+    steveChallenge: {fileID: 0}
+  - stepID: ResponsibleStart
+    speakerName: Steve
+    personality: 0
+    lineText: That's a really good mentality. Familiarize yourself with the documentation and let me know when you're done, I'd like to watch you set it up so I can learn.
+    displayDuration: 3
+    choices: []
+    nextStepID: ReadSFMLDoc
+    awardSkillKey: GreatFirstApproach
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: NightScene
+    steveChallenge: {fileID: 0}
+  - stepID: ReadSFMLDoc
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    choices:
+    - choiceText: Let Steve know you're done reading the documentation.
+      personality: 0
+      targetStepOnClick: StevesWatchin
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: 
+    nextStepID: 
+    awardSkillKey: 
+    stepType: 2
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: NightScene
+    steveChallenge: {fileID: 0}
+  - stepID: IrresponsibleStart
+    speakerName: Steve
+    personality: 0
+    lineText: Uhh sure. Can I watch you set it up?
+    displayDuration: 2
+    choices: []
+    nextStepID: ScreenShareEvent
+    awardSkillKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: NightScene
+    steveChallenge: {fileID: 0}
+  - stepID: StevesWatchin
+    speakerName: Steve
+    personality: 0
+    lineText: 'Ok then, please accept and share your screen '
+    displayDuration: 0
+    choices: []
+    nextStepID: ScreenShareEvent
+    awardSkillKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: NightScene
+    steveChallenge: {fileID: 0}
+  - stepID: ScreenShareEvent
+    speakerName: Error
+    personality: 0
+    lineText: The screenshare event is being reworked to fix some bugs, moving on to the next day (awarding one skill point for proof of concept)
+    displayDuration: 3
+    choices: []
+    nextStepID: EndDay1
+    awardSkillKey: SkillCheck1Passed
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: 
+    steveChallenge: {fileID: 0}
+  - stepID: EndDay
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    choices: []
+    nextStepID: 
+    awardSkillKey: 
+    stepType: 8
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge: {fileID: 0}
+  - stepID: EndDay1
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    choices: []
+    nextStepID: EndDay2
+    awardSkillKey: 
+    stepType: 7
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 2
+    NewSteveExpression: 4
+    targetSceneName: Sleep
+    steveChallenge: {fileID: 0}
+  - stepID: EndDay2
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    choices: []
+    nextStepID: EndDay3
+    awardSkillKey: 
+    stepType: 4
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 2
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge: {fileID: 0}
+  - stepID: EndDay3
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    choices: []
+    nextStepID: EndDay
+    awardSkillKey: 
+    stepType: 4
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 2
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge: {fileID: 0}
+  - stepID: EndDay3
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    choices: []
+    nextStepID: EndDay
+    awardSkillKey: 
+    stepType: 10
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 2
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge: {fileID: 0}

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Unity.VectorGraphics;
 using NullProgrammer.Day2;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ public class DayNarrativeExecutor : MonoBehaviour
 
     private DaySequenceData currentDayData;
     private string lastExecutedStepID = null;
+    private SceneSwitcher sceneSwitch;
     private readonly CancellationTokenSource lifetime = new CancellationTokenSource();
     private CancellationToken cancellationToken;
 
@@ -30,6 +32,7 @@ public class DayNarrativeExecutor : MonoBehaviour
     private void Start()
     {
         GameManager.EnsureInstance();
+        sceneSwitch = FindAnyObjectByType<SceneSwitcher>();
         int currentDay = GameManager.Instance != null ? GameManager.Instance.CurrentDay : 1;
 
         LoadAndExecuteDay(currentDay);
@@ -82,7 +85,7 @@ public class DayNarrativeExecutor : MonoBehaviour
 
         lastExecutedStepID = currentStepID;
 
-        // 1. Play Dialogue Line if text exists
+        // 1. Play Dialogue Line and await player click-to-continue
         if (!string.IsNullOrEmpty(stepData.lineText))
         {
             DialogueLine line = new DialogueLine
@@ -95,9 +98,8 @@ public class DayNarrativeExecutor : MonoBehaviour
 
             if (DialogueManager.Instance != null)
             {
-                DialogueManager.Instance.DisplayLine(line);
+                await DialogueManager.Instance.DisplayLineAndWaitAsync(line);
             }
-            await Task.Delay((int)(stepData.displayDuration * 1000), cancellationToken);
         }
 
         // 2. Handle Skill Rewards
@@ -162,7 +164,35 @@ public class DayNarrativeExecutor : MonoBehaviour
                     evaluator.TriggerFinalEvaluation();
                 }
                 break;
+            case NarrativeStepType.SetSteveExpression:
+                if (ZoomScreenShareController.Instance != null)
+                {
+                    ZoomScreenShareController.Instance.SetSteveExpression(stepData.NewSteveExpression);
+                }
+                break;
+            case NarrativeStepType.SwitchToNightScene:
+                string sceneToLoad = !string.IsNullOrEmpty(stepData.targetSceneName) ? stepData.targetSceneName : "NightScene";
+                Debug.Log($"[DayNarrativeExecutor] Transitioning to night scene: '{sceneToLoad}'");
 
+                if (sceneSwitch != null)
+                {
+                    sceneSwitch.LoadScene(sceneToLoad);
+                }
+                else
+                {
+                    UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
+                }
+                break;
+            case NarrativeStepType.SteveCodingChallenge:
+                if (stepData.steveChallenge != null)
+                {
+                    await RunSteveChallengeAsync(stepData.steveChallenge);
+                }
+                else
+                {
+                    Debug.LogWarning($"[DayNarrativeExecutor] Step '{stepData.stepID}' is set to SteveCodingChallenge, but no SteveChallengeData asset was assigned!");
+                }
+                break;
             case NarrativeStepType.DialogueLine:
             case NarrativeStepType.PresentChoices:
                 break;
@@ -170,7 +200,6 @@ public class DayNarrativeExecutor : MonoBehaviour
 
         if (lifetime.IsCancellationRequested) return;
 
-        // Apply suspicion shift after the step condition resolves
         ApplySuspicion(stepData.suspicionChange);
 
         // 4. Present Choices or Auto-Advance
@@ -274,5 +303,41 @@ public class DayNarrativeExecutor : MonoBehaviour
             case HeadPersonality.Genius: GameManager.Instance.ChangeGeniusStat(points); break;
             case HeadPersonality.Detective: GameManager.Instance.ChangeDetectiveStat(points); break;
         }
+    }
+
+    public async Task RunSteveChallengeAsync(SteveChallengeData challenge)
+    {
+        string playerCode = await SteveScreenShareManager.Instance.PromptPlayerForCodeAsync(challenge);
+        bool success = ValidatePlayerCode(playerCode, challenge);
+
+        if (success)
+        {
+            Debug.Log("Steve: 'Looks solid! Good job.'");
+        }
+        else
+        {
+            Debug.Log("Steve: 'Hmm, that's not quite right. Let's review.'");
+        }
+    }
+
+    public bool ValidatePlayerCode(string playerInput, SteveChallengeData challengeData)
+    {
+        if (string.IsNullOrEmpty(playerInput) || challengeData == null || challengeData.acceptedAnswers == null)
+            return false;
+
+        string cleanPlayerInput = playerInput.Trim();
+
+        foreach (string accepted in challengeData.acceptedAnswers)
+        {
+            if (string.IsNullOrEmpty(accepted)) continue;
+
+            string cleanAccepted = accepted.Trim();
+            if (cleanPlayerInput == cleanAccepted)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

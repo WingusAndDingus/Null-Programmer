@@ -44,4 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91809c457dfa09f41bd8ff6d5fd5d759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DayNarrativeExecutor
-  daySequences: []
+  daySequences:
+  - {fileID: 11400000, guid: d3eea0271f402664aa2af5f4404ab3b8, type: 2}
+  - {fileID: 11400000, guid: 1ef0e2a702cae09479b7f33139807bc1, type: 2}

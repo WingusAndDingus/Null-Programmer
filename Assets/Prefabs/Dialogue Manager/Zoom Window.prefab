@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b61db3f69d31204d8ecde894c5c8dab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MaximizeWindow
+  windowIdentity: {fileID: 0}
   draggableWindow: {fileID: 5303623349588494034}
   windowBody: {fileID: 2148821817488545067}
   titleBar: {fileID: 8084101758300098441}
@@ -148,95 +149,22 @@ MonoBehaviour:
   screensharePopup: {fileID: 8552603436118496086}
   screenShareDisplay: {fileID: 0}
   screenShareVideoPlayer: {fileID: 0}
-  dialogueCues:
-  - triggerTimestampSeconds: 3
-    pauseVideo: 0
-    dialogue:
-      speakerName: Steve
-      personality: 0
-      text: "Alright, first things first\u2014head over to sfml-dev.org and download the SFML 3 package that matches your C++ toolchain."
-      voiceClip: {fileID: 0}
-      displayDuration: 14
-  - triggerTimestampSeconds: 19
-    pauseVideo: 0
-    dialogue:
-      speakerName: Steve
-      personality: 0
-      text: Then, you can just export it/unzip the libary folder
-      voiceClip: {fileID: 0}
-      displayDuration: 10
-  - triggerTimestampSeconds: 30
-    pauseVideo: 1
-    dialogue:
-      speakerName: The Architect
-      personality: 2
-      text: Notice how he extracts the library directly into an external/ directory inside the project root. Keeping third-party libraries localized avoids dirtying global system paths
-      voiceClip: {fileID: 0}
-      displayDuration: 10
-  - triggerTimestampSeconds: 31
-    pauseVideo: 1
-    dialogue:
-      speakerName: The Pragmatist
-      personality: 3
-      text: Who cares...
-      voiceClip: {fileID: 0}
-      displayDuration: 1.8
-  - triggerTimestampSeconds: 33
-    pauseVideo: 0
-    dialogue:
-      speakerName: Steve
-      personality: 0
-      text: Alright, so when you make your new CLion Project, make sure to use C++17 or 20
-      voiceClip: {fileID: 0}
-      displayDuration: 7
-  - triggerTimestampSeconds: 40
-    pauseVideo: 1
-    dialogue:
-      speakerName: Steve
-      personality: 0
-      text: And always make sure your project and all its dependencies finish loading before doing anything.
-      voiceClip: {fileID: 0}
-      displayDuration: 10
-  - triggerTimestampSeconds: 51
-    pauseVideo: 0
-    dialogue:
-      speakerName: Steve
-      personality: 0
-      text: Open CMakeLists.txt. We'll set SFML_DIR to point to our external/SFML folder, then use find_package() to pull in Graphics, Audio, Window, and System
-      voiceClip: {fileID: 0}
-      displayDuration: 10
-  - triggerTimestampSeconds: 130
-    pauseVideo: 1
-    dialogue:
-      speakerName: The Sentinel
-      personality: 4
-      text: Pay attention to target_link_libraries. Linking SFML targets directly to your executable scope ensures proper symbol resolution and prevents runtime memory leaks from dangling dependencies
-      voiceClip: {fileID: 0}
-      displayDuration: 10
-  - triggerTimestampSeconds: 137
-    pauseVideo: 1
-    dialogue:
-      speakerName: Steve
-      personality: 0
-      text: And that should be it! Please correct me if I did anything wrong sir. I'm here to learn from you
-      voiceClip: {fileID: 0}
-      displayDuration: 5
-  - triggerTimestampSeconds: 138
-    pauseVideo: 1
-    dialogue:
-      speakerName: The Pragmatist
-      personality: 3
-      text: 'Whatever, I''m sure we could''ve just asked chatpgt '
-      voiceClip: {fileID: 0}
-      displayDuration: 5
-  - triggerTimestampSeconds: 138.5
-    pauseVideo: 1
-    dialogue:
-      speakerName: The Detective
-      personality: 6
-      text: Maybe we could ask this Mr.GPT who we are? He seems like a well-informed fellow
-      voiceClip: {fileID: 0}
-      displayDuration: 5
+  zoomAvatarImage: {fileID: 4013755457888443139}
+  expressionMappings:
+  - expression: 0
+    expressionSprite: {fileID: -197049010887534538, guid: e05563952a9d1854284d253fe1ed0fae, type: 3}
+  - expression: 1
+    expressionSprite: {fileID: -5353408509355089683, guid: df145a7e0cd989c47919c2139a0878cb, type: 3}
+  - expression: 2
+    expressionSprite: {fileID: 1413009874803308754, guid: b15e29fd931379748af80a30cc04df77, type: 3}
+  - expression: 3
+    expressionSprite: {fileID: 8990818629718590919, guid: df4c4409321f9034e8a88e00ac9e769f, type: 3}
+  - expression: 4
+    expressionSprite: {fileID: 3588649362229160977, guid: dd145e211b0b8e74fb48fb3ab5f3ed71, type: 3}
+  - expression: 5
+    expressionSprite: {fileID: -3238153499081056838, guid: d9fb8c654c071c347a80becbe991df04, type: 3}
+  - expression: 6
+    expressionSprite: {fileID: 2355425897902706314, guid: 75be8f2af4bc08f4e9032789d5f48c6b, type: 3}
 --- !u!1 &1293468883493815698
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,6 +366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e24de49ddb74496bc6526507870fb0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DraggableWindow
+  windowIdentity: {fileID: 0}
   windowRoot: {fileID: 6973980595638030285}
   desktopBottomLeft: {fileID: 0}
   desktopTopRight: {fileID: 0}
@@ -1544,6 +1473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e24de49ddb74496bc6526507870fb0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DraggableWindow
+  windowIdentity: {fileID: 0}
   windowRoot: {fileID: 4368884649797519225}
   desktopBottomLeft: {fileID: 0}
   desktopTopRight: {fileID: 0}
