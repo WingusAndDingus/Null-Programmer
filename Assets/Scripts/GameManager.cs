@@ -194,6 +194,13 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
+        // Ensure a fresh game session always starts at Day 1 with clean stats
+        CurrentDay = 1;
+        CurrentStep = "Start";
+        SteveSuspicion = 0;
+        UnspentSkillPoints = 0;
+        SelectedWeekendChoice = null;
+        rewardedMilestones.Clear();
 
         if (transform.parent != null)
         {

@@ -88,7 +88,7 @@ MonoBehaviour:
     stepType: 4
     exerciseIndex: 0
     suspicionChange: 0
-    delayDuration: 10
+    delayDuration: 3
     NewSteveExpression: 0
     targetSceneName: NightScene
     steveChallenge: {fileID: 0}
@@ -161,12 +161,14 @@ MonoBehaviour:
     choices:
     - choiceText: '"It has been a while since I''ve set up an SFML project, can you show me how you usually do it?'
       personality: 2
+      personalityStatChange: 1
       targetStepOnClick: FirstChoiceSteveChange
       suspicionChange: 5
       requiredLevel: 0
       choiceGroup: 
     - choiceText: '"Uhh ok, so where do we start?"'
       personality: 3
+      personalityStatChange: 1
       targetStepOnClick: FirstChoiceSteveChange
       suspicionChange: 20
       requiredLevel: 0
@@ -201,7 +203,7 @@ MonoBehaviour:
     alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
-    stepType: 7
+    stepType: 9
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
@@ -279,7 +281,7 @@ MonoBehaviour:
     alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
-    stepType: 7
+    stepType: 9
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
@@ -301,7 +303,7 @@ MonoBehaviour:
     displayDuration: 4
     lineVariants: []
     choices: []
-    nextStepID: Day1_RunScreenShare
+    nextStepID: Day1_SFMLQuiz
     alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
@@ -381,12 +383,14 @@ MonoBehaviour:
     choices:
     - choiceText: The Correct Answer :)
       personality: 0
+      personalityStatChange: 1
       targetStepOnClick: SFMLQuiz_Correct
       suspicionChange: 0
       requiredLevel: 0
       choiceGroup: 
     - choiceText: The Wrong Answer :(
       personality: 0
+      personalityStatChange: 1
       targetStepOnClick: SFMLQuiz_InCorrect
       suspicionChange: 0
       requiredLevel: 0
@@ -497,12 +501,14 @@ MonoBehaviour:
     choices:
     - choiceText: '"We should plan out what functionalities the game has and if we can represent them with classes. Let me look over the SFML documentation."'
       personality: 2
+      personalityStatChange: 1
       targetStepOnClick: ResponsibleStart
       suspicionChange: -10
       requiredLevel: 0
       choiceGroup: 
     - choiceText: '"Let''s just start coding, we have a deadline."'
       personality: 3
+      personalityStatChange: 1
       targetStepOnClick: IrresponsibleStart
       suspicionChange: 5
       requiredLevel: 0
@@ -561,6 +567,7 @@ MonoBehaviour:
     choices:
     - choiceText: Let Steve know you're done reading the documentation.
       personality: 0
+      personalityStatChange: 1
       targetStepOnClick: StevesWatchin
       suspicionChange: 0
       requiredLevel: 0
@@ -637,9 +644,9 @@ MonoBehaviour:
       replies: []
       waitForReply: 0
     stepID: ScreenShareEvent
-    speakerName: Error
+    speakerName: 
     personality: 0
-    lineText: The screenshare event is being reworked to fix some bugs, moving on to the next day (awarding one skill point for proof of concept)
+    lineText: 
     displayDuration: 3
     lineVariants: []
     choices: []
@@ -647,13 +654,13 @@ MonoBehaviour:
     alternateNextStepID: 
     awardSkillKey: SkillCheck1Passed
     narrativeEventKey: 
-    stepType: 0
+    stepType: 11
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: 
-    steveChallenge: {fileID: 0}
+    steveChallenge: {fileID: 11400000, guid: 88de5a710ea954d4aa35969a24c0856b, type: 2}
   - message:
       messageId: 75dfd136e8ca4640a14a32c23abe2b14
       contactKey: friend
@@ -673,7 +680,7 @@ MonoBehaviour:
     alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
-    stepType: 8
+    stepType: 10
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
@@ -699,7 +706,7 @@ MonoBehaviour:
     alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
-    stepType: 7
+    stepType: 9
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 2

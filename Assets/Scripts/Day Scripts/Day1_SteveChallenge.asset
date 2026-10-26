@@ -9,14 +9,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f55d506c5bce28548ab10a859cbb80d9, type: 3}
+  m_Script: {fileID: 0}
   m_Name: Day1_SteveChallenge
   m_EditorClassIdentifier: Assembly-CSharp::SteveChallengeData
   challengeTitle: SFML Window Initialization
   steveDialoguePrompt: Hey, let me see your window setup code. Type it out into the IDE.
+  startingCode: "#include //?\r\n\r\nint main() {\r\n    GameManager game;\r\n    // ??\r\n    return 0;\r\n}"
+  internalVoices:
+  - speakerName: The Grand Architect
+    personality: 2
+    dialogueText: Remember we should have a modular approach and put different major functionalities in different classses, which should be in different files to keep main.cpp simple and easy to understand.
+  - speakerName: The Pragmatist
+    personality: 3
+    dialogueText: Yeah whatever, that just means we can procrastinate on actually implementing the GameManager class, just include it and call its run function.
+  - speakerName: Me
+    personality: 0
+    dialogueText: Which, I still haven't implemented...
+  - speakerName: The Detective
+    personality: 6
+    dialogueText: Meh... whatever, as long as Steve thinks we're actually being smart
   acceptedAnswers:
-  - print(Hel
-  - sf::RenderWindow window(sf::VideoMode(800,600), "SFML Game");
-  - RenderWindow window(VideoMode(800, 600), "SFML Game");
-  - RenderWindow window(VideoMode(800, 600), "SFML Game");
-  - RenderWindow window(VideoMode(800, 600), "SFML Game");
+  - "#include \"GameManager.h\"\r\n\r\nint main() {\r\n    GameManager game;\r\n    game.run();\r\n    return 0;\r\n}"

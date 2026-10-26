@@ -14,7 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DaySequenceData
   dayNumber: 5
   steps:
-  - stepID: Start
+  - message:
+      messageId: ce95faada6eb40f89c8bafbe41454b83
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Start
     speakerName: 
     personality: 0
     lineText: 
@@ -22,13 +30,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_AfterEmailDelay
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: Day5.Email.Read
     stepType: 9
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_AfterEmailDelay
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: fb32679261644a98a672d0697f11ff20
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_AfterEmailDelay
     speakerName: 
     personality: 0
     lineText: 
@@ -36,13 +56,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_WaitForCall
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 4
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 3
-  - stepID: D5_WaitForCall
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: eb06ff6b2e7f4b6180bb6c9c73d86ea7
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_WaitForCall
     speakerName: 
     personality: 0
     lineText: 
@@ -50,13 +82,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Steve_Turn_Logic
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 1
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Steve_Turn_Logic
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: cc6c9f2d004b4c09934e8fe864fe423c
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Steve_Turn_Logic
     speakerName: Steve
     personality: 0
     lineText: Hey. Good news. I cleaned up the turn logic.
@@ -64,13 +108,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Me_BadNews
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Me_BadNews
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: e379c72f36354f5ca0520f0ba63f347a
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Me_BadNews
     speakerName: Me
     personality: 0
     lineText: And the bad news?
@@ -78,13 +134,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Steve_Bug
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Steve_Bug
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: d203752cf084444891ff896cf58ffb6e
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Steve_Bug
     speakerName: Steve
     personality: 0
     lineText: Sometimes the computer shoots you after you've already won.
@@ -92,13 +160,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Me_Efficient
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Me_Efficient
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: ecc6e3c54ccb48eeafb57b6454a6d8e1
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Me_Efficient
     speakerName: Me
     personality: 0
     lineText: Efficient.
@@ -106,13 +186,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Steve_Posthumous
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Steve_Posthumous
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: f594f09dfb5c4bbc9591dcaf6f516881
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Steve_Posthumous
     speakerName: Steve
     personality: 0
     lineText: I'm calling it "posthumous retaliation."
@@ -120,27 +212,51 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Internal_Opening
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Internal_Opening
-    speakerName: Me
-    personality: 1
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 913b95f9132d4e0a9bf52d7102b97b05
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Internal_Opening
+    speakerName: The Pragmatist
+    personality: 3
     lineText: Wonderful. He's debugging something he doesn't understand with someone who can't remember understanding it.
     displayDuration: 5.3999996
     lineVariants: []
     choices: []
     nextStepID: D5_Steve_MovedThings
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Steve_MovedThings
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: c71a794401fd440298629794b9e069d8
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Steve_MovedThings
     speakerName: Steve
     personality: 0
     lineText: I moved a few things around. The original order looked unnecessarily picky.
@@ -148,13 +264,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Me_ShowMe
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Me_ShowMe
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 262bcb0e9ced4cae8a893ffafa3e69d4
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Me_ShowMe
     speakerName: Me
     personality: 0
     lineText: Show me.
@@ -162,13 +290,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_StartShare
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_StartShare
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 1eb187e2d38a4f31b39481d2c819e825
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_StartShare
     speakerName: Steve
     personality: 0
     lineText: Here. This is the part.
@@ -176,13 +316,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_ShareDelay
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 5
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_ShareDelay
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 878e00ee51d24279b488683ff85067cf
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_ShareDelay
     speakerName: 
     personality: 0
     lineText: 
@@ -190,13 +342,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_BugQuestion
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 4
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 2.1
-  - stepID: D5_BugQuestion
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 1cbf2600d113409e892ed7ecc657b125
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_BugQuestion
     speakerName: Steve
     personality: 0
     lineText: The win check is still there. Why does moving it down break anything?
@@ -204,13 +368,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_DetectiveAdvice
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_DetectiveAdvice
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 9ec3fa850ada4114b4a77ac685ac25a8
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_DetectiveAdvice
     speakerName: The Detective
     personality: 6
     lineText: 
@@ -222,13 +398,25 @@ MonoBehaviour:
       lineText: Start at the impossible outcome and work backward. The AI attacks after the winning shot, so trace every call between resolving that shot and declaring victory.
     choices: []
     nextStepID: D5_BugChoices
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_BugChoices
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: bfb9783ecfc34548a92fbf19fbba3353
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_BugChoices
     speakerName: 
     personality: 0
     lineText: 
@@ -237,30 +425,45 @@ MonoBehaviour:
     choices:
     - choiceText: Because executeAITurn() is in the wrong place.
       personality: 0
+      personalityStatChange: 1
       targetStepOnClick: D5_Bug_Incomplete
       suspicionChange: 0
       requiredLevel: 0
       choiceGroup: 
     - choiceText: Because you've already started the AI's turn before checking whether the player's attack ended the match.
       personality: 0
+      personalityStatChange: 1
       targetStepOnClick: D5_Bug_Correct
       suspicionChange: 0
       requiredLevel: 0
       choiceGroup: 
     - choiceText: Because SFML is processing the player and AI attacks at the same time.
       personality: 0
+      personalityStatChange: 1
       targetStepOnClick: D5_Bug_Wrong
       suspicionChange: 5
       requiredLevel: 0
       choiceGroup: 
     nextStepID: 
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 2
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Bug_Correct
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 2afc5be2e0e8485790d4fa0232375c2e
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Bug_Correct
     speakerName: Steve
     personality: 0
     lineText: Oh. So I didn't forget the win condition. I just asked the question after I'd already let the AI shoot.
@@ -268,13 +471,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Bug_Correct_Me
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Bug_Correct_Me
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 326147bb7a5547b1b938267abe593087
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Bug_Correct_Me
     speakerName: Me
     personality: 0
     lineText: Exactly.
@@ -282,13 +497,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_SFML_Steve
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Bug_Incomplete
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: d36d011e7e424f9aa49110c9d691e7c9
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Bug_Incomplete
     speakerName: Steve
     personality: 0
     lineText: Okay, but why is that place wrong?
@@ -296,13 +523,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Bug_Incomplete_Me
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Bug_Incomplete_Me
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: c8c4d2c0552d4b5f84d119d66437c964
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Bug_Incomplete_Me
     speakerName: Me
     personality: 0
     lineText: Because the player's action hasn't finished resolving. You transferred control before checking its consequences.
@@ -310,13 +549,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Bug_Incomplete_Steve
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Bug_Incomplete_Steve
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: c254bf4b4f4b4c8390f53339c3aac69d
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Bug_Incomplete_Steve
     speakerName: Steve
     personality: 0
     lineText: Right. So the placement is wrong because the sequence is wrong.
@@ -324,13 +575,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_SFML_Steve
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Bug_Wrong
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: c00dafcac2ba48c0bfec72209b7faf94
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Bug_Wrong
     speakerName: Steve
     personality: 0
     lineText: But the AI doesn't use SFML input.
@@ -338,13 +601,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Bug_Wrong_Thought
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Bug_Wrong_Thought
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 6b798e08f38f4858ab73e4a0e359728f
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Bug_Wrong_Thought
     speakerName: Me
     personality: 1
     lineText: He's asking distressingly good questions today.
@@ -352,13 +627,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_SFML_Steve
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_SFML_Steve
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: cdcd2307d85a491c816b1fadc0b0aeb6
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_SFML_Steve
     speakerName: Steve
     personality: 0
     lineText: So SFML basically tells us, "the mouse was clicked."
@@ -366,13 +653,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_SFML_Me
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_SFML_Me
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 3dbab6a105544eb4968113e32e7cdb8d
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_SFML_Me
     speakerName: Me
     personality: 0
     lineText: Right. SFML reports the input event. Our game decides whether that click is legal, what it changes, and whether another turn should happen afterward.
@@ -380,13 +679,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_TraceIntro
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_TraceIntro
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 9f4ba5773c9d425a9d90179f84de6cec
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_TraceIntro
     speakerName: Me
     personality: 1
     lineText: All right. Let's trace the turn one step at a time.
@@ -394,13 +705,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_TraceTurn
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_TraceTurn
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 93c13e7e8d9a4cd6b25e42b8d79d54d3
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_TraceTurn
     speakerName: 
     personality: 0
     lineText: 
@@ -408,13 +731,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_TraceReflection
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: Day5.TraceTurn.Complete
     stepType: 9
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_TraceReflection
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: e48090c8d0654902b94d4da4e2ae88d6
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_TraceReflection
     speakerName: Me
     personality: 1
     lineText: There it is. Input, resolve the action, update the state, check whether the match ended, then hand over control.
@@ -422,13 +757,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_CheckEverywhere
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_CheckEverywhere
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: e7e13ac66f0747e7b6c031f76677d0b3
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_CheckEverywhere
     speakerName: Steve
     personality: 0
     lineText: Okay. So should I just keep adding if (!game_over) everywhere?
@@ -436,13 +783,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_ArchitectAdvice
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_ArchitectAdvice
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 14186f33668c4f91b6aeb410fb5b41c9
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_ArchitectAdvice
     speakerName: The Grand Architect
     personality: 2
     lineText: 
@@ -454,13 +813,25 @@ MonoBehaviour:
       lineText: Think in terms of an invariant. Once the game enters a terminal state, no valid transition should lead from that state into another turn.
     choices: []
     nextStepID: D5_InvariantChoices
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_InvariantChoices
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 4e84d7874dc54eb5a90235cf8b995176
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_InvariantChoices
     speakerName: 
     personality: 0
     lineText: 
@@ -469,30 +840,45 @@ MonoBehaviour:
     choices:
     - choiceText: Once the game reaches a terminal state, the turn sequence should stop. Don't let control transition to another player after that.
       personality: 0
+      personalityStatChange: 1
       targetStepOnClick: D5_Invariant_Correct
       suspicionChange: 0
       requiredLevel: 0
       choiceGroup: 
     - choiceText: Adding more checks everywhere is probably safest.
       personality: 0
+      personalityStatChange: 1
       targetStepOnClick: D5_Invariant_Wrong
       suspicionChange: 5
       requiredLevel: 0
       choiceGroup: 
     - choiceText: Put the game_over check somewhere central instead of repeating it everywhere.
       personality: 0
+      personalityStatChange: 1
       targetStepOnClick: D5_Invariant_Incomplete
       suspicionChange: 0
       requiredLevel: 0
       choiceGroup: 
     nextStepID: 
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 2
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Invariant_Correct
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 7e10b4ca89c34dc49bbcfd9bedd77df7
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Invariant_Correct
     speakerName: Steve
     personality: 0
     lineText: 'So the important thing is the rule: game over means there is no next turn.'
@@ -500,13 +886,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Invariant_Correct_Me
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Invariant_Correct_Me
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 2e8ca7446d3641ef9b955a99091e60a1
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Invariant_Correct_Me
     speakerName: Me
     personality: 0
     lineText: Exactly.
@@ -514,13 +912,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_StateTransition
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Invariant_Incomplete
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: d32a7b920ff54c0a9c73b681d490e543
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Invariant_Incomplete
     speakerName: Me
     personality: 0
     lineText: That would reduce duplication, but the important part is why the check exists.
@@ -528,13 +938,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Invariant_Incomplete_Me2
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Invariant_Incomplete_Me2
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: dd561803a2014486aeea353b6a01975a
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Invariant_Incomplete_Me2
     speakerName: Me
     personality: 0
     lineText: Once the match reaches a terminal state, nothing should transition it into another turn.
@@ -542,13 +964,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Invariant_Incomplete_Steve
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Invariant_Incomplete_Steve
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 9deaca12331742448113491691ffcb3e
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Invariant_Incomplete_Steve
     speakerName: Steve
     personality: 0
     lineText: Right. The structure matters more than where I hide the Boolean.
@@ -556,13 +990,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_StateTransition
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Invariant_Wrong
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: ac3f97ed94c4403d9bceb27d82abcdc4
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Invariant_Wrong
     speakerName: Steve
     personality: 0
     lineText: I already tried that. The code started looking like it was afraid of itself.
@@ -570,13 +1016,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Invariant_Wrong_Me
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Invariant_Wrong_Me
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: a985635c167147f1ac3ba2576fe115f3
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Invariant_Wrong_Me
     speakerName: Me
     personality: 0
     lineText: A reasonable response under the circumstances. The cleaner rule is that a terminal state has no transition into another turn.
@@ -584,13 +1042,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_StateTransition
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_StateTransition
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: da041a3226cc4cfab7ba4a3f9d1311ad
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_StateTransition
     speakerName: Steve
     personality: 0
     lineText: So we're really defining which state changes are legal.
@@ -598,13 +1068,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_StateExactly
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_StateExactly
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: c1f9481e4d9e4a94a6021302c3a8a63b
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_StateExactly
     speakerName: Me
     personality: 0
     lineText: Exactly.
@@ -612,13 +1094,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_FrameQuestion
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_FrameQuestion
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: ee8c4b63f00e45f8aa7b6497c4d9603b
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_FrameQuestion
     speakerName: Steve
     personality: 0
     lineText: If Battleship alternates turns, shouldn't the main loop alternate too? Player loop, AI loop, player loop? Why does SFML keep running while we're waiting for somebody to move?
@@ -626,13 +1120,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_PragmatistAdvice
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_PragmatistAdvice
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 2c79c36b9f76492c94aa14de3347297b
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_PragmatistAdvice
     speakerName: The Pragmatist
     personality: 3
     lineText: 
@@ -644,13 +1150,25 @@ MonoBehaviour:
       lineText: Don't confuse the application's heartbeat with the game's turn system. Keep polling events, updating what needs updating, and drawing frames. Advance the Battleship turn only when a valid game action occurs.
     choices: []
     nextStepID: D5_FrameChoices
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_FrameChoices
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: b5086a17249f4799a86248c27a75a61b
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_FrameChoices
     speakerName: 
     personality: 0
     lineText: 
@@ -659,30 +1177,45 @@ MonoBehaviour:
     choices:
     - choiceText: Each frame is basically one Battleship turn.
       personality: 0
+      personalityStatChange: 1
       targetStepOnClick: D5_Frame_Wrong
       suspicionChange: 5
       requiredLevel: 0
       choiceGroup: 
     - choiceText: SFML has to keep redrawing the window.
       personality: 0
+      personalityStatChange: 1
       targetStepOnClick: D5_Frame_Incomplete
       suspicionChange: 0
       requiredLevel: 0
       choiceGroup: 
     - choiceText: The SFML frame loop and the Battleship turn system are separate. Frames keep running even when no gameplay turn changes.
       personality: 0
+      personalityStatChange: 1
       targetStepOnClick: D5_Frame_Correct
       suspicionChange: 0
       requiredLevel: 0
       choiceGroup: 
     nextStepID: 
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 2
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Frame_Correct
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 317c2174abf84afaa1bdb40dccfccb7a
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Frame_Correct
     speakerName: Steve
     personality: 0
     lineText: So we could draw sixty frames without completing a single turn.
@@ -690,13 +1223,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Frame_Correct_Me
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Frame_Correct_Me
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 03fa8d7c712f4b70a44f672a047a0488
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Frame_Correct_Me
     speakerName: Me
     personality: 0
     lineText: Or six hundred.
@@ -704,13 +1249,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Frame_Joke
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Frame_Incomplete
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 8e74dd03199e4bc5ad6f87e196b2e5d5
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Frame_Incomplete
     speakerName: Me
     personality: 0
     lineText: Rendering is part of it, but input and updates continue too. The important distinction is that a frame isn't a gameplay turn.
@@ -718,13 +1275,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Frame_Incomplete_Steve
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Frame_Incomplete_Steve
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 2a100b01f96245ceac0e1db4b546e4a0
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Frame_Incomplete_Steve
     speakerName: Steve
     personality: 0
     lineText: Right. The application keeps running while the game waits.
@@ -732,13 +1301,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Frame_Joke
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Frame_Wrong
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 67f93620781f426b89499ffb3762ff31
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Frame_Wrong
     speakerName: Steve
     personality: 0
     lineText: At sixty frames per second?
@@ -746,13 +1327,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Frame_Wrong_Thought
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Frame_Wrong_Thought
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: fcdd7d96193441a095580f3567571eca
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Frame_Wrong_Thought
     speakerName: Me
     personality: 1
     lineText: Competitive Battleship has become considerably more dangerous.
@@ -760,13 +1353,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Frame_Joke
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Frame_Joke
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: d02235479c4c4677901118ea6e2bf14c
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Frame_Joke
     speakerName: Steve
     personality: 0
     lineText: Finally, software that accurately simulates meetings.
@@ -774,13 +1379,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Final_Start
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Final_Start
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: db47acd540b8470ca8e25fcda849b050
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Final_Start
     speakerName: Steve
     personality: 0
     lineText: All right. I moved the terminal check back where it belongs. Running it now.
@@ -788,13 +1405,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Final_Fires
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Final_Fires
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 4faa9e6c49924364863e6dfb369d3f56
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Final_Fires
     speakerName: Steve
     personality: 0
     lineText: Player fires...
@@ -802,13 +1431,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Final_ShipDown
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Final_ShipDown
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: cab10260a2c44891a55d9fab30d2b857
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Final_ShipDown
     speakerName: Steve
     personality: 0
     lineText: Last ship goes down...
@@ -816,13 +1457,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Final_Victory
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Final_Victory
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 9f97f0997d3f49f3bdf87158c403e219
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Final_Victory
     speakerName: Steve
     personality: 0
     lineText: Victory screen.
@@ -830,13 +1483,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Final_NoReturnFire
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Final_NoReturnFire
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: fcd7d92644654214b47b01755c5c586e
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Final_NoReturnFire
     speakerName: Steve
     personality: 0
     lineText: And the computer did not shoot me from beyond the grave.
@@ -844,13 +1509,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Final_Promising
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Final_Promising
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: d585d8a80520412ba36d92ae7fbd4e4d
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Final_Promising
     speakerName: Me
     personality: 0
     lineText: Promising.
@@ -858,13 +1535,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Final_DeadAI
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Final_DeadAI
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 6df7c58ed878451c85adb15664c9aeac
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Final_DeadAI
     speakerName: Steve
     personality: 0
     lineText: We've successfully taught artificial intelligence to recognize when it's dead.
@@ -872,13 +1561,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Final_Resume
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Final_Resume
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 3e8c5475ef4d490685d68e2e0b27d8ef
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Final_Resume
     speakerName: Me
     personality: 0
     lineText: Put it on the resume.
@@ -886,13 +1587,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Close_Understand
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Close_Understand
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 2879daca3d734f6dba10b026b81679a1
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Close_Understand
     speakerName: Steve
     personality: 0
     lineText: I think I'm actually starting to understand this stuff.
@@ -900,13 +1613,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Close_TerribleCode
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Close_TerribleCode
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 8a88f3401cf246c283cfff2944e96b5d
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Close_TerribleCode
     speakerName: Steve
     personality: 0
     lineText: Which means pretty soon I'll be able to recognize my own terrible code.
@@ -914,13 +1639,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Close_Choices
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Close_Choices
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 9f0db80c9d03451693d5cac8f1bfbf38
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Close_Choices
     speakerName: 
     personality: 0
     lineText: 
@@ -929,30 +1666,45 @@ MonoBehaviour:
     choices:
     - choiceText: Eventually you'll recognize my terrible code too.
       personality: 0
+      personalityStatChange: 1
       targetStepOnClick: D5_Close_Friendly
       suspicionChange: 0
       requiredLevel: 0
       choiceGroup: 
     - choiceText: Let's merge this before either of us has another idea.
       personality: 0
+      personalityStatChange: 1
       targetStepOnClick: D5_Close_Dry
       suspicionChange: 0
       requiredLevel: 0
       choiceGroup: 
     - choiceText: Just don't rearrange anything else before Monday.
       personality: 0
+      personalityStatChange: 1
       targetStepOnClick: D5_Close_Dismissive
       suspicionChange: 5
       requiredLevel: 0
       choiceGroup: 
     nextStepID: 
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 2
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Close_Friendly
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: f4ea89245c414727bc5fdcd28e742c7c
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Close_Friendly
     speakerName: Steve
     personality: 0
     lineText: Ha. Deal.
@@ -960,13 +1712,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_End_StevePush
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Close_Dry
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 2256603cafc3427bbf05c06265a9bf50
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Close_Dry
     speakerName: Steve
     personality: 0
     lineText: Best thing you've said all afternoon.
@@ -974,13 +1738,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_End_StevePush
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Close_Dismissive
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 2fe5b3dbebe24b5dad854a9f77286f25
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Close_Dismissive
     speakerName: Steve
     personality: 0
     lineText: ...Right. Sure.
@@ -988,13 +1764,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_End_StevePush
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_End_StevePush
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 56da1c6a8851434098d630992337d332
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_End_StevePush
     speakerName: Steve
     personality: 0
     lineText: I'll push the fix.
@@ -1002,13 +1790,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_End_GreatWeekend
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_End_GreatWeekend
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: fb571e39aa7c447c820fb87afea43ab9
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_End_GreatWeekend
     speakerName: Me
     personality: 0
     lineText: Awesome. Have a great weekend!
@@ -1016,13 +1816,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_End_YouToo
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_End_YouToo
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: b4f041e404af43cba4946e01600d5fad
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_End_YouToo
     speakerName: Steve
     personality: 0
     lineText: You too.
@@ -1030,13 +1842,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_End_RevengeEmail
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_End_RevengeEmail
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: b7c2bbe4db854bab9a7ddc1a0f53a19c
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_End_RevengeEmail
     speakerName: Steve
     personality: 0
     lineText: And if the AI emails you demanding revenge, don't answer.
@@ -1044,13 +1868,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_EndScreenShare
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_EndScreenShare
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: aa7d2c2b655c4ba382f653863a9d6ead
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_EndScreenShare
     speakerName: 
     personality: 0
     lineText: 
@@ -1058,13 +1894,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_EndZoom
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 10
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_EndZoom
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 97c3aab6d462404ab91344938b9a1c1c
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_EndZoom
     speakerName: 
     personality: 0
     lineText: 
@@ -1072,13 +1920,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Internal_Action
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 11
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Internal_Action
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 5125544a657742319a9568869d13838b
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Internal_Action
     speakerName: Me
     personality: 1
     lineText: Action. Resolution. Terminal state. Transition.
@@ -1086,13 +1946,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Internal_Remember
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Internal_Remember
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 94823520eb13484f9e49c73fc07606c5
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Internal_Remember
     speakerName: Me
     personality: 1
     lineText: I remember the pattern.
@@ -1100,13 +1972,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Internal_NotEverything
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Internal_NotEverything
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: d2bf13e2fe1b4538b59a865236b5349a
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Internal_NotEverything
     speakerName: Me
     personality: 1
     lineText: Not everything.
@@ -1114,13 +1998,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Internal_UsedToBeMine
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Internal_UsedToBeMine
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 2f12a172f3cf473e8f64e3012b5bee75
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Internal_UsedToBeMine
     speakerName: Me
     personality: 1
     lineText: But enough to know it used to be mine.
@@ -1128,13 +2024,25 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: D5_Internal_Something
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
-  - stepID: D5_Internal_Something
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 3a6201f72881473ab6a79f43d8e5b411
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: D5_Internal_Something
     speakerName: Me
     personality: 1
     lineText: That's something.
@@ -1142,9 +2050,13 @@ MonoBehaviour:
     lineVariants: []
     choices: []
     nextStepID: 
+    alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}

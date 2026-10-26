@@ -35,9 +35,16 @@ public class SteveScreenShareManager : MonoBehaviour
 
         activeChallengeTask = new TaskCompletionSource<string>();
 
-        // TODO: When your teammate's final IDE UI is ready, call a method here 
-        // to open their IDE window and pass `challenge`. 
-        // When the player clicks submit in their IDE, call SubmitPlayerCode(typedString).
+        // Directly find the IDE controller in the scene (including inactive objects) and open it!
+        SteveIdeWindowController ideController = FindAnyObjectByType<SteveIdeWindowController>(FindObjectsInactive.Include);
+        if (ideController != null)
+        {
+            ideController.OpenIde(challenge);
+        }
+        else
+        {
+            Debug.LogError("[SteveScreenShareManager] Could not find any SteveIdeWindowController in the scene! Make sure it is added to your IDE panel.");
+        }
 
         return activeChallengeTask.Task;
     }
