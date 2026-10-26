@@ -413,13 +413,33 @@ PrefabInstance:
       propertyPath: desktopBottomLeft
       value: 
       objectReference: {fileID: 1798894330}
+    - target: {fileID: 1059686335942882257, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: m_SortingOrder
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 1192497626828263742, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
       propertyPath: m_Name
       value: Zoom Window
       objectReference: {fileID: 0}
+    - target: {fileID: 2357645756219878046, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.06717587
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357645756219878046, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.96970755
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357645756219878046, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.40005
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357645756219878046, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0024
+      objectReference: {fileID: 0}
     - target: {fileID: 4013755457888443139, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
       propertyPath: m_SortingOrder
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4368884649797519225, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
       propertyPath: m_LocalScale.z
@@ -437,6 +457,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4676657871626187684, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676657871626187684, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5303623349588494034, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
       propertyPath: windowIdentity
       value: 
@@ -449,17 +477,25 @@ PrefabInstance:
       propertyPath: desktopBottomLeft
       value: 
       objectReference: {fileID: 1798894330}
+    - target: {fileID: 5803880202154600132, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: m_SortingOrder
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 6470204359994069291, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: m_SortingOrder
+      value: 23
+      objectReference: {fileID: 0}
     - target: {fileID: 6546997477163202361, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
       propertyPath: windowIdentity
       value: 
       objectReference: {fileID: 1885203712}
     - target: {fileID: 6973980595638030285, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.798743
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6973980595638030285, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.8074189
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6973980595638030285, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -493,7 +529,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7537046653197074794, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1421864338}
+    - target: {fileID: 7537046653197074794, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084101758300098441, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: m_SortingOrder
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 8564051911998189278, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: m_SortingOrder
+      value: 24
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8763032167156888842, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+    - {fileID: 7537046653197074794, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -503,9 +557,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3791215219202832130, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 3791215219202832130, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1686700416}
   m_SourcePrefab: {fileID: 100100000, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
---- !u!4 &34546015 stripped
-Transform:
+--- !u!224 &34546015 stripped
+RectTransform:
   m_CorrespondingSourceObject: {fileID: 6973980595638030285, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
   m_PrefabInstance: {fileID: 34546014}
   m_PrefabAsset: {fileID: 0}
@@ -5079,7 +5136,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DirectCodeTyping
   codeTextComponent: {fileID: 685790187}
-  startingCode: "#include <iostream>\n\nint main()\n{\n    // Type your code here:\n\n    return 0;\n}"
 --- !u!1001 &962023414
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8136,6 +8192,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!1 &1686700412 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3791215219202832130, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+  m_PrefabInstance: {fileID: 34546014}
+  m_PrefabAsset: {fileID: 0}
+--- !u!210 &1686700416
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686700412}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 23
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0
 --- !u!1 &1691032245
 GameObject:
   m_ObjectHideFlags: 0
