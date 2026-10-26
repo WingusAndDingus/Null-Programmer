@@ -80,13 +80,13 @@ public sealed class SuspicionDemoUI : MonoBehaviour
         else if (warningLabel != null) warningLabel.gameObject.SetActive(value >= 100);
         SetLabel(warningLabel, warningLabelTMP, "Steve is suspicious! (Test crisis)");
         bool modal = dialoguePanel.activeSelf;
-        replyButton.gameObject.SetActive(state.ReplyAvailable && !state.ReplyCompleted && !modal);
+        replyButton.gameObject.SetActive(state.CurrentDay != 3 && state.ReplyAvailable && !state.ReplyCompleted && !modal);
         // Hide test buttons in builds unless explicitly enabled in a development build.
-        testControls.SetActive(showTestControls && (Application.isEditor || Debug.isDebugBuild) && !modal);
+        testControls.SetActive(state.CurrentDay != 3 && showTestControls && (Application.isEditor || Debug.isDebugBuild) && !modal);
     }
     public void OpenReply()
     {
-        if (!state.ReplyAvailable || state.ReplyCompleted) return;
+        if (state.CurrentDay == 3 || !state.ReplyAvailable || state.ReplyCompleted) return;
         BlockWorldClicks();
         dialoguePanel.SetActive(true);
         DrawConversation();

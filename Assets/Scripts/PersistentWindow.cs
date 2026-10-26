@@ -57,6 +57,8 @@ public class PersistentWindow : MonoBehaviour
 
     public void OpenWindow()
     {
+        if (NullProgrammer.Day3Workshop.WorkshopSession.RouteIDE(windowRoot)) return;
+
         if (GameManager.Instance != null)
         {
             GameManager.Instance.SetWindowOpen(

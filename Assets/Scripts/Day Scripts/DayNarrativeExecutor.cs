@@ -17,6 +17,7 @@ public class DayNarrativeExecutor : MonoBehaviour
     private SceneSwitcher sceneSwitch;
     private readonly CancellationTokenSource lifetime = new CancellationTokenSource();
     private CancellationToken cancellationToken;
+    private CancellationTokenSource dayLifetime;
 
     private void Awake()
     {
@@ -25,6 +26,7 @@ public class DayNarrativeExecutor : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (dayLifetime != null) { dayLifetime.Cancel(); dayLifetime.Dispose(); }
         lifetime.Cancel();
         lifetime.Dispose();
     }
@@ -46,13 +48,17 @@ public class DayNarrativeExecutor : MonoBehaviour
             return;
         }
 
+        if (dayLifetime != null) { dayLifetime.Cancel(); dayLifetime.Dispose(); }
+        dayLifetime = CancellationTokenSource.CreateLinkedTokenSource(lifetime.Token);
+        cancellationToken = dayLifetime.Token;
+        lastExecutedStepID = null;
         currentDayData = daySequences[targetIndex];
-        _ = RunCurrentStepSafelyAsync();
+        _ = RunCurrentStepSafelyAsync(cancellationToken);
     }
 
-    private async Task RunCurrentStepSafelyAsync()
+    private async Task RunCurrentStepSafelyAsync(CancellationToken cancellationToken)
     {
-        try { await RunCurrentStepAsync(); }
+        try { await RunCurrentStepAsync(cancellationToken); }
         catch (OperationCanceledException) { }
         catch (Exception exception) { Debug.LogException(exception); }
     }
@@ -63,9 +69,9 @@ public class DayNarrativeExecutor : MonoBehaviour
         GameManager.Instance.ChangeSteveSuspicion(amount);
     }
 
-    private async Task RunCurrentStepAsync()
+    private async Task RunCurrentStepAsync(CancellationToken cancellationToken)
     {
-        if (currentDayData == null || lifetime.IsCancellationRequested) return;
+        if (currentDayData == null || cancellationToken.IsCancellationRequested) return;
 
         string currentStepID = GameManager.Instance.CurrentStep;
         Debug.Log($"[DayNarrativeExecutor] Attempting to run step: '{currentStepID}'");
@@ -102,6 +108,8 @@ public class DayNarrativeExecutor : MonoBehaviour
             }
         }
 
+        cancellationToken.ThrowIfCancellationRequested();
+
         // 2. Handle Skill Rewards
         if (!string.IsNullOrEmpty(stepData.awardSkillKey))
         {
@@ -111,6 +119,14 @@ public class DayNarrativeExecutor : MonoBehaviour
         // 3. WAIT FOR / TRIGGER GAMEPLAY EVENTS
         switch (stepData.stepType)
         {
+            case NarrativeStepType.Day3BoardExercise:
+                await NullProgrammer.Day3Workshop.WorkshopSession.RunAsync(stepData.exerciseIndex, cancellationToken);
+                break;
+
+            case NarrativeStepType.Day3BoardEmail:
+                await NullProgrammer.Day3Workshop.WorkshopSession.WaitForMailAsync(cancellationToken);
+                break;
+
             case NarrativeStepType.ReceiveMessage:
                 await NarrativeMessageDelivery.RunAsync(stepData.message, currentDayData.dayNumber, cancellationToken);
                 break;
@@ -228,7 +244,7 @@ public class DayNarrativeExecutor : MonoBehaviour
                 break;
         }
 
-        if (lifetime.IsCancellationRequested) return;
+        if (cancellationToken.IsCancellationRequested) return;
 
         // Apply suspicion shift after the step condition resolves.
         ApplySuspicion(stepData.suspicionChange);
@@ -263,15 +279,15 @@ public class DayNarrativeExecutor : MonoBehaviour
             }
 
             int selectedIndex = await PresentChoicesAsync(choiceArray);
-            if (lifetime.IsCancellationRequested) return;
+            if (cancellationToken.IsCancellationRequested) return;
 
             if (selectedIndex >= 0 && selectedIndex < availableChoices.Count)
             {
                 DialogueStepChoice chosen = availableChoices[selectedIndex];
 
-                // Existing behavior: personality-tagged choices can still raise that stat.
-                // Day 5's teaching choices use HeadPersonality.None, so personalities remain advisors.
-                ApplyPersonalityStat(chosen.personality, 1);
+                // Presentation and rewards are separate: a voice may offer an incorrect
+                // suggestion without granting its stat when the player retries.
+                ApplyPersonalityStat(chosen.personality, chosen.personalityStatChange);
 
                 // This field already existed in DialogueStepChoice; apply it now.
                 ApplySuspicion(chosen.suspicionChange);
@@ -279,14 +295,14 @@ public class DayNarrativeExecutor : MonoBehaviour
                 if (!string.IsNullOrEmpty(chosen.targetStepOnClick))
                 {
                     GameManager.Instance.setStep(chosen.targetStepOnClick);
-                    _ = RunCurrentStepSafelyAsync();
+                    _ = RunCurrentStepSafelyAsync(cancellationToken);
                 }
             }
         }
         else if (!string.IsNullOrEmpty(stepData.nextStepID))
         {
             GameManager.Instance.setStep(stepData.nextStepID);
-            _ = RunCurrentStepSafelyAsync();
+            _ = RunCurrentStepSafelyAsync(cancellationToken);
         }
     }
 
@@ -404,3 +420,4 @@ public class DayNarrativeExecutor : MonoBehaviour
         return false;
     }
 }
+
