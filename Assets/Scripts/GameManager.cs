@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     // =========================================================
     // Player / Game Stats
     // =========================================================
-    public int CurrentDay { get; private set; } = 1;
+    public int CurrentDay { get; private set; } = 4;
     public string CurrentStep { get; private set; } = "Start";
     public int GrandArchitectStat { get; private set; }
     public int PragmatistStat { get; private set; }
@@ -214,7 +214,7 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         // Ensure a fresh game session always starts at Day 1 with clean stats
-        CurrentDay = 1;
+        CurrentDay = 4;
         CurrentStep = "Start";
         SteveSuspicion = 0;
         UnspentSkillPoints = 0;

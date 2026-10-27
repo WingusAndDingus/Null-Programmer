@@ -303,7 +303,7 @@ MonoBehaviour:
     displayDuration: 4
     lineVariants: []
     choices: []
-    nextStepID: Day1_SFMLQuiz
+    nextStepID: Day1_RunScreenShare
     alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
@@ -789,5 +789,5 @@ MonoBehaviour:
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
-    targetSceneName: Sleep
+    targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
