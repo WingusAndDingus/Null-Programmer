@@ -16,6 +16,13 @@ public class DialogueBubble : MonoBehaviour
     [SerializeField] private Vector2 textPadding = new Vector2(30f, 26f);
     [SerializeField] private float minimumHeight = 160f;
 
+    [Header("Authored Thought Bubble Alignment")]
+    [Tooltip("Moves text upward inside the original thought-bubble artwork so it stays visually centered in the bubble shape.")]
+    [SerializeField] private float authoredBubbleTextUpwardOffset = 30f;
+
+    private const float TextHeightSafety = 14f;
+    private const float ExtraVerticalRoom = 50f;
+
     [Header("Floating Animation")]
     [SerializeField] private float floatSpeed = 0.8f;
     [SerializeField] private float floatDistance = 4f;
@@ -128,27 +135,46 @@ public class DialogueBubble : MonoBehaviour
     private float HeadingHeight(float fontSize) => string.IsNullOrEmpty(personalityName) ? 0f : fontSize * 0.85f + 12f;
     private float HorizontalPadding(float width) => useRoundedCards ? textPadding.x : width * 0.2f;
 
-    // Measure at the final width and font size, before placing any cards.
-    public float MeasureHeight(float width, float fontSize)
+    private float MeasureBodyHeight(float width, float fontSize)
     {
         optionText.fontSize = fontSize;
-        float bodyHeight = Mathf.Ceil(optionText.GetPreferredValues(message,
-            Mathf.Max(1f, width - 2f * HorizontalPadding(width)), Mathf.Infinity).y) + 10f;
+        float availableWidth = Mathf.Max(1f, width - 2f * HorizontalPadding(width));
+        float preferredHeight = optionText.GetPreferredValues(message, availableWidth, Mathf.Infinity).y;
+        return Mathf.Ceil(preferredHeight) + TextHeightSafety;
+    }
+
+    // Measure the same final height that FitToText will actually use.
+    public float MeasureHeight(float width, float fontSize)
+    {
+        float bodyHeight = MeasureBodyHeight(width, fontSize);
         float content = bodyHeight + HeadingHeight(fontSize);
-        return Mathf.Max(minimumHeight, useRoundedCards ? content + 2f * textPadding.y : content / 0.55f);
+        float contentHeight = useRoundedCards
+            ? content + 2f * textPadding.y
+            : content / 0.55f;
+
+        return Mathf.Max(minimumHeight, contentHeight) + ExtraVerticalRoom;
     }
 
     public void FitToText(float width, float fontSize, float rowHeight = 0f)
     {
-        float height = Mathf.Max(MeasureHeight(width, fontSize), rowHeight + 50f);
+        float height = Mathf.Max(MeasureHeight(width, fontSize), rowHeight);
         bubbleRect.anchorMin = bubbleRect.anchorMax = new Vector2(0.5f, 1f);
         bubbleRect.pivot = new Vector2(0.5f, 1f);
         bubbleRect.sizeDelta = new Vector2(width, height);
+
         float headingHeight = HeadingHeight(fontSize);
-        float bodyHeight = Mathf.Ceil(optionText.GetPreferredValues(message,
-            Mathf.Max(1f, width - 2f * HorizontalPadding(width)), Mathf.Infinity).y) + 4f;
-        float top = useRoundedCards ? textPadding.y : (height - bodyHeight - headingHeight) * 0.5f;
-        top -= 40f;
+        float bodyHeight = MeasureBodyHeight(width, fontSize);
+        float textBlockHeight = bodyHeight + headingHeight;
+
+        // Center the complete text block rather than applying the old unconditional
+        // -40 px shift, which could push text outside its bubble.
+        float centeredTop = Mathf.Max(0f, (height - textBlockHeight) * 0.5f);
+        float upwardOffset = useRoundedCards ? 0f : Mathf.Max(0f, authoredBubbleTextUpwardOffset);
+        float top = Mathf.Clamp(
+            centeredTop - upwardOffset,
+            0f,
+            Mathf.Max(0f, height - textBlockHeight));
+
         PlaceText(optionText.rectTransform, HorizontalPadding(width), top + headingHeight, bodyHeight);
         if (personalityText != null)
         {

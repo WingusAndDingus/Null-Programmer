@@ -38,9 +38,11 @@ public class DialogueManager : MonoBehaviour
     private RectTransform choiceViewport;
     private RectTransform choiceContent;
     private ScrollRect choiceScroll;
+    private RectMask2D choiceMask;
     private Canvas choiceCanvas;
     private Vector2 lastChoiceViewportSize;
     private float lastChoiceScale;
+    private bool usingDay5ChoicePlacement;
 
     // Zoom & Tutorial are only on one monitor
     private VideoPlayer activeVideoPlayer;
@@ -235,6 +237,7 @@ public class DialogueManager : MonoBehaviour
 
         ClearChoices();
         EnsureChoiceViewport();
+        ApplyChoiceViewportForCurrentDay();
 
         if (choiceViewport != null)
             choiceViewport.gameObject.SetActive(true);
@@ -317,6 +320,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         choiceViewport.offsetMin = choiceViewport.offsetMax = Vector2.zero;
+        choiceMask = viewport.GetComponent<RectMask2D>();
         var overlayCanvas = viewport.GetComponent<Canvas>();
         overlayCanvas.overrideSorting = true;
         overlayCanvas.sortingOrder = 1500;
@@ -338,6 +342,35 @@ public class DialogueManager : MonoBehaviour
         choiceScroll.scrollSensitivity = 45f;
     }
 
+    // Reapply the choice viewport each time choices are shown because this
+    // DialogueManager persists across scenes/days. Day 5 deliberately uses a
+    // shallow viewport; its mask must be disabled so tall bubbles are not cut off.
+    private void ApplyChoiceViewportForCurrentDay()
+    {
+        if (choiceViewport == null) return;
+
+        GameManager manager = GameManager.Instance;
+        usingDay5ChoicePlacement = manager != null && manager.CurrentDay == 5;
+
+        if (usingDay5ChoicePlacement)
+        {
+            // Preserve the original Day 5 placement exactly.
+            choiceViewport.anchorMin = new Vector2(0.04f, 0.16f);
+            choiceViewport.anchorMax = new Vector2(0.96f, 0.48f);
+        }
+        else
+        {
+            // Preserve the original placement for every other day.
+            choiceViewport.anchorMin = new Vector2(0.04f, 0.26f);
+            choiceViewport.anchorMax = new Vector2(0.96f, 0.94f);
+        }
+
+        choiceViewport.offsetMin = choiceViewport.offsetMax = Vector2.zero;
+
+        if (choiceMask != null)
+            choiceMask.enabled = !usingDay5ChoicePlacement;
+    }
+
     private void LayoutChoices(bool animate)
     {
         Vector2 size = choiceViewport.rect.size;
@@ -347,7 +380,7 @@ public class DialogueManager : MonoBehaviour
         choiceContent.sizeDelta = new Vector2(size.x, plan.contentHeight);
         choiceContent.anchoredPosition = Vector2.zero;
         choiceScroll.StopMovement();
-        choiceScroll.vertical = plan.contentHeight > size.y + 0.5f;
+        choiceScroll.vertical = !usingDay5ChoicePlacement && plan.contentHeight > size.y + 0.5f;
         for (int i = 0; i < activeBubbles.Count; i++)
         {
             var bubble = activeBubbles[i].GetComponent<DialogueBubble>();
