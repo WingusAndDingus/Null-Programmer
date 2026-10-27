@@ -620,8 +620,8 @@ MonoBehaviour:
       replies: []
       waitForReply: 0
     stepID: D5_Bug_Wrong_Thought
-    speakerName: Me
-    personality: 1
+    speakerName: The Detective
+    personality: 6
     lineText: He's asking distressingly good questions today.
     displayDuration: 3.75
     lineVariants: []
@@ -750,8 +750,8 @@ MonoBehaviour:
       replies: []
       waitForReply: 0
     stepID: D5_TraceReflection
-    speakerName: Me
-    personality: 1
+    speakerName: The Grand Architect
+    personality: 2
     lineText: There it is. Input, resolve the action, update the state, check whether the match ended, then hand over control.
     displayDuration: 7.6499996
     lineVariants: []
@@ -1897,7 +1897,7 @@ MonoBehaviour:
     alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
-    stepType: 10
+    stepType: 13
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
@@ -1923,7 +1923,7 @@ MonoBehaviour:
     alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
-    stepType: 11
+    stepType: 14
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
@@ -2049,11 +2049,37 @@ MonoBehaviour:
     displayDuration: 3.3000002
     lineVariants: []
     choices: []
-    nextStepID: 
+    nextStepID: EndDay
     alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: c65c9b2723924590b10926c544d935e5
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: EndDay
+    speakerName: 
+    personality: 1
+    lineText: 
+    displayDuration: 3.3000002
+    lineVariants: []
+    choices: []
+    nextStepID: 
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 10
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10

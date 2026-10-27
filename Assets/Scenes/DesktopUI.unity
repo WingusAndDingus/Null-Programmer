@@ -10039,6 +10039,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Day5
       objectReference: {fileID: 0}
+    - target: {fileID: 5367393212380835966, guid: c5be93629f4db2649a7b7c0055dbcf3e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -2.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367393212380835966, guid: c5be93629f4db2649a7b7c0055dbcf3e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.57
+      objectReference: {fileID: 0}
     - target: {fileID: 7281038723759713548, guid: c5be93629f4db2649a7b7c0055dbcf3e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -10153,7 +10161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9131883009000410226, guid: c5be93629f4db2649a7b7c0055dbcf3e, type: 3}
       propertyPath: forceDay5OnPlay
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10370,12 +10378,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2295184603799294184, guid: 6725c3b2fce15c24ea6b07cbc7d70c12, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6725c3b2fce15c24ea6b07cbc7d70c12, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 16.72, y: 9.4}
+  m_Size: {x: 16.71, y: 9.41}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -10962,8 +10970,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -17, y: 609}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -17, y: 590.55444}
+  m_SizeDelta: {x: 100, y: 136.8911}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &2921976206890608579
 PrefabInstance:
@@ -11017,6 +11025,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: NarrativeManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7904637182536935973, guid: c8dd5049553ca2d43ab8e8c45b839c89, type: 3}
+      propertyPath: daySequences.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7904637182536935973, guid: c8dd5049553ca2d43ab8e8c45b839c89, type: 3}
+      propertyPath: 'daySequences.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 1d03b591423eef94993fe6af64b307c7, type: 2}
+    - target: {fileID: 7904637182536935973, guid: c8dd5049553ca2d43ab8e8c45b839c89, type: 3}
+      propertyPath: 'daySequences.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 4238e50aad03092449ee91e18db4417a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

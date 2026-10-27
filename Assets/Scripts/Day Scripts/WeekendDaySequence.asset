@@ -1,0 +1,302 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 657659d256d74ba448affc6a2a8763d3, type: 3}
+  m_Name: WeekendDaySequence
+  m_EditorClassIdentifier: Assembly-CSharp::DaySequenceData
+  dayNumber: 6
+  steps:
+  - message:
+      messageId: b6d0912d42a64e00874bd349ca3ed516
+      contactKey: 
+      contactName: 
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Start
+    speakerName: Me
+    personality: 0
+    lineText: Oh it's the weekend?
+    displayDuration: 0
+    lineVariants: []
+    choices: []
+    nextStepID: DetectiveYes
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: 
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 5de1bfe70b65425999c6df922bb2f4b1
+      contactKey: 
+      contactName: 
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: DetectiveYes
+    speakerName: The Detective
+    personality: 6
+    lineText: Yeah, did you also forget about the concept of weekends?
+    displayDuration: 0
+    lineVariants: []
+    choices: []
+    nextStepID: MeMaybe
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: 
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: cf39516f407a4c92a6cfd7939f7dfdc3
+      contactKey: 
+      contactName: 
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: MeMaybe
+    speakerName: Me
+    personality: 0
+    lineText: Maybe...
+    displayDuration: 0
+    lineVariants: []
+    choices: []
+    nextStepID: PragmatistYay
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: 
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 767e22a682114c8997666246b40b33e7
+      contactKey: 
+      contactName: 
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: PragmatistYay
+    speakerName: The Pragmatist
+    personality: 3
+    lineText: Well do I have good news for you!
+    displayDuration: 0
+    lineVariants: []
+    choices: []
+    nextStepID: GoodNews
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: 
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: ec830ae8bd0841068e6fafaee1fbc492
+      contactKey: 
+      contactName: 
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: GoodNews
+    speakerName: The Pragmatist
+    personality: 3
+    lineText: We can spend the next two days however we want! Let's enjoy ourselves.
+    displayDuration: 0
+    lineVariants: []
+    choices: []
+    nextStepID: GrandAlternative
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: 
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 28b212a3d4c346719792bdf13f0a25c2
+      contactKey: 
+      contactName: 
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: GrandAlternative
+    speakerName: The Grand Architect
+    personality: 2
+    lineText: Or we could take this as an opportunity to keep learning more and remaster our old craft of software development.
+    displayDuration: 0
+    lineVariants: []
+    choices: []
+    nextStepID: PragWordless
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: 
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: baecf221ebe843e08ea5a1dfeaaa4403
+      contactKey: 
+      contactName: 
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: PragWordless
+    speakerName: The Pragmatist
+    personality: 3
+    lineText: ...
+    displayDuration: 0
+    lineVariants: []
+    choices: []
+    nextStepID: DetectAlt
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: 
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: bfcae5869c1445e0accd06db68b45014
+      contactKey: 
+      contactName: 
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: DetectAlt
+    speakerName: The Detective
+    personality: 6
+    lineText: Or we could spend some time with family and friends, that might lead to more clues about our past life...
+    displayDuration: 0
+    lineVariants: []
+    choices: []
+    nextStepID: PragFine
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: 
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 4075707c7c784efd9ceea1e097efce90
+      contactKey: 
+      contactName: 
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: PragFine
+    speakerName: The Pragmatist
+    personality: 3
+    lineText: You two really know how to take the joy out of life... I guess friends and family wouldn't be that bad. We could also get to know Steve better.
+    displayDuration: 0
+    lineVariants: []
+    choices: []
+    nextStepID: YeahIf
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: 
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 01977d7a845e43e7bcbf10eba8aa31ed
+      contactKey: 
+      contactName: 
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: YeahIf
+    speakerName: Me
+    personality: 0
+    lineText: Yeah, if he hasn't found out about our current memory leak dilemma...
+    displayDuration: 0
+    lineVariants: []
+    choices: []
+    nextStepID: PoseQ
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: 
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 5e03a01c52a74734b3705e97c023a1ad
+      contactKey: 
+      contactName: 
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: PoseQ
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    lineVariants: []
+    choices: []
+    nextStepID: 
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 10
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Weekend Choice
+    steveChallenge: {fileID: 0}

@@ -12,38 +12,83 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 657659d256d74ba448affc6a2a8763d3, type: 3}
   m_Name: FinalDay_Data
   m_EditorClassIdentifier: Assembly-CSharp::DaySequenceData
-  dayNumber: 14
+  dayNumber: 7
   steps:
-  - stepID: Start
+  - message:
+      messageId: 65cc176dea7b4906a30ba38e2d7c3196
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Start
     speakerName: Steve
     personality: 0
     lineText: Let's take a look at the final Battleship repository before we submit it to management.
     displayDuration: 5
+    lineVariants: []
     choices: []
     nextStepID: Pause
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
-  - stepID: Pause
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 3aeba6edeb5b41cc9098427458f00d47
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Pause
     speakerName: 
     personality: 0
     lineText: 
     displayDuration: 0
+    lineVariants: []
     choices: []
     nextStepID: Evaluate_Code
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 4
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 1
-  - stepID: Evaluate_Code
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: fb31f837f2f44eba92ac8d531a459139
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: Evaluate_Code
     speakerName: 
     personality: 0
     lineText: 
     displayDuration: 0
+    lineVariants: []
     choices: []
     nextStepID: 
+    alternateNextStepID: 
     awardSkillKey: 
+    narrativeEventKey: 
     stepType: 7
+    exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}

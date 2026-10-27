@@ -662,32 +662,6 @@ MonoBehaviour:
     targetSceneName: 
     steveChallenge: {fileID: 11400000, guid: 88de5a710ea954d4aa35969a24c0856b, type: 2}
   - message:
-      messageId: 75dfd136e8ca4640a14a32c23abe2b14
-      contactKey: friend
-      contactName: Friend
-      portrait: {fileID: 0}
-      text: 
-      replies: []
-      waitForReply: 0
-    stepID: EndDay
-    speakerName: 
-    personality: 0
-    lineText: 
-    displayDuration: 0
-    lineVariants: []
-    choices: []
-    nextStepID: 
-    alternateNextStepID: 
-    awardSkillKey: 
-    narrativeEventKey: 
-    stepType: 10
-    exerciseIndex: 0
-    suspicionChange: 0
-    delayDuration: 0
-    NewSteveExpression: 0
-    targetSceneName: Sleep
-    steveChallenge: {fileID: 0}
-  - message:
       messageId: ce59974e5bec47fc899239521877750d
       contactKey: friend
       contactName: Friend
@@ -722,9 +696,9 @@ MonoBehaviour:
       replies: []
       waitForReply: 0
     stepID: EndDay2
-    speakerName: 
+    speakerName: Steve
     personality: 0
-    lineText: 
+    lineText: Well, it's been an honor meeting you sir. You're definitely... unique. Have a good night, we can continue tomorrow.
     displayDuration: 0
     lineVariants: []
     choices: []
@@ -732,7 +706,7 @@ MonoBehaviour:
     alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
-    stepType: 4
+    stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 2
@@ -748,17 +722,17 @@ MonoBehaviour:
       replies: []
       waitForReply: 0
     stepID: EndDay3
-    speakerName: 
-    personality: 0
-    lineText: 
+    speakerName: The Detective
+    personality: 6
+    lineText: Do you think he knows?
     displayDuration: 0
     lineVariants: []
     choices: []
-    nextStepID: EndDay
+    nextStepID: EndDay4
     alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
-    stepType: 4
+    stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 2
@@ -773,10 +747,10 @@ MonoBehaviour:
       text: 
       replies: []
       waitForReply: 0
-    stepID: EndDay3
-    speakerName: 
-    personality: 0
-    lineText: 
+    stepID: EndDay4
+    speakerName: The Pragmatist
+    personality: 3
+    lineText: I'd know
     displayDuration: 0
     lineVariants: []
     choices: []
@@ -788,6 +762,32 @@ MonoBehaviour:
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 2
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: 75dfd136e8ca4640a14a32c23abe2b14
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: EndDay
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 0
+    lineVariants: []
+    choices: []
+    nextStepID: 
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 10
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
     steveChallenge: {fileID: 0}
