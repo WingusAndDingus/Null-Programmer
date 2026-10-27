@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Day1_SteveChallenge
   m_EditorClassIdentifier: Assembly-CSharp::SteveChallengeData
   challengeTitle: SFML Window Initialization
-  steveDialoguePrompt: Hey, let me see your window setup code. Type it out into the IDE.
+  steveDialoguePrompt: Just type it out into the IDE. When you're done press ctrl + enter.
   startingCode: "#include //?\r\n\r\nint main() {\r\n    GameManager game;\r\n    // ??\r\n    return 0;\r\n}"
   internalVoices:
   - speakerName: The Grand Architect

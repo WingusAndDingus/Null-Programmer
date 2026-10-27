@@ -60,26 +60,34 @@ public class GameManager : MonoBehaviour
 
     public bool CanSpendWeekendWithSteve()
     {
-        return SteveSuspicion < 50;
+        bool result = SteveSuspicion < 50;
+        Debug.Log($"[GameManager] CanSpendWeekendWithSteve evaluated. SteveSuspicion: {SteveSuspicion}, Result: {result}");
+        return result;
     }
 
     public bool CanStudyThisWeekend()
     {
-        return GrandArchitectStat > 3;
+        bool result = GrandArchitectStat > 3;
+        Debug.Log($"[GameManager] CanStudyThisWeekend evaluated. GrandArchitectStat: {GrandArchitectStat}, Result: {result}");
+        return result;
     }
 
     public bool CanReconnectThisWeekend()
     {
-        return Connectedness > 50;
+        bool result = Connectedness > 50;
+        Debug.Log($"[GameManager] CanReconnectThisWeekend evaluated. Connectedness: {Connectedness}, Result: {result}");
+        return result;
     }
 
     public bool CanWallowThisWeekend()
     {
+        Debug.Log("[GameManager] CanWallowThisWeekend evaluated. Result: true");
         return true;
     }
 
     public bool IsWeekendChoiceAvailable(WeekendChoice choice)
     {
+        Debug.Log($"[GameManager] IsWeekendChoiceAvailable called for choice: {choice}");
         switch (choice)
         {
             case WeekendChoice.Steve:
@@ -101,19 +109,23 @@ public class GameManager : MonoBehaviour
 
     public bool TryConfirmWeekendChoice(WeekendChoice choice)
     {
+        Debug.Log($"[GameManager] TryConfirmWeekendChoice attempted with choice: {choice}, HasSelectedBefore: {HasSelectedWeekendChoice}");
         // Weekend choice has already been permanently committed.
         if (HasSelectedWeekendChoice)
         {
+            Debug.Log("[GameManager] TryConfirmWeekendChoice failed: Weekend choice already committed.");
             return false;
         }
 
         // Protect against trying to select a locked path.
         if (!IsWeekendChoiceAvailable(choice))
         {
+            Debug.Log($"[GameManager] TryConfirmWeekendChoice failed: Choice {choice} is not available.");
             return false;
         }
 
         SelectedWeekendChoice = choice;
+        Debug.Log($"[GameManager] TryConfirmWeekendChoice succeeded. Selected weekend choice set to: {choice}");
         return true;
     }
 
@@ -159,11 +171,13 @@ public class GameManager : MonoBehaviour
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     private static void ResetStatics()
     {
+        Debug.Log("[GameManager] ResetStatics invoked.");
         Instance = null;
     }
 
     public static GameManager EnsureInstance()
     {
+        Debug.Log("[GameManager] EnsureInstance called.");
         if (Instance != null)
         {
             return Instance;
@@ -173,22 +187,27 @@ public class GameManager : MonoBehaviour
 
         if (existing != null)
         {
+            Debug.Log("[GameManager] Existing GameManager found in scene. Initializing.");
             existing.Initialize();
             return Instance;
         }
 
+        Debug.Log("[GameManager] No GameManager found. Creating new GameObject.");
         return new GameObject("GameManager").AddComponent<GameManager>();
     }
 
     private void Awake()
     {
+        Debug.Log("[GameManager] Awake called.");
         Initialize();
     }
 
     private void Initialize()
     {
+        Debug.Log("[GameManager] Initialize called. Resetting session parameters.");
         if (Instance != null && Instance != this)
         {
+            Debug.LogWarning("[GameManager] Duplicate GameManager instance detected. Destroying duplicate.");
             Destroy(this);
             return;
         }
@@ -212,6 +231,7 @@ public class GameManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        Debug.Log("[GameManager] OnDestroy called.");
         if (Instance == this)
         {
             Instance = null;
@@ -225,6 +245,7 @@ public class GameManager : MonoBehaviour
 
     public void SetZoomedIn(bool value)
     {
+        Debug.Log($"[GameManager] SetZoomedIn called. New state: {value}");
         IsZoomedIn = value;
     }
 
@@ -236,6 +257,7 @@ public class GameManager : MonoBehaviour
     private readonly HashSet<string> rewardedMilestones = new HashSet<string>();
     public void AwardSkillPoint(string milestoneID)
     {
+        Debug.Log($"[GameManager] AwardSkillPoint called with milestoneID: '{milestoneID}'");
         if (string.IsNullOrWhiteSpace(milestoneID) || rewardedMilestones.Contains(milestoneID))
         {
             return;
@@ -248,12 +270,15 @@ public class GameManager : MonoBehaviour
 
     public void SpendSkillPoint()
     {
+        Debug.Log($"[GameManager] SpendSkillPoint called. Unspent before: {UnspentSkillPoints}");
         UnspentSkillPoints = Mathf.Max(0, UnspentSkillPoints - 1);
+        Debug.Log($"[GameManager] Unspent skill points after spend: {UnspentSkillPoints}");
     }
     public void setCurrentDay(int day)
     {
         int previous = CurrentDay;
         CurrentDay = Mathf.Max(1, day);
+        Debug.Log($"[GameManager] setCurrentDay called. Previous: {previous}, New CurrentDay: {CurrentDay}");
         if (previous != CurrentDay)
         {
             DayChanged?.Invoke(CurrentDay); //Syed's new implementation
@@ -262,50 +287,60 @@ public class GameManager : MonoBehaviour
 
     public void setStep(string stepName)
     {
+        Debug.Log($"[GameManager] setStep called. Previous step: {CurrentStep}, New step: {stepName}");
         CurrentStep = stepName;
     }
 
     public void AdvanceToNextDay()
     {
+        Debug.Log($"[GameManager] AdvanceToNextDay called. Incrementing from day {CurrentDay}");
         CurrentDay++;
         UnspentSkillPoints = 0;
         CurrentStep = "Start"; //reset for new day
         DayChanged?.Invoke(CurrentDay); //Syed's new implementation
+        Debug.Log($"[GameManager] Advanced to Day {CurrentDay}. Step reset to 'Start'.");
     }
 
     public void ChangeGrandArchitectStat(int value)
     {
         GrandArchitectStat += value;
+        Debug.Log($"[GameManager] ChangeGrandArchitectStat delta: {value}, Total GrandArchitectStat: {GrandArchitectStat}");
     }
 
     public void ChangePragmatistStat(int value)
     {
         PragmatistStat += value;
+        Debug.Log($"[GameManager] ChangePragmatistStat delta: {value}, Total PragmatistStat: {PragmatistStat}");
     }
 
     public void ChangeSentinelStat(int value)
     {
         SentinelStat += value;
+        Debug.Log($"[GameManager] ChangeSentinelStat delta: {value}, Total SentinelStat: {SentinelStat}");
     }
 
     public void ChangeGeniusStat(int value)
     {
         GeniusStat += value;
+        Debug.Log($"[GameManager] ChangeGeniusStat delta: {value}, Total GeniusStat: {GeniusStat}");
     }
 
     public void ChangeDetectiveStat(int value)
     {
         DetectiveStat += value;
+        Debug.Log($"[GameManager] ChangeDetectiveStat delta: {value}, Total DetectiveStat: {DetectiveStat}");
     }
 
     public void ChangeCodeQualityStat(int value)
     {
         CodeQuality += value;
+        Debug.Log($"[GameManager] ChangeCodeQualityStat delta: {value}, Total CodeQuality: {CodeQuality}");
     }
 
     public void ChangeConnectednessStat(int value)
     {
         Connectedness += value;
+        Debug.Log($"[GameManager] ChangeConnectednessStat delta: {value}, Total Connectedness: {Connectedness}");
     }
 
     public void ChangeSteveSuspicion(int value)
@@ -317,6 +352,8 @@ public class GameManager : MonoBehaviour
             Math.Min(MaxSuspicion, (long)previous + value)
         );
 
+        Debug.Log($"[GameManager] ChangeSteveSuspicion delta: {value}. Previous: {previous}, New SteveSuspicion: {SteveSuspicion} (Max: {MaxSuspicion})");
+
         if (previous == SteveSuspicion)
         {
             return;
@@ -326,6 +363,7 @@ public class GameManager : MonoBehaviour
 
         if (previous < MaxSuspicion && SteveSuspicion == MaxSuspicion)
         {
+            Debug.LogWarning("[GameManager] SteveSuspicion reached MAX! Triggering SteveCrisis.");
             SteveCrisis?.Invoke();
         }
     }
@@ -337,18 +375,22 @@ public class GameManager : MonoBehaviour
     public void MarkEmailRead()
     {
         EmailRead = true;
+        Debug.Log("[GameManager] MarkEmailRead called. EmailRead set to true.");
     }
 
     public void MarkDay5EmailRead()
     {
         Day5EmailRead = true;
+        Debug.Log("[GameManager] MarkDay5EmailRead called. Day5EmailRead set to true.");
     }
 
     public void MarkReadEmailClosed()
     {
+        Debug.Log($"[GameManager] MarkReadEmailClosed called. EmailRead: {EmailRead}, ReplyCompleted: {ReplyCompleted}");
         if (EmailRead && !ReplyCompleted)
         {
             ReplyAvailable = true;
+            Debug.Log("[GameManager] ReplyAvailable set to true.");
         }
     }
 
@@ -358,19 +400,23 @@ public class GameManager : MonoBehaviour
         string feedback
     )
     {
+        Debug.Log($"[GameManager] TryApplyReply called. ExpectedStage: {expectedStage}, Current ReplyStage: {ReplyStage}, ReplyAvailable: {ReplyAvailable}, ReplyCompleted: {ReplyCompleted}");
         if (!ReplyAvailable ||
             ReplyCompleted ||
             ReplyStage != expectedStage)
         {
+            Debug.Log("[GameManager] TryApplyReply rejected.");
             return false;
         }
 
         ReplyStage++;
         LastReplyFeedback = feedback;
+        Debug.Log($"[GameManager] TryApplyReply applied successfully. New ReplyStage: {ReplyStage}, Feedback: '{feedback}'");
 
         if (ReplyCompleted)
         {
             ReplyAvailable = false;
+            Debug.Log("[GameManager] ReplyCompleted reached. ReplyAvailable set to false.");
         }
 
         ChangeSteveSuspicion(suspicionDelta);
@@ -379,6 +425,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartReplyTest()
     {
+        Debug.Log("[GameManager] RestartReplyTest called. Resetting reply state and clearing suspicion.");
         ChangeSteveSuspicion(-SteveSuspicion);
         ReplyStage = 0;
         ReplyAvailable = false;
@@ -392,10 +439,12 @@ public class GameManager : MonoBehaviour
 
     private WindowState GetWindowState(string windowId)
     {
+        Debug.Log($"[GameManager] GetWindowState queried for windowId: '{windowId}'");
         if (!windowStates.TryGetValue(windowId, out WindowState state))
         {
             state = new WindowState();
             windowStates[windowId] = state;
+            Debug.Log($"[GameManager] Created new WindowState record for windowId: '{windowId}'");
         }
 
         return state;
@@ -408,12 +457,15 @@ public class GameManager : MonoBehaviour
 
     public void SetWindowMaximized(string windowId, bool maximized)
     {
+        Debug.Log($"[GameManager] SetWindowMaximized for '{windowId}' set to {maximized}");
         GetWindowState(windowId).IsMaximized = maximized;
     }
 
     public bool IsWindowMaximized(string windowId)
     {
-        return GetWindowState(windowId).IsMaximized;
+        bool maximized = GetWindowState(windowId).IsMaximized;
+        Debug.Log($"[GameManager] IsWindowMaximized for '{windowId}' -> {maximized}");
+        return maximized;
     }
 
 
@@ -423,12 +475,15 @@ public class GameManager : MonoBehaviour
 
     public void SetWindowOpen(string windowId, bool isOpen)
     {
+        Debug.Log($"[GameManager] SetWindowOpen for '{windowId}' set to {isOpen}");
         GetWindowState(windowId).IsOpen = isOpen;
     }
 
     public bool IsWindowOpen(string windowId)
     {
-        return GetWindowState(windowId).IsOpen;
+        bool isOpen = GetWindowState(windowId).IsOpen;
+        Debug.Log($"[GameManager] IsWindowOpen for '{windowId}' -> {isOpen}");
+        return isOpen;
     }
 
 
@@ -438,6 +493,7 @@ public class GameManager : MonoBehaviour
 
     public void SetWindowPosition(string windowId, Vector2 normalizedPosition)
     {
+        Debug.Log($"[GameManager] SetWindowPosition for '{windowId}' set to {normalizedPosition}");
         WindowState state = GetWindowState(windowId);
 
         state.Position = normalizedPosition;
@@ -454,10 +510,12 @@ public class GameManager : MonoBehaviour
         if (state.HasPosition)
         {
             normalizedPosition = state.Position;
+            Debug.Log($"[GameManager] TryGetWindowPosition for '{windowId}' found position: {normalizedPosition}");
             return true;
         }
 
         normalizedPosition = default;
+        Debug.Log($"[GameManager] TryGetWindowPosition for '{windowId}' found no saved position.");
         return false;
     }
 
@@ -475,6 +533,11 @@ public class GameManager : MonoBehaviour
             state.StackOrder = nextWindowStackOrder;
             state.HasStackOrder = true;
             nextWindowStackOrder++;
+            Debug.Log($"[GameManager] GetOrCreateWindowStackOrder assigned initial stack order {state.StackOrder} for windowId: '{windowId}'");
+        }
+        else
+        {
+            Debug.Log($"[GameManager] GetOrCreateWindowStackOrder retrieved existing stack order {state.StackOrder} for windowId: '{windowId}'");
         }
 
         return state.StackOrder;
@@ -487,5 +550,6 @@ public class GameManager : MonoBehaviour
         state.StackOrder = nextWindowStackOrder;
         state.HasStackOrder = true;
         nextWindowStackOrder++;
+        Debug.Log($"[GameManager] BringWindowToFront brought windowId '{windowId}' to front with stack order {state.StackOrder}");
     }
 }

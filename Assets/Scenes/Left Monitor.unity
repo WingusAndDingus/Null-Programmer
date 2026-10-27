@@ -776,6 +776,46 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 1.0117
       objectReference: {fileID: 0}
+    - target: {fileID: 1269121058547639317, guid: 0511de8042961834e937f07a70cbffcb, type: 3}
+      propertyPath: dayUrls.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269121058547639317, guid: 0511de8042961834e937f07a70cbffcb, type: 3}
+      propertyPath: dayUrls.Array.data[0].url
+      value: https://www.sfml-dev.org/documentation/3.1.0/
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269121058547639317, guid: 0511de8042961834e937f07a70cbffcb, type: 3}
+      propertyPath: dayUrls.Array.data[1].day
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269121058547639317, guid: 0511de8042961834e937f07a70cbffcb, type: 3}
+      propertyPath: dayUrls.Array.data[1].url
+      value: https://www.sfml-dev.org/documentation/3.1.0/classsf_1_1RenderWindow.html
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269121058547639317, guid: 0511de8042961834e937f07a70cbffcb, type: 3}
+      propertyPath: dayUrls.Array.data[2].day
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269121058547639317, guid: 0511de8042961834e937f07a70cbffcb, type: 3}
+      propertyPath: dayUrls.Array.data[2].url
+      value: https://www.sfml-dev.org/tutorials/3.1/graphics/vertex-array/#a-simple-vertex-array
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269121058547639317, guid: 0511de8042961834e937f07a70cbffcb, type: 3}
+      propertyPath: dayUrls.Array.data[3].day
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269121058547639317, guid: 0511de8042961834e937f07a70cbffcb, type: 3}
+      propertyPath: dayUrls.Array.data[3].url
+      value: https://www.sfml-dev.org/tutorials/3.1/window/events/
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269121058547639317, guid: 0511de8042961834e937f07a70cbffcb, type: 3}
+      propertyPath: dayUrls.Array.data[4].day
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1269121058547639317, guid: 0511de8042961834e937f07a70cbffcb, type: 3}
+      propertyPath: dayUrls.Array.data[4].url
+      value: https://www.sfml-dev.org/tutorials/3.1/window/events/
+      objectReference: {fileID: 0}
     - target: {fileID: 2103231345143837210, guid: 0511de8042961834e937f07a70cbffcb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.4970155
