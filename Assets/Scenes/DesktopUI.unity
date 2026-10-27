@@ -403,7 +403,7 @@ PrefabInstance:
       objectReference: {fileID: 1177480455}
     - target: {fileID: 903847176931984531, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
       propertyPath: m_SortingOrder
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 974092297967896654, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
       propertyPath: windowIdentity
@@ -419,11 +419,15 @@ PrefabInstance:
       objectReference: {fileID: 1798894330}
     - target: {fileID: 1059686335942882257, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
       propertyPath: m_SortingOrder
-      value: 22
+      value: 220
       objectReference: {fileID: 0}
     - target: {fileID: 1192497626828263742, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
       propertyPath: m_Name
       value: Zoom Window
+      objectReference: {fileID: 0}
+    - target: {fileID: 2148821817488545067, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: m_SortingOrder
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 2357645756219878046, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
       propertyPath: m_LocalScale.x
@@ -443,7 +447,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4013755457888443139, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
       propertyPath: m_SortingOrder
-      value: 20
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4128248775112494530, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
       propertyPath: m_SortingOrder
@@ -491,11 +495,11 @@ PrefabInstance:
       objectReference: {fileID: 1798894330}
     - target: {fileID: 5803880202154600132, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
       propertyPath: m_SortingOrder
-      value: 22
+      value: 220
       objectReference: {fileID: 0}
     - target: {fileID: 6470204359994069291, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
       propertyPath: m_SortingOrder
-      value: 23
+      value: 230
       objectReference: {fileID: 0}
     - target: {fileID: 6546997477163202361, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
       propertyPath: windowIdentity
@@ -551,14 +555,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8084101758300098441, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
       propertyPath: m_SortingOrder
-      value: 21
+      value: 210
       objectReference: {fileID: 0}
     - target: {fileID: 8564051911998189278, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
       propertyPath: m_SortingOrder
-      value: 24
+      value: 240
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 8763032167156888842, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
     - {fileID: 7537046653197074794, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8324,7 +8327,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 23
+  m_SortingOrder: 230
   m_SortAtRoot: 0
   m_Sort3DAs2D: 0
 --- !u!1 &1691032245
@@ -10161,7 +10164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9131883009000410226, guid: c5be93629f4db2649a7b7c0055dbcf3e, type: 3}
       propertyPath: forceDay5OnPlay
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

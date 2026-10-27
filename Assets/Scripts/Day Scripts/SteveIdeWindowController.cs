@@ -29,6 +29,21 @@ public class SteveIdeWindowController : MonoBehaviour
         if (idePanel != null)
         {
             idePanel.SetActive(true);
+
+            // 1. Force the Canvas sorting order to 10
+            Canvas canvas = idePanel.GetComponent<Canvas>();
+            if (canvas != null)
+            {
+                canvas.overrideSorting = true;
+                canvas.sortingOrder = 9;
+            }
+
+            // 2. Force the Sorting Group order to 10 if it exists
+            UnityEngine.Rendering.SortingGroup sortingGroup = idePanel.GetComponent<UnityEngine.Rendering.SortingGroup>();
+            if (sortingGroup != null)
+            {
+                sortingGroup.sortingOrder = 9;
+            }
         }
 
         if (fileTab != null)
