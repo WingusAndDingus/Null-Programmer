@@ -15,7 +15,7 @@ MonoBehaviour:
   dayNumber: 5
   steps:
   - message:
-      messageId: ce95faada6eb40f89c8bafbe41454b83
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -33,7 +33,7 @@ MonoBehaviour:
     alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: Day5.Email.Read
-    stepType: 9
+    stepType: 12
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
@@ -41,7 +41,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: fb32679261644a98a672d0697f11ff20
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -67,7 +67,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: eb06ff6b2e7f4b6180bb6c9c73d86ea7
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -93,7 +93,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: cc6c9f2d004b4c09934e8fe864fe423c
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -119,7 +119,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: e379c72f36354f5ca0520f0ba63f347a
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -145,7 +145,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: d203752cf084444891ff896cf58ffb6e
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -171,7 +171,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: ecc6e3c54ccb48eeafb57b6454a6d8e1
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -197,7 +197,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: f594f09dfb5c4bbc9591dcaf6f516881
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -223,7 +223,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 913b95f9132d4e0a9bf52d7102b97b05
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -231,8 +231,8 @@ MonoBehaviour:
       replies: []
       waitForReply: 0
     stepID: D5_Internal_Opening
-    speakerName: The Pragmatist
-    personality: 3
+    speakerName: Me
+    personality: 1
     lineText: Wonderful. He's debugging something he doesn't understand with someone who can't remember understanding it.
     displayDuration: 5.3999996
     lineVariants: []
@@ -249,7 +249,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: c71a794401fd440298629794b9e069d8
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -275,7 +275,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 262bcb0e9ced4cae8a893ffafa3e69d4
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -301,7 +301,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 1eb187e2d38a4f31b39481d2c819e825
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -327,7 +327,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 878e00ee51d24279b488683ff85067cf
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -353,7 +353,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 1cbf2600d113409e892ed7ecc657b125
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -379,7 +379,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 9ec3fa850ada4114b4a77ac685ac25a8
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -409,7 +409,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: bfb9783ecfc34548a92fbf19fbba3353
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -456,7 +456,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 2afc5be2e0e8485790d4fa0232375c2e
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -482,7 +482,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 326147bb7a5547b1b938267abe593087
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -508,7 +508,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: d36d011e7e424f9aa49110c9d691e7c9
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -534,7 +534,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: c8c4d2c0552d4b5f84d119d66437c964
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -560,7 +560,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: c254bf4b4f4b4c8390f53339c3aac69d
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -586,7 +586,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: c00dafcac2ba48c0bfec72209b7faf94
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -612,7 +612,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 6b798e08f38f4858ab73e4a0e359728f
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -620,8 +620,8 @@ MonoBehaviour:
       replies: []
       waitForReply: 0
     stepID: D5_Bug_Wrong_Thought
-    speakerName: The Detective
-    personality: 6
+    speakerName: Me
+    personality: 1
     lineText: He's asking distressingly good questions today.
     displayDuration: 3.75
     lineVariants: []
@@ -638,7 +638,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: cdcd2307d85a491c816b1fadc0b0aeb6
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -664,7 +664,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 3dbab6a105544eb4968113e32e7cdb8d
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -690,7 +690,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 9f4ba5773c9d425a9d90179f84de6cec
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -716,7 +716,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 93c13e7e8d9a4cd6b25e42b8d79d54d3
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -734,7 +734,7 @@ MonoBehaviour:
     alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: Day5.TraceTurn.Complete
-    stepType: 9
+    stepType: 12
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
@@ -742,7 +742,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: e48090c8d0654902b94d4da4e2ae88d6
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -750,8 +750,8 @@ MonoBehaviour:
       replies: []
       waitForReply: 0
     stepID: D5_TraceReflection
-    speakerName: The Grand Architect
-    personality: 2
+    speakerName: Me
+    personality: 1
     lineText: There it is. Input, resolve the action, update the state, check whether the match ended, then hand over control.
     displayDuration: 7.6499996
     lineVariants: []
@@ -768,7 +768,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: e7e13ac66f0747e7b6c031f76677d0b3
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -794,7 +794,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 14186f33668c4f91b6aeb410fb5b41c9
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -824,7 +824,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 4e84d7874dc54eb5a90235cf8b995176
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -871,7 +871,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 7e10b4ca89c34dc49bbcfd9bedd77df7
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -897,7 +897,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 2e8ca7446d3641ef9b955a99091e60a1
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -923,7 +923,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: d32a7b920ff54c0a9c73b681d490e543
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -949,7 +949,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: dd561803a2014486aeea353b6a01975a
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -975,7 +975,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 9deaca12331742448113491691ffcb3e
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1001,7 +1001,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: ac3f97ed94c4403d9bceb27d82abcdc4
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1027,7 +1027,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: a985635c167147f1ac3ba2576fe115f3
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1053,7 +1053,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: da041a3226cc4cfab7ba4a3f9d1311ad
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1079,7 +1079,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: c1f9481e4d9e4a94a6021302c3a8a63b
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1105,7 +1105,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: ee8c4b63f00e45f8aa7b6497c4d9603b
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1131,7 +1131,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 2c79c36b9f76492c94aa14de3347297b
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1161,7 +1161,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: b5086a17249f4799a86248c27a75a61b
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1208,7 +1208,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 317c2174abf84afaa1bdb40dccfccb7a
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1234,7 +1234,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 03fa8d7c712f4b70a44f672a047a0488
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1260,7 +1260,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 8e74dd03199e4bc5ad6f87e196b2e5d5
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1286,7 +1286,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 2a100b01f96245ceac0e1db4b546e4a0
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1312,7 +1312,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 67f93620781f426b89499ffb3762ff31
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1338,7 +1338,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: fcdd7d96193441a095580f3567571eca
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1364,7 +1364,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: d02235479c4c4677901118ea6e2bf14c
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1390,7 +1390,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: db47acd540b8470ca8e25fcda849b050
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1416,7 +1416,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 4faa9e6c49924364863e6dfb369d3f56
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1442,7 +1442,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: cab10260a2c44891a55d9fab30d2b857
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1468,7 +1468,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 9f97f0997d3f49f3bdf87158c403e219
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1494,7 +1494,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: fcd7d92644654214b47b01755c5c586e
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1520,7 +1520,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: d585d8a80520412ba36d92ae7fbd4e4d
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1546,7 +1546,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 6df7c58ed878451c85adb15664c9aeac
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1572,7 +1572,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 3e8c5475ef4d490685d68e2e0b27d8ef
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1598,7 +1598,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 2879daca3d734f6dba10b026b81679a1
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1624,7 +1624,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 8a88f3401cf246c283cfff2944e96b5d
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1650,7 +1650,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 9f0db80c9d03451693d5cac8f1bfbf38
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1697,7 +1697,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: f4ea89245c414727bc5fdcd28e742c7c
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1723,7 +1723,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 2256603cafc3427bbf05c06265a9bf50
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1749,7 +1749,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 2fe5b3dbebe24b5dad854a9f77286f25
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1775,7 +1775,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 56da1c6a8851434098d630992337d332
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1801,7 +1801,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: fb571e39aa7c447c820fb87afea43ab9
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1827,7 +1827,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: b4f041e404af43cba4946e01600d5fad
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1853,7 +1853,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: b7c2bbe4db854bab9a7ddc1a0f53a19c
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1879,7 +1879,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: aa7d2c2b655c4ba382f653863a9d6ead
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1905,7 +1905,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 97c3aab6d462404ab91344938b9a1c1c
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1931,7 +1931,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 5125544a657742319a9568869d13838b
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1957,7 +1957,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 94823520eb13484f9e49c73fc07606c5
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1983,7 +1983,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: d2bf13e2fe1b4538b59a865236b5349a
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2009,7 +2009,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 2f12a172f3cf473e8f64e3012b5bee75
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2035,7 +2035,7 @@ MonoBehaviour:
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - message:
-      messageId: 3a6201f72881473ab6a79f43d8e5b411
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2049,37 +2049,11 @@ MonoBehaviour:
     displayDuration: 3.3000002
     lineVariants: []
     choices: []
-    nextStepID: EndDay
-    alternateNextStepID: 
-    awardSkillKey: 
-    narrativeEventKey: 
-    stepType: 0
-    exerciseIndex: 0
-    suspicionChange: 0
-    delayDuration: 10
-    NewSteveExpression: 0
-    targetSceneName: Night Screen
-    steveChallenge: {fileID: 0}
-  - message:
-      messageId: c65c9b2723924590b10926c544d935e5
-      contactKey: friend
-      contactName: Friend
-      portrait: {fileID: 0}
-      text: 
-      replies: []
-      waitForReply: 0
-    stepID: EndDay
-    speakerName: 
-    personality: 1
-    lineText: 
-    displayDuration: 3.3000002
-    lineVariants: []
-    choices: []
     nextStepID: 
     alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
-    stepType: 10
+    stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
