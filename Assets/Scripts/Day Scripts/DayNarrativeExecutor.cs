@@ -36,6 +36,7 @@ public class DayNarrativeExecutor : MonoBehaviour
         GameManager.EnsureInstance();
         sceneSwitch = FindAnyObjectByType<SceneSwitcher>();
         int currentDay = GameManager.Instance != null ? GameManager.Instance.CurrentDay : 1;
+        Debug.Log($"[DayNarrativeExecutor] GameManager CurrentDay is currently: {(GameManager.Instance != null ? GameManager.Instance.CurrentDay : -1)}");
         LoadAndExecuteDay(currentDay);
     }
 
@@ -233,10 +234,10 @@ public class DayNarrativeExecutor : MonoBehaviour
 
             case NarrativeStepType.WaitUntilRefactoFightCompleted:
                 if (DialogueManager.Instance != null) DialogueManager.Instance.HideDialogueUI();
-                
+
                 // Pause the story infinitely until the player clicks the desktop icon and finishes the game
                 bool playerWon = await RefactoFightApp.WaitForBattleCompletionAsync(cancellationToken);
-                
+
                 if (!playerWon && !string.IsNullOrEmpty(stepData.alternateNextStepID))
                 {
                     stepData.nextStepID = stepData.alternateNextStepID;
@@ -386,16 +387,128 @@ public class DayNarrativeExecutor : MonoBehaviour
 
     public async Task RunSteveChallengeAsync(SteveChallengeData challenge)
     {
+        // 1. Display Steve's initial dialogue prompt
+        if (DialogueManager.Instance != null && !string.IsNullOrEmpty(challenge.steveDialoguePrompt))
+        {
+            DialogueLine promptLine = new DialogueLine
+            {
+                speakerName = "Steve",
+                personality = HeadPersonality.None,
+                text = challenge.steveDialoguePrompt,
+                displayDuration = 4f
+            };
+            await DialogueManager.Instance.DisplayLineAndWaitAsync(promptLine);
+        }
+
+        // 1.5 Display any configured internal voices using the standard personality color system
+        if (challenge.internalVoices != null && challenge.internalVoices.Length > 0 && DialogueManager.Instance != null)
+        {
+            foreach (var voice in challenge.internalVoices)
+            {
+                DialogueLine voiceLine = new DialogueLine
+                {
+                    speakerName = voice.speakerName,
+                    personality = voice.personality, // Uses the exact personality config from DialogueManager
+                    text = voice.dialogueText,
+                    displayDuration = 3.5f
+                };
+
+                await DialogueManager.Instance.DisplayLineAndWaitAsync(voiceLine);
+            }
+        }
+
+        // 2. Prompt player for code via the IDE interface
         string playerCode = await SteveScreenShareManager.Instance.PromptPlayerForCodeAsync(challenge);
         bool success = ValidatePlayerCode(playerCode, challenge);
 
         if (success)
         {
-            Debug.Log("Steve: 'Looks solid! Good job.'");
+            // SUCCESS BRANCH
+            if (ZoomScreenShareController.Instance != null)
+            {
+                ZoomScreenShareController.Instance.SetSteveExpression(SteveExpression.ImpressedSteve);
+            }
+
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.ChangeGrandArchitectStat(1);
+            }
+
+            if (DialogueManager.Instance != null)
+            {
+                DialogueLine successLine = new DialogueLine
+                {
+                    speakerName = "Steve",
+                    personality = HeadPersonality.None,
+                    text = "Ok cool, you can stop sharing your screen",
+                    displayDuration = 3.5f
+                };
+                await DialogueManager.Instance.DisplayLineAndWaitAsync(successLine);
+            }
+
+            if (ZoomScreenShareController.Instance != null)
+            {
+                ZoomScreenShareController.Instance.EndScreenShare();
+            }
+
+            Debug.Log("Steve coding challenge passed successfully.");
         }
         else
         {
-            Debug.Log("Steve: 'Hmm, that's not quite right. Let's review.'");
+            // FAILURE BRANCH
+            if (GameManager.Instance != null)
+            {
+                GameManager.Instance.ChangeSteveSuspicion(10);
+            }
+
+            if (ZoomScreenShareController.Instance != null)
+            {
+                ZoomScreenShareController.Instance.SetSteveExpression(SteveExpression.SuspiciousSteve);
+            }
+
+            string expectedExample = (challenge.acceptedAnswers != null && challenge.acceptedAnswers.Length > 0)
+                ? challenge.acceptedAnswers[0]
+                : "the correct syntax";
+
+            if (DialogueManager.Instance != null)
+            {
+                DialogueLine failLine1 = new DialogueLine
+                {
+                    speakerName = "Steve",
+                    personality = HeadPersonality.None,
+                    text = $"Hmm, that doesn't seem right. Shouldn't it be something like:\n{expectedExample}",
+                    displayDuration = 4.5f
+                };
+                await DialogueManager.Instance.DisplayLineAndWaitAsync(failLine1);
+
+                DialogueLine playerRecoveryLine = new DialogueLine
+                {
+                    speakerName = "You",
+                    personality = HeadPersonality.None,
+                    text = "Oh yeah you're right, I was just testing you. haha",
+                    displayDuration = 3.5f
+                };
+                await DialogueManager.Instance.DisplayLineAndWaitAsync(playerRecoveryLine);
+            }
+
+            if (ZoomScreenShareController.Instance != null)
+            {
+                ZoomScreenShareController.Instance.SetSteveExpression(SteveExpression.DefaultSteve);
+            }
+
+            if (DialogueManager.Instance != null)
+            {
+                DialogueLine failLine2 = new DialogueLine
+                {
+                    speakerName = "Steve",
+                    personality = HeadPersonality.None,
+                    text = "Uh ok",
+                    displayDuration = 2.5f
+                };
+                await DialogueManager.Instance.DisplayLineAndWaitAsync(failLine2);
+            }
+
+            Debug.Log("Steve coding challenge failed; recovery dialogue executed.");
         }
     }
 

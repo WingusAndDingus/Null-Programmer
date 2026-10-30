@@ -10,7 +10,7 @@ using UnityEngine;
 /// </summary>
 public static class Day5SequenceBuilder
 {
-    private const string FolderPath = "Assets/Narrative";
+    private const string FolderPath = "Assets/Scripts/Day Scripts";
     private const string AssetPath = FolderPath + "/DaySequence_Day5.asset";
 
     // The user requested Day 5 dialogue to remain 50% longer than the earlier timings.
