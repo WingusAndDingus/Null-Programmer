@@ -9990,6 +9990,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2154316694519295111, guid: c5be93629f4db2649a7b7c0055dbcf3e, type: 3}
+      propertyPath: m_Name
+      value: DayTestBootstrap
+      objectReference: {fileID: 0}
     - target: {fileID: 4497596953161395795, guid: c5be93629f4db2649a7b7c0055dbcf3e, type: 3}
       propertyPath: m_Name
       value: Day5
@@ -10040,10 +10044,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7347829798573494179, guid: c5be93629f4db2649a7b7c0055dbcf3e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9131883009000410226, guid: c5be93629f4db2649a7b7c0055dbcf3e, type: 3}
-      propertyPath: forceDay5OnPlay
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

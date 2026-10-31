@@ -55,14 +55,22 @@ public class ZoomScreenShareController : MonoBehaviour
     private bool isPausedForDialogue = false;
     private bool isScreenSharingActive = false;
     private bool useVideoForCurrentShare = true;
+    private bool shareStarting;
+    private bool restoring;
+    private SteveExpression currentExpression;
+    private bool hasExpression;
 
     [Header("Steve Expressions")]
     [SerializeField] private SpriteRenderer zoomAvatarImage; // The UI Image component displaying Steve's window
     [SerializeField] private List<SteveSpriteMapping> expressionMappings = new List<SteveSpriteMapping>();
     private void Awake()
     {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
     }
 
     private void Start()
@@ -71,11 +79,105 @@ public class ZoomScreenShareController : MonoBehaviour
         if (zoomPanel != null) zoomPanel.SetActive(false);
         if (screensharePopup != null) screensharePopup.SetActive(false);
         if (screenShareDisplay != null) screenShareDisplay.SetActive(false);
+
+        GameManager gm = GameManager.Instance;
+        if (gm != null && gm.ZoomState != null && gm.ZoomState.day == gm.CurrentDay)
+            StartCoroutine(RestoreZoomSession(gm.ZoomState));
+    }
+
+    private void LateUpdate()
+    {
+        if (!restoring) SaveZoomSession();
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance != this) return;
+        // Latest snapshot was saved while objects were still active in LateUpdate.
+        // Do not overwrite it with deactivated scene objects during destruction.
+        if (screenShareVideoPlayer != null)
+            screenShareVideoPlayer.loopPointReached -= OnVideoEnd;
+        Instance = null;
+    }
+
+    private void SaveZoomSession()
+    {
+        GameManager gm = GameManager.Instance;
+        if (gm == null) return;
+        // During a video restore, time can temporarily be zero; never overwrite the snapshot then.
+        gm.SaveZoomState(new GameManager.ZoomShareState
+        {
+            day = gm.CurrentDay,
+            callVisible = zoomPanel != null && zoomPanel.activeSelf,
+            incomingCallVisible = incomingCallPopup != null && incomingCallPopup.activeSelf,
+            shareActive = isScreenSharingActive,
+            shareStarting = shareStarting,
+            usesVideo = useVideoForCurrentShare,
+            videoTime = screenShareVideoPlayer != null && useVideoForCurrentShare && isScreenSharingActive
+                ? screenShareVideoPlayer.time : 0,
+            videoWasPlaying = screenShareVideoPlayer != null && screenShareVideoPlayer.isPlaying,
+            videoPausedForDialogue = isPausedForDialogue,
+            nextVideoCueIndex = currentCueIndex,
+            expression = currentExpression,
+            hasExpression = hasExpression
+        });
+    }
+
+    private IEnumerator RestoreZoomSession(GameManager.ZoomShareState state)
+    {
+        // Wait a frame so the scene's UI components can initialize.
+        restoring = true;
+        yield return null;
+        if (zoomPanel != null) zoomPanel.SetActive(state.callVisible);
+        if (incomingCallPopup != null) incomingCallPopup.SetActive(state.incomingCallVisible);
+        if (state.hasExpression) SetSteveExpression(state.expression);
+        if (state.shareStarting && !state.shareActive)
+        {
+            useVideoForCurrentShare = state.usesVideo;
+            StartCoroutine(ScreenShareRoutine());
+        }
+        else if (state.shareActive)
+        {
+            isScreenSharingActive = true;
+            useVideoForCurrentShare = state.usesVideo;
+            currentCueIndex = state.nextVideoCueIndex;
+            if (screenShareDisplay != null) screenShareDisplay.SetActive(true);
+            if (useVideoForCurrentShare)
+            {
+                if (screenShareVideoPlayer == null)
+                    Debug.LogError("[Zoom] Cannot restore Day 1: VideoPlayer is not assigned.");
+                else
+                {
+                    screenShareVideoPlayer.enabled = true;
+                    screenShareVideoPlayer.loopPointReached -= OnVideoEnd;
+                    screenShareVideoPlayer.loopPointReached += OnVideoEnd;
+                    screenShareVideoPlayer.Prepare();
+                    while (!screenShareVideoPlayer.isPrepared) yield return null;
+                    screenShareVideoPlayer.time = state.videoTime;
+                    // Unity seeks asynchronously; let the video player apply the requested time.
+                    yield return null;
+                    screenShareVideoPlayer.Play();
+                    if (!state.videoWasPlaying || state.videoPausedForDialogue)
+                        screenShareVideoPlayer.Pause();
+                    // Don't re-run already fired cues. A cue dialogue coroutine cannot
+                    // safely be resurrected without coordinating with DialogueManager.
+                    isPausedForDialogue = state.videoPausedForDialogue;
+                }
+            }
+            else
+            {
+                if (screenShareVideoPlayer != null) screenShareVideoPlayer.enabled = false;
+                if (day5CodeSnippetDisplay != null)
+                    day5CodeSnippetDisplay.ShowDay5ScreenShare();
+            }
+        }
+        restoring = false;
+        SaveZoomSession();
     }
 
     private void Update()
     {
-        if (!isScreenSharingActive || !useVideoForCurrentShare || isPausedForDialogue || currentCueIndex >= dialogueCues.Count)
+        if (restoring || !isScreenSharingActive || !useVideoForCurrentShare || isPausedForDialogue || currentCueIndex >= dialogueCues.Count)
             return;
 
         if (screenShareVideoPlayer != null && screenShareVideoPlayer.time >= dialogueCues[currentCueIndex].triggerTimestampSeconds)
@@ -101,6 +203,7 @@ public class ZoomScreenShareController : MonoBehaviour
     public void TriggerIncomingCall()
     {
         if (incomingCallPopup != null) incomingCallPopup.SetActive(true);
+        SaveZoomSession();
     }
 
     public void AcceptZoomCall()
@@ -109,6 +212,7 @@ public class ZoomScreenShareController : MonoBehaviour
         if (zoomPanel != null) zoomPanel.SetActive(true);
 
         GameplayEvents.TriggerZoomCallStarted();
+        SaveZoomSession();
 
         int currentDay = GameManager.EnsureInstance().CurrentDay;
 
@@ -134,6 +238,7 @@ public class ZoomScreenShareController : MonoBehaviour
         if (incomingCallPopup != null) incomingCallPopup.SetActive(false);
         if (zoomPanel != null) zoomPanel.SetActive(false);
         GameplayEvents.TriggerZoomCallEnded();
+        SaveZoomSession();
     }
 
     // ------------------------------------------------------------------------
@@ -142,6 +247,8 @@ public class ZoomScreenShareController : MonoBehaviour
 
     public void StartScreenShare()
     {
+        if (shareStarting || isScreenSharingActive) return;
+        shareStarting = true;
         int currentDay = GameManager.EnsureInstance().CurrentDay;
 
         useVideoForCurrentShare = currentDay != 5;
@@ -163,6 +270,7 @@ public class ZoomScreenShareController : MonoBehaviour
             }
         }
 
+        SaveZoomSession();
         StartCoroutine(ScreenShareRoutine());
     }
 
@@ -187,6 +295,7 @@ public class ZoomScreenShareController : MonoBehaviour
         }
 
         isScreenSharingActive = true;
+        shareStarting = false;
         currentCueIndex = 0;
 
         if (useVideoForCurrentShare)
@@ -226,6 +335,7 @@ public class ZoomScreenShareController : MonoBehaviour
             (screensharePopup != null && screensharePopup.activeSelf);
 
         isScreenSharingActive = false;
+        shareStarting = false;
         isPausedForDialogue = false;
 
         if (screenShareVideoPlayer != null && screenShareVideoPlayer.enabled)
@@ -252,6 +362,7 @@ public class ZoomScreenShareController : MonoBehaviour
             screensharePopup.SetActive(false);
         }
 
+        SaveZoomSession();
         if (wasActive)
         {
             GameplayEvents.TriggerScreenShareEnded();
@@ -285,6 +396,8 @@ public class ZoomScreenShareController : MonoBehaviour
     /// </summary>
     public void SetSteveExpression(SteveExpression expression)
     {
+        currentExpression = expression;
+        hasExpression = true;
         Sprite targetSprite = null;
 
         foreach (var mapping in expressionMappings)
