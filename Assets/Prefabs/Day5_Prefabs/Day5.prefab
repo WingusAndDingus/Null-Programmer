@@ -842,7 +842,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21f77000b0962814bb5ccfe76d03d568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Day5TestBootstrap
-  forceDay5OnPlay: 1
+  forceDayOnPlay: 0
+  testDay: 1
   resetNarrativeStep: 0
   testStep: Start
 --- !u!1 &2268577455494594609
