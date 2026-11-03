@@ -63,4 +63,10 @@ MonoBehaviour:
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   startNode: {fileID: 0}
   endNode: {fileID: 0}
+  connectionType: 1
   lineThickness: 4
+  diamondSize: 16
+  arrowSize: 16
+  diamondColor: {r: 1, g: 1, b: 1, a: 1}
+  dashLength: 10
+  gapLength: 8

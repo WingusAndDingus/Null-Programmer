@@ -9,11 +9,13 @@ public class GameEndEvaluator : MonoBehaviour
 
     [Header("Ending Text: The Perfectionist Trap")]
     public string successTitle = "Ending: The Perfectionist Trap";
+    public Color successTitleColor = Color.white; 
     [TextArea(3, 10)] 
     public string successText = "Steve: 'Your use of OOP kept the code incredibly clean. Because we seperated the project into classes the code is maintainable and reusable.'\n\nResult: You log off at 5:00PM, close your workstation, and enjoy a well earned rest.";
 
     [Header("Ending Text: Coupled and Deprecated")]
     public string failTitle = "Ending: Coupled and Deprecated";
+    public Color failTitleColor = new Color(0.9f, 0.2f, 0.2f, 1f);
     [TextArea(3, 10)] 
     public string failText = "Management: 'Steve demonstrated real senior dev talent and upstaged your project. You have clearly lost your edge. You are terminated.'\n\nResult: You let The Pragmatist cram everything into main.cpp, making it unmaintainable.";
 
@@ -53,15 +55,15 @@ public class GameEndEvaluator : MonoBehaviour
         // 2. Determine ending from metrics
         bool isPerfectionistTrap = (codeQuality >= 50) && (suspicion < 50);
 
-        // 3. Pass the data to GameEndManager
+        // 3. Pass the data to GameEndManager (now including Title Color)
         if (isPerfectionistTrap)
         {
             // Success: Player UML matches the standard UML template
-            uiManager.SetupEndScreen(successTitle, successText, standardUmlSprite, standardUmlSprite);
+            uiManager.SetupEndScreen(successTitle, successText, standardUmlSprite, standardUmlSprite, successTitleColor);
         }
         else
         {
-            uiManager.SetupEndScreen(failTitle, failText, bloatedUmlSprite, standardUmlSprite);
+            uiManager.SetupEndScreen(failTitle, failText, bloatedUmlSprite, standardUmlSprite, failTitleColor);
         }
     }
 }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4878230341787788749}
   - component: {fileID: 3216188263480964423}
   - component: {fileID: 5353177458305941978}
+  - component: {fileID: 9118407552240476869}
   m_Layer: 0
   m_Name: Divider2
   m_TagString: Untagged
@@ -75,6 +76,28 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &9118407552240476869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460123889725968783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.LayoutElement
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: 2
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
+  m_MaxWidth: -1
+  m_MaxHeight: -1
 --- !u!1 &3190199598138494641
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,7 +163,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: GameManager
+  m_text: Tile
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -376,7 +399,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: '- COLS, ROWS, GRID_SIZE, SHIP_COUNT : <color=#569CD6>const int</color>
+
+    - window : <color=#4EC9B0>sf::RenderWindow</color>
+
+    - player_board, ai_board : <color=#4EC9B0>Board</color>
+
+    - bool game_over; : <color=#4EC9B0>bool</color>
+
+    - leaderboard : <color=#4EC9B0>Leaderboard</color>
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -606,11 +639,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fef2098f225e5c148ac7987140c0fbb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UMLNode
-  title: GameManager
-  attributes: 
-  methods: Methods here
-  description: 
-  unlockDay: 3
+  title: Tile
+  attributes: '- COLS, ROWS, GRID_SIZE, SHIP_COUNT : <color=#569CD6>const int</color>
+
+    - window : <color=#4EC9B0>sf::RenderWindow</color>
+
+    - player_board, ai_board : <color=#4EC9B0>Board</color>
+
+    - bool game_over; : <color=#4EC9B0>bool</color>
+
+    - leaderboard : <color=#4EC9B0>Leaderboard</color>
+
+'
+  methods: '+ GameManager()
+
+    + run() : <color=#569CD6>void</color>
+
+    - executeAITurn() : <color=#569CD6>void</color>
+
+    - processEvents() : <color=#569CD6>void</color>
+
+    - render() : <color=#569CD6>void</color>
+
+    - resetGame() : <color=#569CD6>void</color>
+
+    - update(dt) : <color=#569CD6>void</color>'
+  description: 'The GameManager class handles the core SFML game loop, initializing the game board, game state, rendering, and input and turn logic. It keeps our Battleship program clean and organized. '
+  unlockDay: 4
   titleText: {fileID: 719850903310235334}
   attributesText: {fileID: 515752212211546032}
   methodsText: {fileID: 8169077469805059440}
@@ -821,7 +876,19 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Methods here
+  m_text: '+ GameManager()
+
+    + run() : <color=#569CD6>void</color>
+
+    - executeAITurn() : <color=#569CD6>void</color>
+
+    - processEvents() : <color=#569CD6>void</color>
+
+    - render() : <color=#569CD6>void</color>
+
+    - resetGame() : <color=#569CD6>void</color>
+
+    - update(dt) : <color=#569CD6>void</color>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -904,6 +971,7 @@ GameObject:
   - component: {fileID: 3708287004221419414}
   - component: {fileID: 809150339702702751}
   - component: {fileID: 498121871415816957}
+  - component: {fileID: 8660621753271071439}
   m_Layer: 0
   m_Name: Divider1
   m_TagString: Untagged
@@ -968,3 +1036,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8660621753271071439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7899743063555475311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.LayoutElement
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: 2
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
+  m_MaxWidth: -1
+  m_MaxHeight: -1

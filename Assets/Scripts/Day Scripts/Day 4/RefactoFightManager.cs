@@ -41,6 +41,14 @@ public class RefactoFightManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI floatingQuestionText; 
     [SerializeField] private TextMeshProUGUI[] answerChoiceTexts; 
 
+    [Header("MCQ Timing Settings")]
+    [SerializeField] private float mcqReadDelay = 3.0f; // Time to read before notes drop
+    [SerializeField] private float mcqTravelTime = 4.0f; // Time it takes notes to fall (slower than regular notes)
+
+    private double mcqStartTime;
+    private bool mcqNotesSpawned = false;
+    private OOPQuestion currentMCQ;
+
     [Header("Menu UI")]
     [SerializeField] private GameObject menuPanel;
     [SerializeField] private TextMeshProUGUI menuTitleText;
@@ -164,19 +172,27 @@ public class RefactoFightManager : MonoBehaviour
     {
         menuPanel.SetActive(false);
         musicSource.Stop();
+        musicSource.time = 0f; // Force the track to rewind
         ClearAllNotes();
         InitializeBattleData();
-        StartPhase(0);
+        
+        // Trigger the countdown 
+        if (activeCountdown != null) StopCoroutine(activeCountdown);
+        activeCountdown = StartCoroutine(CountdownRoutine(false));
     }
 
     public void OnContinueClicked()
     {
-        // Apply all buffered stats to the real GameManager now
-        if (GameManager.Instance != null)
+        // Apply all buffered stats ONLY if this is the player's first time finishing the game
+        if (PlayerPrefs.GetInt("RefactoFightCompleted", 0) == 0 && GameManager.Instance != null)
         {
             if (pendingArchitectStat > 0) GameManager.Instance.ChangeGrandArchitectStat(pendingArchitectStat);
             if (pendingSuspicionStat > 0) GameManager.Instance.ChangeSteveSuspicion(pendingSuspicionStat);
             if (pendingCodeQuality != 0) GameManager.Instance.ChangeCodeQualityStat(pendingCodeQuality);
+            
+            // Lock stat gains for all future playthroughs
+            PlayerPrefs.SetInt("RefactoFightCompleted", 1);
+            PlayerPrefs.Save();
         }
 
         gameObject.SetActive(false); 
@@ -234,22 +250,20 @@ public class RefactoFightManager : MonoBehaviour
         double currentPhaseTime = AudioSettings.dspTime - phaseStartDspTime;
         BossBattlePhaseData currentPhase = battlePhases[currentPhaseIndex];
 
-        // 1. Spawn Regular Notes
+        // 1. Spawn Regular Notes OR Handle MCQ Delay
         if (!isMCQActive)
         {
             while (nextNoteIndex < currentPhase.notes.Count &&
                    currentPhase.notes[nextNoteIndex].hitTime - noteTravelTime <= currentPhaseTime)
             {
-                SpawnNote(currentPhase.notes[nextNoteIndex]);//
+                SpawnNote(currentPhase.notes[nextNoteIndex]);
                 nextNoteIndex++;
             }
 
-            // Trigger MCQ seamlessly when notes run out
             if (nextNoteIndex >= currentPhase.notes.Count && activeNotes.Count == 0)
             {
                 if (currentPhase.intermissionQuestion.options == null || currentPhase.intermissionQuestion.options.Length == 0)
                 {
-                    // No question for this phase. Seamlessly advance to victory or the next phase!
                     currentPhaseIndex++;
                     StartPhase(currentPhaseIndex);
                 }
@@ -259,26 +273,34 @@ public class RefactoFightManager : MonoBehaviour
                 }
             }
         }
+        else if (!mcqNotesSpawned && currentPhaseTime >= mcqStartTime + mcqReadDelay)
+        {
+            // The read delay is over! Drop the answer notes
+            mcqNotesSpawned = true;
+            double answerHitTime = currentPhaseTime + mcqTravelTime;
 
-        // 2. Update Position of All Active Notes
+            for (int i = 0; i < 4; i++)
+            {
+                if (i < currentMCQ.options.Length)
+                {
+                    SpawnAnswerNote((RhythmLane)i, answerHitTime, i == currentMCQ.correctAnswerIndex);
+                }
+            }
+        }
+
+        // 2. Update Position of All Active Notes (Bugs & Answers)
         for (int i = activeNotes.Count - 1; i >= 0; i--)
         {
             ActiveNote an = activeNotes[i];
-            float progress = (float)((currentPhaseTime - (an.data.hitTime - noteTravelTime)) / noteTravelTime);
+            
+            // USE THE CUSTOM SPEED: Answers fall slowly, bugs fall fast
+            float currentTravelTime = an.isAnswer ? mcqTravelTime : noteTravelTime;
+            float progress = (float)((currentPhaseTime - (an.data.hitTime - currentTravelTime)) / currentTravelTime);
 
             int laneIdx = (int)an.data.lane;
-
-            // Failsafe check for missing spawner/hitline references
-            if (laneSpawners != null && laneIdx < laneSpawners.Length && laneSpawners[laneIdx] != null &&
-                hitLines != null && laneIdx < hitLines.Length && hitLines[laneIdx] != null)
-            {
-                Vector3 startPos = laneSpawners[laneIdx].position;
-                Vector3 targetPos = hitLines[laneIdx].position;
-                if (an.rectTransform != null)
-                {
-                    an.rectTransform.position = Vector3.Lerp(startPos, targetPos, progress);
-                }
-            }
+            Vector3 startPos = laneSpawners[laneIdx].position;
+            Vector3 targetPos = hitLines[laneIdx].position;
+            an.rectTransform.position = Vector3.Lerp(startPos, targetPos, progress);
 
             // Missed Note Logic
             if (currentPhaseTime > an.data.hitTime + GOOD_WINDOW && !an.hit)
@@ -345,8 +367,10 @@ public class RefactoFightManager : MonoBehaviour
     private void StartMCQ(OOPQuestion question, double currentTime)
     {
         isMCQActive = true;
+        mcqNotesSpawned = false;
+        mcqStartTime = currentTime;
+        currentMCQ = question; 
         
-        // 1. Show the master panel container
         if (mcqPanel != null) mcqPanel.SetActive(true);
 
         if (floatingQuestionText != null)
@@ -355,15 +379,13 @@ public class RefactoFightManager : MonoBehaviour
             floatingQuestionText.gameObject.SetActive(true);
         }
 
-        double answerHitTime = currentTime + 3.0f;
+        // Show answer choices immediately so the player can read them
         for (int i = 0; i < 4; i++)
         {
-            // 2. Populate the static answer text
             if (answerChoiceTexts != null && i < answerChoiceTexts.Length && answerChoiceTexts[i] != null)
             {
                 if (i < question.options.Length)
                 {
-                    // Prepend the key (D, F, J, K) to make it obvious which lane to hit!
                     string[] keys = { "[D]", "[F]", "[J]", "[K]" };
                     answerChoiceTexts[i].text = $"{keys[i]} {question.options[i]}";
                     answerChoiceTexts[i].gameObject.SetActive(true);
@@ -372,12 +394,6 @@ public class RefactoFightManager : MonoBehaviour
                 {
                     answerChoiceTexts[i].gameObject.SetActive(false);
                 }
-            }
-
-            // 3. Spawn the standard falling note for the player to strike
-            if (i < question.options.Length)
-            {
-                SpawnAnswerNote((RhythmLane)i, answerHitTime, i == question.correctAnswerIndex);
             }
         }
     }
