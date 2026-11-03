@@ -843,7 +843,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Day5TestBootstrap
   forceDayOnPlay: 0
-  testDay: 1
+  testDay: 5
   resetNarrativeStep: 0
   testStep: Start
 --- !u!1 &2268577455494594609

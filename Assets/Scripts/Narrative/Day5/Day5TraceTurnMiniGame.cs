@@ -162,6 +162,7 @@ public class Day5TraceTurnMiniGame : MonoBehaviour
 
         if (IsCorrect())
         {
+            ApplyCodeQualityForCorrectSubmission();
             completing = true;
             if (feedbackText != null)
             {
@@ -196,6 +197,21 @@ public class Day5TraceTurnMiniGame : MonoBehaviour
                 GameManager.Instance.ChangeSteveSuspicion(suspicionIncrease);
             }
         }
+    }
+
+    private void ApplyCodeQualityForCorrectSubmission()
+    {
+        // First submission correct: +50.
+        // One prior incorrect submission: +20.
+        // Two or more prior incorrect submissions: -10 for this submission.
+        int amount = wrongAttempts == 0 ? 50 : wrongAttempts == 1 ? 20 : -10;
+        ChangeCodeQuality(amount);
+    }
+
+    private void ChangeCodeQuality(int amount)
+    {
+        if (amount == 0 || GameManager.Instance == null) return;
+        GameManager.Instance.ChangeCodeQualityStat(amount);
     }
 
     private bool IsCorrect()

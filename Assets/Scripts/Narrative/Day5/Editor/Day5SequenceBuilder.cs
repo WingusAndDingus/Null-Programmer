@@ -168,9 +168,11 @@ public static class Day5SequenceBuilder
         trace.narrativeEventKey = Day5NarrativeEvents.TraceTurnComplete;
         steps.Add(trace);
 
-        steps.Add(Line("D5_TraceReflection", "Me",
+        NarrativeStep traceReflection = Line("D5_TraceReflection", "Me",
             "There it is. Input, resolve the action, update the state, check whether the match ended, then hand over control.",
-            "D5_SetSteve_InvariantSuspicious", 5.1f, HeadPersonality.InternalMonologue));
+            "D5_SetSteve_InvariantSuspicious", 5.1f, HeadPersonality.InternalMonologue);
+        traceReflection.awardSkillKey = "D5_TraceTurnCompleted";
+        steps.Add(traceReflection);
 
         steps.Add(Expression("D5_SetSteve_InvariantSuspicious", SteveExpression.SuspiciousSteve, "D5_CheckEverywhere"));
 
@@ -285,8 +287,10 @@ public static class Day5SequenceBuilder
         steps.Add(Line("D5_Final_Victory", "Steve",
             "Victory screen.", "D5_SetSteve_FinalImpressed", 2.0f));
         steps.Add(Expression("D5_SetSteve_FinalImpressed", SteveExpression.ImpressedSteve, "D5_Final_NoReturnFire"));
-        steps.Add(Line("D5_Final_NoReturnFire", "Steve",
-            "And the computer did not shoot me from beyond the grave.", "D5_Final_Promising", 3.1f));
+        NarrativeStep finalNoReturnFire = Line("D5_Final_NoReturnFire", "Steve",
+            "And the computer did not shoot me from beyond the grave.", "D5_Final_Promising", 3.1f);
+        finalNoReturnFire.awardSkillKey = "D5_FinalFixVerified";
+        steps.Add(finalNoReturnFire);
         steps.Add(Line("D5_Final_Promising", "Me",
             "Promising.", "D5_Final_DeadAI", 1.8f));
         steps.Add(Line("D5_Final_DeadAI", "Steve",
