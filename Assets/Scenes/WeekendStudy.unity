@@ -423,97 +423,117 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeekendStudyDialogue
   startDelay: 3
+  backgroundImage: {fileID: 0}
+  backgroundSpriteRenderer: {fileID: 1166657099}
   lines:
   - speakerName: Narrator
     personality: 0
     text: The Protagonist sits at his desk, studying the SFML documentation. He's trying to figure out how to implement his Battleship game. Three familiar voices offer their unsolicited opinions as he struggles to concentrate.
     voiceClip: {fileID: 0}
     displayDuration: 12
+    backgroundImage: {fileID: 0}
   - speakerName: Me
     personality: 1
     text: Okay. SFML. Simple and Fast Multimedia Library. Graphics, windows, events... Let's see how much of this I remember.
     voiceClip: {fileID: 0}
     displayDuration: 8
+    backgroundImage: {fileID: 0}
   - speakerName: The Detective
     personality: 6
     text: Apparently not much. We're starting with the beginner tutorials. How inspiring.
     voiceClip: {fileID: 0}
     displayDuration: 6
+    backgroundImage: {fileID: 0}
   - speakerName: Me
     personality: 1
     text: Quiet. So first I create a window, then enter a loop that runs while the window is open...
     voiceClip: {fileID: 0}
     displayDuration: 6
+    backgroundImage: {fileID: 0}
   - speakerName: The Grand Architect
     personality: 2
     text: Ah, the main loop! The beating heart of our Battleship game! From this humble foundation, we shall construct a magnificent software architecture!
     voiceClip: {fileID: 0}
     displayDuration: 8
+    backgroundImage: {fileID: 0}
   - speakerName: The Pragmatist
     personality: 3
     text: How about we get a grid on the screen before building the Titanic?
     voiceClip: {fileID: 0}
     displayDuration: 6
+    backgroundImage: {fileID: 0}
   - speakerName: Me
     personality: 1
     text: Right. Clear the window, draw the objects, then display the frame. But where does the event handling fit in?
     voiceClip: {fileID: 0}
     displayDuration: 7
+    backgroundImage: {fileID: 0}
   - speakerName: The Detective
     personality: 6
     text: An interesting question. Observe that clicking a square generates a mouse event, but the window must keep updating even when nobody clicks anything.
     voiceClip: {fileID: 0}
     displayDuration: 8
+    backgroundImage: {fileID: 0}
   - speakerName: Me
     personality: 1
     text: So the event loop handles input, while the game loop keeps everything running. And if I want to determine which square the player clicked...
     voiceClip: {fileID: 0}
     displayDuration: 8
+    backgroundImage: {fileID: 0}
   - speakerName: The Detective
     personality: 6
     text: Oh, this should be good.
     voiceClip: {fileID: 0}
     displayDuration: 5
+    backgroundImage: {fileID: 0}
   - speakerName: Me
     personality: 1
     text: Wait a minute. Of course! I can take the mouse coordinates, subtract the grid's position, then divide by the size of each cell! That gives me the row and column the player selected!
     voiceClip: {fileID: 0}
     displayDuration: 9
+    backgroundImage: {fileID: -7495542853505942357, guid: c33c236db329d49418f790be9f3f1803, type: 3}
   - speakerName: The Detective
     personality: 6
     text: Eureka! He's rediscovered division! Mathematicians everywhere rejoice!
     voiceClip: {fileID: 0}
     displayDuration: 6
+    backgroundImage: {fileID: 0}
   - speakerName: The Grand Architect
     personality: 2
     text: Congratulations. Now don't forget to check that the coordinates are actually inside the grid, unless you'd like players firing torpedoes into the void.
     voiceClip: {fileID: 0}
     displayDuration: 9
+    backgroundImage: {fileID: 0}
   - speakerName: Me
     personality: 1
     text: And once I know the cell, I can check whether there's a ship there and mark it as a hit or miss. It's strange. Ten minutes ago, none of this made sense, but now it feels... familiar.
     voiceClip: {fileID: 0}
     displayDuration: 10
+    backgroundImage: {fileID: 0}
   - speakerName: The Grand Architect
     personality: 2
     text: The knowledge returns! Soon our mighty fleet shall sail again!
     voiceClip: {fileID: 0}
     displayDuration: 5
+    backgroundImage: {fileID: 1080886060737280001, guid: 3b8c2ff223097414eb83e4e40d30f3ef, type: 3}
   - speakerName: The Pragmatist
     personality: 3
     text: Great. Can we make that grid work now?
     voiceClip: {fileID: 0}
     displayDuration: 5
+    backgroundImage: {fileID: 0}
   - speakerName: Me
     personality: 1
     text: Yeah. Let's start with that.
     voiceClip: {fileID: 0}
     displayDuration: 5
+    backgroundImage: {fileID: 0}
   - speakerName: Narrator
     personality: 0
     text: For the first time in a while, the code on the screen feels less like a foreign language and more like an old friend.
     voiceClip: {fileID: 0}
     displayDuration: 10
+    backgroundImage: {fileID: 0}
 --- !u!1 &1166657098
 GameObject:
   m_ObjectHideFlags: 0
