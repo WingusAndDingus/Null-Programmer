@@ -67,8 +67,9 @@ public class GameManager : MonoBehaviour
 
     public bool CanStudyThisWeekend()
     {
-        bool result = GrandArchitectStat > 3;
-        Debug.Log($"[GameManager] CanStudyThisWeekend evaluated. GrandArchitectStat: {GrandArchitectStat}, Result: {result}");
+        int architectLevel = PersonalitySkills.GetSavedLevel(Personality.Architect);
+        bool result = architectLevel > 3;
+        Debug.Log($"[GameManager] CanStudyThisWeekend evaluated. ArchitectLevel: {architectLevel}, Result: {result}");
         return result;
     }
 
@@ -141,6 +142,36 @@ public class GameManager : MonoBehaviour
     public bool ReplyCompleted => ReplyStage >= 2;
     public string LastReplyFeedback { get; private set; } = "";
 
+
+    // Screen-share session state. Stored here because this manager survives scene loads.
+    [System.Serializable]
+    public class ZoomShareState
+    {
+        public int day;
+        public bool callVisible;
+        public bool incomingCallVisible;
+        public bool shareActive;
+        public bool usesVideo;
+        public double videoTime;
+        public bool videoWasPlaying;
+        public bool videoPausedForDialogue;
+        public int nextVideoCueIndex;
+        public bool shareStarting;
+        public SteveExpression expression;
+        public bool hasExpression;
+    }
+
+    public ZoomShareState ZoomState { get; private set; } = new ZoomShareState();
+
+    public void SaveZoomState(ZoomShareState state)
+    {
+        if (state != null) ZoomState = state;
+    }
+
+    public void ClearZoomState()
+    {
+        ZoomState = new ZoomShareState();
+    }
 
     // =========================================================
     // Window State
@@ -281,6 +312,7 @@ public class GameManager : MonoBehaviour
         Debug.Log($"[GameManager] setCurrentDay called. Previous: {previous}, New CurrentDay: {CurrentDay}");
         if (previous != CurrentDay)
         {
+            ClearZoomState();
             DayChanged?.Invoke(CurrentDay); //Syed's new implementation
         }
     }
@@ -297,6 +329,7 @@ public class GameManager : MonoBehaviour
         CurrentDay++;
         UnspentSkillPoints = 0;
         CurrentStep = "Start"; //reset for new day
+        ClearZoomState();
         DayChanged?.Invoke(CurrentDay); //Syed's new implementation
         Debug.Log($"[GameManager] Advanced to Day {CurrentDay}. Step reset to 'Start'.");
     }
