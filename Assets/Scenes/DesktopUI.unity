@@ -401,6 +401,10 @@ PrefabInstance:
       propertyPath: screenShareVideoPlayer
       value: 
       objectReference: {fileID: 1177480455}
+    - target: {fileID: 462517331408017837, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: dialogueCues.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 903847176931984531, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
       propertyPath: m_SortingOrder
       value: 100
