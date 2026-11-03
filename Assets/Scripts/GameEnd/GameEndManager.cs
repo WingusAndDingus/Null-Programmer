@@ -27,9 +27,11 @@ public class GameEndManager : MonoBehaviour
         if (fullScreenPanel != null) fullScreenPanel.SetActive(false);
     }
 
-    public void SetupEndScreen(string title, string feedback, Sprite playerUML, Sprite standardUML)
+    
+    public void SetupEndScreen(string title, string feedback, Sprite playerUML, Sprite standardUML, Color titleColor)
     {
         endingTitleText.text = title;
+        endingTitleText.color = titleColor; 
         feedbackText.text = feedback;
         
         playerUmlSprite = playerUML;
@@ -71,6 +73,17 @@ public class GameEndManager : MonoBehaviour
 
     public void RecompileGame()
     {
-        SceneManager.LoadScene("StartScreen", LoadSceneMode.Single); 
+        // 1. Destroy the current GameManager
+        if (GameManager.Instance != null)
+        {
+            Destroy(GameManager.Instance.gameObject);
+        }
+
+        // 2. Wipe PlayerPrefs to completely reset all saved Personality Skill points
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+
+        // 3. Restart the game
+        SceneManager.LoadScene("StartScreen", LoadSceneMode.Single);
     }
 }
