@@ -56,7 +56,9 @@ public static class Day5SequenceBuilder
         afterEmailDelay.delayDuration = 3.0f;
         steps.Add(afterEmailDelay);
 
-        steps.Add(Step("D5_WaitForCall", NarrativeStepType.WaitUntilZoomCall, "D5_Steve_Turn_Logic"));
+        steps.Add(Step("D5_WaitForCall", NarrativeStepType.WaitUntilZoomCall, "D5_SetSteve_Hello"));
+
+        steps.Add(Expression("D5_SetSteve_Hello", SteveExpression.HelloSteve, "D5_Steve_Turn_Logic"));
 
         // ------------------------------------------------------------------
         // Opening call
@@ -65,7 +67,9 @@ public static class Day5SequenceBuilder
             "Hey. Good news. I cleaned up the turn logic.", "D5_Me_BadNews", 2.6f));
 
         steps.Add(Line("D5_Me_BadNews", "Me",
-            "And the bad news?", "D5_Steve_Bug", 2.0f));
+            "And the bad news?", "D5_SetSteve_DefaultAfterGreeting", 2.0f));
+
+        steps.Add(Expression("D5_SetSteve_DefaultAfterGreeting", SteveExpression.DefaultSteve, "D5_Steve_Bug"));
 
         steps.Add(Line("D5_Steve_Bug", "Steve",
             "Sometimes the computer shoots you after you've already won.", "D5_Me_Efficient", 3.0f));
@@ -91,9 +95,11 @@ public static class Day5SequenceBuilder
         startShare.stepType = NarrativeStepType.StartScreenShare;
         steps.Add(startShare);
 
-        NarrativeStep shareDelay = Step("D5_ShareDelay", NarrativeStepType.DelaySeconds, "D5_BugQuestion");
+        NarrativeStep shareDelay = Step("D5_ShareDelay", NarrativeStepType.DelaySeconds, "D5_SetSteve_BugSuspicious");
         shareDelay.delayDuration = 2.1f;
         steps.Add(shareDelay);
+
+        steps.Add(Expression("D5_SetSteve_BugSuspicious", SteveExpression.SuspiciousSteve, "D5_BugQuestion"));
 
         // ------------------------------------------------------------------
         // Interaction One - Detective: reconstruct the failing sequence
@@ -110,29 +116,35 @@ public static class Day5SequenceBuilder
         bugChoices.choices = new List<DialogueStepChoice>
         {
             Choice("Because executeAITurn() is in the wrong place.", "D5_Bug_Incomplete"),
-            Choice("Because you've already started the AI's turn before checking whether the player's attack ended the match.", "D5_Bug_Correct"),
-            Choice("Because SFML is processing the player and AI attacks at the same time.", "D5_Bug_Wrong", 5)
+            Choice("Because you've already started the AI's turn before checking whether the player's attack ended the match.", "D5_SetSteve_BugCorrectImpressed"),
+            Choice("Because SFML is processing the player and AI attacks at the same time.", "D5_SetSteve_BugWrongWatchingSus", 5)
         };
         steps.Add(bugChoices);
+
+        steps.Add(Expression("D5_SetSteve_BugCorrectImpressed", SteveExpression.ImpressedSteve, "D5_Bug_Correct"));
+        steps.Add(Expression("D5_SetSteve_BugWrongWatchingSus", SteveExpression.SteveWatchingSus, "D5_Bug_Wrong"));
 
         steps.Add(Line("D5_Bug_Correct", "Steve",
             "Oh. So I didn't forget the win condition. I just asked the question after I'd already let the AI shoot.",
             "D5_Bug_Correct_Me", 3.7f));
         steps.Add(Line("D5_Bug_Correct_Me", "Me",
-            "Exactly.", "D5_SFML_Steve", 1.8f));
+            "Exactly.", "D5_SetSteve_BugConvergeDefault", 1.8f));
 
         steps.Add(Line("D5_Bug_Incomplete", "Steve",
             "Okay, but why is that place wrong?", "D5_Bug_Incomplete_Me", 2.6f));
         steps.Add(Line("D5_Bug_Incomplete_Me", "Me",
             "Because the player's action hasn't finished resolving. You transferred control before checking its consequences.",
-            "D5_Bug_Incomplete_Steve", 3.7f));
+            "D5_SetSteve_BugIncompleteWatchingOk", 3.7f));
+        steps.Add(Expression("D5_SetSteve_BugIncompleteWatchingOk", SteveExpression.SteveWatchingOk, "D5_Bug_Incomplete_Steve"));
         steps.Add(Line("D5_Bug_Incomplete_Steve", "Steve",
-            "Right. So the placement is wrong because the sequence is wrong.", "D5_SFML_Steve", 3.0f));
+            "Right. So the placement is wrong because the sequence is wrong.", "D5_SetSteve_BugConvergeDefault", 3.0f));
 
         steps.Add(Line("D5_Bug_Wrong", "Steve",
             "But the AI doesn't use SFML input.", "D5_Bug_Wrong_Thought", 2.5f));
         steps.Add(Line("D5_Bug_Wrong_Thought", "Me",
-            "He's asking distressingly good questions today.", "D5_SFML_Steve", 2.5f, HeadPersonality.InternalMonologue));
+            "He's asking distressingly good questions today.", "D5_SetSteve_BugConvergeDefault", 2.5f, HeadPersonality.InternalMonologue));
+
+        steps.Add(Expression("D5_SetSteve_BugConvergeDefault", SteveExpression.DefaultSteve, "D5_SFML_Steve"));
 
         steps.Add(Line("D5_SFML_Steve", "Steve",
             "So SFML basically tells us, \"the mouse was clicked.\"", "D5_SFML_Me", 2.9f));
@@ -158,7 +170,9 @@ public static class Day5SequenceBuilder
 
         steps.Add(Line("D5_TraceReflection", "Me",
             "There it is. Input, resolve the action, update the state, check whether the match ended, then hand over control.",
-            "D5_CheckEverywhere", 5.1f, HeadPersonality.InternalMonologue));
+            "D5_SetSteve_InvariantSuspicious", 5.1f, HeadPersonality.InternalMonologue));
+
+        steps.Add(Expression("D5_SetSteve_InvariantSuspicious", SteveExpression.SuspiciousSteve, "D5_CheckEverywhere"));
 
         // ------------------------------------------------------------------
         // Interaction Two - Grand Architect: terminal-state invariant
@@ -174,34 +188,42 @@ public static class Day5SequenceBuilder
         NarrativeStep invariantChoices = Step("D5_InvariantChoices", NarrativeStepType.PresentChoices);
         invariantChoices.choices = new List<DialogueStepChoice>
         {
-            Choice("Once the game reaches a terminal state, the turn sequence should stop. Don't let control transition to another player after that.", "D5_Invariant_Correct"),
-            Choice("Adding more checks everywhere is probably safest.", "D5_Invariant_Wrong", 5),
+            Choice("Once the game reaches a terminal state, the turn sequence should stop. Don't let control transition to another player after that.", "D5_SetSteve_InvariantCorrectWatchingOk"),
+            Choice("Adding more checks everywhere is probably safest.", "D5_SetSteve_InvariantWrongWatchingSus", 5),
             Choice("Put the game_over check somewhere central instead of repeating it everywhere.", "D5_Invariant_Incomplete")
         };
         steps.Add(invariantChoices);
 
+        steps.Add(Expression("D5_SetSteve_InvariantCorrectWatchingOk", SteveExpression.SteveWatchingOk, "D5_Invariant_Correct"));
+        steps.Add(Expression("D5_SetSteve_InvariantWrongWatchingSus", SteveExpression.SteveWatchingSus, "D5_Invariant_Wrong"));
+
         steps.Add(Line("D5_Invariant_Correct", "Steve",
             "So the important thing is the rule: game over means there is no next turn.", "D5_Invariant_Correct_Me", 3.2f));
         steps.Add(Line("D5_Invariant_Correct_Me", "Me",
-            "Exactly.", "D5_StateTransition", 1.8f));
+            "Exactly.", "D5_SetSteve_InvariantConvergeDefault", 1.8f));
 
         steps.Add(Line("D5_Invariant_Incomplete", "Me",
             "That would reduce duplication, but the important part is why the check exists.", "D5_Invariant_Incomplete_Me2", 3.0f));
         steps.Add(Line("D5_Invariant_Incomplete_Me2", "Me",
-            "Once the match reaches a terminal state, nothing should transition it into another turn.", "D5_Invariant_Incomplete_Steve", 3.3f));
+            "Once the match reaches a terminal state, nothing should transition it into another turn.", "D5_SetSteve_InvariantIncompleteWatchingOk", 3.3f));
+        steps.Add(Expression("D5_SetSteve_InvariantIncompleteWatchingOk", SteveExpression.SteveWatchingOk, "D5_Invariant_Incomplete_Steve"));
         steps.Add(Line("D5_Invariant_Incomplete_Steve", "Steve",
-            "Right. The structure matters more than where I hide the Boolean.", "D5_StateTransition", 3.0f));
+            "Right. The structure matters more than where I hide the Boolean.", "D5_SetSteve_InvariantConvergeDefault", 3.0f));
 
         steps.Add(Line("D5_Invariant_Wrong", "Steve",
             "I already tried that. The code started looking like it was afraid of itself.", "D5_Invariant_Wrong_Me", 3.4f));
         steps.Add(Line("D5_Invariant_Wrong_Me", "Me",
             "A reasonable response under the circumstances. The cleaner rule is that a terminal state has no transition into another turn.",
-            "D5_StateTransition", 4.0f));
+            "D5_SetSteve_InvariantConvergeDefault", 4.0f));
+
+        steps.Add(Expression("D5_SetSteve_InvariantConvergeDefault", SteveExpression.DefaultSteve, "D5_StateTransition"));
 
         steps.Add(Line("D5_StateTransition", "Steve",
             "So we're really defining which state changes are legal.", "D5_StateExactly", 2.8f));
         steps.Add(Line("D5_StateExactly", "Me",
-            "Exactly.", "D5_FrameQuestion", 1.8f));
+            "Exactly.", "D5_SetSteve_FrameSuspicious", 1.8f));
+
+        steps.Add(Expression("D5_SetSteve_FrameSuspicious", SteveExpression.SuspiciousSteve, "D5_FrameQuestion"));
 
         // ------------------------------------------------------------------
         // Interaction Three - Pragmatist: SFML frames != Battleship turns
@@ -218,30 +240,38 @@ public static class Day5SequenceBuilder
         NarrativeStep frameChoices = Step("D5_FrameChoices", NarrativeStepType.PresentChoices);
         frameChoices.choices = new List<DialogueStepChoice>
         {
-            Choice("Each frame is basically one Battleship turn.", "D5_Frame_Wrong", 5),
+            Choice("Each frame is basically one Battleship turn.", "D5_SetSteve_FrameWrongWatchingSus", 5),
             Choice("SFML has to keep redrawing the window.", "D5_Frame_Incomplete"),
-            Choice("The SFML frame loop and the Battleship turn system are separate. Frames keep running even when no gameplay turn changes.", "D5_Frame_Correct")            
+            Choice("The SFML frame loop and the Battleship turn system are separate. Frames keep running even when no gameplay turn changes.", "D5_SetSteve_FrameCorrectWatchingOk")            
         };
         steps.Add(frameChoices);
+
+        steps.Add(Expression("D5_SetSteve_FrameCorrectWatchingOk", SteveExpression.SteveWatchingOk, "D5_Frame_Correct"));
+        steps.Add(Expression("D5_SetSteve_FrameWrongWatchingSus", SteveExpression.SteveWatchingSus, "D5_Frame_Wrong"));
 
         steps.Add(Line("D5_Frame_Correct", "Steve",
             "So we could draw sixty frames without completing a single turn.", "D5_Frame_Correct_Me", 3.1f));
         steps.Add(Line("D5_Frame_Correct_Me", "Me",
-            "Or six hundred.", "D5_Frame_Joke", 2.0f));
+            "Or six hundred.", "D5_SetSteve_FrameConvergeDefault", 2.0f));
 
         steps.Add(Line("D5_Frame_Incomplete", "Me",
             "Rendering is part of it, but input and updates continue too. The important distinction is that a frame isn't a gameplay turn.",
-            "D5_Frame_Incomplete_Steve", 4.0f));
+            "D5_SetSteve_FrameIncompleteWatchingOk", 4.0f));
+        steps.Add(Expression("D5_SetSteve_FrameIncompleteWatchingOk", SteveExpression.SteveWatchingOk, "D5_Frame_Incomplete_Steve"));
         steps.Add(Line("D5_Frame_Incomplete_Steve", "Steve",
-            "Right. The application keeps running while the game waits.", "D5_Frame_Joke", 3.0f));
+            "Right. The application keeps running while the game waits.", "D5_SetSteve_FrameConvergeDefault", 3.0f));
 
         steps.Add(Line("D5_Frame_Wrong", "Steve",
             "At sixty frames per second?", "D5_Frame_Wrong_Thought", 2.4f));
         steps.Add(Line("D5_Frame_Wrong_Thought", "Me",
-            "Competitive Battleship has become considerably more dangerous.", "D5_Frame_Joke", 2.8f, HeadPersonality.InternalMonologue));
+            "Competitive Battleship has become considerably more dangerous.", "D5_SetSteve_FrameConvergeDefault", 2.8f, HeadPersonality.InternalMonologue));
+
+        steps.Add(Expression("D5_SetSteve_FrameConvergeDefault", SteveExpression.DefaultSteve, "D5_Frame_Joke"));
 
         steps.Add(Line("D5_Frame_Joke", "Steve",
-            "Finally, software that accurately simulates meetings.", "D5_Final_Start", 2.8f));
+            "Finally, software that accurately simulates meetings.", "D5_SetSteve_FinalWatchingOk", 2.8f));
+
+        steps.Add(Expression("D5_SetSteve_FinalWatchingOk", SteveExpression.SteveWatchingOk, "D5_Final_Start"));
 
         // ------------------------------------------------------------------
         // Final test - Interaction Four is intentionally absent.
@@ -253,7 +283,8 @@ public static class Day5SequenceBuilder
         steps.Add(Line("D5_Final_ShipDown", "Steve",
             "Last ship goes down...", "D5_Final_Victory", 2.2f));
         steps.Add(Line("D5_Final_Victory", "Steve",
-            "Victory screen.", "D5_Final_NoReturnFire", 2.0f));
+            "Victory screen.", "D5_SetSteve_FinalImpressed", 2.0f));
+        steps.Add(Expression("D5_SetSteve_FinalImpressed", SteveExpression.ImpressedSteve, "D5_Final_NoReturnFire"));
         steps.Add(Line("D5_Final_NoReturnFire", "Steve",
             "And the computer did not shoot me from beyond the grave.", "D5_Final_Promising", 3.1f));
         steps.Add(Line("D5_Final_Promising", "Me",
@@ -261,7 +292,9 @@ public static class Day5SequenceBuilder
         steps.Add(Line("D5_Final_DeadAI", "Steve",
             "We've successfully taught artificial intelligence to recognize when it's dead.", "D5_Final_Resume", 3.4f));
         steps.Add(Line("D5_Final_Resume", "Me",
-            "Put it on the resume.", "D5_Close_Understand", 2.0f));
+            "Put it on the resume.", "D5_SetSteve_CloseDefault", 2.0f));
+
+        steps.Add(Expression("D5_SetSteve_CloseDefault", SteveExpression.DefaultSteve, "D5_Close_Understand"));
 
         // ------------------------------------------------------------------
         // Closing Steve choice - narrative only, no custom friendship stat.
@@ -274,18 +307,24 @@ public static class Day5SequenceBuilder
         NarrativeStep closeChoices = Step("D5_Close_Choices", NarrativeStepType.PresentChoices);
         closeChoices.choices = new List<DialogueStepChoice>
         {
-            Choice("Eventually you'll recognize my terrible code too.", "D5_Close_Friendly"),
-            Choice("Let's merge this before either of us has another idea.", "D5_Close_Dry"),
-            Choice("Just don't rearrange anything else before Monday.", "D5_Close_Dismissive", 5)
+            Choice("Eventually you'll recognize my terrible code too.", "D5_SetSteve_CloseFriendlyImpressed"),
+            Choice("Let's merge this before either of us has another idea.", "D5_SetSteve_CloseDryDefault"),
+            Choice("Just don't rearrange anything else before Monday.", "D5_SetSteve_CloseDismissiveSuspicious", 5)
         };
         steps.Add(closeChoices);
 
+        steps.Add(Expression("D5_SetSteve_CloseFriendlyImpressed", SteveExpression.ImpressedSteve, "D5_Close_Friendly"));
+        steps.Add(Expression("D5_SetSteve_CloseDryDefault", SteveExpression.DefaultSteve, "D5_Close_Dry"));
+        steps.Add(Expression("D5_SetSteve_CloseDismissiveSuspicious", SteveExpression.SuspiciousSteve, "D5_Close_Dismissive"));
+
         steps.Add(Line("D5_Close_Friendly", "Steve",
-            "Ha. Deal.", "D5_End_StevePush", 2.0f));
+            "Ha. Deal.", "D5_SetSteve_EndDefault", 2.0f));
         steps.Add(Line("D5_Close_Dry", "Steve",
-            "Best thing you've said all afternoon.", "D5_End_StevePush", 2.4f));
+            "Best thing you've said all afternoon.", "D5_SetSteve_EndDefault", 2.4f));
         steps.Add(Line("D5_Close_Dismissive", "Steve",
-            "...Right. Sure.", "D5_End_StevePush", 2.4f));
+            "...Right. Sure.", "D5_SetSteve_EndDefault", 2.4f));
+
+        steps.Add(Expression("D5_SetSteve_EndDefault", SteveExpression.DefaultSteve, "D5_End_StevePush"));
 
         // ------------------------------------------------------------------
         // End call
@@ -293,7 +332,8 @@ public static class Day5SequenceBuilder
         steps.Add(Line("D5_End_StevePush", "Steve",
             "I'll push the fix.", "D5_End_GreatWeekend", 2.3f));
         steps.Add(Line("D5_End_GreatWeekend", "Me",
-            "Awesome. Have a great weekend!", "D5_End_YouToo", 2.5f));
+            "Awesome. Have a great weekend!", "D5_SetSteve_Bye", 2.5f));
+        steps.Add(Expression("D5_SetSteve_Bye", SteveExpression.ByeSteve, "D5_End_YouToo"));
         steps.Add(Line("D5_End_YouToo", "Steve",
             "You too.", "D5_End_RevengeEmail", 1.8f));
         steps.Add(Line("D5_End_RevengeEmail", "Steve",
@@ -437,6 +477,13 @@ public static class Day5SequenceBuilder
             stepType = type,
             nextStepID = next
         };
+    }
+
+    private static NarrativeStep Expression(string id, SteveExpression expression, string next)
+    {
+        NarrativeStep step = Step(id, NarrativeStepType.SetSteveExpression, next);
+        step.NewSteveExpression = expression;
+        return step;
     }
 
     private static NarrativeStep Message(
