@@ -1919,11 +1919,87 @@ MonoBehaviour:
     displayDuration: 3.5
     lineVariants: []
     choices: []
-    nextStepID: D5_Internal_Action
+    nextStepID: D5_Message_Maya_WeekendInvite
     alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 14
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: D5_Message_Maya_WeekendInvite
+      contactKey: maya
+      contactName: Maya
+      portrait: {fileID: 0}
+      text: Hey, stranger. Any chance we can convince you to leave your apartment this weekend?
+      replies:
+      - text: Depends. What are you trying to convince me to do?
+        response: Lunch tomorrow. Marcus found this place right on the Bay. Apparently the view is good enough that Alex has already threatened to take forty pictures of it.
+        connectednessDelta: 10
+        suspicionDelta: 0
+      - text: Maybe. It's been kind of a long week.
+        response: That's exactly why you should come. Food, fresh air, people who aren't coworkers. Very advanced recovery techniques.
+        connectednessDelta: 10
+        suspicionDelta: 0
+      - text: I don't know. I'm probably just going to stay home.
+        response: You can decide tomorrow. I'm not letting you escape that easily.
+        connectednessDelta: 0
+        suspicionDelta: 0
+      waitForReply: 0
+    stepID: D5_Message_Maya_WeekendInvite
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 3.5
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Message_Marcus_WeekendFollowup
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 1000
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - message:
+      messageId: D5_Message_Marcus_WeekendFollowup
+      contactKey: marcus
+      contactName: Marcus
+      portrait: {fileID: 0}
+      text: Maya mentioned lunch tomorrow, so I figured I'd make the official pitch too.
+      replies:
+      - text: What's the plan?
+        response: Lunch at that waterfront place by the Bay. Rachel and Alex are coming too. You should join us.
+        connectednessDelta: 10
+        suspicionDelta: 0
+      - text: I'm still not sure I'm up for going out.
+        response: No pressure. We're just getting food and hanging out. You don't have to show up ready to entertain anybody.
+        connectednessDelta: 0
+        suspicionDelta: 0
+      - text: Actually, that sounds pretty good.
+        response: There we go. I'll let everyone know you're considering meeting up with us.
+        connectednessDelta: 10
+        suspicionDelta: 0
+      waitForReply: 0
+    stepID: D5_Message_Marcus_WeekendFollowup
+    speakerName: 
+    personality: 0
+    lineText: 
+    displayDuration: 3.5
+    lineVariants: []
+    choices: []
+    nextStepID: D5_Internal_Action
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 1000
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10
