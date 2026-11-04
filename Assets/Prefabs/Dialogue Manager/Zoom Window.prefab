@@ -133,7 +133,7 @@ MonoBehaviour:
   windowBody: {fileID: 2148821817488545067}
   titleBar: {fileID: 8084101758300098441}
   codePanel: {fileID: 4013755457888443139}
-  fileTab: {fileID: 0}
+  fileTab: {fileID: 8084101758300098441}
   topRightControls:
   - {fileID: 5666844710348308613}
   - {fileID: 2357645756219878046}

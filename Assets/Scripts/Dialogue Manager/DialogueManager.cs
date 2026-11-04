@@ -407,7 +407,8 @@ public class DialogueManager : MonoBehaviour
             bool enterPressed = Keyboard.current != null && Keyboard.current.enterKey.wasPressedThisFrame;
 
             bool clickedOnPanel = false;
-            if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+            // Changed from wasPressedThisFrame to wasReleasedThisFrame so clicks register on release
+            if (Mouse.current != null && Mouse.current.leftButton.wasReleasedThisFrame)
             {
                 RectTransform panelRect = dialoguePanel.GetComponent<RectTransform>();
                 if (panelRect != null)
