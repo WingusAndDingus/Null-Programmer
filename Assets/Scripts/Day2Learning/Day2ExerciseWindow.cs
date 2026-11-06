@@ -63,6 +63,8 @@ namespace NullProgrammer.Day2
             if (DialogueManager.Instance != null) DialogueManager.Instance.HideDialogueUI();
             BlockWorld();
             canvasObject.SetActive(true);
+            NullProgrammer.Audio.GameAudio.BeginActivity(this);
+            NullProgrammer.Audio.GameAudio.Play(NullProgrammer.Audio.SfxCue.WindowOpen);
 
             Day2Exercise data = Day2LessonData.Exercises[exercise];
             title.text = data.title;
@@ -111,6 +113,7 @@ namespace NullProgrammer.Day2
         {
             if (completion == null || selection < 0) return;
             Day2TestEngine.Run result = Day2TestEngine.Evaluate(exercise, selection);
+            NullProgrammer.Audio.GameAudio.Play(result.passed ? NullProgrammer.Audio.SfxCue.Pass : NullProgrammer.Audio.SfxCue.Fail);
             progress.RecordTest(exercise);
             output.text = result.output;
             output.color = result.passed ? new Color(.65f, 1f, .78f) : new Color(1f, .78f, .64f);
@@ -202,6 +205,7 @@ namespace NullProgrammer.Day2
 
         private void UnblockWorld()
         {
+            NullProgrammer.Audio.GameAudio.EndActivity(this);
             foreach (Collider2D collider in blocked2D) if (collider != null) collider.enabled = true;
             foreach (Collider collider in blocked3D) if (collider != null) collider.enabled = true;
             blocked2D.Clear(); blocked3D.Clear();

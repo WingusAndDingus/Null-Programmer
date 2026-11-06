@@ -123,11 +123,12 @@ public class DialogueManager : MonoBehaviour
 
     public void OnDialogueClicked()
     {
-        if (currentPlayingLine == null) return;
+        if (NullProgrammer.Audio.AudioSettingsPanel.IsOpen || currentPlayingLine == null) return;
 
         // If typing is still in progress, instantly finish displaying all characters
         if (!IsTypingComplete)
         {
+            NullProgrammer.Audio.GameAudio.Play(NullProgrammer.Audio.SfxCue.DialogueReveal);
             IsTypingComplete = true;
             if (dialogueText != null)
             {
@@ -140,6 +141,7 @@ public class DialogueManager : MonoBehaviour
         else if (waitingForClickToContinue)
         {
             // If typing is already complete, clicking proceeds to the next line!
+            NullProgrammer.Audio.GameAudio.Play(NullProgrammer.Audio.SfxCue.DialogueAdvance);
             waitingForClickToContinue = false;
         }
     }
@@ -268,6 +270,7 @@ public class DialogueManager : MonoBehaviour
 
                 bubble.Setup(options[i], optionIndex, personalityColor, (selectedIndex) =>
                 {
+                    NullProgrammer.Audio.GameAudio.Play(NullProgrammer.Audio.SfxCue.Choice);
                     choiceTask.TrySetResult(selectedIndex);
                 });
             }

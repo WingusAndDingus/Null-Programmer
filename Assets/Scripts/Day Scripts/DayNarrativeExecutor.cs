@@ -90,6 +90,7 @@ public class DayNarrativeExecutor : MonoBehaviour
         }
 
         lastExecutedStepID = currentStepID;
+        NullProgrammer.Audio.GameAudio.Step(stepData.musicCue, stepData.soundCue);
         // 1. Play Dialogue Line if this step has one. Personality advice can select
         //    a level-dependent line without turning those lines into player choices.
         string resolvedLineText = ResolveLineText(stepData);
@@ -221,7 +222,9 @@ public class DayNarrativeExecutor : MonoBehaviour
             case NarrativeStepType.SteveCodingChallenge:
                 if (stepData.steveChallenge != null)
                 {
-                    await RunSteveChallengeAsync(stepData.steveChallenge);
+                    NullProgrammer.Audio.GameAudio.BeginActivity(this);
+                    try { await RunSteveChallengeAsync(stepData.steveChallenge); }
+                    finally { NullProgrammer.Audio.GameAudio.EndActivity(this); }
                 }
                 else
                 {
@@ -420,6 +423,7 @@ public class DayNarrativeExecutor : MonoBehaviour
         // 2. Prompt player for code via the IDE interface
         string playerCode = await SteveScreenShareManager.Instance.PromptPlayerForCodeAsync(challenge);
         bool success = ValidatePlayerCode(playerCode, challenge);
+        NullProgrammer.Audio.GameAudio.Play(success ? NullProgrammer.Audio.SfxCue.Pass : NullProgrammer.Audio.SfxCue.Fail);
 
         if (success)
         {

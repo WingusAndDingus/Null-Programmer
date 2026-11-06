@@ -84,6 +84,7 @@ public sealed class IntegratedMailInbox : MonoBehaviour
         IsRead = GetStoredReadState();
         readingPane.SetActive(false);
         prompt.SetActive(true);
+        NullProgrammer.Audio.GameAudio.Play(NullProgrammer.Audio.SfxCue.WindowOpen);
         window.SetActive(true);
         drag.BringToFront();
         Refresh();
@@ -185,6 +186,7 @@ public sealed class IntegratedMailInbox : MonoBehaviour
         GetCurrentMessage(out string currentSender, out string currentSubject, out string currentBody);
 
         unreadBadge.gameObject.SetActive(!IsRead);
+        if (GameManager.Instance != null) NullProgrammer.Audio.GameAudio.EmailAvailable(GameManager.Instance.CurrentDay, IsRead);
         SetLabel(inboxLabel, inboxLabelTMP, IsRead ? "Inbox" : "Inbox (1 unread)");
         SetLabel(rowLabel, rowLabelTMP, (IsRead ? "READ" : "NEW") + "\n\n" + currentSender + "\n\n" + currentSubject);
 

@@ -67,6 +67,11 @@ public static class NarrativeChoiceFilter
 [Serializable]
 public class NarrativeStep
 {
+    [Header("Audio (Optional)")]
+    [Tooltip("Keep leaves current music unchanged; Auto restores scene/activity routing.")]
+    public NullProgrammer.Audio.MusicCue musicCue;
+    public NullProgrammer.Audio.SfxCue soundCue;
+
     [Header("Receive Message")]
     public NarrativeMessageData message = new NarrativeMessageData();
 

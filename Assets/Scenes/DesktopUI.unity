@@ -486,6 +486,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5303623349588494034, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+      propertyPath: windowRoot
+      value: 
+      objectReference: {fileID: 1885203715}
+    - target: {fileID: 5303623349588494034, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
       propertyPath: windowIdentity
       value: 
       objectReference: {fileID: 1885203712}
@@ -9149,6 +9153,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WindowIdentity
   windowId: SteveZoomPic
+--- !u!4 &1885203715 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4368884649797519225, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
+  m_PrefabInstance: {fileID: 34546014}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1885431657
 GameObject:
   m_ObjectHideFlags: 0
