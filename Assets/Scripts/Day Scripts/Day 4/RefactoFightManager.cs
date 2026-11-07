@@ -236,8 +236,12 @@ public class RefactoFightManager : MonoBehaviour
         currentState = BattleState.Playing;
     }
 
+    private float audioMusicEnvelope = 1f;
+
     private void Update()
     {
+        if (musicSource != null) musicSource.volume = audioMusicEnvelope * NullProgrammer.Audio.GameAudio.MusicLevel;
+        if (sfxSource != null) sfxSource.volume = NullProgrammer.Audio.GameAudio.EffectsLevel;
         // Handle Pause Input
         if (currentState == BattleState.Playing && Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
         {
@@ -752,7 +756,7 @@ public class RefactoFightManager : MonoBehaviour
         }
         hitFeedbackText.text = "";
 
-        musicSource.volume = 0f;
+        audioMusicEnvelope = 0f;
 
         if (isResume)
         {
@@ -771,10 +775,10 @@ public class RefactoFightManager : MonoBehaviour
         while (elapsed < fadeDuration)
         {
             elapsed += Time.deltaTime;
-            musicSource.volume = Mathf.Lerp(0f, 1f, elapsed / fadeDuration);
+            audioMusicEnvelope = Mathf.Lerp(0f, 1f, elapsed / fadeDuration);
             yield return null;
         }
-        musicSource.volume = 1f;
+        audioMusicEnvelope = 1f;
     }
 
     private IEnumerator PulseBackgroundRoutine(Color pulseColor)
@@ -798,17 +802,17 @@ public class RefactoFightManager : MonoBehaviour
     {
         if (musicSource == null) yield break;
 
-        float startVolume = musicSource.volume;
+        float startVolume = audioMusicEnvelope;
         float elapsed = 0f;
 
         while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            musicSource.volume = Mathf.Lerp(startVolume, 0f, elapsed / duration);
+            audioMusicEnvelope = Mathf.Lerp(startVolume, 0f, elapsed / duration);
             yield return null;
         }
 
-        musicSource.volume = 0f;
+        audioMusicEnvelope = 0f;
         musicSource.Stop();
     }
 
