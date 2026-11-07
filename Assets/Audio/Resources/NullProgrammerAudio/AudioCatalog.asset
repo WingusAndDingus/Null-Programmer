@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fb2f534eb0b550dad756aa18e4aa267, type: 3}
+  m_Name: AudioCatalog
+  m_EditorClassIdentifier: Assembly-CSharp::NullProgrammer.Audio.AudioCatalog
+  desktop: {fileID: 8300000, guid: dea16599e7fe56a2a7857d0caecf3aa8, type: 3}
+  activity: {fileID: 8300000, guid: e4e1c16ad7d05dff96fc4d7575ca92b6, type: 3}
+  night: {fileID: 8300000, guid: 0435024bcd115dfb9c768e25fd13d129, type: 3}
+  crossfadeSeconds: 1.5
+  showAudioButton: 0
+  sounds:
+  - cue: 1
+    clip: {fileID: 8300000, guid: c322959644d654a8b4f518c003972fca, type: 3}
+    gain: 0.3
+    cooldown: 0.07
+  - cue: 2
+    clip: {fileID: 8300000, guid: 4ff32a5c91ae543188e515a551c9fe8b, type: 3}
+    gain: 0.42
+    cooldown: 0.16
+  - cue: 3
+    clip: {fileID: 8300000, guid: 4bf9632f04a45c4abd015f888ac9ad4b, type: 3}
+    gain: 0.42
+    cooldown: 0.16
+  - cue: 4
+    clip: {fileID: 8300000, guid: 58de8fa975fd5b139ac63a9cfe623012, type: 3}
+    gain: 0.3
+    cooldown: 0.07
+  - cue: 5
+    clip: {fileID: 8300000, guid: d8d76120aed8511dbb07e8944ad53ca1, type: 3}
+    gain: 0.3
+    cooldown: 0.07
+  - cue: 6
+    clip: {fileID: 8300000, guid: bf928665569c55cea674d72ce76dccca, type: 3}
+    gain: 0.42
+    cooldown: 0.07
+  - cue: 7
+    clip: {fileID: 8300000, guid: f0579fadc1d55c9ab67c02a4e172deb8, type: 3}
+    gain: 0.6
+    cooldown: 1.5
+  - cue: 8
+    clip: {fileID: 8300000, guid: a660d9b05b2f52e29829fc53bc8e3a1a, type: 3}
+    gain: 0.6
+    cooldown: 1.5
+  - cue: 9
+    clip: {fileID: 8300000, guid: 6df5b32841c25c089de01545457feae0, type: 3}
+    gain: 0.6
+    cooldown: 1.5
+  - cue: 10
+    clip: {fileID: 8300000, guid: 6b74c4d8dbeb5fdd9c4dc0a916afeaa1, type: 3}
+    gain: 0.6
+    cooldown: 0.16
+  - cue: 11
+    clip: {fileID: 8300000, guid: 4ce9c01f4b925668957e2c23b8bcace3, type: 3}
+    gain: 0.6
+    cooldown: 1.5
+  - cue: 12
+    clip: {fileID: 8300000, guid: bdc6c1bef8ab59c38e6055712adf9e94, type: 3}
+    gain: 0.42
+    cooldown: 0.07
+  - cue: 13
+    clip: {fileID: 8300000, guid: 9f66c1dc1fb95d42b03d183de9b87c9b, type: 3}
+    gain: 0.42
+    cooldown: 0.16
+  - cue: 14
+    clip: {fileID: 8300000, guid: 93cebf9b7c885294928a800336cec34d, type: 3}
+    gain: 0.6
+    cooldown: 0.16
+  - cue: 15
+    clip: {fileID: 8300000, guid: eb3501cdedbd5e20b406921ca7b18a63, type: 3}
+    gain: 0.6
+    cooldown: 0.16
+  - cue: 16
+    clip: {fileID: 8300000, guid: efefde46192b56658254218e95ce7526, type: 3}
+    gain: 0.6
+    cooldown: 1.5
+  - cue: 17
+    clip: {fileID: 8300000, guid: 10942a2a7ca35238a35a7bb105faa03b, type: 3}
+    gain: 0.6
+    cooldown: 1.5
+  credits: 'Music by Kevin MacLeod (incompetech.com)
+
+    "Floating Cities" / "Cipher" / "Dreams Become Real"
+
+    Licensed under Creative Commons Attribution 4.0
+
+    https://creativecommons.org/licenses/by/4.0/
+
+    Sources: incompetech.com (track links in AudioCredits.md).
+
+    Changes: loudness normalized, re-encoded to OGG; looped and faded in-game.
+
+
+    Interface effects: Kenney (kenney.nl), CC0.
+
+    Additional notification chimes: original procedural tones, CC0.
+
+    Full sources and licenses are included in AudioCredits.md.'

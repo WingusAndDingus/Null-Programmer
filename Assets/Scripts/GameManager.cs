@@ -295,6 +295,7 @@ public class GameManager : MonoBehaviour
 
         rewardedMilestones.Add(milestoneID);
         UnspentSkillPoints++;
+        NullProgrammer.Audio.GameAudio.Play(NullProgrammer.Audio.SfxCue.Skill);
         Debug.Log($"[GameManager] Skill point awarded for '{milestoneID}'. Total unspent: {UnspentSkillPoints}");
     }
 

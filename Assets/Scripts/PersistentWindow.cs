@@ -52,6 +52,7 @@ public class PersistentWindow : MonoBehaviour
                 false);
         }
 
+        NullProgrammer.Audio.GameAudio.Play(NullProgrammer.Audio.SfxCue.WindowClose);
         windowRoot.SetActive(false);
     }
 
@@ -70,6 +71,7 @@ public class PersistentWindow : MonoBehaviour
                 windowIdentity.Id);
         }
 
+        NullProgrammer.Audio.GameAudio.Play(NullProgrammer.Audio.SfxCue.WindowOpen);
         windowRoot.SetActive(true);
     }
 }

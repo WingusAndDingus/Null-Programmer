@@ -81,6 +81,8 @@ namespace NullProgrammer.Day3Workshop
             inspector.gameObject.SetActive(false);
             choiceOverlay.SetActive(false);
             root.SetActive(true);
+            NullProgrammer.Audio.GameAudio.BeginActivity(this);
+            NullProgrammer.Audio.GameAudio.Play(NullProgrammer.Audio.SfxCue.WindowOpen);
             if (EventSystem.current == null)
             {
                 ownedEvents = new GameObject("Day 3 UI Event System", typeof(EventSystem), typeof(InputSystemUIInputModule));
@@ -98,6 +100,8 @@ namespace NullProgrammer.Day3Workshop
 
         public void Hide()
         {
+            if (root != null && root.activeSelf) NullProgrammer.Audio.GameAudio.Play(NullProgrammer.Audio.SfxCue.WindowClose);
+            NullProgrammer.Audio.GameAudio.EndActivity(this);
             if (animation != null) StopCoroutine(animation);
             animation = null; running = hovering = false;
             if (root != null) root.SetActive(false);
@@ -120,9 +124,9 @@ namespace NullProgrammer.Day3Workshop
             foreach (var c in FindObjectsByType<Collider>(FindObjectsSortMode.None))
                 if (c.enabled) { blocked3D.Add(c); c.enabled = false; }
             foreach (var c in FindObjectsByType<GraphicRaycaster>(FindObjectsSortMode.None))
-                if (c.enabled && !c.transform.IsChildOf(root.transform)) { blockedRaycasters.Add(c); c.enabled = false; }
+                if (c.enabled && c.GetComponentInParent<NullProgrammer.Audio.AudioSettingsPanel>() == null && !c.transform.IsChildOf(root.transform)) { blockedRaycasters.Add(c); c.enabled = false; }
             foreach (var c in FindObjectsByType<Selectable>(FindObjectsSortMode.None))
-                if (c.interactable && !c.transform.IsChildOf(root.transform)) { blockedSelectables.Add(c); c.interactable = false; }
+                if (c.interactable && c.GetComponentInParent<NullProgrammer.Audio.AudioSettingsPanel>() == null && !c.transform.IsChildOf(root.transform)) { blockedSelectables.Add(c); c.interactable = false; }
             if (EventSystem.current != null) EventSystem.current.SetSelectedGameObject(null);
         }
 
@@ -140,6 +144,7 @@ namespace NullProgrammer.Day3Workshop
         private void Pick(int r, int c)
         {
             if (running || choiceOverlay.activeSelf) return;
+            NullProgrammer.Audio.GameAudio.Play(NullProgrammer.Audio.SfxCue.Place);
             row = r; column = c;
             displayedBoard = null; displayedRun = null;
             // A placement selection does not change the code's last regression grade.
@@ -217,6 +222,7 @@ namespace NullProgrammer.Day3Workshop
         private void RunTest()
         {
             if (running) return;
+            NullProgrammer.Audio.GameAudio.Play(NullProgrammer.Audio.SfxCue.Run);
             SetInspector(false);
             hovering = false;
             animation = StartCoroutine(AnimateTest());
@@ -255,6 +261,7 @@ namespace NullProgrammer.Day3Workshop
                 yield return new WaitForSecondsRealtime(.15f);
             }
             bool passed = BoardSimulation.Passed(checks);
+            NullProgrammer.Audio.GameAudio.Play(passed ? NullProgrammer.Audio.SfxCue.Pass : NullProgrammer.Audio.SfxCue.Fail);
             tested = passed;
             int passedCount = checks.FindAll(c => c.passed).Count;
             string summary = exercise == 4 ? "Final build: " + passedCount + " / " + checks.Count + " checks passed."

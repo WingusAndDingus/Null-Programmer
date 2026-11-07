@@ -33,7 +33,7 @@ public sealed class MessagingSession : MonoBehaviour
         if (conversation == null || string.IsNullOrWhiteSpace(conversation.id) || day < conversation.availableFromDay || threads.ContainsKey(conversation.id)) return;
         var thread = new Thread();
         thread.messages.Add(new Entry { text = conversation.openingMessage, timeLabel = CurrentTimeLabel() });
-        threads.Add(conversation.id,thread); Changed?.Invoke();
+        threads.Add(conversation.id,thread); NullProgrammer.Audio.GameAudio.Play(NullProgrammer.Audio.SfxCue.Message); Changed?.Invoke();
     }
     public int Unread(string id)
     {
@@ -67,7 +67,7 @@ public sealed class MessagingSession : MonoBehaviour
     public bool Receive(string id, string text)
     {
         var thread = GetThread(id); if (thread == null || string.IsNullOrEmpty(text)) return false;
-        thread.messages.Add(new Entry { text = text, timeLabel = CurrentTimeLabel() }); Changed?.Invoke(); return true;
+        thread.messages.Add(new Entry { text = text, timeLabel = CurrentTimeLabel() }); NullProgrammer.Audio.GameAudio.Play(NullProgrammer.Audio.SfxCue.Message); Changed?.Invoke(); return true;
     }
 
     private static string CurrentTimeLabel() => DateTime.Now.ToString("h:mm tt");
