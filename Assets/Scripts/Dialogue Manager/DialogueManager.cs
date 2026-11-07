@@ -148,6 +148,10 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator PlayDialogueLineRoutine(DialogueLine line, Action onComplete)
     {
+        // Initialize shared click-to-advance state for every dialogue entry point.
+        currentPlayingLine = line;
+        waitingForClickToContinue = false;
+
         if (dialoguePanel != null) dialoguePanel.SetActive(true);
         if (speakerText != null) speakerText.text = line.speakerName;
 
