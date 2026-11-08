@@ -2,12 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Unity.VectorGraphics;
 using NullProgrammer.Day2;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DayNarrativeExecutor : MonoBehaviour
 {
+    private static DayNarrativeExecutor monitorExecutor;
+
     [Header("Day Sequences Config")]
     [Tooltip("Assign day assets here in order: Index 0 = Day 1, Index 1 = Day 2, etc.")]
     [SerializeField] private List<DaySequenceData> daySequences = new List<DaySequenceData>();
@@ -18,17 +20,67 @@ public class DayNarrativeExecutor : MonoBehaviour
     private readonly CancellationTokenSource lifetime = new CancellationTokenSource();
     private CancellationToken cancellationToken;
     private CancellationTokenSource dayLifetime;
+    private bool wasOnCenterMonitor;
 
     private void Awake()
     {
         cancellationToken = lifetime.Token;
+        if (gameObject.scene.name != SceneSwitcher.CenterMonitorScene) return;
+
+        if (monitorExecutor != null)
+        {
+            enabled = false;
+            Destroy(gameObject);
+            return;
+        }
+
+        monitorExecutor = this;
+        wasOnCenterMonitor = true;
+        DontDestroyOnLoad(gameObject);
+        SceneManager.sceneLoaded += OnMonitorSceneLoaded;
     }
 
     private void OnDestroy()
     {
+        if (monitorExecutor == this)
+        {
+            SceneManager.sceneLoaded -= OnMonitorSceneLoaded;
+            monitorExecutor = null;
+        }
         if (dayLifetime != null) { dayLifetime.Cancel(); dayLifetime.Dispose(); }
         lifetime.Cancel();
         lifetime.Dispose();
+    }
+
+    private void OnMonitorSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (mode != LoadSceneMode.Single) return;
+
+        bool isCenterMonitor = scene.name == SceneSwitcher.CenterMonitorScene;
+        bool hasPendingDialogue = DialogueManager.Instance != null && DialogueManager.Instance.HasPendingDialogue;
+        // Keep the live await across a monitor switch during dialogue. Other
+        // departures still let DesktopUI restart its scene-local work on return.
+        if (!SceneSwitcher.IsMonitorScene(scene.name) ||
+            (wasOnCenterMonitor && !isCenterMonitor && !hasPendingDialogue))
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        wasOnCenterMonitor = isCenterMonitor;
+        sceneSwitch = FindAnyObjectByType<SceneSwitcher>();
+    }
+
+    private async Task WaitForCenterMonitorAsync(CancellationToken token)
+    {
+        if (monitorExecutor != this) return;
+        while (SceneManager.GetActiveScene().name != SceneSwitcher.CenterMonitorScene ||
+            (ZoomScreenShareController.Instance != null && !ZoomScreenShareController.Instance.IsReady))
+        {
+            token.ThrowIfCancellationRequested();
+            await Task.Yield();
+        }
+        token.ThrowIfCancellationRequested();
     }
 
     private void Start()
@@ -147,6 +199,7 @@ public class DayNarrativeExecutor : MonoBehaviour
                 break;
 
             case NarrativeStepType.WaitUntilZoomCall:
+                await WaitForCenterMonitorAsync(cancellationToken);
                 Task callStarted = NarrativeWaitHelpers.WaitForZoomCall(cancellationToken);
                 if (ZoomScreenShareController.Instance != null)
                 {
@@ -156,6 +209,7 @@ public class DayNarrativeExecutor : MonoBehaviour
                 break;
 
             case NarrativeStepType.StartScreenShare:
+                await WaitForCenterMonitorAsync(cancellationToken);
                 if (ZoomScreenShareController.Instance != null)
                 {
                     ZoomScreenShareController.Instance.StartScreenShare();
@@ -175,6 +229,7 @@ public class DayNarrativeExecutor : MonoBehaviour
                 break;
 
             case NarrativeStepType.EndScreenShare:
+                await WaitForCenterMonitorAsync(cancellationToken);
                 if (ZoomScreenShareController.Instance != null)
                 {
                     ZoomScreenShareController.Instance.EndScreenShare();
@@ -182,6 +237,7 @@ public class DayNarrativeExecutor : MonoBehaviour
                 break;
 
             case NarrativeStepType.EndZoomCall:
+                await WaitForCenterMonitorAsync(cancellationToken);
                 if (ZoomScreenShareController.Instance != null)
                 {
                     ZoomScreenShareController.Instance.EndZoomCall();
@@ -193,6 +249,7 @@ public class DayNarrativeExecutor : MonoBehaviour
                 break;
 
             case NarrativeStepType.TriggerGameEnd:
+                await WaitForCenterMonitorAsync(cancellationToken);
                 Debug.Log("[DayNarrativeExecutor] Triggering Final Evaluation...");
                 GameEndEvaluator evaluator = FindAnyObjectByType<GameEndEvaluator>();
                 if (evaluator != null)
@@ -201,6 +258,7 @@ public class DayNarrativeExecutor : MonoBehaviour
                 }
                 break;
             case NarrativeStepType.SetSteveExpression:
+                await WaitForCenterMonitorAsync(cancellationToken);
                 if (ZoomScreenShareController.Instance != null)
                 {
                     ZoomScreenShareController.Instance.SetSteveExpression(stepData.NewSteveExpression);
@@ -223,7 +281,7 @@ public class DayNarrativeExecutor : MonoBehaviour
                 if (stepData.steveChallenge != null)
                 {
                     NullProgrammer.Audio.GameAudio.BeginActivity(this);
-                    try { await RunSteveChallengeAsync(stepData.steveChallenge); }
+                    try { await RunSteveChallengeAsync(stepData.steveChallenge, cancellationToken); }
                     finally { NullProgrammer.Audio.GameAudio.EndActivity(this); }
                 }
                 else
@@ -388,7 +446,7 @@ public class DayNarrativeExecutor : MonoBehaviour
         }
     }
 
-    public async Task RunSteveChallengeAsync(SteveChallengeData challenge)
+    public async Task RunSteveChallengeAsync(SteveChallengeData challenge, CancellationToken cancellationToken = default)
     {
         // 1. Display Steve's initial dialogue prompt
         if (DialogueManager.Instance != null && !string.IsNullOrEmpty(challenge.steveDialoguePrompt))
@@ -421,7 +479,13 @@ public class DayNarrativeExecutor : MonoBehaviour
         }
 
         // 2. Prompt player for code via the IDE interface
+        await WaitForCenterMonitorAsync(cancellationToken);
         string playerCode = await SteveScreenShareManager.Instance.PromptPlayerForCodeAsync(challenge);
+        // CLOSE THE IDE WINDOW NOW THAT INPUT IS SUBMITTED
+        if (SteveIdeWindowController.Instance != null)
+        {
+            SteveIdeWindowController.Instance.CloseIde();
+        }
         bool success = ValidatePlayerCode(playerCode, challenge);
         NullProgrammer.Audio.GameAudio.Play(success ? NullProgrammer.Audio.SfxCue.Pass : NullProgrammer.Audio.SfxCue.Fail);
 
@@ -450,6 +514,7 @@ public class DayNarrativeExecutor : MonoBehaviour
                 await DialogueManager.Instance.DisplayLineAndWaitAsync(successLine);
             }
 
+            await WaitForCenterMonitorAsync(cancellationToken);
             if (ZoomScreenShareController.Instance != null)
             {
                 ZoomScreenShareController.Instance.EndScreenShare();
@@ -495,6 +560,7 @@ public class DayNarrativeExecutor : MonoBehaviour
                 await DialogueManager.Instance.DisplayLineAndWaitAsync(playerRecoveryLine);
             }
 
+            await WaitForCenterMonitorAsync(cancellationToken);
             if (ZoomScreenShareController.Instance != null)
             {
                 ZoomScreenShareController.Instance.SetSteveExpression(SteveExpression.DefaultSteve);

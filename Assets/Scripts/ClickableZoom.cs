@@ -6,6 +6,7 @@ public class ClickableZoom : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (DialogueManager.BlocksMonitorClick()) return;
         cameraZoom.ZoomIn();
     }
 }

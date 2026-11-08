@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class SteveIdeWindowController : MonoBehaviour
 {
+    public static SteveIdeWindowController Instance { get; private set; }
+
     [Header("UI References")]
     [SerializeField] private GameObject idePanel;
     [SerializeField] private TMP_Text fileTab;
@@ -10,6 +12,18 @@ public class SteveIdeWindowController : MonoBehaviour
 
     [Header("Display Settings")]
     [SerializeField] private string defaultFileName = "main.cpp";
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -30,7 +44,7 @@ public class SteveIdeWindowController : MonoBehaviour
         {
             idePanel.SetActive(true);
 
-            // 1. Force the Canvas sorting order to 10
+            // 1. Force the Canvas sorting order to 9
             Canvas canvas = idePanel.GetComponent<Canvas>();
             if (canvas != null)
             {
@@ -38,7 +52,7 @@ public class SteveIdeWindowController : MonoBehaviour
                 canvas.sortingOrder = 9;
             }
 
-            // 2. Force the Sorting Group order to 10 if it exists
+            // 2. Force the Sorting Group order to 9 if it exists
             UnityEngine.Rendering.SortingGroup sortingGroup = idePanel.GetComponent<UnityEngine.Rendering.SortingGroup>();
             if (sortingGroup != null)
             {
@@ -53,7 +67,6 @@ public class SteveIdeWindowController : MonoBehaviour
 
         if (codeTyping != null && challenge != null)
         {
-            // Pass the challenge's custom starting template into the editor!
             codeTyping.StartEditing(challenge.startingCode);
         }
         else if (codeTyping != null)

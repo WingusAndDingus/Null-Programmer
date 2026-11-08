@@ -1,0 +1,639 @@
+fileFormatVersion: 2
+guid: 96318d51eb9a29a4888d098d993516ba
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3724120215758557476
+    second: Steve Portrait_0
+  - first:
+      213: -3868559823581005657
+    second: Steve Portrait_1
+  - first:
+      213: 7990557656888725961
+    second: Steve Portrait_2
+  - first:
+      213: -3433503553493263701
+    second: Steve Portrait_3
+  - first:
+      213: -685044566353014406
+    second: Steve Portrait_4
+  - first:
+      213: 1460175255948964848
+    second: Steve Portrait_5
+  - first:
+      213: -5568467780084091415
+    second: Steve Portrait_6
+  - first:
+      213: 5010363164376076091
+    second: Steve Portrait_7
+  - first:
+      213: -5859320337045173383
+    second: Steve Portrait_8
+  - first:
+      213: 8927261265998928
+    second: Steve Portrait_9
+  - first:
+      213: -8926972380144260415
+    second: Steve Portrait_10
+  - first:
+      213: -8141908058705935761
+    second: Steve Portrait_11
+  - first:
+      213: -1205622532598541727
+    second: Steve Portrait_12
+  - first:
+      213: 1630701411033853815
+    second: Steve Portrait_13
+  - first:
+      213: -4166879976619955528
+    second: Steve Portrait_14
+  - first:
+      213: 6825179032205275485
+    second: Steve Portrait_15
+  - first:
+      213: 1350293399179504010
+    second: Steve Portrait_16
+  - first:
+      213: 6085536871463536462
+    second: Steve Portrait_17
+  - first:
+      213: 7317145894051415936
+    second: Steve Portrait_18
+  - first:
+      213: 5685091245338228997
+    second: Steve Portrait_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Steve Portrait_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1254
+        height: 1232
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 421d321ea9bbea330800000000000000
+      internalID: 3724120215758557476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Steve Portrait_1
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 1211
+        width: 25
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a83b13465d105ac0800000000000000
+      internalID: -3868559823581005657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Steve Portrait_2
+      rect:
+        serializedVersion: 2
+        x: 884
+        y: 1227
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c151286ad924ee60800000000000000
+      internalID: 7990557656888725961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Steve Portrait_3
+      rect:
+        serializedVersion: 2
+        x: 871
+        y: 1073
+        width: 127
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: baa1ef6a5beb950d0800000000000000
+      internalID: -3433503553493263701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Steve Portrait_4
+      rect:
+        serializedVersion: 2
+        x: 1147
+        y: 1044
+        width: 82
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a71973fa89b3e76f0800000000000000
+      internalID: -685044566353014406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Steve Portrait_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 873
+        width: 5
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f337a0b8a5934410800000000000000
+      internalID: 1460175255948964848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Steve Portrait_6
+      rect:
+        serializedVersion: 2
+        x: 1165
+        y: 863
+        width: 70
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e531e89e04d8b2b0800000000000000
+      internalID: -5568467780084091415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Steve Portrait_7
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 715
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3f865080c2688540800000000000000
+      internalID: 5010363164376076091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Steve Portrait_8
+      rect:
+        serializedVersion: 2
+        x: 1141
+        y: 642
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97b433d82338faea0800000000000000
+      internalID: -5859320337045173383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Steve Portrait_9
+      rect:
+        serializedVersion: 2
+        x: 1157
+        y: 393
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 054b39cfb47bf1000800000000000000
+      internalID: 8927261265998928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Steve Portrait_10
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 339
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ca27c9dae50d1480800000000000000
+      internalID: -8926972380144260415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Steve Portrait_11
+      rect:
+        serializedVersion: 2
+        x: 1157
+        y: 339
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6241fe12c1220f80800000000000000
+      internalID: -8141908058705935761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Steve Portrait_12
+      rect:
+        serializedVersion: 2
+        x: 1107
+        y: 254
+        width: 66
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 162d14bb1b4c44fe0800000000000000
+      internalID: -1205622532598541727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Steve Portrait_13
+      rect:
+        serializedVersion: 2
+        x: 1144
+        y: 323
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77fa6632b4a61a610800000000000000
+      internalID: 1630701411033853815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Steve Portrait_14
+      rect:
+        serializedVersion: 2
+        x: 1163
+        y: 264
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ba21e30db44c26c0800000000000000
+      internalID: -4166879976619955528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Steve Portrait_15
+      rect:
+        serializedVersion: 2
+        x: 1123
+        y: 208
+        width: 24
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d513a0f1b28e7be50800000000000000
+      internalID: 6825179032205275485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Steve Portrait_16
+      rect:
+        serializedVersion: 2
+        x: 1149
+        y: 213
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8926a041b43db210800000000000000
+      internalID: 1350293399179504010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Steve Portrait_17
+      rect:
+        serializedVersion: 2
+        x: 1178
+        y: 220
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e474023ca8b247450800000000000000
+      internalID: 6085536871463536462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Steve Portrait_18
+      rect:
+        serializedVersion: 2
+        x: 1197
+        y: 198
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08784a83c69bb8560800000000000000
+      internalID: 7317145894051415936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Steve Portrait_19
+      rect:
+        serializedVersion: 2
+        x: 1167
+        y: 151
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5097112ed5085ee40800000000000000
+      internalID: 5685091245338228997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Steve Portrait_0: 3724120215758557476
+      Steve Portrait_1: -3868559823581005657
+      Steve Portrait_10: -8926972380144260415
+      Steve Portrait_11: -8141908058705935761
+      Steve Portrait_12: -1205622532598541727
+      Steve Portrait_13: 1630701411033853815
+      Steve Portrait_14: -4166879976619955528
+      Steve Portrait_15: 6825179032205275485
+      Steve Portrait_16: 1350293399179504010
+      Steve Portrait_17: 6085536871463536462
+      Steve Portrait_18: 7317145894051415936
+      Steve Portrait_19: 5685091245338228997
+      Steve Portrait_2: 7990557656888725961
+      Steve Portrait_3: -3433503553493263701
+      Steve Portrait_4: -685044566353014406
+      Steve Portrait_5: 1460175255948964848
+      Steve Portrait_6: -5568467780084091415
+      Steve Portrait_7: 5010363164376076091
+      Steve Portrait_8: -5859320337045173383
+      Steve Portrait_9: 8927261265998928
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

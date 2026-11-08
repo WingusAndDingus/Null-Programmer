@@ -90,7 +90,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 200
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
@@ -154,8 +154,97 @@ MonoBehaviour:
   screensharePopup: {fileID: 8552603436118496086}
   screenShareDisplay: {fileID: 0}
   screenShareVideoPlayer: {fileID: 0}
+  skipButtonObject: {fileID: 0}
   day5CodeSnippetDisplay: {fileID: 0}
-  dialogueCues: []
+  dialogueCues:
+  - triggerTimestampSeconds: 3
+    pauseVideo: 0
+    dialogue:
+      speakerName: Steve
+      personality: 0
+      text: "Alright, first things first\u2014head over to sfml-dev.org and download the SFML 3 package that matches your C++ toolchain."
+      voiceClip: {fileID: 0}
+      displayDuration: 14
+  - triggerTimestampSeconds: 19
+    pauseVideo: 0
+    dialogue:
+      speakerName: Steve
+      personality: 0
+      text: Then, you can just export it/unzip the libary folder
+      voiceClip: {fileID: 0}
+      displayDuration: 10
+  - triggerTimestampSeconds: 30
+    pauseVideo: 1
+    dialogue:
+      speakerName: The Architect
+      personality: 2
+      text: Notice how he extracts the library directly into an external/ directory inside the project root. Keeping third-party libraries localized avoids dirtying global system paths
+      voiceClip: {fileID: 0}
+      displayDuration: 10
+  - triggerTimestampSeconds: 31
+    pauseVideo: 1
+    dialogue:
+      speakerName: The Architect
+      personality: 2
+      text: Who cares...
+      voiceClip: {fileID: 0}
+      displayDuration: 1.8
+  - triggerTimestampSeconds: 33
+    pauseVideo: 0
+    dialogue:
+      speakerName: Steve
+      personality: 0
+      text: ' Alright, so when you make your new CLion Project, make sure to use C++17 or 20'
+      voiceClip: {fileID: 0}
+      displayDuration: 7
+  - triggerTimestampSeconds: 40
+    pauseVideo: 1
+    dialogue:
+      speakerName: Steve
+      personality: 0
+      text: And always make sure your project and all its dependencies finish loading before doing anything.
+      voiceClip: {fileID: 0}
+      displayDuration: 8
+  - triggerTimestampSeconds: 51
+    pauseVideo: 0
+    dialogue:
+      speakerName: Steve
+      personality: 0
+      text: ' Open CMakeLists.txt. We''ll set SFML_DIR to point to our external/SFML folder, then use find_package() to pull in Graphics, Audio, Window, and System'
+      voiceClip: {fileID: 0}
+      displayDuration: 10
+  - triggerTimestampSeconds: 130
+    pauseVideo: 1
+    dialogue:
+      speakerName: The Architect
+      personality: 2
+      text: 'Pay attention to target_link_libraries. Linking SFML targets directly to your executable scope ensures proper symbol resolution and prevents runtime memory leaks from dangling dependencies '
+      voiceClip: {fileID: 0}
+      displayDuration: 10
+  - triggerTimestampSeconds: 136
+    pauseVideo: 1
+    dialogue:
+      speakerName: Steve
+      personality: 0
+      text: And that should be it! Please correct me if I did anything wrong sir. I'm here to learn from you
+      voiceClip: {fileID: 0}
+      displayDuration: 5
+  - triggerTimestampSeconds: 137
+    pauseVideo: 1
+    dialogue:
+      speakerName: The Pragmatist
+      personality: 3
+      text: Whatever, I'm sure we could've just asked chatpgt
+      voiceClip: {fileID: 0}
+      displayDuration: 5
+  - triggerTimestampSeconds: 137.5
+    pauseVideo: 1
+    dialogue:
+      speakerName: The Detective
+      personality: 6
+      text: Maybe we could ask this Mr.GPT who we are? He seems like a well-informed fellow
+      voiceClip: {fileID: 0}
+      displayDuration: 5
   zoomAvatarImage: {fileID: 4013755457888443139}
   expressionMappings:
   - expression: 0
