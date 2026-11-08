@@ -422,6 +422,11 @@ public class DayNarrativeExecutor : MonoBehaviour
 
         // 2. Prompt player for code via the IDE interface
         string playerCode = await SteveScreenShareManager.Instance.PromptPlayerForCodeAsync(challenge);
+        // CLOSE THE IDE WINDOW NOW THAT INPUT IS SUBMITTED
+        if (SteveIdeWindowController.Instance != null)
+        {
+            SteveIdeWindowController.Instance.CloseIde();
+        }
         bool success = ValidatePlayerCode(playerCode, challenge);
         NullProgrammer.Audio.GameAudio.Play(success ? NullProgrammer.Audio.SfxCue.Pass : NullProgrammer.Audio.SfxCue.Fail);
 

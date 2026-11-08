@@ -85,6 +85,9 @@ public class DirectCodeTyping : MonoBehaviour
     {
         if (!isEditingActive) return;
 
+        // Ignore text input entirely if Ctrl is pressed (prevents submit newline injection)
+        if (Keyboard.current != null && Keyboard.current.ctrlKey.isPressed) return;
+
         if (c == '\b' || c == 127) return;
         if (c == '\r') c = '\n';
 
