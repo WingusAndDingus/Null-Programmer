@@ -44,6 +44,9 @@ public class ZoomScreenShareController : MonoBehaviour
     [Header("Video Settings")]
     [SerializeField] private VideoPlayer screenShareVideoPlayer;
 
+    [Header("Skip Settings")]
+    [SerializeField] private GameObject skipButtonObject; // Assign your UI Button GameObject here in the Inspector
+
     [Header("Day 5 Screen Share")]
     [SerializeField] private Day5CodeSnippetDisplay day5CodeSnippetDisplay;
 
@@ -295,6 +298,12 @@ public class ZoomScreenShareController : MonoBehaviour
             screenShareDisplay.SetActive(true);
         }
 
+        // Enable the skip button when screen share starts
+        if (skipButtonObject != null)
+        {
+            skipButtonObject.SetActive(true);
+        }
+
         isScreenSharingActive = true;
         shareStarting = false;
         currentCueIndex = 0;
@@ -338,6 +347,11 @@ public class ZoomScreenShareController : MonoBehaviour
         isScreenSharingActive = false;
         shareStarting = false;
         isPausedForDialogue = false;
+
+        if (skipButtonObject != null)
+        {
+            skipButtonObject.SetActive(false);
+        }
 
         if (screenShareVideoPlayer != null && screenShareVideoPlayer.enabled)
         {
@@ -418,5 +432,24 @@ public class ZoomScreenShareController : MonoBehaviour
         {
             Debug.LogWarning($"[ZoomScreenShareController] No sprite found for expression: {expression}");
         }
+    }
+
+    /// <summary>
+    /// Instantly stops active video dialogue cues, halts the video, and ends the screen share tutorial.
+    /// Wire this method up to your Skip Button's OnClick() event in the Unity Inspector.
+    /// </summary>
+    public void SkipTutorial()
+    {
+        // Stop any active dialogue coroutine running on DialogueManager so it doesn't linger
+        if (DialogueManager.Instance != null)
+        {
+            DialogueManager.Instance.HideDialogueUI();
+        }
+
+        // Stop any active pause-and-dialogue routines running on this controller
+        StopAllCoroutines();
+
+        // End the screen share session immediately
+        EndScreenShare();
     }
 }

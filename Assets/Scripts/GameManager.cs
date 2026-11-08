@@ -408,22 +408,22 @@ public class GameManager : MonoBehaviour
     public void MarkEmailRead()
     {
         EmailRead = true;
-        Debug.Log("[GameManager] MarkEmailRead called. EmailRead set to true.");
+        //Debug.Log("[GameManager] MarkEmailRead called. EmailRead set to true.");
     }
 
     public void MarkDay5EmailRead()
     {
         Day5EmailRead = true;
-        Debug.Log("[GameManager] MarkDay5EmailRead called. Day5EmailRead set to true.");
+        //Debug.Log("[GameManager] MarkDay5EmailRead called. Day5EmailRead set to true.");
     }
 
     public void MarkReadEmailClosed()
     {
-        Debug.Log($"[GameManager] MarkReadEmailClosed called. EmailRead: {EmailRead}, ReplyCompleted: {ReplyCompleted}");
+        //Debug.Log($"[GameManager] MarkReadEmailClosed called. EmailRead: {EmailRead}, ReplyCompleted: {ReplyCompleted}");
         if (EmailRead && !ReplyCompleted)
         {
             ReplyAvailable = true;
-            Debug.Log("[GameManager] ReplyAvailable set to true.");
+            //Debug.Log("[GameManager] ReplyAvailable set to true.");
         }
     }
 
