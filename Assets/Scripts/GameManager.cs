@@ -67,8 +67,9 @@ public class GameManager : MonoBehaviour
 
     public bool CanStudyThisWeekend()
     {
-        bool result = GrandArchitectStat > 3;
-        Debug.Log($"[GameManager] CanStudyThisWeekend evaluated. GrandArchitectStat: {GrandArchitectStat}, Result: {result}");
+        int architectLevel = PersonalitySkills.GetSavedLevel(Personality.Architect);
+        bool result = architectLevel > 3;
+        Debug.Log($"[GameManager] CanStudyThisWeekend evaluated. ArchitectLevel: {architectLevel}, Result: {result}");
         return result;
     }
 

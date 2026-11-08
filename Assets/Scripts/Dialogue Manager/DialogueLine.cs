@@ -19,7 +19,12 @@ public class DialogueLine
     [TextArea(3, 5)] public string text;
     public AudioClip voiceClip; // Optional audio clip for Steve/NPCs
     public float displayDuration = 3.0f; // Default time or click-to-advance
+
+    [InspectorName("Change Background To")]
+    [Tooltip("Optional. If assigned, the scene background changes to this sprite when this dialogue line begins. Leave blank to keep the current background.")]
+    public Sprite backgroundImage;
 }
+
 [System.Serializable]
 public struct DialogueChoiceOption
 {

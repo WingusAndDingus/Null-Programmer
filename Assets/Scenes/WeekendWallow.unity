@@ -150,112 +150,135 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeekendStudyDialogue
   startDelay: 3
+  backgroundImage: {fileID: 0}
+  backgroundSpriteRenderer: {fileID: 1559662392}
   lines:
   - speakerName: Narrator
     personality: 0
     text: It's Saturday afternoon. The Protagonist lies sprawled across his unmade bed, staring blankly at the wall. His computer sits idle across the room.
     voiceClip: {fileID: 0}
     displayDuration: 11
+    backgroundImage: {fileID: 0}
   - speakerName: Me
     personality: 1
     text: I should really get up. I've wasted half the day already. Maybe I could work on Battleship for a while...
     voiceClip: {fileID: 0}
     displayDuration: 8
+    backgroundImage: {fileID: 0}
   - speakerName: The Detective
     personality: 6
     text: Ah, yes. Battleship. A technological marvel. A week of development and we can almost draw a functioning grid.
     voiceClip: {fileID: 0}
     displayDuration: 8
+    backgroundImage: {fileID: 0}
   - speakerName: Me
     personality: 1
     text: It's more complicated than it looks. The mouse coordinates are still wrong, and I can't get the tiles spreading effect working properly.
     voiceClip: {fileID: 0}
     displayDuration: 9
+    backgroundImage: {fileID: 0}
   - speakerName: The Grand Architect
     personality: 2
     text: Behold! Our magnificent naval empire! A fleet of broken squares commanded by an incompetent admiral!
     voiceClip: {fileID: 0}
     displayDuration: 8
+    backgroundImage: {fileID: 0}
   - speakerName: The Pragmatist
     personality: 3
     text: Maybe we could start by actually getting out of bed. Revolutionary concept, I know.
     voiceClip: {fileID: 0}
     displayDuration: 7
+    backgroundImage: {fileID: -6660272098392434489, guid: ffc2bec1463cd014cb43e658ebe6185a, type: 3}
   - speakerName: Me
     personality: 1
     text: What's the point? I used to understand this stuff. Now I'm struggling with things that should be second nature.
     voiceClip: {fileID: 0}
     displayDuration: 7
+    backgroundImage: {fileID: 0}
   - speakerName: The Detective
     personality: 6
     text: Fascinating. A man with amnesia discovers he's forgotten things. Truly, a mystery for the ages.
     voiceClip: {fileID: 0}
     displayDuration: 7
+    backgroundImage: {fileID: 0}
   - speakerName: Me
     personality: 1
     text: And I still haven't responded to Steve. He probably thinks I'm avoiding him.
     voiceClip: {fileID: 0}
     displayDuration: 6
+    backgroundImage: {fileID: -1022521149719562137, guid: 459789c9eab60f84ca45967f90d096fb, type: 3}
   - speakerName: The Grand Architect
     personality: 2
     text: Excellent instincts. Nothing protects a budding friendship quite like ignoring someone until they stop contacting you.
     voiceClip: {fileID: 0}
     displayDuration: 8
+    backgroundImage: {fileID: 0}
   - speakerName: Me
     personality: 1
     text: And my other friends... God, how long has it been? Months? They probably think I'm a complete loser.
     voiceClip: {fileID: 0}
     displayDuration: 7
+    backgroundImage: {fileID: 0}
   - speakerName: The Detective
     personality: 6
     text: Well, lying in bed all day feeling sorry for yourself certainly makes a compelling counterargument.
     voiceClip: {fileID: 0}
     displayDuration: 7
+    backgroundImage: {fileID: 0}
   - speakerName: Me
     personality: 1
     text: Maybe I should message someone. See if anybody wants to get together.
     voiceClip: {fileID: 0}
     displayDuration: 6
+    backgroundImage: {fileID: 0}
   - speakerName: The Pragmatist
     personality: 3
     text: Splendid! An actual plan! Shall we execute it sometime this century?
     voiceClip: {fileID: 0}
     displayDuration: 6
+    backgroundImage: {fileID: 0}
   - speakerName: Me
     personality: 1
     text: Not today. I just... can't face anyone right now.
     voiceClip: {fileID: 0}
     displayDuration: 5
+    backgroundImage: {fileID: 0}
   - speakerName: The Grand Architect
     personality: 2
     text: Another glorious victory for the forces of mediocrity!
     voiceClip: {fileID: 0}
     displayDuration: 5
+    backgroundImage: {fileID: 0}
   - speakerName: Me
     personality: 1
     text: Just shut up. All of you. Please.
     voiceClip: {fileID: 0}
     displayDuration: 5
+    backgroundImage: {fileID: 0}
   - speakerName: Narrator
     personality: 0
     text: He buries his face in the pillow. Across the room, his unfinished Battleship project waits on the computer.
     voiceClip: {fileID: 0}
     displayDuration: 7
+    backgroundImage: {fileID: 6033574607867776196, guid: a72a0d24a7259d747aaf669489e085ca, type: 3}
   - speakerName: The Detective
     personality: 6
     text: Case closed. No progress on the game. No progress with the friends. Another day successfully accounted for.
     voiceClip: {fileID: 0}
     displayDuration: 8
+    backgroundImage: {fileID: 0}
   - speakerName: Me
     personality: 1
     text: ...Maybe tomorrow.
     voiceClip: {fileID: 0}
     displayDuration: 5
+    backgroundImage: {fileID: 0}
   - speakerName: Narrator
     personality: 0
     text: He closes his eyes. The afternoon slips away.
     voiceClip: {fileID: 0}
     displayDuration: 9
+    backgroundImage: {fileID: 0}
 --- !u!114 &87731950
 MonoBehaviour:
   m_ObjectHideFlags: 0

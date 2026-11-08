@@ -107,6 +107,12 @@ public class DialogueManager : MonoBehaviour
     //wrapper to allow old code expecting the old function
     public IEnumerator PlayDialogueLine(DialogueLine line)
     {
+        // SceneDialoguePlayer uses this wrapper. Set the current line here
+        // so the existing click / Space / Enter input path can advance it.
+        currentPlayingLine = line;
+
+        bool isDone = false;
+        yield return StartCoroutine(PlayDialogueLineRoutine(line, () => isDone = true));
         Task playback = DisplayLineAndWaitAsync(line);
         while (!playback.IsCompleted) yield return null;
     }
@@ -157,6 +163,10 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator PlayDialogueLineRoutine(DialogueLine line, Action onComplete)
     {
+        // Initialize shared click-to-advance state for every dialogue entry point.
+        currentPlayingLine = line;
+        waitingForClickToContinue = false;
+
         if (dialoguePanel != null) dialoguePanel.SetActive(true);
         if (speakerText != null) speakerText.text = line.speakerName;
 
