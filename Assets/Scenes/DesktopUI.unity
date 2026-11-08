@@ -10056,6 +10056,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9131883009000410226, guid: c5be93629f4db2649a7b7c0055dbcf3e, type: 3}
+      propertyPath: testDay
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9131883009000410226, guid: c5be93629f4db2649a7b7c0055dbcf3e, type: 3}
+      propertyPath: forceDayOnPlay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9131883009000410226, guid: c5be93629f4db2649a7b7c0055dbcf3e, type: 3}
       propertyPath: forceDay5OnPlay
       value: 0
       objectReference: {fileID: 0}
