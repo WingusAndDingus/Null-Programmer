@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -56,12 +57,16 @@ public class ZoomScreenShareController : MonoBehaviour
 
     private int currentCueIndex = 0;
     private bool isPausedForDialogue = false;
+    private Task pausedDialogue;
     private bool isScreenSharingActive = false;
     private bool useVideoForCurrentShare = true;
     private bool shareStarting;
     private bool restoring;
+    private bool initialized;
     private SteveExpression currentExpression;
     private bool hasExpression;
+
+    public bool IsReady => initialized && !restoring;
 
     [Header("Steve Expressions")]
     [SerializeField] private SpriteRenderer zoomAvatarImage; // The UI Image component displaying Steve's window
@@ -86,6 +91,7 @@ public class ZoomScreenShareController : MonoBehaviour
         GameManager gm = GameManager.Instance;
         if (gm != null && gm.ZoomState != null && gm.ZoomState.day == gm.CurrentDay)
             StartCoroutine(RestoreZoomSession(gm.ZoomState));
+        initialized = true;
     }
 
     private void LateUpdate()
@@ -120,6 +126,7 @@ public class ZoomScreenShareController : MonoBehaviour
                 ? screenShareVideoPlayer.time : 0,
             videoWasPlaying = screenShareVideoPlayer != null && screenShareVideoPlayer.isPlaying,
             videoPausedForDialogue = isPausedForDialogue,
+            pausedVideoDialogue = pausedDialogue,
             nextVideoCueIndex = currentCueIndex,
             expression = currentExpression,
             hasExpression = hasExpression
@@ -162,9 +169,12 @@ public class ZoomScreenShareController : MonoBehaviour
                     screenShareVideoPlayer.Play();
                     if (!state.videoWasPlaying || state.videoPausedForDialogue)
                         screenShareVideoPlayer.Pause();
-                    // Don't re-run already fired cues. A cue dialogue coroutine cannot
-                    // safely be resurrected without coordinating with DialogueManager.
                     isPausedForDialogue = state.videoPausedForDialogue;
+                    if (isPausedForDialogue)
+                    {
+                        pausedDialogue = state.pausedVideoDialogue;
+                        StartCoroutine(ResumeVideoAfterDialogue(pausedDialogue));
+                    }
                 }
             }
             else
@@ -190,7 +200,7 @@ public class ZoomScreenShareController : MonoBehaviour
 
             if (currentCue.pauseVideo)
             {
-                StartCoroutine(ExecutePauseAndDialogue(currentCue));
+                PauseForDialogue(currentCue);
             }
             else
             {
@@ -347,6 +357,7 @@ public class ZoomScreenShareController : MonoBehaviour
         isScreenSharingActive = false;
         shareStarting = false;
         isPausedForDialogue = false;
+        pausedDialogue = null;
 
         if (skipButtonObject != null)
         {
@@ -388,23 +399,32 @@ public class ZoomScreenShareController : MonoBehaviour
     // 3. DIALOGUE CUE EXECUTION
     // ------------------------------------------------------------------------
 
-    private IEnumerator ExecutePauseAndDialogue(VideoDialogueCue cue)
+    private void PauseForDialogue(VideoDialogueCue cue)
     {
         isPausedForDialogue = true;
+        pausedDialogue = DialogueManager.Instance.DisplayLineAndWaitAsync(cue.dialogue);
 
         if (screenShareVideoPlayer != null && screenShareVideoPlayer.enabled)
         {
             screenShareVideoPlayer.Pause();
         }
 
-        yield return StartCoroutine(DialogueManager.Instance.PlayDialogueLine(cue.dialogue));
+        SaveZoomSession();
+        StartCoroutine(ResumeVideoAfterDialogue(pausedDialogue));
+    }
 
+    private IEnumerator ResumeVideoAfterDialogue(Task line)
+    {
+        while (line != null && !line.IsCompleted && isPausedForDialogue && pausedDialogue == line)
+            yield return null;
+        if (!isPausedForDialogue || pausedDialogue != line) yield break;
         if (screenShareVideoPlayer != null && useVideoForCurrentShare)
         {
             screenShareVideoPlayer.Play();
         }
 
         isPausedForDialogue = false;
+        pausedDialogue = null;
     }
     /// <summary>
     /// Changes Steve's active Zoom window image based on the selected expression enum.

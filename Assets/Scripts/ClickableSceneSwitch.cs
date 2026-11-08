@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ClickableSceneSwitch : MonoBehaviour
 {
@@ -8,6 +7,7 @@ public class ClickableSceneSwitch : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (DialogueManager.BlocksMonitorClick()) return;
         sceneSwitcher.LoadScene(sceneName);
     }
 }

@@ -154,6 +154,7 @@ public class GameManager : MonoBehaviour
         public double videoTime;
         public bool videoWasPlaying;
         public bool videoPausedForDialogue;
+        [NonSerialized] public System.Threading.Tasks.Task pausedVideoDialogue;
         public int nextVideoCueIndex;
         public bool shareStarting;
         public SteveExpression expression;
