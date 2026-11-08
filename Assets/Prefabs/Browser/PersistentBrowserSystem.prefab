@@ -367,7 +367,7 @@ MonoBehaviour:
   - day: 1
     url: https://www.sfml-dev.org/
   - day: 5
-    url: https://www.sfml-dev.org/
+    url: https://www.sfml-dev.org/tutorials/3.1/window/events/
   stepUrls: []
 --- !u!1 &3492718845349960260
 GameObject:

@@ -671,7 +671,12 @@ MonoBehaviour:
   speakerText: {fileID: 227105548730186008}
   dialogueText: {fileID: 5706249870221420968}
   speakerPortrait: {fileID: 0}
-  stevePortrait: {fileID: -197049010887534538, guid: e05563952a9d1854284d253fe1ed0fae, type: 3}
+  mePortrait: {fileID: -3212230917928953005, guid: bf05b27b8d4ac3b4083a3675c8766a9e, type: 3}
+  stevePortrait: {fileID: -1515525936110102377, guid: 7f618f503bcd41642af2b30d4efa8673, type: 3}
+  mayaPortrait: {fileID: -52697938039961796, guid: f5b63497d2ada324aa6d0b71f2910711, type: 3}
+  marcusPortrait: {fileID: 7531357685092984243, guid: d43a047ccac5604488ee0299c23d88ac, type: 3}
+  alexPortrait: {fileID: 5134539684181775235, guid: f35e280f15365ec46a49fcb82f61d7e8, type: 3}
+  rachelPortrait: {fileID: -3887695232143692394, guid: 1383733328b78af4fa743cabdb513eac, type: 3}
   architectPortrait: {fileID: -8526278668709167713, guid: f447ed638efbada44837a5660926fa47, type: 3}
   pragmatistPortrait: {fileID: 709442137823021493, guid: dcaf650a7d6c2214a9235234210e0e64, type: 3}
   detectivePortrait: {fileID: 3422411800943576140, guid: 42343f3ae951fb847850091eb5347188, type: 3}

@@ -12,7 +12,13 @@ public class DialoguePanelPresentation : MonoBehaviour
     [SerializeField] private Image speakerPortrait;
 
     [Header("Speaker Pictures")]
+    [SerializeField] private Sprite mePortrait;
     [SerializeField] private Sprite stevePortrait;
+    [SerializeField] private Sprite mayaPortrait;
+    [SerializeField] private Sprite marcusPortrait;
+    [SerializeField] private Sprite alexPortrait;
+    [SerializeField] private Sprite rachelPortrait;
+
     [SerializeField] private Sprite architectPortrait;
     [SerializeField] private Sprite pragmatistPortrait;
     [SerializeField] private Sprite detectivePortrait;
@@ -83,8 +89,29 @@ public class DialoguePanelPresentation : MonoBehaviour
             case HeadPersonality.Genius:
             case HeadPersonality.Detective: return detectivePortrait;
             case HeadPersonality.None:
-                return string.Equals(line.speakerName?.Trim(), "Steve", StringComparison.OrdinalIgnoreCase)
-                    ? stevePortrait : null;
+            {
+                string speaker = line.speakerName?.Trim();
+
+                if (string.Equals(speaker, "Me", StringComparison.OrdinalIgnoreCase))
+                    return mePortrait;
+
+                if (string.Equals(speaker, "Steve", StringComparison.OrdinalIgnoreCase))
+                    return stevePortrait;
+
+                if (string.Equals(speaker, "Maya", StringComparison.OrdinalIgnoreCase))
+                    return mayaPortrait;
+
+                if (string.Equals(speaker, "Marcus", StringComparison.OrdinalIgnoreCase))
+                    return marcusPortrait;
+
+                if (string.Equals(speaker, "Alex", StringComparison.OrdinalIgnoreCase))
+                    return alexPortrait;
+
+                if (string.Equals(speaker, "Rachel", StringComparison.OrdinalIgnoreCase))
+                    return rachelPortrait;
+
+                return null;
+            }
             default: return null;
         }
     }
