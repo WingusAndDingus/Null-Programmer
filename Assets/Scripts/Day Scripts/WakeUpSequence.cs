@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Unity.Tutorials.Editor;
 using UnityEngine;
 using UnityEngine.InputSystem; // Required for the new Input System
 

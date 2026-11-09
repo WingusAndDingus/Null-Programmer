@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Video;
+using UnityEngine.UI;
 
 public enum SteveExpression
 {
@@ -44,9 +45,6 @@ public class ZoomScreenShareController : MonoBehaviour
 
     [Header("Video Settings")]
     [SerializeField] private VideoPlayer screenShareVideoPlayer;
-
-    [Header("Skip Settings")]
-    [SerializeField] private GameObject skipButtonObject; // Assign your UI Button GameObject here in the Inspector
 
     [Header("Day 5 Screen Share")]
     [SerializeField] private Day5CodeSnippetDisplay day5CodeSnippetDisplay;
@@ -307,11 +305,15 @@ public class ZoomScreenShareController : MonoBehaviour
         {
             screenShareDisplay.SetActive(true);
         }
-
-        // Enable the skip button when screen share starts
-        if (skipButtonObject != null)
+        // Robust search that finds the button even if it is currently inactive/disabled
+        GameObject skipBtnObj = FindSkipButtonObject();
+        if (skipBtnObj != null)
         {
-            skipButtonObject.SetActive(true);
+            skipBtnObj.SetActive(true);
+        }
+        else
+        {
+            Debug.LogWarning("[Zoom] Could not find 'SkipButton' in the scene hierarchy!");
         }
 
         isScreenSharingActive = true;
@@ -358,10 +360,11 @@ public class ZoomScreenShareController : MonoBehaviour
         shareStarting = false;
         isPausedForDialogue = false;
         pausedDialogue = null;
-
-        if (skipButtonObject != null)
+        // Find and hide the skip button when tutorial ends
+        GameObject skipBtnObj = FindSkipButtonObject();
+        if (skipBtnObj != null)
         {
-            skipButtonObject.SetActive(false);
+            skipBtnObj.SetActive(false);
         }
 
         if (screenShareVideoPlayer != null && screenShareVideoPlayer.enabled)
@@ -393,6 +396,18 @@ public class ZoomScreenShareController : MonoBehaviour
         {
             GameplayEvents.TriggerScreenShareEnded();
         }
+    }
+    private GameObject FindSkipButtonObject()
+    {
+        // Resources.FindObjectsOfTypeAll finds loaded objects in memory, including inactive ones and DDOL objects
+        foreach (var btn in Resources.FindObjectsOfTypeAll<Button>())
+        {
+            if (btn.gameObject.name == "SkipButton")
+            {
+                return btn.gameObject;
+            }
+        }
+        return null;
     }
 
     // ------------------------------------------------------------------------

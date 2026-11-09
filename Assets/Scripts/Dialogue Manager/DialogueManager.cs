@@ -635,4 +635,20 @@ public class DialogueManager : MonoBehaviour
         group.interactable = visible;
         group.blocksRaycasts = visible;
     }
+    /// <summary>
+    /// Persistent bridge method wired up to the Skip Button in the Inspector.
+    /// Safely forwards the skip command to the active scene's ZoomScreenShareController.
+    /// </summary>
+    public void SkipActiveTutorial()
+    {
+        if (ZoomScreenShareController.Instance != null)
+        {
+            ZoomScreenShareController.Instance.SkipTutorial();
+            Debug.Log("[DialogueManager] Skip button clicked: Tutorial skipped successfully.");
+        }
+        else
+        {
+            Debug.LogWarning("[DialogueManager] Skip button clicked, but no active ZoomScreenShareController found in this scene.");
+        }
+    }
 }
