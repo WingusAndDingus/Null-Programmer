@@ -149,6 +149,15 @@ public class ZoomScreenShareController : MonoBehaviour
             isScreenSharingActive = true;
             useVideoForCurrentShare = state.usesVideo;
             currentCueIndex = state.nextVideoCueIndex;
+
+            // Restore the Skip button only for video-based screen shares.
+            // Day 5's IDE screen share must not be skippable.
+            GameObject skipBtnObj = FindSkipButtonObject();
+            if (skipBtnObj != null)
+            {
+                skipBtnObj.SetActive(useVideoForCurrentShare);
+            }
+
             if (screenShareDisplay != null) screenShareDisplay.SetActive(true);
             if (useVideoForCurrentShare)
             {
@@ -306,12 +315,15 @@ public class ZoomScreenShareController : MonoBehaviour
             screenShareDisplay.SetActive(true);
         }
         // Robust search that finds the button even if it is currently inactive/disabled
+        // The Skip button is only for video-based tutorial screen shares.
+        // Day 5 uses Steve's interactive IDE screen share and must not be skippable.
         GameObject skipBtnObj = FindSkipButtonObject();
+
         if (skipBtnObj != null)
         {
-            skipBtnObj.SetActive(true);
+            skipBtnObj.SetActive(useVideoForCurrentShare);
         }
-        else
+        else if (useVideoForCurrentShare)
         {
             Debug.LogWarning("[Zoom] Could not find 'SkipButton' in the scene hierarchy!");
         }
