@@ -519,7 +519,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6973980595638030285, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6973980595638030285, guid: 049cc6047c3d0f946a49402e178c86d8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1713,6 +1713,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PersistentWindow
   windowIdentity: {fileID: 320154108}
   windowRoot: {fileID: 925617093}
+  routesToDay3Workshop: 0
 --- !u!1001 &385020906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10613,6 +10614,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PersistentWindow
   windowIdentity: {fileID: 1693863861}
   windowRoot: {fileID: 950594680}
+  routesToDay3Workshop: 0
 --- !u!1 &2033525335
 GameObject:
   m_ObjectHideFlags: 0
