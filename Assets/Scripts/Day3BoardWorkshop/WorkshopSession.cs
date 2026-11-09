@@ -23,8 +23,18 @@ namespace NullProgrammer.Day3Workshop
         }
         public static bool RouteIDE(GameObject root)
         {
-            if (GameManager.Instance == null || GameManager.Instance.CurrentDay != 3 || root == null ||
-                root.name.IndexOf("IDE", StringComparison.OrdinalIgnoreCase) < 0) return false;
+            if (root == null || root.name.IndexOf("IDE", StringComparison.OrdinalIgnoreCase) < 0)
+                return false;
+            return TryOpenFromIDE();
+        }
+
+        // The desktop launcher's role is independent of the old IDE GameObject.
+        // Return true on Day 3 even if dialogue has not reached the exercise yet,
+        // so callers cannot fall through and open a legacy window.
+        public static bool TryOpenFromIDE()
+        {
+            if (GameManager.Instance == null || GameManager.Instance.CurrentDay != 3)
+                return false;
             var session = Get();
             if (session.pending != null) session.Open();
             else Debug.Log("Wednesday: finish the current conversation before opening the board workshop.");
