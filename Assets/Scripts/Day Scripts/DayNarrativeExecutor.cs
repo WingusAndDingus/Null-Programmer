@@ -145,16 +145,9 @@ public class DayNarrativeExecutor : MonoBehaviour
         NullProgrammer.Audio.GameAudio.Step(stepData.musicCue, stepData.soundCue);
         // 1. Play Dialogue Line if this step has one. Personality advice can select
         //    a level-dependent line without turning those lines into player choices.
-        string resolvedLineText = ResolveLineText(stepData);
-        if (!string.IsNullOrEmpty(resolvedLineText))
+        DialogueLine line = ResolveDialogueLine(stepData);
+        if (!string.IsNullOrEmpty(line.text))
         {
-            DialogueLine line = new DialogueLine
-            {
-                speakerName = stepData.speakerName,
-                personality = stepData.personality,
-                text = resolvedLineText, // <--- Using teammate's resolved text!
-                displayDuration = stepData.displayDuration
-            };
 
             if (DialogueManager.Instance != null)
             {
@@ -368,30 +361,9 @@ public class DayNarrativeExecutor : MonoBehaviour
         }
     }
 
-    private string ResolveLineText(NarrativeStep stepData)
+    private DialogueLine ResolveDialogueLine(NarrativeStep stepData)
     {
-        if (stepData.lineVariants == null || stepData.lineVariants.Count == 0)
-        {
-            return stepData.lineText;
-        }
-
-        int currentLevel = GetPersonalityLevel(stepData.personality);
-        int bestLevel = int.MinValue;
-        string bestText = stepData.lineText;
-
-        foreach (NarrativeLineVariant variant in stepData.lineVariants)
-        {
-            if (variant == null || string.IsNullOrEmpty(variant.lineText)) continue;
-
-            int required = (int)variant.requiredLevel;
-            if (currentLevel >= required && required > bestLevel)
-            {
-                bestLevel = required;
-                bestText = variant.lineText;
-            }
-        }
-
-        return bestText;
+        return NarrativeDialogueAudio.Resolve(stepData, GetPersonalityLevel(stepData.personality));
     }
 
     private int GetPersonalityLevel(HeadPersonality personality)

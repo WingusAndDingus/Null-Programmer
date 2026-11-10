@@ -75,6 +75,9 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Color geniusColor = new Color(0.4f, 0.4f, 0.1f, 0.9f);
     [SerializeField] private Color detectiveColor = new Color(0.3f, 0.1f, 0.4f, 0.9f);
 
+    private NullProgrammer.Audio.DialogueBlipPlayer dialogueBlips;
+    private NullProgrammer.Audio.DialogueVoiceoverPlayer dialogueVoiceover;
+
     private DialoguePanelPresentation panelPresentation;
     private Coroutine activeDialogueCoroutine;
     private TaskCompletionSource<bool> activeLineCompletion;
@@ -107,15 +110,10 @@ public class DialogueManager : MonoBehaviour
     //wrapper to allow old code expecting the old function
     public IEnumerator PlayDialogueLine(DialogueLine line)
     {
-        if (line == null)
-            yield break;
-
+        // Use the same playback path as narrative steps, once per line.
         Task playback = DisplayLineAndWaitAsync(line);
-
-        while (!playback.IsCompleted)
-            yield return null;
+        while (!playback.IsCompleted) yield return null;
     }
-
     public void DisplayLine(DialogueLine line)
     {
         _ = DisplayLineAndWaitAsync(line);
@@ -143,6 +141,7 @@ public class DialogueManager : MonoBehaviour
         // If typing is still in progress, instantly finish displaying all characters
         if (!IsTypingComplete)
         {
+            if (dialogueBlips != null) dialogueBlips.Stop();
             NullProgrammer.Audio.GameAudio.Play(NullProgrammer.Audio.SfxCue.DialogueReveal);
             IsTypingComplete = true;
             if (dialogueText != null)
@@ -157,6 +156,7 @@ public class DialogueManager : MonoBehaviour
         {
             // If typing is already complete, clicking proceeds to the next line!
             NullProgrammer.Audio.GameAudio.Play(NullProgrammer.Audio.SfxCue.DialogueAdvance);
+            if (dialogueVoiceover != null) dialogueVoiceover.Stop();
             waitingForClickToContinue = false;
         }
     }
@@ -172,18 +172,24 @@ public class DialogueManager : MonoBehaviour
 
         SetPersonalityStyle(line.personality);
 
-        if (line.voiceClip != null && speechAudioSource != null)
-        {
-            if (!speechAudioSource.isPlaying || speechAudioSource.clip != line.voiceClip)
-            {
-                speechAudioSource.clip = line.voiceClip;
-                speechAudioSource.Play();
-            }
-        }
+        if (dialogueBlips == null)
+            dialogueBlips = GetComponent<NullProgrammer.Audio.DialogueBlipPlayer>();
+        if (dialogueBlips == null)
+            dialogueBlips = gameObject.AddComponent<NullProgrammer.Audio.DialogueBlipPlayer>();
+        dialogueBlips.Begin(line);
+
+        if (dialogueVoiceover == null)
+            dialogueVoiceover = GetComponent<NullProgrammer.Audio.DialogueVoiceoverPlayer>();
+        if (dialogueVoiceover == null)
+            dialogueVoiceover = gameObject.AddComponent<NullProgrammer.Audio.DialogueVoiceoverPlayer>();
+        dialogueVoiceover.Begin(line, speechAudioSource);
+        dialogueVoiceover.SetHidden(dialogueHidden);
 
         if (dialogueText != null)
         {
             dialogueText.text = line.text;
+            dialogueText.maxVisibleCharacters = 0;
+            dialogueText.ForceMeshUpdate();
         }
 
         if (panelPresentation != null) panelPresentation.Show(line);
@@ -204,9 +210,19 @@ public class DialogueManager : MonoBehaviour
                 if (panelPresentation != null) panelPresentation.FollowTyping(i);
             }
 
+            // TMP's parsed character info excludes formatting tags.
+            if (dialogueText != null && i > 0 && i <= dialogueText.textInfo.characterCount)
+            {
+                bool videoHasAudio = activeVideoPlayer != null && activeVideoPlayer.isPlaying &&
+                    activeVideoPlayer.audioOutputMode != VideoAudioOutputMode.None && activeVideoPlayer.audioTrackCount > 0;
+                dialogueBlips.RevealCharacter(dialogueText.textInfo.characterInfo[i - 1].character,
+                    isActiveAndEnabled && dialoguePanel != null && dialoguePanel.activeInHierarchy && !videoHasAudio);
+            }
             UpdateProgress(line.text, i, i == totalChars);
             yield return new WaitForSecondsRealtime(typeSpeed);
         }
+
+        if (dialogueBlips != null) dialogueBlips.Stop();
 
         // Ensure fully visible
         if (dialogueText != null)
@@ -231,6 +247,8 @@ public class DialogueManager : MonoBehaviour
 
     public void HideDialoguePanel()
     {
+        if (dialogueBlips != null) dialogueBlips.Stop();
+        if (dialogueVoiceover != null) dialogueVoiceover.Stop();
         if (dialoguePanel != null)
         {
             dialoguePanel.SetActive(false);
@@ -470,8 +488,16 @@ public class DialogueManager : MonoBehaviour
         if (choiceViewport != null) choiceViewport.gameObject.SetActive(false);
     }
 
+    private void OnDisable()
+    {
+        if (dialogueBlips != null) dialogueBlips.Stop();
+        if (dialogueVoiceover != null) dialogueVoiceover.Stop();
+    }
+
     private void StopActiveLine()
     {
+        if (dialogueBlips != null) dialogueBlips.Stop();
+        if (dialogueVoiceover != null) dialogueVoiceover.Stop();
         if (activeDialogueCoroutine != null)
         {
             StopCoroutine(activeDialogueCoroutine);
@@ -621,6 +647,8 @@ public class DialogueManager : MonoBehaviour
     private void SetDialogueHidden(bool hidden)
     {
         dialogueHidden = hidden;
+        if (hidden && dialogueBlips != null) dialogueBlips.Stop();
+        if (dialogueVoiceover != null) dialogueVoiceover.SetHidden(hidden);
         if (dialoguePanel != null) SetGroupVisibility(dialoguePanel.GetComponent<CanvasGroup>(), !hidden);
         if (internalMonologueOverlay != null)
             SetGroupVisibility(internalMonologueOverlay.GetComponent<CanvasGroup>(), !hidden);

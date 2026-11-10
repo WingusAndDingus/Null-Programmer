@@ -14,7 +14,7 @@ public sealed class MonitorMessagingApp : MonoBehaviour
     [Tooltip("The SpriteRenderer on Square containing the right monitor artwork.")]
     public SpriteRenderer monitorArtwork;
     [Tooltip("Inner display rectangle in source-sprite pixels, measured from the bottom-left. Defaults match right monitor_0.")]
-    public Rect displayPixels = new Rect(550, 378, 572, 306);
+    public Rect displayPixels = new Rect(548, 367, 578, 323);
 
     [Header("Messaging Appearance")]
     public Sprite backgroundArtwork;
@@ -120,6 +120,12 @@ public sealed class MonitorMessagingApp : MonoBehaviour
             return false;
         }
         var sprite = monitorArtwork.sprite;
+
+        // Existing scenes retain their serialized Inspector values when a script changes.
+        // Upgrade only the old stock bounds; keep any deliberately customized rectangle.
+        if (displayPixels == new Rect(550, 378, 572, 306))
+            displayPixels = new Rect(548, 367, 578, 323);
+
         if (displayPixels.width <= 0 || displayPixels.height <= 0 ||
             displayPixels.xMin < 0 || displayPixels.yMin < 0 ||
             displayPixels.xMax > sprite.rect.width || displayPixels.yMax > sprite.rect.height)

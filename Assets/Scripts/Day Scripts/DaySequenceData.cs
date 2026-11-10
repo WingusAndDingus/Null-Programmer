@@ -26,6 +26,9 @@ public class NarrativeLineVariant
 
     [TextArea(2, 6)]
     public string lineText;
+    [InspectorName("Voice Over Clip")]
+    [Tooltip("Optional recording for this variant's text. Leave empty for dialogue blips; the base line's recording is not reused.")]
+    public AudioClip voiceClip;
 }
 
 public static class NarrativeChoiceFilter
@@ -82,6 +85,9 @@ public class NarrativeStep
     public string speakerName;
     public HeadPersonality personality = HeadPersonality.None;
     [TextArea(2, 5)] public string lineText;
+    [InspectorName("Voice Over Clip")]
+    [Tooltip("Optional spoken recording for this line. Replaces dialogue blips. Leave empty to keep blips.")]
+    public AudioClip voiceClip;
     [Tooltip("Obsolete: Dialogue now waits for player clicks instead of using timers.")]
     [HideInInspector] public float displayDuration = 3.5f;
 
