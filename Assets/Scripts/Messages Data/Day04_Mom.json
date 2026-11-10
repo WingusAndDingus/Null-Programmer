@@ -1,0 +1,311 @@
+{
+  "conversationId": "Day04_Mom",
+  "day": 4,
+  "contact": "Mom",
+  "description": "Mom reveals that Bjarne had been stressed by deadlines and unable to switch off from work.",
+  "systemBanner": "System: (unable to load older messages)",
+  "startNode": "start",
+  "openingMessages": [
+    {
+      "speaker": "Mom",
+      "text": "Bjarne, can I ask you something? You sounded rather stressed the last time we spoke. Is everything alright at work?",
+      "channel": "chat"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "start",
+      "lines": [],
+      "choices": [
+        {
+          "text": "Have I been sounding stressed lately?",
+          "nextNode": "stress_reveal",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "Work's just been busy. Nothing unusual.",
+          "nextNode": "stress_dismiss"
+        },
+        {
+          "text": "I'm doing fine. You don't need to worry about me.",
+          "nextNode": "stress_defensive"
+        }
+      ]
+    },
+    {
+      "id": "stress_reveal",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "A little, yes. You mentioned that work was getting overwhelming.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mom",
+          "text": "You said there were deadlines piling up, and that even when you weren't working, you couldn't stop thinking about work.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I think I've forgotten how to be happy outside of work.",
+          "nextNode": "stress_honest",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I suppose I haven't been looking after myself.",
+          "nextNode": "stress_admit",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I'll be okay, Mom. Don't worry.",
+          "nextNode": "stress_reassure"
+        }
+      ],
+      "onEnter": [
+        {
+          "type": "setFlag",
+          "key": "C07_WorkStress",
+          "boolValue": true
+        }
+      ]
+    },
+    {
+      "id": "stress_dismiss",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "You always say that. But last time we spoke, you sounded exhausted.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mom",
+          "text": "You told me you were struggling to keep up with everything.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I did? I must have been more stressed than I realized.",
+          "nextNode": "stress_admit",
+          "effects": [
+            {
+              "type": "setFlag",
+              "key": "C07_WorkStress",
+              "boolValue": true
+            },
+            {
+              "type": "addStat",
+              "key": "MomTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "Maybe I just needed a break.",
+          "nextNode": "stress_reassure",
+          "effects": [
+            {
+              "type": "setFlag",
+              "key": "C07_WorkStress",
+              "boolValue": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stress_defensive",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "Alright, honey. I won't push you.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mom",
+          "text": "Just remember that I'm here, okay?",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I'm sorry. I know you're only trying to help.",
+          "nextNode": "stress_repair",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "Thanks, Mom. I'll talk to you later.",
+          "nextNode": "close"
+        }
+      ]
+    },
+    {
+      "id": "stress_honest",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "Oh, honey... You don't have to figure everything out by yourself.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mom",
+          "text": "You're allowed to be unhappy sometimes. You don't always have to have the answers.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I think I need to start listening to that advice.",
+          "nextNode": "close",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stress_admit",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "Well, recognizing it is the first step.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mom",
+          "text": "Maybe it's time to slow down a little.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Maybe you're right.",
+          "nextNode": "close",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomTrust",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stress_reassure",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "I know you say that because you don't want me worrying.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mom",
+          "text": "But I am your mother. Worrying comes with the job!",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I know. Thank you for caring.",
+          "nextNode": "close",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stress_repair",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "I know, sweetheart. You don't have to apologize for being stressed. Just don't shut everyone out.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I'll try not to.",
+          "nextNode": "close",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "lines": [
+        {
+          "speaker": "Grand Architect",
+          "text": "A workload without recovery is not discipline. It's an unsustainable system.",
+          "channel": "internal"
+        },
+        {
+          "speaker": "Pragmatist",
+          "text": "Have we considered the revolutionary technique of taking a nap?",
+          "channel": "internal"
+        },
+        {
+          "speaker": "Detective",
+          "text": "Stress, isolation, and a weekend of heavy drinking. The pieces are beginning to fit together.",
+          "channel": "internal"
+        }
+      ],
+      "choices": []
+    }
+  ]
+}

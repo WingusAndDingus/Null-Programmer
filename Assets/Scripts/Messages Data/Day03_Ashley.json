@@ -1,0 +1,367 @@
+{
+  "conversationId": "Day03_Ashley",
+  "day": 3,
+  "contact": "Ashley",
+  "description": "Ashley reveals that Bjarne stood her up on Friday. A dismissive response can delay the clue until the player acknowledges the impact.",
+  "systemBanner": "System: (unable to load older messages)",
+  "startNode": "start",
+  "openingMessages": [
+    {
+      "speaker": "Ashley",
+      "text": "I've been thinking about what happened. I don't know why I keep expecting you to understand when you never seem to listen.",
+      "channel": "chat"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "start",
+      "lines": [],
+      "choices": [
+        {
+          "text": "I know I let you down. Were we supposed to meet somewhere?",
+          "nextNode": "empathetic_stood_up",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I was probably busy. You know how work gets.",
+          "nextNode": "work_excuse"
+        },
+        {
+          "text": "You could've reminded me.",
+          "nextNode": "dismissive"
+        }
+      ]
+    },
+    {
+      "id": "empathetic_stood_up",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "...Yes, Bjarne. Friday evening. We were supposed to meet at that little Italian restaurant on Fourth Street.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "I waited there for almost an hour. I called you twice. You never showed up.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I'm so sorry. I don't know what happened.",
+          "nextNode": "apology_stood_up",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I wish you'd told me how important it was.",
+          "nextNode": "importance"
+        },
+        {
+          "text": "I can't believe I did that.",
+          "nextNode": "regret",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        }
+      ],
+      "onEnter": [
+        {
+          "type": "setFlag",
+          "key": "C04_StoodUp",
+          "boolValue": true
+        }
+      ]
+    },
+    {
+      "id": "work_excuse",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "I know exactly how work gets. That's the problem, Bjarne.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "You're always busy. But I guess I shouldn't have expected you to make time for me.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I didn't mean to hurt you.",
+          "nextNode": "work_apology",
+          "effects": [
+            {
+              "type": "setFlag",
+              "key": "C04_StoodUp",
+              "boolValue": true
+            },
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "Were we supposed to meet on Friday?",
+          "nextNode": "stood_up_details",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "stood_up_details",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "Yes. Friday evening, at the Italian place on Fourth Street.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "I waited for almost an hour and called twice. You never came.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I'm sorry. I should have been there.",
+          "nextNode": "apology_stood_up",
+          "effects": [
+            {
+              "type": "setFlag",
+              "key": "C04_StoodUp",
+              "boolValue": true
+            },
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dismissive",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "I DID. Twice. I called you, Bjarne. I texted you. I waited for an hour.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "I don't know what else you expected me to do.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Pragmatist",
+          "text": "So we stood someone up. Not ideal. Perhaps fewer calendar-related crimes next time.",
+          "channel": "internal"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I didn't realize you called twice. I'm sorry.",
+          "nextNode": "dismissal_repair",
+          "effects": [
+            {
+              "type": "setFlag",
+              "key": "C04_StoodUp",
+              "boolValue": true
+            },
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I still don't see why this is such a big deal.",
+          "nextNode": "dismissal_end",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": -1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "apology_stood_up",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "I know you can be forgetful, but this was different.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "I was really looking forward to seeing you.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I wish I could remember. I hate that I hurt you.",
+          "nextNode": "soft_end",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I understand why you're upset.",
+          "nextNode": "soft_end",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "importance",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "I shouldn't have had to explain that. We agreed to meet. I thought that was enough.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "You're right. I'm sorry.",
+          "nextNode": "soft_end",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "regret",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "I couldn't believe it either. I kept telling myself there must have been a reason.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I wish I could explain what happened.",
+          "nextNode": "soft_end"
+        }
+      ]
+    },
+    {
+      "id": "work_apology",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "Maybe not. But it still hurts.",
+          "channel": "chat"
+        }
+      ],
+      "choices": []
+    },
+    {
+      "id": "dismissal_repair",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "I know. I just wanted you to show up because you wanted to be there.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I should have. I'm sorry.",
+          "nextNode": "soft_end",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dismissal_end",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "Then I don't know what else to say to you right now.",
+          "channel": "chat"
+        }
+      ],
+      "choices": []
+    },
+    {
+      "id": "soft_end",
+      "lines": [
+        {
+          "speaker": "Detective",
+          "text": "Friday evening. A scheduled meeting. Two unanswered calls. We need to understand what that meeting was meant to accomplish.",
+          "channel": "internal"
+        },
+        {
+          "speaker": "Grand Architect",
+          "text": "This isn't a bug to patch with an apology. She needs to know you understand why it hurt.",
+          "channel": "internal"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "I need some time, Bjarne. We'll talk later.",
+          "channel": "chat"
+        }
+      ],
+      "choices": []
+    }
+  ]
+}

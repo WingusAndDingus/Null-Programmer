@@ -1,0 +1,407 @@
+{
+  "conversationId": "Day02_Ashley",
+  "day": 2,
+  "contact": "Ashley",
+  "description": "Ashley’s first message is angry and confusing. A defensive response makes her guarded; a blunt “who is this?” reveals the relationship but damages trust.",
+  "systemBanner": "System: (unable to load older messages)",
+  "startNode": "start",
+  "openingMessages": [
+    {
+      "speaker": "Ashley",
+      "text": "You are unbelievable.",
+      "channel": "chat"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "start",
+      "lines": [],
+      "choices": [
+        {
+          "text": "I can tell you're upset. I don't want to make excuses. Can you tell me what happened?",
+          "nextNode": "empathetic",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I'm sorry. I know I owe you an explanation. I just can't remember what I did.",
+          "nextNode": "honest_memory",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": -1
+            }
+          ]
+        },
+        {
+          "text": "Sorry, who is this?",
+          "nextNode": "blunt_identity",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": -2
+            },
+            {
+              "type": "addStat",
+              "key": "AshleyGuarded",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "Whatever this is, you're overreacting.",
+          "nextNode": "defensive",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": -2
+            },
+            {
+              "type": "addStat",
+              "key": "AshleyGuarded",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "empathetic",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "You said we were going to talk. You said this time would be different. And then nothing. Not even a message.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "I'm your girlfriend, Bjarne. I shouldn't have to keep chasing you just to get a conversation.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I'm sorry. I know I let you down.",
+          "nextNode": "empathetic_apology",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I really do want to talk. I just need you to tell me what happened.",
+          "nextNode": "empathetic_explain"
+        },
+        {
+          "text": "I don't know what to say.",
+          "nextNode": "empathetic_speechless"
+        }
+      ],
+      "onEnter": [
+        {
+          "type": "setFlag",
+          "key": "C03_AshleyGirlfriend",
+          "boolValue": true
+        }
+      ]
+    },
+    {
+      "id": "empathetic_apology",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "I don't need another apology just because you're sorry I got upset.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "I need you to actually mean it.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I want to understand. I'll listen.",
+          "nextNode": "soft_close",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "empathetic_explain",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "We were supposed to talk about us.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "And honestly, I'm tired of having the same conversation over and over again.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Then tell me what I've been missing.",
+          "nextNode": "soft_close"
+        }
+      ]
+    },
+    {
+      "id": "empathetic_speechless",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "Neither do I, apparently.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "I was hoping you'd have something to say this time.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I know. I'm trying to listen now.",
+          "nextNode": "soft_close",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "honest_memory",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "...Seriously? Bjarne, I'm your girlfriend. You can't just disappear and then act like you have no idea why I'm upset.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "I don't know what you're trying to do, but it's not funny.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Pragmatist",
+          "text": "Well. That's one way to find out you have a girlfriend.",
+          "channel": "internal"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I'm not trying to make fun of you. I really am confused.",
+          "nextNode": "honest_repair",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I understand why that sounds unbelievable.",
+          "nextNode": "soft_close"
+        }
+      ],
+      "onEnter": [
+        {
+          "type": "setFlag",
+          "key": "C03_AshleyGirlfriend",
+          "boolValue": true
+        }
+      ]
+    },
+    {
+      "id": "blunt_identity",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "Wow. Okay. Very funny.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "It's Ashley. Your girlfriend. You know what? I don't have time for this today.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I'm sorry. I shouldn't have said it like that.",
+          "nextNode": "honest_repair",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I didn't mean to upset you.",
+          "nextNode": "soft_close"
+        }
+      ],
+      "onEnter": [
+        {
+          "type": "setFlag",
+          "key": "C03_AshleyGirlfriend",
+          "boolValue": true
+        }
+      ]
+    },
+    {
+      "id": "defensive",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "Right. Of course. You know what? Forget it.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "I'm not doing this over text again.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Grand Architect",
+          "text": "Please don't make light of this. She's clearly hurt.",
+          "channel": "internal"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Wait. I shouldn't have said that. Can we talk?",
+          "nextNode": "defensive_repair",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "Fine. We'll talk another time.",
+          "nextNode": "end_ashley"
+        }
+      ]
+    },
+    {
+      "id": "honest_repair",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "I don't know what to do with that, Bjarne. I need you to be honest with me, even when it's uncomfortable.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I'll try.",
+          "nextNode": "soft_close",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "defensive_repair",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "I don't want another argument. I just want you to take me seriously.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "I'm your girlfriend, Bjarne. This matters to me.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I understand. I'm listening.",
+          "nextNode": "soft_close",
+          "effects": [
+            {
+              "type": "setFlag",
+              "key": "C03_AshleyGirlfriend",
+              "boolValue": true
+            },
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        }
+      ],
+      "onEnter": [
+        {
+          "type": "setFlag",
+          "key": "C03_AshleyGirlfriend",
+          "boolValue": true
+        }
+      ]
+    },
+    {
+      "id": "soft_close",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "I can't do this all at once. We can talk more later, but please don't disappear again.",
+          "channel": "chat"
+        }
+      ],
+      "choices": []
+    },
+    {
+      "id": "end_ashley",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "Okay. Take care of yourself.",
+          "channel": "chat"
+        }
+      ],
+      "choices": []
+    }
+  ]
+}

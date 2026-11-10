@@ -1,0 +1,168 @@
+{
+  "conversationId": "Day03_Mom",
+  "day": 3,
+  "contact": "Mom",
+  "description": "A softer conversation about Bjarne’s childhood curiosity and identity beyond work.",
+  "systemBanner": "System: (unable to load older messages)",
+  "startNode": "start",
+  "openingMessages": [
+    {
+      "speaker": "Mom",
+      "text": "I came across an old picture of you today. It made me smile.",
+      "channel": "chat"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "start",
+      "lines": [],
+      "choices": [
+        {
+          "text": "I'd like to see it!",
+          "nextNode": "photo"
+        },
+        {
+          "text": "What was I like when I was younger?",
+          "nextNode": "childhood"
+        },
+        {
+          "text": "You always did enjoy embarrassing me with old pictures.",
+          "nextNode": "embarrassing"
+        }
+      ]
+    },
+    {
+      "id": "photo",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "I'll send it to you later! You were such a curious little boy.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mom",
+          "text": "Always taking things apart to figure out how they worked.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Do you think I've changed much?",
+          "nextNode": "changed",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomTrust",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "childhood",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "Oh, you were a handful! You wanted to know absolutely everything.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mom",
+          "text": "I remember you taking apart an old radio because you wanted to see how it worked. Your father wasn't particularly happy about that one!",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Do you think I've changed much?",
+          "nextNode": "changed"
+        }
+      ]
+    },
+    {
+      "id": "embarrassing",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "Hahaha! I certainly did.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mom",
+          "text": "You always had a knack for making things. I suppose some things never change.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Do you think I've changed much?",
+          "nextNode": "changed"
+        }
+      ]
+    },
+    {
+      "id": "changed",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "Oh, honey. Everyone changes.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mom",
+          "text": "You've accomplished so much, and I'm incredibly proud of you.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mom",
+          "text": "I just wish you'd give yourself a little more time to enjoy what you've accomplished.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Grand Architect",
+          "text": "Taking things apart to understand them. A respectable foundation for any engineer.",
+          "channel": "internal"
+        },
+        {
+          "speaker": "Pragmatist",
+          "text": "Sounds like we were already violating warranties as a child.",
+          "channel": "internal"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I think I needed to hear that.",
+          "nextNode": "mom_close",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I'll try to remember that.",
+          "nextNode": "mom_close"
+        }
+      ]
+    },
+    {
+      "id": "mom_close",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "That's all I want, sweetheart. Be kind to yourself.",
+          "channel": "chat"
+        }
+      ],
+      "choices": []
+    }
+  ]
+}

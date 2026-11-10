@@ -1,0 +1,669 @@
+{
+  "conversationId": "Day05_Ashley",
+  "day": 5,
+  "contact": "Ashley",
+  "description": "Ashley explains Bjarne’s emotional withdrawal and isolation. C10 can be discovered after C09 or through a more direct question.",
+  "systemBanner": "System: (unable to load older messages)",
+  "startNode": "start",
+  "openingMessages": [
+    {
+      "speaker": "Ashley",
+      "text": "Can I tell you something? Something I've been wanting to say for a while?",
+      "channel": "chat"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "start",
+      "lines": [],
+      "choices": [
+        {
+          "text": "Of course. I'm listening.",
+          "nextNode": "open_heart",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I know I haven't been very emotionally available.",
+          "nextNode": "acknowledge_distance",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I was working hard. I was trying to build a future.",
+          "nextNode": "defensive_work"
+        }
+      ]
+    },
+    {
+      "id": "open_heart",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "I miss talking to you. Not just about what happened at work, or what you're building, or what needs fixing.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "I miss hearing about what you're thinking. What you're excited about. What you're worried about. What makes you happy.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "You used to tell me those things. But somewhere along the way, you stopped.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I stopped talking about how I felt?",
+          "nextNode": "emotional_distance",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "Was I really that difficult to talk to?",
+          "nextNode": "difficult_to_talk"
+        },
+        {
+          "text": "I think I understand what you mean.",
+          "nextNode": "understood_distance",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        }
+      ],
+      "onEnter": [
+        {
+          "type": "setFlag",
+          "key": "C09_EmotionalDistance",
+          "boolValue": true
+        }
+      ]
+    },
+    {
+      "id": "acknowledge_distance",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "That's one way to describe it.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "You were there physically, but it felt like you were somewhere else.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "I stopped knowing what you were thinking. I stopped knowing how you were feeling.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "Eventually, I stopped knowing whether you even wanted me around.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I didn't realize it had become that bad.",
+          "nextNode": "emotional_distance_followup",
+          "effects": [
+            {
+              "type": "setFlag",
+              "key": "C09_EmotionalDistance",
+              "boolValue": true
+            },
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        }
+      ],
+      "onEnter": [
+        {
+          "type": "setFlag",
+          "key": "C09_EmotionalDistance",
+          "boolValue": true
+        }
+      ]
+    },
+    {
+      "id": "defensive_work",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "I know you were. And I never asked you to stop caring about your work.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "I just wanted you to care about something besides it.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I think I stopped letting people know what I was feeling.",
+          "nextNode": "emotional_distance",
+          "conditions": [
+            {
+              "type": "flag",
+              "key": "C09_EmotionalDistance",
+              "boolValue": false
+            }
+          ],
+          "effects": [
+            {
+              "type": "setFlag",
+              "key": "C09_EmotionalDistance",
+              "boolValue": true
+            },
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I didn't know how to balance everything.",
+          "nextNode": "defensive_soften"
+        }
+      ]
+    },
+    {
+      "id": "emotional_distance",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "Yes. Whenever something bothered you, you'd just say you were fine.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "Whenever I asked how you were feeling, you'd change the subject.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "I felt like I was standing right next to you, but you wouldn't let me in.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Was I only like this with you, or had I been pulling away from everyone?",
+          "nextNode": "few_friends_followup",
+          "conditions": [
+            {
+              "type": "flag",
+              "key": "C09_EmotionalDistance",
+              "boolValue": true
+            }
+          ]
+        },
+        {
+          "text": "Did I have many friends?",
+          "nextNode": "few_friends_alternate"
+        },
+        {
+          "text": "I'm sorry. I wish I'd let you in.",
+          "nextNode": "emotional_close",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        }
+      ],
+      "onEnter": [
+        {
+          "type": "setFlag",
+          "key": "C09_EmotionalDistance",
+          "boolValue": true
+        }
+      ]
+    },
+    {
+      "id": "difficult_to_talk",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "It wasn't that you were difficult.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "It was that I never knew what was going on inside your head. I wanted to be there for you, but you wouldn't let me.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Was I only like this with you, or had I been pulling away from everyone?",
+          "nextNode": "few_friends_followup"
+        },
+        {
+          "text": "Did I have many friends?",
+          "nextNode": "few_friends_alternate"
+        },
+        {
+          "text": "I think I understand.",
+          "nextNode": "emotional_close",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        }
+      ],
+      "onEnter": [
+        {
+          "type": "setFlag",
+          "key": "C09_EmotionalDistance",
+          "boolValue": true
+        }
+      ]
+    },
+    {
+      "id": "understood_distance",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "I hope so. Because I really did try.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "I didn't need you to solve everything. I just wanted you to let me know you were struggling.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Was I only like this with you, or had I been pulling away from everyone?",
+          "nextNode": "few_friends_followup"
+        },
+        {
+          "text": "Did I have many friends?",
+          "nextNode": "few_friends_alternate"
+        },
+        {
+          "text": "Thank you for telling me.",
+          "nextNode": "emotional_close",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "emotional_distance_followup",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "I know. It felt like you were somewhere else even when you were right beside me.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Was I only like this with you, or had I been pulling away from everyone?",
+          "nextNode": "few_friends_followup"
+        }
+      ]
+    },
+    {
+      "id": "few_friends_followup",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "Everyone, Bjarne. That's what worried me.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "You barely saw anyone outside of work. You had Mark, mostly.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "I honestly can't think of many other people you were still close to.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "You used to have a whole circle of friends. But one by one, you'd stop replying, cancel plans, or just tell people you were too busy.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "So Mark was really the only person I kept in touch with?",
+          "nextNode": "few_friends_mark"
+        },
+        {
+          "text": "Why didn't anyone say anything?",
+          "nextNode": "few_friends_confront"
+        },
+        {
+          "text": "I guess I didn't make it very easy for people to stay.",
+          "nextNode": "few_friends_accept"
+        }
+      ],
+      "onEnter": [
+        {
+          "type": "setFlag",
+          "key": "C10_FewFriends",
+          "boolValue": true
+        }
+      ]
+    },
+    {
+      "id": "few_friends_alternate",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "That's a strange question.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "You had Mark, obviously. But honestly, by the end, I wasn't sure who else you were talking to.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "You stopped making plans with people, stopped responding to messages... It was like your entire world had become work.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I didn't realize I'd pushed so many people away.",
+          "nextNode": "few_friends_accept",
+          "effects": [
+            {
+              "type": "setFlag",
+              "key": "C10_FewFriends",
+              "boolValue": true
+            },
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "So Mark was really the only person I kept in touch with?",
+          "nextNode": "few_friends_mark",
+          "effects": [
+            {
+              "type": "setFlag",
+              "key": "C10_FewFriends",
+              "boolValue": true
+            }
+          ]
+        }
+      ],
+      "onEnter": [
+        {
+          "type": "setFlag",
+          "key": "C10_FewFriends",
+          "boolValue": true
+        }
+      ]
+    },
+    {
+      "id": "few_friends_mark",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "Pretty much. You two have always been close. I think he was one of the few people who kept trying even when you stopped making an effort.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I should make more of an effort with him.",
+          "nextNode": "closing",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "few_friends_confront",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "People did, Bjarne. I did. Your mother did, too.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "But you always had a reason why things could wait until later.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I wish I'd listened.",
+          "nextNode": "closing",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "few_friends_accept",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "Maybe not. But that doesn't mean you can't change things.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I want to try.",
+          "nextNode": "closing",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "defensive_soften",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "I know. I just wish you'd let someone help you carry it.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I think I need to learn how.",
+          "nextNode": "emotional_distance",
+          "effects": [
+            {
+              "type": "setFlag",
+              "key": "C09_EmotionalDistance",
+              "boolValue": true
+            },
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "emotional_close",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "I don't know what happens next, Bjarne. I just hope you start making time for the people who care about you. Not because you owe us anything. Just because you deserve to have a life outside of work.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Thank you for telling me all of this.",
+          "nextNode": "closing",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "closing",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "I don't know what happens next, Bjarne.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "But I hope you figure things out. And I hope you start making time for the people who care about you.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "Not because you owe us anything. Just because you deserve to have a life outside of work.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Grand Architect",
+          "text": "A system can pass every test and still fail the people depending on it.",
+          "channel": "internal"
+        },
+        {
+          "speaker": "Pragmatist",
+          "text": "...I hate when the serious one makes a good point.",
+          "channel": "internal"
+        },
+        {
+          "speaker": "Detective",
+          "text": "We've found the pattern. The question is no longer what happened that weekend. It's why Bjarne was so desperate to escape his own life.",
+          "channel": "internal"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I think I'd like that.",
+          "nextNode": "final_close",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I don't know if I remember how.",
+          "nextNode": "final_close"
+        },
+        {
+          "text": "Thank you for telling me all of this.",
+          "nextNode": "final_close",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "final_close",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "Then maybe that's somewhere to start. Take care of yourself, okay?",
+          "channel": "chat"
+        }
+      ],
+      "choices": []
+    }
+  ]
+}

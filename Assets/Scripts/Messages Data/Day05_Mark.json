@@ -1,0 +1,255 @@
+{
+  "conversationId": "Day05_Mark",
+  "day": 5,
+  "contact": "Mark",
+  "description": "Mark offers to spend time together and gently points out Bjarne’s recent distance.",
+  "systemBanner": "System: (unable to load older messages)",
+  "startNode": "start",
+  "openingMessages": [
+    {
+      "speaker": "Mark",
+      "text": "Hey, I've got a free weekend coming up. We should do something. Haven't properly hung out in ages.",
+      "channel": "chat"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "start",
+      "lines": [],
+      "choices": [
+        {
+          "text": "That actually sounds nice.",
+          "nextNode": "accept_invite",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "What do we normally do together?",
+          "nextNode": "usual_activities"
+        },
+        {
+          "text": "You sure you want to spend your weekend with me?",
+          "nextNode": "teasing_invite",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "accept_invite",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Great! That's settled, then. I'll think of something.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mark",
+          "text": "And no, sitting in front of a computer doesn't count as hanging out.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I'll try to keep my laptop closed.",
+          "nextNode": "serious_check"
+        }
+      ]
+    },
+    {
+      "id": "usual_activities",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Hah. Well, usually we grab food, play something, or just complain about work.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mark",
+          "text": "You know, the usual best-friend activities.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "That sounds familiar. I'd like to do that again.",
+          "nextNode": "serious_check",
+          "effects": [
+            {
+              "type": "setFlag",
+              "key": "C05_MarkBestFriend",
+              "boolValue": true
+            },
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I guess we should make time for that again.",
+          "nextNode": "serious_check",
+          "effects": [
+            {
+              "type": "setFlag",
+              "key": "C05_MarkBestFriend",
+              "boolValue": true
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        }
+      ],
+      "onEnter": [
+        {
+          "type": "setFlag",
+          "key": "C05_MarkBestFriend",
+          "boolValue": true
+        }
+      ]
+    },
+    {
+      "id": "teasing_invite",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Don't flatter yourself. I'm mostly just looking for someone to help me decide what to order.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mark",
+          "text": "But yeah, man. Of course.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Alright. I appreciate it.",
+          "nextNode": "serious_check",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "serious_check",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Seriously, though, you've seemed a little distant lately.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mark",
+          "text": "I know I give you a hard time, but I'm here. You don't have to pretend everything's fine around me.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I think I've been doing that for a long time.",
+          "nextNode": "honest",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "Thanks, Mark. I mean it.",
+          "nextNode": "thanks",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "You're getting sentimental. It's unsettling.",
+          "nextNode": "joke"
+        }
+      ]
+    },
+    {
+      "id": "honest",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Yeah... Maybe. Well, let's change that, then.",
+          "channel": "chat"
+        }
+      ],
+      "choices": []
+    },
+    {
+      "id": "thanks",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Anytime, man. You'd do the same for me.",
+          "channel": "chat"
+        }
+      ],
+      "choices": []
+    },
+    {
+      "id": "joke",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "There he is. Knew you were still in there somewhere.",
+          "channel": "chat"
+        }
+      ],
+      "choices": []
+    }
+  ]
+}

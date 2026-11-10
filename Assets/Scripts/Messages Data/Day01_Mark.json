@@ -1,0 +1,304 @@
+{
+  "conversationId": "Day01_Mark",
+  "day": 1,
+  "contact": "Mark",
+  "description": "Mark establishes that he is Bjarne’s best friend and hints that Bjarne has been unusually quiet.",
+  "systemBanner": "System: (unable to load older messages)",
+  "startNode": "start",
+  "openingMessages": [
+    {
+      "speaker": "Mark",
+      "text": "Sorry, I didn't have my phone on me, what did you want to talk about?",
+      "channel": "chat",
+      "timestamp": "15 hours ago"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "start",
+      "lines": [],
+      "choices": [
+        {
+          "text": "No worries. I was just checking in. How have you been?",
+          "nextNode": "check_in"
+        },
+        {
+          "text": "Maybe I've turned over a new leaf.",
+          "nextNode": "new_leaf"
+        },
+        {
+          "text": "I might need something later. Don't get too comfortable.",
+          "nextNode": "ulterior_motive"
+        },
+        {
+          "text": "I was actually hoping you could remind me what we were talking about.",
+          "nextNode": "missed_call"
+        }
+      ]
+    },
+    {
+      "id": "check_in",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Well, now I'm suspicious.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mark",
+          "text": "You? Checking in on me? Without needing something? Who are you and what have you done with Bjarne?",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mark",
+          "text": "I'm good, man. Same old stuff. You know, your best friend is allowed to hear from you every once in a while.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Pragmatist",
+          "text": "A best friend! Excellent. We've established a support network without doing any actual work.",
+          "channel": "internal"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Can't I just ask how you're doing?",
+          "nextNode": "best_friend_followup",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I might be trying to become a better friend.",
+          "nextNode": "best_friend_followup",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        }
+      ],
+      "onEnter": [
+        {
+          "type": "setFlag",
+          "key": "C05_MarkBestFriend",
+          "boolValue": true
+        }
+      ]
+    },
+    {
+      "id": "new_leaf",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Right. And I suppose you're going to start replying to messages on time, too? I'll believe it when I see it.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mark",
+          "text": "But seriously, it's nice hearing from you.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I thought I'd surprise you. How have you been?",
+          "nextNode": "best_friend_followup",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        }
+      ],
+      "onEnter": [
+        {
+          "type": "setFlag",
+          "key": "C05_MarkBestFriend",
+          "boolValue": true
+        }
+      ]
+    },
+    {
+      "id": "ulterior_motive",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "There it is. Knew there was an ulterior motive.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mark",
+          "text": "Alright, what's up? You're still my best friend, even if you are a pain to get hold of.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Nothing urgent. I just wanted to talk.",
+          "nextNode": "best_friend_followup"
+        }
+      ],
+      "onEnter": [
+        {
+          "type": "setFlag",
+          "key": "C05_MarkBestFriend",
+          "boolValue": true
+        }
+      ]
+    },
+    {
+      "id": "missed_call",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "You called me, man. I missed it.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mark",
+          "text": "Sometimes you call your best friend just because you want to talk. Not every conversation needs a five-point agenda.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Detective",
+          "text": "He mentioned you called him previously. We should find out why.",
+          "channel": "internal"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Right. Of course. Sorry about that.",
+          "nextNode": "best_friend_followup",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I must have had something important to say.",
+          "nextNode": "best_friend_followup"
+        }
+      ],
+      "onEnter": [
+        {
+          "type": "setFlag",
+          "key": "C05_MarkBestFriend",
+          "boolValue": true
+        }
+      ]
+    },
+    {
+      "id": "best_friend_followup",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Seriously though, everything alright? You've been pretty quiet lately.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Grand Architect",
+          "text": "He's clearly concerned. Don't mistake his humor for indifference.",
+          "channel": "internal"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Just a lot on my mind.",
+          "nextNode": "mark_quiet",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "Nothing I can't handle.",
+          "nextNode": "mark_handle"
+        },
+        {
+          "text": "I don't really know.",
+          "nextNode": "mark_honest",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mark_quiet",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Yeah, I figured. Listen, whatever it is, you know where to find me.",
+          "channel": "chat"
+        }
+      ],
+      "choices": []
+    },
+    {
+      "id": "mark_handle",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "That's what you always say. Anyway, I'm around if you need anything.",
+          "channel": "chat"
+        }
+      ],
+      "choices": []
+    },
+    {
+      "id": "mark_honest",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "...Well, that's a new one. You usually have an answer for everything.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mark",
+          "text": "Maybe that's not necessarily a bad thing.",
+          "channel": "chat"
+        }
+      ],
+      "choices": []
+    }
+  ]
+}

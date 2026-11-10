@@ -1,0 +1,301 @@
+{
+  "conversationId": "Day04_Ashley",
+  "day": 4,
+  "contact": "Ashley",
+  "description": "Ashley reveals that they broke up the previous year over the same work-related emotional distance, but agreed to try again.",
+  "systemBanner": "System: (unable to load older messages)",
+  "startNode": "start",
+  "openingMessages": [
+    {
+      "speaker": "Ashley",
+      "text": "I've been thinking about Friday. I wasn't trying to start another argument. I just wanted us to finally talk about things.",
+      "channel": "chat"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "start",
+      "lines": [],
+      "choices": [
+        {
+          "text": "You said this wasn't the first time we'd had this conversation. What did you mean?",
+          "nextNode": "breakup_reveal",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "Wait, we broke up?",
+          "nextNode": "breakup_direct"
+        },
+        {
+          "text": "So this is all my fault, then?",
+          "nextNode": "defensive"
+        }
+      ]
+    },
+    {
+      "id": "breakup_reveal",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "...Bjarne, we broke up last year. Do you remember that?",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "I couldn't keep doing it the way things were. I felt like I was constantly competing with your work, and eventually I just couldn't take it anymore.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "You came back after a while and asked if we could try again. I agreed because I still loved you. I really did want things to work out.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I didn't realize we'd been through all that.",
+          "nextNode": "breakup_hurt"
+        },
+        {
+          "text": "Why did you decide to give me another chance?",
+          "nextNode": "breakup_chance"
+        },
+        {
+          "text": "I'm sorry you had to go through that.",
+          "nextNode": "breakup_apology",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        }
+      ],
+      "onEnter": [
+        {
+          "type": "setFlag",
+          "key": "C08_PreviousBreakup",
+          "boolValue": true
+        }
+      ]
+    },
+    {
+      "id": "breakup_direct",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "Yes, Bjarne. Last year. And it wasn't easy for either of us.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "You asked me to give us another chance, and I did. I really thought we'd make it work this time.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Why did you give me another chance?",
+          "nextNode": "breakup_chance"
+        },
+        {
+          "text": "I'm sorry. I didn't understand how much we'd been through.",
+          "nextNode": "breakup_apology",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        }
+      ],
+      "onEnter": [
+        {
+          "type": "setFlag",
+          "key": "C08_PreviousBreakup",
+          "boolValue": true
+        }
+      ]
+    },
+    {
+      "id": "defensive",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "That's not what I said. I'm not trying to make you feel guilty.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "I'm trying to explain why this hurts so much. I thought we'd already gotten past this.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I know. I shouldn't have gotten defensive.",
+          "nextNode": "defensive_repair",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "What did we get past?",
+          "nextNode": "breakup_reveal"
+        }
+      ]
+    },
+    {
+      "id": "breakup_hurt",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "That's what hurts. It feels like I remember every difficult conversation we've had, and you remember none of them.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "What did I promise would change?",
+          "nextNode": "promises"
+        }
+      ]
+    },
+    {
+      "id": "breakup_chance",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "Because I believed you. You told me things would be different.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "I wanted to believe we could get back to what we used to have.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "What did I promise would change?",
+          "nextNode": "promises"
+        }
+      ]
+    },
+    {
+      "id": "breakup_apology",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "Thank you. I just wish you had understood how close I was to leaving for good.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I want to understand now.",
+          "nextNode": "promises",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "promises",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "You promised to make more time for us.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "You promised that work wouldn't always come first.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Ashley",
+          "text": "And you promised you'd actually talk to me when something was wrong instead of pretending everything was fine.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Detective",
+          "text": "This is not an isolated incident. It's a recurring pattern.",
+          "channel": "internal"
+        },
+        {
+          "speaker": "Grand Architect",
+          "text": "A recurring failure requires more than a temporary patch.",
+          "channel": "internal"
+        },
+        {
+          "speaker": "Pragmatist",
+          "text": "Well, at least the relationship has version history. Unfortunately, the previous release also had bugs.",
+          "channel": "internal"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I wish I'd kept those promises.",
+          "nextNode": "close",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "AshleyTrust",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "defensive_repair",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "I appreciate you saying that. I just need you to hear me without turning it into an argument.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I'll try.",
+          "nextNode": "promises"
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "lines": [
+        {
+          "speaker": "Ashley",
+          "text": "I don't know what happens next, Bjarne. I just hope things can be different this time.",
+          "channel": "chat"
+        }
+      ],
+      "choices": []
+    }
+  ]
+}

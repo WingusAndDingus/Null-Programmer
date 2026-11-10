@@ -1,0 +1,279 @@
+{
+  "conversationId": "Day04_Mark",
+  "day": 4,
+  "contact": "Mark",
+  "description": "Mark apologizes for missing Bjarne’s call and offers low-pressure company for the weekend.",
+  "systemBanner": "System: (unable to load older messages)",
+  "startNode": "start",
+  "openingMessages": [
+    {
+      "speaker": "Mark",
+      "text": "Hey, man. I've been thinking about that voicemail.",
+      "channel": "chat"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "start",
+      "lines": [],
+      "choices": [
+        {
+          "text": "You don't have to worry about it.",
+          "nextNode": "brush_off"
+        },
+        {
+          "text": "I'm sorry I didn't get back to you.",
+          "nextNode": "apologize",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I appreciate you checking in.",
+          "nextNode": "appreciate",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "brush_off",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "I know. I just don't want you thinking you have to deal with everything on your own.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I'm not very good at asking for help.",
+          "nextNode": "how_holding_up",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "apologize",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Don't apologize for that. I missed your call. That's on me, too.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mark",
+          "text": "I was busy, and by the time I checked my phone, it was already late.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Still, thanks for being there.",
+          "nextNode": "how_holding_up",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "appreciate",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Well, don't get used to it. I'm only this emotionally available once every six months.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mark",
+          "text": "Seriously, though. How are you holding up?",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Honestly? I'm not sure.",
+          "nextNode": "honest",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I'm starting to feel like something's wrong.",
+          "nextNode": "something_wrong",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I'm fine. Just need to get through work.",
+          "nextNode": "work"
+        }
+      ]
+    },
+    {
+      "id": "how_holding_up",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Seriously, though. How are you holding up?",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Honestly? I'm not sure.",
+          "nextNode": "honest",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I'm starting to feel like something's wrong.",
+          "nextNode": "something_wrong",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I'm fine. Just need to get through work.",
+          "nextNode": "work"
+        }
+      ]
+    },
+    {
+      "id": "honest",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Yeah... I thought so.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mark",
+          "text": "Listen, if you ever need to get out of the house, just say the word. We can grab something to eat or play some games. Doesn't have to be a big thing.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I'd like that. I could use a normal evening.",
+          "nextNode": "close",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "something_wrong",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Well, I wish I knew what was going on.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mark",
+          "text": "But you don't have to explain everything right away.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Thanks for not pushing.",
+          "nextNode": "close",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "work",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Alright, man. Just don't disappear on me again.",
+          "channel": "chat"
+        }
+      ],
+      "choices": []
+    },
+    {
+      "id": "close",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Good. We'll figure out something for the weekend. And no, sitting in front of a computer doesn't count as hanging out.",
+          "channel": "chat"
+        }
+      ],
+      "choices": []
+    }
+  ]
+}

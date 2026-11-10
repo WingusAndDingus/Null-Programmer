@@ -12,7 +12,7 @@ public class LiveStatsDebugger : MonoBehaviour
         // Continuously read the live state of the game every frame
         if (GameManager.Instance != null && liveStatsText != null)
         {
-            liveStatsText.text = 
+            liveStatsText.text =
                 $"<color=yellow>--- LIVE DEBUG STATS ---</color>\n" +
                 $"Day: {GameManager.Instance.CurrentDay}\n" +
                 $"Current Step: {GameManager.Instance.CurrentStep}\n\n" +
@@ -20,8 +20,6 @@ public class LiveStatsDebugger : MonoBehaviour
                 $"<color=#ff5555>Suspicion: {GameManager.Instance.SteveSuspicion} / 100</color>\n\n" +
                 $"Architect: {GameManager.Instance.GrandArchitectStat}\n" +
                 $"Pragmatist: {GameManager.Instance.PragmatistStat}\n" +
-                $"Sentinel: {GameManager.Instance.SentinelStat}\n" +
-                $"Genius: {GameManager.Instance.GeniusStat}\n" +
                 $"Detective: {GameManager.Instance.DetectiveStat}\n" +
                 $"Connectedness: {GameManager.Instance.Connectedness}";
         }
@@ -31,7 +29,7 @@ public class LiveStatsDebugger : MonoBehaviour
     {
         if (GameManager.Instance != null)
         {
-            GameManager.Instance.AdvanceToNextDay(); 
+            GameManager.Instance.AdvanceToNextDay();
             ReloadNarrative();
         }
     }
@@ -40,7 +38,7 @@ public class LiveStatsDebugger : MonoBehaviour
     {
         if (GameManager.Instance != null && GameManager.Instance.CurrentDay > 1)
         {
-            GameManager.Instance.setCurrentDay(GameManager.Instance.CurrentDay - 1); 
+            GameManager.Instance.setCurrentDay(GameManager.Instance.CurrentDay - 1);
             ReloadNarrative();
         }
     }

@@ -412,8 +412,6 @@ public class DayNarrativeExecutor : MonoBehaviour
         {
             case HeadPersonality.GrandArchitect: GameManager.Instance.ChangeGrandArchitectStat(points); break;
             case HeadPersonality.Pragmatist: GameManager.Instance.ChangePragmatistStat(points); break;
-            case HeadPersonality.Sentinel: GameManager.Instance.ChangeSentinelStat(points); break;
-            case HeadPersonality.Genius: GameManager.Instance.ChangeGeniusStat(points); break;
             case HeadPersonality.Detective: GameManager.Instance.ChangeDetectiveStat(points); break;
         }
     }

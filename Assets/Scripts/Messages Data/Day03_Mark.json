@@ -1,0 +1,378 @@
+{
+  "conversationId": "Day03_Mark",
+  "day": 3,
+  "contact": "Mark",
+  "description": "Conditional birthday branch: if Mom already revealed C02, Mark acknowledges it; otherwise he reveals the 40th birthday and the intoxicated voicemail together.",
+  "systemBanner": "System: (unable to load older messages)",
+  "startNode": "start",
+  "openingMessages": [
+    {
+      "speaker": "Mark",
+      "text": "Hey, by the way. Did you ever figure out what happened that weekend?",
+      "channel": "chat"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "start",
+      "lines": [],
+      "choices": [
+        {
+          "text": "I know it was my birthday. I still don't remember much of it.",
+          "nextNode": "birthday_known",
+          "conditions": [
+            {
+              "type": "flag",
+              "key": "C02_Birthday",
+              "boolValue": true
+            }
+          ]
+        },
+        {
+          "text": "You mentioned I was celebrating. What was I celebrating?",
+          "nextNode": "birthday_unknown",
+          "conditions": [
+            {
+              "type": "flag",
+              "key": "C02_Birthday",
+              "boolValue": false
+            }
+          ]
+        },
+        {
+          "text": "Can we talk about something else?",
+          "nextNode": "change_subject"
+        }
+      ]
+    },
+    {
+      "id": "birthday_known",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Yeah, your big four-oh! Forty years old, man. Welcome to the club.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mark",
+          "text": "I was going to give you a hard time about it, but after that voicemail, I figured I'd let you recover first.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "You said I sounded pretty drunk.",
+          "nextNode": "known_drunk",
+          "conditions": [
+            {
+              "type": "flag",
+              "key": "C06_Intoxicated",
+              "boolValue": false
+            }
+          ]
+        },
+        {
+          "text": "I still don't remember much of it.",
+          "nextNode": "known_memory",
+          "conditions": [
+            {
+              "type": "flag",
+              "key": "C06_Intoxicated",
+              "boolValue": true
+            }
+          ]
+        },
+        {
+          "text": "What else did I say in that voicemail?",
+          "nextNode": "voicemail_details"
+        }
+      ]
+    },
+    {
+      "id": "known_drunk",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "That's putting it mildly. You kept apologizing about something. You didn't really sound happy.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mark",
+          "text": "I wish I'd been able to pick up when you called.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Detective",
+          "text": "Saturday night, intoxication, repeated apologies. Keep following the thread.",
+          "channel": "internal"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Did I say what I was apologizing for?",
+          "nextNode": "voicemail_details",
+          "effects": [
+            {
+              "type": "setFlag",
+              "key": "C06_Intoxicated",
+              "boolValue": true
+            }
+          ]
+        }
+      ],
+      "onEnter": [
+        {
+          "type": "setFlag",
+          "key": "C06_Intoxicated",
+          "boolValue": true
+        }
+      ]
+    },
+    {
+      "id": "known_memory",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Yeah, I figured. Forty is a big milestone, but I didn't think you'd want to erase the whole celebration.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mark",
+          "text": "I'm not making fun of you, by the way. You didn't sound like yourself.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "What else did I say in that voicemail?",
+          "nextNode": "voicemail_details"
+        }
+      ]
+    },
+    {
+      "id": "birthday_unknown",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Seriously? Bjarne, you turned forty this weekend. Saturday. Your fortieth birthday, and you don't remember it?",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mark",
+          "text": "Wow. No way you drank so much you forgot the reason you were drinking.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Pragmatist",
+          "text": "Forty. Apparently we've reached the age where our own save files are corrupted.",
+          "channel": "internal"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I really don't remember any of it.",
+          "nextNode": "birthday_drunk_followup",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I appreciate you telling me. What happened after I called?",
+          "nextNode": "birthday_drunk_followup"
+        }
+      ],
+      "onEnter": [
+        {
+          "type": "setFlag",
+          "key": "C02_Birthday",
+          "boolValue": true
+        },
+        {
+          "type": "setFlag",
+          "key": "C06_Intoxicated",
+          "boolValue": true
+        }
+      ]
+    },
+    {
+      "id": "birthday_drunk_followup",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "I could barely make out what you were saying. You kept apologizing and saying you'd messed things up.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mark",
+          "text": "Look, I'm not trying to make fun of you. I just wish I'd picked up when you called.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "You couldn't have known.",
+          "nextNode": "mark_couldnt_know",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I must've sounded pretty pathetic.",
+          "nextNode": "mark_reassure"
+        },
+        {
+          "text": "I appreciate you worrying about me.",
+          "nextNode": "mark_appreciate",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "voicemail_details",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Not really. You kept repeating something about having messed things up.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mark",
+          "text": "I think you said, 'I don't know how to fix it.' Then you started rambling about something else.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I wish I knew what I meant.",
+          "nextNode": "mark_couldnt_know",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "Thanks for telling me. I appreciate it.",
+          "nextNode": "mark_appreciate",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        }
+      ],
+      "onEnter": [
+        {
+          "type": "setFlag",
+          "key": "C06_Intoxicated",
+          "boolValue": true
+        }
+      ]
+    },
+    {
+      "id": "mark_couldnt_know",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Maybe not. Still wish I could've been there.",
+          "channel": "chat"
+        }
+      ],
+      "choices": []
+    },
+    {
+      "id": "mark_reassure",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Dude, no. You sounded like someone who was having a rough night. There's a difference.",
+          "channel": "chat"
+        }
+      ],
+      "choices": []
+    },
+    {
+      "id": "mark_appreciate",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Don't make it weird, man. You're my best friend. It's part of the job.",
+          "channel": "chat"
+        }
+      ],
+      "choices": []
+    },
+    {
+      "id": "change_subject",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Sure. We don't have to talk about it right now.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mark",
+          "text": "Just promise me you'll listen to that voicemail when you're ready.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I will. Thanks, Mark.",
+          "nextNode": "mark_close",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mark_close",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Anytime, man.",
+          "channel": "chat"
+        }
+      ],
+      "choices": []
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "conversationId": "Day05_Mom",
+  "day": 5,
+  "contact": "Mom",
+  "description": "Mom reflects on how Bjarne gradually stopped calling as his career accelerated.",
+  "systemBanner": "System: (unable to load older messages)",
+  "startNode": "start",
+  "openingMessages": [
+    {
+      "speaker": "Mom",
+      "text": "I just wanted to check in before the week gets away from us again. I know you're busy, honey, but I miss talking to you.",
+      "channel": "chat"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "start",
+      "lines": [],
+      "choices": [
+        {
+          "text": "I've missed talking to you too.",
+          "nextNode": "warm",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I'm sorry I've been so distant.",
+          "nextNode": "apology",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "You don't need to worry about me.",
+          "nextNode": "reassure"
+        }
+      ]
+    },
+    {
+      "id": "warm",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "Well, then perhaps we should do something about that! We don't need a special occasion to talk.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Did I used to call you more often?",
+          "nextNode": "call_history"
+        }
+      ]
+    },
+    {
+      "id": "apology",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "Oh, sweetheart. You don't need to apologize. I just want you to remember that you have people who care about you.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Did I used to call you more often?",
+          "nextNode": "call_history"
+        }
+      ]
+    },
+    {
+      "id": "reassure",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "I know you can look after yourself, Bjarne. But that doesn't mean you always have to.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Did I used to call you more often?",
+          "nextNode": "call_history"
+        }
+      ]
+    },
+    {
+      "id": "call_history",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "Oh, absolutely. When you first started working, you'd call me almost every other day.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mom",
+          "text": "Then you got promoted, and things got busier. I suppose I got used to hearing from you less and less.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I'm sorry. I should have made more time.",
+          "nextNode": "close",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I don't want that to happen anymore.",
+          "nextNode": "close",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I guess I didn't notice how much time had passed.",
+          "nextNode": "close"
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "Don't be. Just don't wait until there's a birthday or a holiday to call your mother, alright?",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Pragmatist",
+          "text": "A recurring calendar reminder may be the most valuable feature we've ever implemented.",
+          "channel": "internal"
+        }
+      ],
+      "choices": []
+    }
+  ]
+}

@@ -1,0 +1,494 @@
+{
+  "conversationId": "Day01_Mom",
+  "day": 1,
+  "contact": "Mom",
+  "description": "First contact with Mom. The player can discover Bjarne’s name and 40th birthday through a subtle question or a blunt memory lapse.",
+  "systemBanner": "System: (unable to load older messages)",
+  "startNode": "start",
+  "openingMessages": [
+    {
+      "speaker": "Mom",
+      "text": "How have you been sweetie?",
+      "channel": "chat",
+      "timestamp": "20 hours ago"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "start",
+      "lines": [],
+      "choices": [
+        {
+          "text": "I've been busy, but I'm doing okay. How about you?",
+          "nextNode": "busy_reply"
+        },
+        {
+          "text": "I know, I haven't been very good at keeping in touch.",
+          "nextNode": "apology_reply",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "Have I been away for a while?",
+          "nextNode": "away_reply"
+        },
+        {
+          "text": "Can you remind me what my name is?",
+          "nextNode": "blunt_name",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomConcern",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "busy_reply",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "I'm doing alright, honey. Just been keeping myself busy.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mom",
+          "text": "I was starting to wonder when I'd hear from you again.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mom",
+          "text": "You always have some project or deadline keeping you occupied. Just make sure you're taking care of yourself, alright?",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Did something happen recently? I feel like I've forgotten something important.",
+          "nextNode": "birthday_reveal"
+        },
+        {
+          "text": "When is my birthday again?",
+          "nextNode": "birthday_date"
+        },
+        {
+          "text": "I'm sure I'll remember. Let's talk later.",
+          "nextNode": "gentle_end"
+        }
+      ]
+    },
+    {
+      "id": "apology_reply",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "Oh, sweetheart, you don't need to apologize. I know you have a lot going on.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mom",
+          "text": "I just like hearing from you every now and then.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Did something happen recently? I feel like I've forgotten something important.",
+          "nextNode": "birthday_reveal"
+        },
+        {
+          "text": "When is my birthday again?",
+          "nextNode": "birthday_date"
+        },
+        {
+          "text": "I'll try to call more often.",
+          "nextNode": "gentle_end",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "away_reply",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "Well, we haven't had a proper conversation in a little while.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mom",
+          "text": "I know you're independent, but that doesn't mean you have to disappear completely!",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Did something happen recently? I feel like I've forgotten something important.",
+          "nextNode": "birthday_reveal"
+        },
+        {
+          "text": "Was there something you wanted to talk to me about?",
+          "nextNode": "birthday_reveal"
+        },
+        {
+          "text": "I didn't mean to worry you.",
+          "nextNode": "gentle_end",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blunt_name",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "...What? Bjarne, honey. Your name is Bjarne.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mom",
+          "text": "It's Mom. Are you feeling alright? Did something happen?",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Grand Architect",
+          "text": "Bjarne. A familiar designation, at least. We should be careful not to alarm her.",
+          "channel": "internal"
+        },
+        {
+          "speaker": "Pragmatist",
+          "text": "Well, that's one variable solved. Name: Bjarne. Moving on.",
+          "channel": "internal"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Sorry, I was just joking.",
+          "nextNode": "name_recovery"
+        },
+        {
+          "text": "Actually... what happened this weekend?",
+          "nextNode": "birthday_reveal"
+        },
+        {
+          "text": "I don't remember much right now.",
+          "nextNode": "name_concern",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomConcern",
+              "intValue": 1
+            }
+          ]
+        }
+      ],
+      "onEnter": [
+        {
+          "type": "setFlag",
+          "key": "C01_BjarneName",
+          "boolValue": true
+        }
+      ]
+    },
+    {
+      "id": "name_recovery",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "Oh... Well, you certainly had me worried for a moment.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mom",
+          "text": "You know you can always talk to me, right?",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I appreciate that. Did something happen recently?",
+          "nextNode": "birthday_reveal",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I'll be alright. Talk soon?",
+          "nextNode": "gentle_end"
+        }
+      ]
+    },
+    {
+      "id": "name_concern",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "Oh, sweetheart. That doesn't sound like you.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mom",
+          "text": "Have you been sleeping? Are you feeling unwell?",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I'm sorry. I think I'm just overwhelmed.",
+          "nextNode": "birthday_reveal",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I don't want you to worry. I'll call again soon.",
+          "nextNode": "gentle_end"
+        }
+      ]
+    },
+    {
+      "id": "birthday_reveal",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "Well, your birthday, for one!",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mom",
+          "text": "I called you on Saturday, remember? I wanted to wish you a happy birthday.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mom",
+          "text": "I know you don't like making a big fuss about it, Bjarne, but turning another year older is still worth celebrating!",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Oh, right. Thank you, Mom. I'm sorry I missed your call.",
+          "nextNode": "birthday_warm",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "My birthday? I must have had a lot on my mind.",
+          "nextNode": "birthday_worried",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomConcern",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "Wait, when is my birthday?",
+          "nextNode": "birthday_date"
+        }
+      ],
+      "onEnter": [
+        {
+          "type": "setFlag",
+          "key": "C01_BjarneName",
+          "boolValue": true
+        },
+        {
+          "type": "setFlag",
+          "key": "C02_Birthday",
+          "boolValue": true
+        }
+      ]
+    },
+    {
+      "id": "birthday_date",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "Bjarne! It's on Saturday. You turned forty this year, sweetheart.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mom",
+          "text": "You're worrying me a little. Are you sure everything is alright?",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Forty... I really must have had a lot on my mind.",
+          "nextNode": "birthday_worried",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomConcern",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I'm sorry I missed your call. I should have called you back.",
+          "nextNode": "birthday_warm",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        }
+      ],
+      "onEnter": [
+        {
+          "type": "setFlag",
+          "key": "C01_BjarneName",
+          "boolValue": true
+        },
+        {
+          "type": "setFlag",
+          "key": "C02_Birthday",
+          "boolValue": true
+        }
+      ]
+    },
+    {
+      "id": "birthday_warm",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "Of course, sweetheart. I was hoping we could have a proper chat, but I understand.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mom",
+          "text": "Maybe we can make up for it sometime soon?",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I'd like that. I'll make time.",
+          "nextNode": "gentle_end",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "birthday_worried",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "Is everything alright? You sound a little distracted.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mom",
+          "text": "You haven't been sleeping properly, have you?",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I think I just need to slow down a little.",
+          "nextNode": "gentle_end",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I'll be okay, Mom. Don't worry.",
+          "nextNode": "gentle_end"
+        }
+      ]
+    },
+    {
+      "id": "gentle_end",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "Take care of yourself, honey. And remember that I'm always here.",
+          "channel": "chat"
+        }
+      ],
+      "choices": []
+    }
+  ]
+}

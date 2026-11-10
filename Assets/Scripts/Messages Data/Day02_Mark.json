@@ -1,0 +1,374 @@
+{
+  "conversationId": "Day02_Mark",
+  "day": 2,
+  "contact": "Mark",
+  "description": "Mark reveals that Bjarne left a very drunk voicemail on Saturday night. A dismissive answer can delay the clue until a follow-up or Day 3.",
+  "systemBanner": "System: (unable to load older messages)",
+  "startNode": "start",
+  "openingMessages": [
+    {
+      "speaker": "Mark",
+      "text": "Hey, one more thing. Did you ever listen to that voicemail you left me?",
+      "channel": "chat"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "start",
+      "lines": [],
+      "choices": [
+        {
+          "text": "Voicemail? I don't remember leaving one.",
+          "nextNode": "voicemail_no_memory"
+        },
+        {
+          "text": "I probably called you about something work-related.",
+          "nextNode": "voicemail_pretend"
+        },
+        {
+          "text": "Whatever it was, it couldn't have been that important.",
+          "nextNode": "voicemail_dismiss"
+        }
+      ]
+    },
+    {
+      "id": "voicemail_no_memory",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Oh. Well, it was pretty late Saturday night.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mark",
+          "text": "You sounded... pretty out of it, to be honest. Like, really drunk. I could barely understand half of what you were saying.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Did I say what I was apologizing for?",
+          "nextNode": "voicemail_apology"
+        },
+        {
+          "text": "I don't remember any of that.",
+          "nextNode": "voicemail_worried"
+        },
+        {
+          "text": "Well, that's embarrassing. Let's forget about it.",
+          "nextNode": "voicemail_joke"
+        }
+      ],
+      "onEnter": [
+        {
+          "type": "setFlag",
+          "key": "C06_Intoxicated",
+          "boolValue": true
+        }
+      ]
+    },
+    {
+      "id": "voicemail_pretend",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Hah, sure. You sounded like you were having a fantastic time, if by fantastic you mean barely capable of forming a sentence.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mark",
+          "text": "Don't worry, your secret's safe with me.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Pragmatist",
+          "text": "A drunken voicemail. Wonderful. Our past self apparently had a very productive weekend.",
+          "channel": "internal"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I don't remember much of it, honestly.",
+          "nextNode": "voicemail_worried",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "Did I say anything important?",
+          "nextNode": "voicemail_apology"
+        }
+      ],
+      "onEnter": [
+        {
+          "type": "setFlag",
+          "key": "C06_Intoxicated",
+          "boolValue": true
+        }
+      ]
+    },
+    {
+      "id": "voicemail_dismiss",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Maybe. But you don't usually call me that late unless something's going on.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mark",
+          "text": "Just saying.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Detective",
+          "text": "A voicemail, Saturday night, and a missed call. This is worth following up.",
+          "channel": "internal"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Actually, what did I sound like?",
+          "nextNode": "voicemail_reveal_late"
+        },
+        {
+          "text": "You're probably right. I'll listen to it later.",
+          "nextNode": "end_dismiss",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": -1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "voicemail_reveal_late",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Pretty drunk, man. You kept apologizing about something. I couldn't make out what.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mark",
+          "text": "I bet you were celebrating, though maybe a bit too much.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Did I say what I was apologizing for?",
+          "nextNode": "voicemail_apology"
+        }
+      ],
+      "onEnter": [
+        {
+          "type": "setFlag",
+          "key": "C06_Intoxicated",
+          "boolValue": true
+        }
+      ]
+    },
+    {
+      "id": "voicemail_apology",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Not really. You kept repeating something about having messed things up.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mark",
+          "text": "I think you said something like 'I don't know how to fix it.' Then you started rambling about something else.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mark",
+          "text": "I wish I'd been able to pick up when you called.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Grand Architect",
+          "text": "He sounds genuinely worried. We should take that seriously.",
+          "channel": "internal"
+        }
+      ],
+      "choices": [
+        {
+          "text": "You couldn't have known.",
+          "nextNode": "mark_couldnt_know",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I must've sounded pretty pathetic.",
+          "nextNode": "mark_not_pathetic"
+        },
+        {
+          "text": "I appreciate you worrying about me.",
+          "nextNode": "mark_appreciate",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "voicemail_worried",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Yeah, I figured. I didn't think much of it at first, but you didn't sound like your usual self.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I'm sorry I worried you.",
+          "nextNode": "mark_appreciate",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "Maybe I was just celebrating too hard.",
+          "nextNode": "mark_joke"
+        }
+      ]
+    },
+    {
+      "id": "voicemail_joke",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Hah. Trust me, I'm not holding it against you.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mark",
+          "text": "Although, if you're going to leave drunken voicemails, at least make them entertaining next time.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I'll try to make the next one more coherent.",
+          "nextNode": "end_friendly"
+        }
+      ]
+    },
+    {
+      "id": "mark_couldnt_know",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Maybe not. Still wish I could've been there.",
+          "channel": "chat"
+        }
+      ],
+      "choices": []
+    },
+    {
+      "id": "mark_not_pathetic",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Dude, no. You sounded like someone who was having a rough night. There's a difference.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Thanks. I needed to hear that.",
+          "nextNode": "end_friendly",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MarkTrust",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mark_appreciate",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Don't make it weird, man. You're my best friend. It's part of the job.",
+          "channel": "chat"
+        }
+      ],
+      "choices": []
+    },
+    {
+      "id": "mark_joke",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Just make sure you hydrate before your next birthday celebration.",
+          "channel": "chat"
+        }
+      ],
+      "choices": []
+    },
+    {
+      "id": "end_dismiss",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Alright. Just don't ignore it if you think something's wrong.",
+          "channel": "chat"
+        }
+      ],
+      "choices": []
+    },
+    {
+      "id": "end_friendly",
+      "lines": [
+        {
+          "speaker": "Mark",
+          "text": "Anytime, man. I'm around if you need me.",
+          "channel": "chat"
+        }
+      ],
+      "choices": []
+    }
+  ]
+}

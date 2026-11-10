@@ -1,0 +1,151 @@
+{
+  "conversationId": "Day02_Mom",
+  "day": 2,
+  "contact": "Mom",
+  "description": "A gentle check-in that reinforces Mom’s concern about Bjarne’s work habits without revealing a major clue.",
+  "systemBanner": "System: (unable to load older messages)",
+  "startNode": "start",
+  "openingMessages": [
+    {
+      "speaker": "Mom",
+      "text": "Did you get any rest last night, sweetheart?",
+      "channel": "chat"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "start",
+      "lines": [],
+      "choices": [
+        {
+          "text": "A little. I've been trying to get back into a routine.",
+          "nextNode": "rest_routine",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomTrust",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "Not really. Sleep hasn't been great.",
+          "nextNode": "rest_poor",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I've been too busy to think about it.",
+          "nextNode": "rest_busy"
+        }
+      ]
+    },
+    {
+      "id": "rest_routine",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "That's good, honey. A proper routine can make a world of difference.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mom",
+          "text": "Just don't let work take over your entire day.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I'll try. I know you worry.",
+          "nextNode": "close",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomTrust",
+              "intValue": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rest_poor",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "Oh, Bjarne... You know you don't have to work yourself into the ground, right?",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mom",
+          "text": "I wish you would let yourself relax every now and then.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I think I needed to hear that.",
+          "nextNode": "close",
+          "effects": [
+            {
+              "type": "addStat",
+              "key": "MomTrust",
+              "intValue": 1
+            },
+            {
+              "type": "addStat",
+              "key": "Connectedness",
+              "intValue": 1
+            }
+          ]
+        },
+        {
+          "text": "I'll be alright. Don't worry too much.",
+          "nextNode": "close"
+        }
+      ]
+    },
+    {
+      "id": "rest_busy",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "I figured you'd say that.",
+          "channel": "chat"
+        },
+        {
+          "speaker": "Mom",
+          "text": "Just promise me you'll eat something decent today.",
+          "channel": "chat"
+        }
+      ],
+      "choices": [
+        {
+          "text": "I will. Promise.",
+          "nextNode": "close"
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "lines": [
+        {
+          "speaker": "Mom",
+          "text": "You'd better! I know how you get when you're busy.",
+          "channel": "chat"
+        }
+      ],
+      "choices": []
+    }
+  ]
+}

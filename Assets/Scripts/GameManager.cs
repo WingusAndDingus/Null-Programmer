@@ -33,8 +33,6 @@ public class GameManager : MonoBehaviour
     public string CurrentStep { get; private set; } = "Start";
     public int GrandArchitectStat { get; private set; }
     public int PragmatistStat { get; private set; }
-    public int SentinelStat { get; private set; }
-    public int GeniusStat { get; private set; }
     public int DetectiveStat { get; private set; }
     public int SteveSuspicion { get; private set; }
 
@@ -348,18 +346,6 @@ public class GameManager : MonoBehaviour
         Debug.Log($"[GameManager] ChangePragmatistStat delta: {value}, Total PragmatistStat: {PragmatistStat}");
     }
 
-    public void ChangeSentinelStat(int value)
-    {
-        SentinelStat += value;
-        Debug.Log($"[GameManager] ChangeSentinelStat delta: {value}, Total SentinelStat: {SentinelStat}");
-    }
-
-    public void ChangeGeniusStat(int value)
-    {
-        GeniusStat += value;
-        Debug.Log($"[GameManager] ChangeGeniusStat delta: {value}, Total GeniusStat: {GeniusStat}");
-    }
-
     public void ChangeDetectiveStat(int value)
     {
         DetectiveStat += value;
@@ -586,5 +572,20 @@ public class GameManager : MonoBehaviour
         state.HasStackOrder = true;
         nextWindowStackOrder++;
         Debug.Log($"[GameManager] BringWindowToFront brought windowId '{windowId}' to front with stack order {state.StackOrder}");
+    }
+    // =========================================================
+    // Secret Ending / Clue Tracking
+    // =========================================================
+    private readonly HashSet<string> discoveredClues = new HashSet<string>();
+
+    public int DiscoveredCluesCount => discoveredClues.Count;
+
+    public void DiscoverClue(string clueID)
+    {
+        if (!string.IsNullOrWhiteSpace(clueID) && !discoveredClues.Contains(clueID))
+        {
+            discoveredClues.Add(clueID);
+            Debug.Log($"[GameManager] Clue discovered: '{clueID}'. Total clues found: {DiscoveredCluesCount}");
+        }
     }
 }

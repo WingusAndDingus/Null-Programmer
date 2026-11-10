@@ -1,0 +1,103 @@
+{
+  "packName": "Bjarne Five-Day Dialogue Pack",
+  "version": 1,
+  "conversations": [
+    {
+      "day": 1,
+      "contact": "Mark",
+      "file": "Day01_Mark.json",
+      "conversationId": "Day01_Mark"
+    },
+    {
+      "day": 1,
+      "contact": "Mom",
+      "file": "Day01_Mom.json",
+      "conversationId": "Day01_Mom"
+    },
+    {
+      "day": 2,
+      "contact": "Ashley",
+      "file": "Day02_Ashley.json",
+      "conversationId": "Day02_Ashley"
+    },
+    {
+      "day": 2,
+      "contact": "Mark",
+      "file": "Day02_Mark.json",
+      "conversationId": "Day02_Mark"
+    },
+    {
+      "day": 2,
+      "contact": "Mom",
+      "file": "Day02_Mom.json",
+      "conversationId": "Day02_Mom"
+    },
+    {
+      "day": 3,
+      "contact": "Ashley",
+      "file": "Day03_Ashley.json",
+      "conversationId": "Day03_Ashley"
+    },
+    {
+      "day": 3,
+      "contact": "Mark",
+      "file": "Day03_Mark.json",
+      "conversationId": "Day03_Mark"
+    },
+    {
+      "day": 3,
+      "contact": "Mom",
+      "file": "Day03_Mom.json",
+      "conversationId": "Day03_Mom"
+    },
+    {
+      "day": 4,
+      "contact": "Ashley",
+      "file": "Day04_Ashley.json",
+      "conversationId": "Day04_Ashley"
+    },
+    {
+      "day": 4,
+      "contact": "Mark",
+      "file": "Day04_Mark.json",
+      "conversationId": "Day04_Mark"
+    },
+    {
+      "day": 4,
+      "contact": "Mom",
+      "file": "Day04_Mom.json",
+      "conversationId": "Day04_Mom"
+    },
+    {
+      "day": 5,
+      "contact": "Ashley",
+      "file": "Day05_Ashley.json",
+      "conversationId": "Day05_Ashley"
+    },
+    {
+      "day": 5,
+      "contact": "Mark",
+      "file": "Day05_Mark.json",
+      "conversationId": "Day05_Mark"
+    },
+    {
+      "day": 5,
+      "contact": "Mom",
+      "file": "Day05_Mom.json",
+      "conversationId": "Day05_Mom"
+    }
+  ],
+  "secretEnding": "SecretEnding_SegmentationFaultOfTheSoul.json",
+  "clueFlags": [
+    "C01_BjarneName",
+    "C02_Birthday",
+    "C03_AshleyGirlfriend",
+    "C04_StoodUp",
+    "C05_MarkBestFriend",
+    "C06_Intoxicated",
+    "C07_WorkStress",
+    "C08_PreviousBreakup",
+    "C09_EmotionalDistance",
+    "C10_FewFriends"
+  ]
+}
