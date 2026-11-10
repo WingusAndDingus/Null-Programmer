@@ -21,6 +21,19 @@ namespace NullProgrammer.Audio
         [Range(.1f, 5f)] public float crossfadeSeconds = 1.5f;
         public bool showAudioButton = true;
         public Sound[] sounds = new Sound[0];
+        [Header("Recorded Dialogue")]
+        [Range(0f, 1f)] public float dialogueVoiceoverGain = 1f;
+
+        [Header("Dialogue Blips")]
+        public bool dialogueBlipsEnabled = true;
+        [Range(0f, 1f)] public float dialogueBlipGain = .22f;
+        [Range(1, 8)] public int dialogueBlipCharactersPerSound = 3;
+        [Range(.02f, .3f)] public float dialogueBlipMinimumInterval = .06f;
+        [Range(0f, .25f)] public float dialogueBlipPitchVariation = .04f;
+        [Tooltip("Optional overrides. Leave empty to use the included blips.")]
+        public AudioClip dialogueDefaultBlip, dialogueSteveBlip, dialogueArchitectBlip,
+            dialogueSentinelBlip, dialoguePragmatistBlip, dialogueGeniusBlip, dialogueDetectiveBlip;
+
         [TextArea(6, 15)] public string credits;
 
         [Serializable] public sealed class Sound

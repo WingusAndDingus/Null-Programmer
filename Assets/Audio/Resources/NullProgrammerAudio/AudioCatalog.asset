@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fb2f534eb0b550dad756aa18e4aa267, type: 3}
   m_Name: AudioCatalog
   m_EditorClassIdentifier: Assembly-CSharp::NullProgrammer.Audio.AudioCatalog
-  desktop: {fileID: 8300000, guid: dea16599e7fe56a2a7857d0caecf3aa8, type: 3}
-  activity: {fileID: 8300000, guid: e4e1c16ad7d05dff96fc4d7575ca92b6, type: 3}
+  defaultMusicVolume: 0.15
+  desktop: {fileID: 8300000, guid: 9e53214ef61a5ef46a944603a85f264c, type: 3}
+  activity: {fileID: 8300000, guid: 3318edbf49329ce499a4d0baae510f68, type: 3}
   night: {fileID: 8300000, guid: 0435024bcd115dfb9c768e25fd13d129, type: 3}
   crossfadeSeconds: 1.5
   showAudioButton: 0
@@ -86,6 +87,19 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 10942a2a7ca35238a35a7bb105faa03b, type: 3}
     gain: 0.6
     cooldown: 1.5
+  dialogueVoiceoverGain: 1
+  dialogueBlipsEnabled: 1
+  dialogueBlipGain: 0.47
+  dialogueBlipCharactersPerSound: 3
+  dialogueBlipMinimumInterval: 0.06
+  dialogueBlipPitchVariation: 0.04
+  dialogueDefaultBlip: {fileID: 0}
+  dialogueSteveBlip: {fileID: 0}
+  dialogueArchitectBlip: {fileID: 0}
+  dialogueSentinelBlip: {fileID: 0}
+  dialoguePragmatistBlip: {fileID: 0}
+  dialogueGeniusBlip: {fileID: 0}
+  dialogueDetectiveBlip: {fileID: 0}
   credits: 'Music by Kevin MacLeod (incompetech.com)
 
     "Floating Cities" / "Cipher" / "Dreams Become Real"
