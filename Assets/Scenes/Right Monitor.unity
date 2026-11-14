@@ -1549,7 +1549,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MonitorMessagingApp
   conversations:
-  - {fileID: 11400000, guid: 815403ef8eedc264ea0bc48a25ceefaf, type: 2}
   - {fileID: 11400000, guid: d48679309a491ca449d0e28cd30e7c89, type: 2}
   contacts: {fileID: 1650417448}
   history: {fileID: 1518844621}
@@ -1563,12 +1562,14 @@ MonoBehaviour:
     y: 378
     width: 572
     height: 306
+  pendingIncomingBubbleColor: {r: 0.19, g: 0.32, b: 0.5, a: 0.98}
+  archivedIncomingBubbleColor: {r: 0.075, g: 0.11, b: 0.17, a: 0.98}
   backgroundArtwork: {fileID: 1824644400258909766, guid: 3ea1ca64370636b42a6da1ad59721d3f, type: 3}
   referenceWidth: 900
   chatFontSize: 26
   maximumBubbleWidth: 0.76
   incomingBubbleColor: {r: 0.1, g: 0.17, b: 0.25, a: 0.97}
-  outgoingBubbleColor: {r: 0.16, g: 0.3, b: 0.5, a: 0.98}
+  outgoingBubbleColor: {r: 0.16078429, g: 0.5019608, b: 0.23083177, a: 0.98}
   systemBubbleColor: {r: 0.025, g: 0.075, b: 0.15, a: 0.98}
 --- !u!114 &1691462020
 MonoBehaviour:

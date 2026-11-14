@@ -12,6 +12,7 @@ public sealed class MessagingSession : MonoBehaviour
         public bool isSystem;
         public bool read;
         public string timeLabel;
+        public bool isPending; //for different colored messages depending on whether it has been read
     }
 
     public sealed class Thread
@@ -94,6 +95,7 @@ public sealed class MessagingSession : MonoBehaviour
 
         thread.replied = true;
         thread.replyIndex = index;
+        ClearPendingMessages(thread);
         thread.messages.Add(new Entry
         {
             text = reply.text,
@@ -122,6 +124,10 @@ public sealed class MessagingSession : MonoBehaviour
         var thread = GetThread(id);
         if (thread == null || string.IsNullOrEmpty(text)) return false;
         AddIncomingEntry(thread, text, isSystem, false);
+        Entry received = thread.messages[thread.messages.Count - 1];
+        // Highlight each incoming message immediately. Do not wait for the controller
+        // to finish the node and reveal the next response buttons.
+        received.isPending = !isSystem;
         if (playSound && !isSystem)
             NullProgrammer.Audio.GameAudio.Play(NullProgrammer.Audio.SfxCue.Message);
         Changed?.Invoke();
@@ -138,6 +144,8 @@ public sealed class MessagingSession : MonoBehaviour
     {
         var thread = GetThread(id);
         if (thread == null || string.IsNullOrWhiteSpace(text)) return false;
+        // The player's reply resolves all incoming messages from the previous turn.
+        ClearPendingMessages(thread);
         thread.messages.Add(new Entry
         {
             text = text,
@@ -154,10 +162,43 @@ public sealed class MessagingSession : MonoBehaviour
     {
         var thread = GetThread(id);
         if (thread == null) return;
+
         thread.replied = !awaitingPlayerChoice;
         thread.replyIndex = -1;
+
+        if (!awaitingPlayerChoice)
+        {
+            // The node has ended without another player response, so archive its
+            // final incoming messages as well.
+            ClearPendingMessages(thread);
+        }
+        else
+        {
+            // Keep incoming messages bright while the player is being offered a
+            // response. Receive() already highlighted them as soon as they arrived.
+            // This pass also covers messages appended by older/legacy code paths.
+            int lastPlayerMessage = -1;
+            for (int i = thread.messages.Count - 1; i >= 0; i--)
+            {
+                if (thread.messages[i] != null && thread.messages[i].fromPlayer)
+                {
+                    lastPlayerMessage = i;
+                    break;
+                }
+            }
+
+            for (int i = lastPlayerMessage + 1; i < thread.messages.Count; i++)
+            {
+                Entry entry = thread.messages[i];
+                if (entry != null && !entry.fromPlayer && !entry.isSystem)
+                    entry.isPending = true;
+            }
+        }
+
         Changed?.Invoke();
     }
+
+
 
     /// <summary>Legacy helper retained for any existing code that used the first integration pass.</summary>
     public bool AppendDialogueExchange(string id, string playerText, string[] incomingLines, bool awaitingPlayerChoice)
@@ -182,6 +223,15 @@ public sealed class MessagingSession : MonoBehaviour
         thread.replyIndex = -1;
         Changed?.Invoke();
         return true;
+    }
+    private static void ClearPendingMessages(Thread thread)
+    {
+        if (thread == null) return;
+        foreach (Entry entry in thread.messages)
+        {
+            if (entry != null)
+                entry.isPending = false;
+        }
     }
 
     private static void AddIncomingEntry(Thread thread, string text, bool isSystem, bool fromPlayer)

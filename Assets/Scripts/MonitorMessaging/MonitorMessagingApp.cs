@@ -18,6 +18,10 @@ public sealed class MonitorMessagingApp : MonoBehaviour
     public Rect displayPixels = new Rect(548, 367, 578, 323);
 
     [Header("Messaging Appearance")]
+    [Tooltip("Brighter incoming bubbles for the latest message group awaiting a player reply.")]
+    public Color pendingIncomingBubbleColor = new Color(0.19f, 0.32f, 0.50f, 0.98f);
+    [Tooltip("Muted incoming bubbles after the player has responded to that message group.")]
+    public Color archivedIncomingBubbleColor = new Color(0.075f, 0.11f, 0.17f, 0.98f);
     public Sprite backgroundArtwork;
     [Range(700, 1200)] public float referenceWidth = 900;
     [Range(18, 36)] public float chatFontSize = 26;
@@ -31,6 +35,7 @@ public sealed class MonitorMessagingApp : MonoBehaviour
     private ExternalMessageReplyBar externalReplyBar;
     private string lastRenderedHistoryId;
     private Coroutine historyScrollRoutine;
+    private int lastRenderedMessageCount = -1;
     public Color systemBubbleColor = new Color(0.025f, 0.075f, 0.15f, 0.98f);
     private MessagingSession session;
     private MessageConversation selected;
@@ -101,6 +106,9 @@ public sealed class MonitorMessagingApp : MonoBehaviour
         replies = view.replies as RectTransform;
         heading = view.heading;
         historyScroll = view.scroll;
+        ConfigureConversationLayout();
+        ApplyBackground(screen);
+        Canvas.ForceUpdateCanvases();
         externalReplyBar = GetComponent<ExternalMessageReplyBar>();
         if (externalReplyBar == null)
             externalReplyBar = gameObject.AddComponent<ExternalMessageReplyBar>();
@@ -171,26 +179,58 @@ public sealed class MonitorMessagingApp : MonoBehaviour
 
     private void ConfigureConversationLayout()
     {
+        if (history == null || historyScroll == null || view == null)
+        {
+            Debug.LogError("[MonitorMessagingApp] Cannot configure message history: UI references are missing.", this);
+            return;
+        }
+
+        // Message rows set their preferred height in AddBubble(). The layout group
+        // MUST control child height or those preferred heights are ignored.
         var historyLayout = history.GetComponent<VerticalLayoutGroup>();
+        if (historyLayout == null)
+            historyLayout = history.gameObject.AddComponent<VerticalLayoutGroup>();
+
         historyLayout.childControlWidth = true;
         historyLayout.childControlHeight = true;
         historyLayout.childForceExpandWidth = true;
         historyLayout.childForceExpandHeight = false;
-        historyLayout.spacing = 14;
+        historyLayout.childAlignment = TextAnchor.UpperLeft;
+        historyLayout.spacing = 14f;
         historyLayout.padding = new RectOffset(12, 12, 14, 14);
 
-        // Reply choices are now rendered by ExternalMessageReplyBar outside
-        // the Messages Screen mask. Hide the old in-monitor reply panel.
-        var replyArea = view.canvas.transform.Find("Active Conversation/Reply Area") as RectTransform;
+        // Replies are drawn by ExternalMessageReplyBar outside the physical screen.
+        // Hide the legacy in-screen panel completely; it is the dark rectangle
+        // that used to sit between the message history and the external buttons.
+        Transform replyArea = view.canvas.transform.Find("Active Conversation/Reply Area");
         if (replyArea != null)
             replyArea.gameObject.SetActive(false);
 
-        // Give the message history the full conversation area.
-        var historyArea = (RectTransform)historyScroll.transform;
-        historyArea.anchorMin = new Vector2(0, 0);
-        historyArea.anchorMax = new Vector2(1, 0.85f);
-        historyArea.offsetMin = new Vector2(12, 4);
-        historyArea.offsetMax = new Vector2(-12, -5);
+        // Expand the history to use the available conversation area below the header.
+        RectTransform historyArea = historyScroll.transform as RectTransform;
+        historyArea.anchorMin = new Vector2(0f, 0f);
+        historyArea.anchorMax = new Vector2(1f, 0.85f);
+        historyArea.offsetMin = new Vector2(12f, 4f);
+        historyArea.offsetMax = new Vector2(-12f, -5f);
+
+        RectTransform viewport = historyScroll.transform.Find("History Viewport") as RectTransform;
+        if (viewport == null)
+        {
+            Debug.LogError("[MonitorMessagingApp] History Viewport child is missing.", this);
+            return;
+        }
+
+        // Add a transparent Graphic to the viewport. RectMask2D alone does not
+        // receive pointer/wheel events, so scrolling over blank parts of the chat
+        // can otherwise fail even though the contacts list scrolls correctly.
+        Image viewportGraphic = viewport.GetComponent<Image>();
+        if (viewportGraphic == null)
+            viewportGraphic = viewport.gameObject.AddComponent<Image>();
+        viewportGraphic.color = new Color(0f, 0f, 0f, 0f);
+        viewportGraphic.raycastTarget = true;
+
+        if (viewport.GetComponent<RectMask2D>() == null)
+            viewport.gameObject.AddComponent<RectMask2D>();
 
         historyScroll.enabled = true;
         historyScroll.horizontal = false;
@@ -198,14 +238,23 @@ public sealed class MonitorMessagingApp : MonoBehaviour
         historyScroll.inertia = true;
         historyScroll.movementType = ScrollRect.MovementType.Clamped;
         historyScroll.scrollSensitivity = 40f;
-        historyScroll.viewport = historyScroll.transform.Find("History Viewport") as RectTransform;
+        historyScroll.viewport = viewport;
         historyScroll.content = history;
 
-        // ScrollRect requires top-anchored content whose height is driven by the
-        // VerticalLayoutGroup + ContentSizeFitter created by MessagingWindowView.
-        history.anchorMin = new Vector2(0, 1);
-        history.anchorMax = new Vector2(1, 1);
-        history.pivot = new Vector2(0.5f, 1);
+        // ContentSizeFitter on History determines its height from the VerticalLayoutGroup.
+        // Keep it stretched horizontally but top-anchored vertically so it grows down.
+        history.anchorMin = new Vector2(0f, 1f);
+        history.anchorMax = new Vector2(1f, 1f);
+        history.pivot = new Vector2(0.5f, 1f);
+
+        ContentSizeFitter fitter = history.GetComponent<ContentSizeFitter>();
+        if (fitter == null)
+            fitter = history.gameObject.AddComponent<ContentSizeFitter>();
+        fitter.horizontalFit = ContentSizeFitter.FitMode.Unconstrained;
+        fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(history);
+        Canvas.ForceUpdateCanvases();
     }
 
     private void ApplyBackground(RectTransform screen)
@@ -320,16 +369,23 @@ public sealed class MonitorMessagingApp : MonoBehaviour
             ? historyScroll.verticalNormalizedPosition
             : 0f;
 
-        bool contentFitsViewport = historyScroll == null ||
-            historyScroll.content == null || historyScroll.viewport == null ||
-            historyScroll.content.rect.height <= historyScroll.viewport.rect.height + 2f;
+        var selectedThreadBeforeRefresh = selected != null
+            ? session.GetThread(selected.id)
+            : null;
+        int currentMessageCount = selectedThreadBeforeRefresh != null
+            ? selectedThreadBeforeRefresh.messages.Count
+            : 0;
 
         bool changedConversation = !string.Equals(
             selectedId, lastRenderedHistoryId, System.StringComparison.Ordinal);
 
-        bool shouldStickToBottom = changedConversation || !hasRenderedHistory ||
-            contentFitsViewport || previousScrollPosition <= 0.06f;
+        // Any newly appended message in the currently open thread should be brought
+        // into view, even if the player was previously reading older history.
+        // A simple read/unread refresh does not increase the count and preserves scroll.
+        bool newMessageArrived = hasRenderedHistory && !changedConversation &&
+            currentMessageCount > lastRenderedMessageCount;
 
+        bool shouldStickToBottom = changedConversation || !hasRenderedHistory || newMessageArrived;
         refreshing = true;
         try
         {
@@ -379,7 +435,14 @@ public sealed class MonitorMessagingApp : MonoBehaviour
                         System.Array.Exists(selected.replies, reply => reply != null);
 
                     if (hasReplyOptions && externalReplyBar != null)
+                    {
                         externalReplyBar.Show(selected.replies, Reply);
+                    }
+                    else if (externalReplyBar != null && jsonDialogueController != null &&
+                        jsonDialogueController.IsConversationFinished(selected.id))
+                    {
+                        externalReplyBar.ShowEnded("Conversation ended for today.");
+                    }
                 }
             }
 
@@ -396,6 +459,7 @@ public sealed class MonitorMessagingApp : MonoBehaviour
 
             hasRenderedHistory = true;
             lastRenderedHistoryId = selectedId;
+            lastRenderedMessageCount = currentMessageCount;
         }
         finally
         {
@@ -415,11 +479,17 @@ public sealed class MonitorMessagingApp : MonoBehaviour
         yield return new WaitForEndOfFrame();
         Canvas.ForceUpdateCanvases();
 
-        if (historyScroll != null)
+        if (historyScroll != null && historyScroll.content != null && historyScroll.viewport != null)
         {
             historyScroll.StopMovement();
-            historyScroll.verticalNormalizedPosition =
-                stickToBottom ? 0f : Mathf.Clamp01(previousPosition);
+
+            float contentHeight = historyScroll.content.rect.height;
+            float viewportHeight = historyScroll.viewport.rect.height;
+            bool canScroll = contentHeight > viewportHeight + 2f;
+
+            historyScroll.verticalNormalizedPosition = !canScroll || stickToBottom
+                ? 0f
+                : Mathf.Clamp01(previousPosition);
         }
 
         historyScrollRoutine = null;
@@ -440,7 +510,8 @@ public sealed class MonitorMessagingApp : MonoBehaviour
         image.type = Image.Type.Sliced;
         image.pixelsPerUnitMultiplier = 1;
         image.color = entry.isSystem ? systemBubbleColor :
-            (entry.fromPlayer ? outgoingBubbleColor : incomingBubbleColor);
+            (entry.fromPlayer ? outgoingBubbleColor :
+                (entry.isPending ? pendingIncomingBubbleColor : archivedIncomingBubbleColor));
         image.raycastTarget = false;
 
         var alignment = entry.isSystem ? TextAlignmentOptions.Center : TextAlignmentOptions.TopLeft;

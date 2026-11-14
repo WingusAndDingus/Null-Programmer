@@ -16,6 +16,7 @@ public sealed class ExternalMessageReplyBar : MonoBehaviour
     [SerializeField, Min(10f)] private float fontSize = 23f;
     [SerializeField] private Color panelColor = new Color(0.025f, 0.045f, 0.075f, 0.96f);
     [SerializeField] private Color buttonColor = new Color(0.075f, 0.11f, 0.17f, 0.98f);
+    [SerializeField] private Color endedTextColor = new Color(0.68f, 0.75f, 0.86f, 1f);
 
     private RectTransform root;
     private TMP_FontAsset messageFont;
@@ -75,8 +76,6 @@ public sealed class ExternalMessageReplyBar : MonoBehaviour
         root.SetAsLastSibling();
         root.gameObject.SetActive(false);
 
-        // The host monitor Canvas normally already has a GraphicRaycaster. Add one
-        // defensively so the sibling buttons remain clickable outside the screen mask.
         Canvas hostCanvas = GetComponent<Canvas>();
         if (hostCanvas != null && hostCanvas.GetComponent<GraphicRaycaster>() == null)
             hostCanvas.gameObject.AddComponent<GraphicRaycaster>();
@@ -106,6 +105,42 @@ public sealed class ExternalMessageReplyBar : MonoBehaviour
             int capturedIndex = i;
             CreateChoiceButton(choice.text, () => onSelected?.Invoke(capturedIndex));
         }
+
+        Canvas.ForceUpdateCanvases();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(root);
+    }
+
+    /// <summary>Shows a non-interactive status when the contact has no more replies today.</summary>
+    public void ShowEnded(string message = "Conversation ended for today.")
+    {
+        if (!initialized || root == null)
+            return;
+
+        MessagingWindowView.Clear(root);
+        root.gameObject.SetActive(true);
+
+        var labelObject = new GameObject("Conversation Ended Status",
+            typeof(RectTransform), typeof(TextMeshProUGUI), typeof(LayoutElement));
+        labelObject.transform.SetParent(root, false);
+
+        var size = labelObject.GetComponent<LayoutElement>();
+        size.minWidth = 135f;
+        size.minHeight = 64f;
+        size.preferredHeight = 72f;
+        size.flexibleWidth = 1f;
+        size.flexibleHeight = 1f;
+
+        var label = labelObject.GetComponent<TextMeshProUGUI>();
+        label.font = messageFont != null ? messageFont : TMP_Settings.defaultFontAsset;
+        if (label.font != null)
+            label.fontSharedMaterial = label.font.material;
+        label.text = message;
+        label.fontSize = Mathf.Max(16f, fontSize - 2f);
+        label.color = endedTextColor;
+        label.alignment = TextAlignmentOptions.Center;
+        label.textWrappingMode = TextWrappingModes.Normal;
+        label.overflowMode = TextOverflowModes.Ellipsis;
+        label.raycastTarget = false;
 
         Canvas.ForceUpdateCanvases();
         LayoutRebuilder.ForceRebuildLayoutImmediate(root);

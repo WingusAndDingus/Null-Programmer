@@ -78,6 +78,14 @@ public sealed class JsonMessageDialogueController : MonoBehaviour
         return !string.IsNullOrEmpty(conversationId) &&
                activeConversations.ContainsKey(conversationId);
     }
+    /// <summary>True only after this JSON conversation has reached a terminal node for today.</summary>
+    public bool IsConversationFinished(string conversationId)
+    {
+        return !string.IsNullOrEmpty(conversationId) &&
+            activeConversations.TryGetValue(conversationId, out RuntimeConversation state) &&
+            state.finished && !state.processing && state.visibleChoices.Count == 0;
+    }
+
 
     /// <summary>Called by MonitorMessagingApp when the current in-game day is known/changes.</summary>
     public void TryStartForDay(int currentDay)
@@ -283,8 +291,8 @@ public sealed class JsonMessageDialogueController : MonoBehaviour
         yield return StartCoroutine(PlayLines(state, linesToPlay));
 
         SetVisibleChoices(state, state.currentNode);
-        session.SetAwaitingReply(contactId, state.visibleChoices.Count > 0);
         state.finished = state.visibleChoices.Count == 0;
+        session.SetAwaitingReply(contactId, state.visibleChoices.Count > 0);
 
         Debug.Log("[JsonMessageDialogueController] Started '" + data.conversationId +
                   "' for " + data.contact + " on Day " + currentDay + ".", this);
