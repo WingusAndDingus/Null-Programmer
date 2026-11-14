@@ -18,58 +18,144 @@ public sealed class MessagingSession : MonoBehaviour
         public bool replied;
         public int replyIndex = -1;
     }
-    private readonly Dictionary<string,Thread> threads = new Dictionary<string,Thread>();
+    private readonly Dictionary<string, Thread> threads = new Dictionary<string, Thread>();
     public event Action Changed;
     public string SelectedId;
+
     public static MessagingSession Get()
     {
         var gm = GameManager.EnsureInstance();
         var state = gm.GetComponent<MessagingSession>();
         return state != null ? state : gm.gameObject.AddComponent<MessagingSession>();
     }
-    public Thread GetThread(string id) => threads.TryGetValue(id,out var thread) ? thread : null;
+
+    public Thread GetThread(string id) => threads.TryGetValue(id, out var thread) ? thread : null;
+
     public void Unlock(MessageConversation conversation, int day)
     {
-        if (conversation == null || string.IsNullOrWhiteSpace(conversation.id) || day < conversation.availableFromDay || threads.ContainsKey(conversation.id)) return;
+        if (conversation == null || string.IsNullOrWhiteSpace(conversation.id) ||
+            day < conversation.availableFromDay || threads.ContainsKey(conversation.id))
+            return;
+
         var thread = new Thread();
         thread.messages.Add(new Entry { text = conversation.openingMessage, timeLabel = CurrentTimeLabel() });
-        threads.Add(conversation.id,thread); NullProgrammer.Audio.GameAudio.Play(NullProgrammer.Audio.SfxCue.Message); Changed?.Invoke();
+        threads.Add(conversation.id, thread);
+        NullProgrammer.Audio.GameAudio.Play(NullProgrammer.Audio.SfxCue.Message);
+        Changed?.Invoke();
     }
+
     public int Unread(string id)
     {
-        var thread = GetThread(id); if (thread == null) return 0;
-        int count = 0; foreach (var entry in thread.messages) if (!entry.fromPlayer && !entry.read) count++;
+        var thread = GetThread(id);
+        if (thread == null) return 0;
+        int count = 0;
+        foreach (var entry in thread.messages)
+            if (!entry.fromPlayer && !entry.read) count++;
         return count;
     }
+
     public void Read(string id)
     {
-        var thread = GetThread(id); if (thread == null) return;
+        var thread = GetThread(id);
+        if (thread == null) return;
         bool changed = false;
         foreach (var entry in thread.messages)
-            if (!entry.fromPlayer && !entry.read) { entry.read = true; changed = true; }
-        SelectedId = id; if (changed) Changed?.Invoke();
+        {
+            if (!entry.fromPlayer && !entry.read)
+            {
+                entry.read = true;
+                changed = true;
+            }
+        }
+        SelectedId = id;
+        if (changed) Changed?.Invoke();
     }
+
     public bool Reply(MessageConversation conversation, int index)
     {
-        if (conversation == null || conversation.replies == null || index < 0 || index >= conversation.replies.Length) return false;
-        var thread = GetThread(conversation.id); var reply = conversation.replies[index];
+        if (conversation == null || conversation.replies == null ||
+            index < 0 || index >= conversation.replies.Length)
+            return false;
+
+        var thread = GetThread(conversation.id);
+        var reply = conversation.replies[index];
         if (thread == null || thread.replied || reply == null) return false;
+
         // Set the guard before invoking game events: repeated clicks never reapply rewards.
-        thread.replied = true; thread.replyIndex = index;
-        thread.messages.Add(new Entry { text = reply.text, fromPlayer = true, read = true, timeLabel = CurrentTimeLabel() });
-        if (!string.IsNullOrEmpty(reply.response)) thread.messages.Add(new Entry { text = reply.response, timeLabel = CurrentTimeLabel() });
+        thread.replied = true;
+        thread.replyIndex = index;
+        thread.messages.Add(new Entry
+        {
+            text = reply.text,
+            fromPlayer = true,
+            read = true,
+            timeLabel = CurrentTimeLabel()
+        });
+        if (!string.IsNullOrEmpty(reply.response))
+            thread.messages.Add(new Entry { text = reply.response, timeLabel = CurrentTimeLabel() });
+
         var gm = GameManager.EnsureInstance();
         gm.ChangeConnectednessStat(reply.connectednessDelta);
         gm.ChangeSteveSuspicion(reply.suspicionDelta);
-        Changed?.Invoke(); return true;
+        Changed?.Invoke();
+        return true;
     }
-    // Story scripts can deliver new authored messages to an already unlocked thread.
+
+    /// <summary>Story scripts can deliver new authored messages to an already unlocked thread.</summary>
     public bool Receive(string id, string text)
     {
-        var thread = GetThread(id); if (thread == null || string.IsNullOrEmpty(text)) return false;
-        thread.messages.Add(new Entry { text = text, timeLabel = CurrentTimeLabel() }); NullProgrammer.Audio.GameAudio.Play(NullProgrammer.Audio.SfxCue.Message); Changed?.Invoke(); return true;
+        var thread = GetThread(id);
+        if (thread == null || string.IsNullOrEmpty(text)) return false;
+        thread.messages.Add(new Entry { text = text, timeLabel = CurrentTimeLabel() });
+        NullProgrammer.Audio.GameAudio.Play(NullProgrammer.Audio.SfxCue.Message);
+        Changed?.Invoke();
+        return true;
+    }
+
+    /// <summary>
+    /// Adds one player response plus the following JSON-authored incoming lines.
+    /// awaitingPlayerChoice controls whether the monitor should continue showing reply buttons.
+    /// </summary>
+    public bool AppendDialogueExchange(
+        string id,
+        string playerText,
+        string[] incomingLines,
+        bool awaitingPlayerChoice)
+    {
+        var thread = GetThread(id);
+        if (thread == null) return false;
+
+        if (!string.IsNullOrWhiteSpace(playerText))
+        {
+            thread.messages.Add(new Entry
+            {
+                text = playerText,
+                fromPlayer = true,
+                read = true,
+                timeLabel = CurrentTimeLabel()
+            });
+        }
+
+        if (incomingLines != null)
+        {
+            foreach (string line in incomingLines)
+            {
+                if (string.IsNullOrWhiteSpace(line)) continue;
+                thread.messages.Add(new Entry
+                {
+                    text = line,
+                    fromPlayer = false,
+                    read = false,
+                    timeLabel = CurrentTimeLabel()
+                });
+            }
+        }
+
+        thread.replied = !awaitingPlayerChoice;
+        thread.replyIndex = -1;
+        Changed?.Invoke();
+        return true;
     }
 
     private static string CurrentTimeLabel() => DateTime.Now.ToString("h:mm tt");
 }
-

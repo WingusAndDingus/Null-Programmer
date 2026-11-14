@@ -28,6 +28,7 @@ MonoBehaviour:
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 0
     lineVariants: []
     choices: []
@@ -56,6 +57,7 @@ MonoBehaviour:
     speakerName: The Pragmatist
     personality: 3
     lineText: Looks like we have an email unread.
+    voiceClip: {fileID: 0}
     displayDuration: 3
     lineVariants: []
     choices: []
@@ -84,6 +86,7 @@ MonoBehaviour:
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 0
     lineVariants: []
     choices: []
@@ -112,6 +115,7 @@ MonoBehaviour:
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 0
     lineVariants: []
     choices: []
@@ -140,10 +144,11 @@ MonoBehaviour:
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 0
     lineVariants: []
     choices: []
-    nextStepID: Day1_FirstChoice
+    nextStepID: SteveGreeting
     alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
@@ -153,6 +158,64 @@ MonoBehaviour:
     delayDuration: 10
     NewSteveExpression: 0
     targetSceneName: NightScene
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 98f6bb8ecca04cfd906f9a01e88c4f34
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: SteveGreeting
+    speakerName: Steve
+    personality: 0
+    lineText: 'Hello Mr. Stroustrup, it is an honor to work with you! '
+    voiceClip: {fileID: 8300000, guid: 4578d9c016b65d9dad1590a3007cf822, type: 3}
+    displayDuration: 0
+    lineVariants: []
+    choices: []
+    nextStepID: SteveGreeting2
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 72980ba8316f43e08e6a228632e7c8f5
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: SteveGreeting2
+    speakerName: Steve
+    personality: 0
+    lineText: Have you had time to set up your project environment?
+    voiceClip: {fileID: 0}
+    displayDuration: 0
+    lineVariants: []
+    choices: []
+    nextStepID: Day1_FirstChoice
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
   - musicCue: 0
     soundCue: 0
@@ -168,6 +231,7 @@ MonoBehaviour:
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 0
     lineVariants: []
     choices:
@@ -210,6 +274,7 @@ MonoBehaviour:
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 0
     lineVariants: []
     choices: []
@@ -238,6 +303,7 @@ MonoBehaviour:
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 0
     lineVariants: []
     choices: []
@@ -266,6 +332,7 @@ MonoBehaviour:
     speakerName: The Genius
     personality: 5
     lineText: Looks like if we let on too much about our current predicament, Steve might wizen up to us. Who knows if we can trust him? Don't worry though, I always know what to say to sound smart.
+    voiceClip: {fileID: 0}
     displayDuration: 6
     lineVariants: []
     choices: []
@@ -294,6 +361,7 @@ MonoBehaviour:
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 0
     lineVariants: []
     choices: []
@@ -322,6 +390,7 @@ MonoBehaviour:
     speakerName: Steve
     personality: 0
     lineText: Uh ok sir, just to make sure you approve of how I do it, let me share my screen.
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
@@ -350,6 +419,7 @@ MonoBehaviour:
     speakerName: Steve
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 0
     lineVariants: []
     choices: []
@@ -378,6 +448,7 @@ MonoBehaviour:
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 0
     lineVariants: []
     choices: []
@@ -406,6 +477,7 @@ MonoBehaviour:
     speakerName: Grand Architect
     personality: 2
     lineText: Were you paying attention? how do we set up SFML?
+    voiceClip: {fileID: 0}
     displayDuration: 3
     lineVariants: []
     choices:
@@ -448,6 +520,7 @@ MonoBehaviour:
     speakerName: The Pragmatist
     personality: 3
     lineText: Why are you even wasting our time?
+    voiceClip: {fileID: 0}
     displayDuration: 3
     lineVariants: []
     choices: []
@@ -476,6 +549,7 @@ MonoBehaviour:
     speakerName: The Pragmatist
     personality: 3
     lineText: Ughh, we can just google it anyway!
+    voiceClip: {fileID: 0}
     displayDuration: 3
     lineVariants: []
     choices: []
@@ -504,6 +578,7 @@ MonoBehaviour:
     speakerName: Steve
     personality: 0
     lineText: Ok, so where should we start?
+    voiceClip: {fileID: 0}
     displayDuration: 3
     lineVariants: []
     choices: []
@@ -532,6 +607,7 @@ MonoBehaviour:
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 0
     lineVariants: []
     choices:
@@ -574,6 +650,7 @@ MonoBehaviour:
     speakerName: Steve
     personality: 0
     lineText: That's a really good mentality. Familiarize yourself with the documentation and let me know when you're done, I'd like to watch you set it up so I can learn.
+    voiceClip: {fileID: 0}
     displayDuration: 3
     lineVariants: []
     choices: []
@@ -602,6 +679,7 @@ MonoBehaviour:
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 0
     lineVariants: []
     choices:
@@ -637,6 +715,7 @@ MonoBehaviour:
     speakerName: Steve
     personality: 0
     lineText: Uhh sure. Can I watch you set it up?
+    voiceClip: {fileID: 0}
     displayDuration: 2
     lineVariants: []
     choices: []
@@ -665,6 +744,7 @@ MonoBehaviour:
     speakerName: Steve
     personality: 0
     lineText: 'Ok then, please accept and share your screen '
+    voiceClip: {fileID: 0}
     displayDuration: 0
     lineVariants: []
     choices: []
@@ -693,6 +773,7 @@ MonoBehaviour:
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3
     lineVariants: []
     choices: []
@@ -721,6 +802,7 @@ MonoBehaviour:
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 0
     lineVariants: []
     choices: []
@@ -749,6 +831,7 @@ MonoBehaviour:
     speakerName: Steve
     personality: 0
     lineText: Well, it's been an honor meeting you sir. You're definitely... unique. Have a good night, we can continue tomorrow.
+    voiceClip: {fileID: 0}
     displayDuration: 0
     lineVariants: []
     choices: []
@@ -777,6 +860,7 @@ MonoBehaviour:
     speakerName: The Detective
     personality: 6
     lineText: Do you think he knows?
+    voiceClip: {fileID: 0}
     displayDuration: 0
     lineVariants: []
     choices: []
@@ -805,6 +889,7 @@ MonoBehaviour:
     speakerName: The Pragmatist
     personality: 3
     lineText: I'd know
+    voiceClip: {fileID: 0}
     displayDuration: 0
     lineVariants: []
     choices: []
@@ -833,6 +918,7 @@ MonoBehaviour:
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 0
     lineVariants: []
     choices: []

@@ -1527,6 +1527,7 @@ GameObject:
   - component: {fileID: 1691462021}
   - component: {fileID: 1691462020}
   - component: {fileID: 1691462019}
+  - component: {fileID: 1691462023}
   m_Layer: 0
   m_Name: Monitor Messaging
   m_TagString: Untagged
@@ -1628,6 +1629,22 @@ RectTransform:
   m_AnchoredPosition: {x: -0.81225204, y: 1.082885}
   m_SizeDelta: {x: 1200, y: 618.6894}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1691462023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691462018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea3071497122ddb4fa163f6a358c8b41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::JsonMessageDialogueController
+  dialogueJson: {fileID: 4900000, guid: 20e0663af5f963146835594439dc4524, type: 3}
+  contactPortrait: {fileID: 7531357685092984243, guid: d43a047ccac5604488ee0299c23d88ac, type: 3}
+  debugBirthdayAlreadyKnown: 0
+  debugIntoxicationAlreadyKnown: 0
 --- !u!1 &1699225721
 GameObject:
   m_ObjectHideFlags: 0

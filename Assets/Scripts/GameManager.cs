@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     // =========================================================
     // Player / Game Stats
     // =========================================================
+    [Header("Current Day Set to: ")]
+    [field: SerializeField]
     public int CurrentDay { get; private set; } = 1;
     public string CurrentStep { get; private set; } = "Start";
     public int GrandArchitectStat { get; private set; }
@@ -44,6 +46,11 @@ public class GameManager : MonoBehaviour
     public event Action<int> SuspicionChanged;
     public event Action SteveCrisis;
     public event Action<int> DayChanged; //Syed's new implementation
+    // messaging characters stats
+    public int MomTrust { get; private set; }
+    public int MarkTrust { get; private set; }
+    public int AshleyTrust { get; private set; }
+    private readonly HashSet<string> storyFlags = new HashSet<string>(StringComparer.Ordinal);
     // =========================================================
     // Weekend Choice
     // =========================================================
@@ -244,12 +251,16 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         // Ensure a fresh game session always starts at Day 1 with clean stats
-        CurrentDay = 1;
+        //CurrentDay = 1; for debugging
         CurrentStep = "Start";
         SteveSuspicion = 0;
         UnspentSkillPoints = 0;
         SelectedWeekendChoice = null;
         rewardedMilestones.Clear();
+        MomTrust = 0;
+        MarkTrust = 0;
+        AshleyTrust = 0;
+        storyFlags.Clear();
 
         if (transform.parent != null)
         {
@@ -388,6 +399,62 @@ public class GameManager : MonoBehaviour
             SteveCrisis?.Invoke();
         }
     }
+    public bool HasStoryFlag(string key)
+    {
+        return !string.IsNullOrWhiteSpace(key) && storyFlags.Contains(key);
+    }
+
+    public void SetStoryFlag(string key, bool value)
+    {
+        if (string.IsNullOrWhiteSpace(key)) return;
+
+        if (value)
+            storyFlags.Add(key);
+        else
+            storyFlags.Remove(key);
+
+        Debug.Log($"[GameManager] Story flag '{key}' set to {value}.");
+    }
+
+    public void AddStoryStat(string key, int amount)
+    {
+        if (string.IsNullOrWhiteSpace(key) || amount == 0) return;
+
+        switch (key)
+        {
+            case "MomTrust":
+                MomTrust = Mathf.Max(0, MomTrust + amount);
+                break;
+            case "MarkTrust":
+                MarkTrust = Mathf.Max(0, MarkTrust + amount);
+                break;
+            case "AshleyTrust":
+                AshleyTrust = Mathf.Max(0, AshleyTrust + amount);
+                break;
+            case "Connectedness":
+                ChangeConnectednessStat(amount);
+                break;
+            case "SteveSuspicion":
+                ChangeSteveSuspicion(amount);
+                break;
+            case "CodeQuality":
+                ChangeCodeQualityStat(amount);
+                break;
+            case "GrandArchitectStat":
+                ChangeGrandArchitectStat(amount);
+                break;
+            case "PragmatistStat":
+                ChangePragmatistStat(amount);
+                break;
+            case "DetectiveStat":
+                ChangeDetectiveStat(amount);
+                break;
+            default:
+                Debug.LogWarning($"[GameManager] Unknown JSON dialogue stat key '{key}'.");
+                break;
+        }
+    }
+
 
     // =========================================================
     // Email Reply Demo / Day 5 Mail State

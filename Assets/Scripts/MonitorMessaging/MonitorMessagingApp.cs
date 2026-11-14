@@ -25,6 +25,7 @@ public sealed class MonitorMessagingApp : MonoBehaviour
     public Color outgoingBubbleColor = new Color(0.16f, 0.30f, 0.50f, 0.98f);
 
     private MessagingWindowView view;
+    private JsonMessageDialogueController jsonDialogueController;
     private MessagingSession session;
     private MessageConversation selected;
     private bool refreshing;
@@ -36,6 +37,7 @@ public sealed class MonitorMessagingApp : MonoBehaviour
     {
         if (!BuildMonitorVisuals()) return;
         session = MessagingSession.Get();
+        jsonDialogueController = GetComponent<JsonMessageDialogueController>();
         session.Changed += Refresh;
         Unlock();
     }
@@ -261,6 +263,9 @@ public sealed class MonitorMessagingApp : MonoBehaviour
     private void Unlock()
     {
         day = GameManager.EnsureInstance().CurrentDay;
+        if (jsonDialogueController != null)
+            jsonDialogueController.TryStartForDay(day);
+
         foreach (var conversation in NarrativeMessageDelivery.GetConversations(conversations))
             session.Unlock(conversation, day);
         if (selected == null)
@@ -279,8 +284,20 @@ public sealed class MonitorMessagingApp : MonoBehaviour
 
     private void Reply(int index)
     {
-        if (selected != null && session.Reply(selected, index)) Refresh();
+        if (selected == null) return;
+
+        if (jsonDialogueController != null &&
+            jsonDialogueController.HandlesConversation(selected.id))
+        {
+            if (jsonDialogueController.TrySelectChoice(selected.id, index))
+                Refresh();
+            return;
+        }
+
+        if (session.Reply(selected, index))
+            Refresh();
     }
+
 
     private void Refresh()
     {
