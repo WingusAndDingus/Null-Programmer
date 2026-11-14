@@ -172,17 +172,9 @@ public sealed class MessagingWindowView : MonoBehaviour
         var detailsSize = details.AddComponent<LayoutElement>();
         detailsSize.flexibleWidth = 1;
         Label("Contact", details.transform, conversation.contactName, BodySize(), TextAlignmentOptions.MidlineLeft, Color.white);
-        if (!string.IsNullOrWhiteSpace(preview))
+        if (preview == "Unread")
             Label("Status", details.transform, "Unread", BodySize() * .68f,
                 TextAlignmentOptions.MidlineLeft, new Color(.48f, .68f, 1f)); //original preview was ugly, better to have read/unread status
-        if (unread > 0)
-        {
-            var dot = New("Unread", row.transform);
-            var dotImage = dot.AddComponent<Image>();
-            dotImage.color = new Color(.40f, .61f, 1f);
-            var dotSize = dot.AddComponent<LayoutElement>();
-            dotSize.preferredWidth = dotSize.preferredHeight = 10;
-        }
     }
 
     public void SetActiveContact(MessageConversation conversation)

@@ -2,6 +2,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public sealed class MonitorMessagingApp : MonoBehaviour
 {
@@ -27,6 +28,9 @@ public sealed class MonitorMessagingApp : MonoBehaviour
     private MessagingWindowView view;
     private JsonMessageDialogueController jsonDialogueController;
     private bool hasRenderedHistory;
+    private ExternalMessageReplyBar externalReplyBar;
+    private string lastRenderedHistoryId;
+    private Coroutine historyScrollRoutine;
     public Color systemBubbleColor = new Color(0.025f, 0.075f, 0.15f, 0.98f);
     private MessagingSession session;
     private MessageConversation selected;
@@ -97,8 +101,10 @@ public sealed class MonitorMessagingApp : MonoBehaviour
         replies = view.replies as RectTransform;
         heading = view.heading;
         historyScroll = view.scroll;
-        ConfigureConversationLayout();
-        ApplyBackground(screen);
+        externalReplyBar = GetComponent<ExternalMessageReplyBar>();
+        if (externalReplyBar == null)
+            externalReplyBar = gameObject.AddComponent<ExternalMessageReplyBar>();
+        externalReplyBar.Initialize(screen, view.messageFont, 23f);
         return true;
     }
 
@@ -166,45 +172,40 @@ public sealed class MonitorMessagingApp : MonoBehaviour
     private void ConfigureConversationLayout()
     {
         var historyLayout = history.GetComponent<VerticalLayoutGroup>();
-        historyLayout.childControlWidth = historyLayout.childControlHeight = true;
+        historyLayout.childControlWidth = true;
+        historyLayout.childControlHeight = true;
         historyLayout.childForceExpandWidth = true;
         historyLayout.childForceExpandHeight = false;
         historyLayout.spacing = 14;
         historyLayout.padding = new RectOffset(12, 12, 14, 14);
 
+        // Reply choices are now rendered by ExternalMessageReplyBar outside
+        // the Messages Screen mask. Hide the old in-monitor reply panel.
         var replyArea = view.canvas.transform.Find("Active Conversation/Reply Area") as RectTransform;
         if (replyArea != null)
-        {
-            replyArea.anchorMin = Vector2.zero;
-            replyArea.anchorMax = new Vector2(1, 0.30f);
-            var replyScroll = replyArea.GetComponent<ScrollRect>();
-            if (replyScroll != null) replyScroll.enabled = false;
-        }
+            replyArea.gameObject.SetActive(false);
 
+        // Give the message history the full conversation area.
         var historyArea = (RectTransform)historyScroll.transform;
-        historyArea.anchorMin = new Vector2(0, 0.315f);
-        historyScroll.movementType = ScrollRect.MovementType.Clamped;
-        historyScroll.scrollSensitivity = 32f;
+        historyArea.anchorMin = new Vector2(0, 0);
+        historyArea.anchorMax = new Vector2(1, 0.85f);
+        historyArea.offsetMin = new Vector2(12, 4);
+        historyArea.offsetMax = new Vector2(-12, -5);
+
         historyScroll.enabled = true;
         historyScroll.horizontal = false;
         historyScroll.vertical = true;
         historyScroll.inertia = true;
+        historyScroll.movementType = ScrollRect.MovementType.Clamped;
+        historyScroll.scrollSensitivity = 40f;
+        historyScroll.viewport = historyScroll.transform.Find("History Viewport") as RectTransform;
+        historyScroll.content = history;
 
-        var viewport = (RectTransform)replies.parent;
-        var mask = viewport.GetComponent<RectMask2D>();
-        if (mask != null) mask.enabled = false;
-        var fitter = replies.GetComponent<ContentSizeFitter>();
-        if (fitter != null) fitter.enabled = false;
-        replies.anchorMin = Vector2.zero;
-        replies.anchorMax = Vector2.one;
-        replies.pivot = new Vector2(0.5f, 1);
-        replies.offsetMin = replies.offsetMax = Vector2.zero;
-        var replyLayout = replies.GetComponent<VerticalLayoutGroup>();
-        replyLayout.childControlWidth = replyLayout.childControlHeight = true;
-        replyLayout.childForceExpandWidth = true;
-        replyLayout.childForceExpandHeight = false;
-        replyLayout.childAlignment = TextAnchor.UpperLeft;
-        replyLayout.spacing = 12;
+        // ScrollRect requires top-anchored content whose height is driven by the
+        // VerticalLayoutGroup + ContentSizeFitter created by MessagingWindowView.
+        history.anchorMin = new Vector2(0, 1);
+        history.anchorMax = new Vector2(1, 1);
+        history.pivot = new Vector2(0.5f, 1);
     }
 
     private void ApplyBackground(RectTransform screen)
@@ -279,14 +280,19 @@ public sealed class MonitorMessagingApp : MonoBehaviour
                 c != null && c.id == session.SelectedId && session.GetThread(c.id) != null)
                 ?? (NarrativeMessageDelivery.GetConversations(conversations)).FirstOrDefault(c =>
                     c != null && session.GetThread(c.id) != null);
+        if (jsonDialogueController != null)
+            jsonDialogueController.SetSelectedConversation(selected != null ? selected.id : null);
         Refresh();
     }
 
     private void Select(MessageConversation conversation)
     {
         selected = conversation;
+        if (jsonDialogueController != null)
+            jsonDialogueController.SetSelectedConversation(selected != null ? selected.id : null);
         Refresh();
     }
+
 
     private void Reply(int index)
     {
@@ -308,33 +314,57 @@ public sealed class MonitorMessagingApp : MonoBehaviour
     private void Refresh()
     {
         if (session == null || refreshing || view == null) return;
+
+        string selectedId = selected != null ? selected.id : null;
         float previousScrollPosition = historyScroll != null
-        ? historyScroll.verticalNormalizedPosition
-        : 0f;
-        bool shouldStickToBottom = !hasRenderedHistory || previousScrollPosition <= 0.03f;
+            ? historyScroll.verticalNormalizedPosition
+            : 0f;
+
+        bool contentFitsViewport = historyScroll == null ||
+            historyScroll.content == null || historyScroll.viewport == null ||
+            historyScroll.content.rect.height <= historyScroll.viewport.rect.height + 2f;
+
+        bool changedConversation = !string.Equals(
+            selectedId, lastRenderedHistoryId, System.StringComparison.Ordinal);
+
+        bool shouldStickToBottom = changedConversation || !hasRenderedHistory ||
+            contentFitsViewport || previousScrollPosition <= 0.06f;
+
         refreshing = true;
         try
         {
             if (selected != null) session.Read(selected.id);
+
             MessagingWindowView.Clear(contacts);
             MessagingWindowView.Clear(history);
-            MessagingWindowView.Clear(replies);
+
             foreach (var conversation in NarrativeMessageDelivery.GetConversations(conversations))
             {
                 if (conversation == null) continue;
+
                 var thread = session.GetThread(conversation.id);
                 if (thread == null) continue;
+
                 var captured = conversation;
-                string preview = thread.replied ? "" : "Unread";
-                view.AddContact(conversation, preview, session.Unread(conversation.id),
+                bool hasReplyOptions = !thread.replied && conversation.replies != null &&
+                    System.Array.Exists(conversation.replies, reply => reply != null);
+
+                string status = hasReplyOptions ? "Unread" : "";
+
+                view.AddContact(conversation, status, session.Unread(conversation.id),
                     conversation == selected, () => Select(captured));
             }
 
             view.SetActiveContact(selected);
             Canvas.ForceUpdateCanvases();
+
+            if (externalReplyBar != null)
+                externalReplyBar.Hide();
+
             if (selected == null)
             {
-                view.Label(history, "No conversations are available yet. Return when a contact sends you a message.",
+                view.Label(history,
+                    "No conversations are available yet. Return when a contact sends you a message.",
                     24, TextAlignmentOptions.TopLeft, new Color(0.62f, 0.69f, 0.81f));
             }
             else
@@ -342,93 +372,57 @@ public sealed class MonitorMessagingApp : MonoBehaviour
                 var thread = session.GetThread(selected.id);
                 if (thread != null)
                 {
-                    foreach (var entry in thread.messages) AddBubble(entry);
-                    if (!thread.replied && selected.replies != null)
-                    {
-                        for (int i = 0; i < selected.replies.Length; i++)
-                        {
-                            if (selected.replies[i] == null) continue;
-                            int index = i;
-                            var button = CreateReplyButton(replies, selected.replies[i].text, () => Reply(index), 26);
-                            var label = button.GetComponentInChildren<TMP_Text>();
-                            label.font = view.messageFont;
-                            if (label.font != null) label.fontSharedMaterial = label.font.material;
-                            label.textWrappingMode = TextWrappingModes.Normal;
-                            float textWidth = Mathf.Max(120, replies.rect.width - 44);
-                            button.GetComponent<LayoutElement>().preferredHeight =
-                                Mathf.Max(42, label.GetPreferredValues(label.text, textWidth, 0).y + 16);
-                        }
-                    }
-                    else view.Label(replies, "Conversation complete. You can return and read it anytime.",
-                        22, TextAlignmentOptions.MidlineLeft, new Color(0.62f, 0.69f, 0.81f));
+                    foreach (var entry in thread.messages)
+                        AddBubble(entry);
+
+                    bool hasReplyOptions = !thread.replied && selected.replies != null &&
+                        System.Array.Exists(selected.replies, reply => reply != null);
+
+                    if (hasReplyOptions && externalReplyBar != null)
+                        externalReplyBar.Show(selected.replies, Reply);
                 }
             }
-            FitReplyArea();
-            Canvas.ForceUpdateCanvases();
+
             Canvas.ForceUpdateCanvases();
             if (history != null)
                 LayoutRebuilder.ForceRebuildLayoutImmediate(history);
             Canvas.ForceUpdateCanvases();
 
-            if (historyScroll != null)
-                historyScroll.verticalNormalizedPosition = shouldStickToBottom ? 0f : previousScrollPosition;
+            if (historyScrollRoutine != null)
+                StopCoroutine(historyScrollRoutine);
+
+            historyScrollRoutine = StartCoroutine(
+                RestoreHistoryScroll(shouldStickToBottom, previousScrollPosition));
 
             hasRenderedHistory = true;
-
+            lastRenderedHistoryId = selectedId;
         }
-        finally { refreshing = false; }
-    }
-
-    private Button CreateReplyButton(
-        Transform parent,
-        string text,
-        UnityEngine.Events.UnityAction action,
-        float fontSize)
-    {
-        var root = new GameObject("Reply Option", typeof(RectTransform),
-            typeof(Image), typeof(Button), typeof(LayoutElement));
-        root.transform.SetParent(parent, false);
-
-        var rect = root.GetComponent<RectTransform>();
-        rect.anchorMin = Vector2.zero;
-        rect.anchorMax = Vector2.one;
-        rect.offsetMin = rect.offsetMax = Vector2.zero;
-
-        var background = root.GetComponent<Image>();
-        background.color = new Color(0.065f, 0.09f, 0.125f);
-        var button = root.GetComponent<Button>();
-        button.targetGraphic = background;
-        button.onClick.AddListener(action);
-        root.GetComponent<LayoutElement>().preferredHeight = 68;
-
-        var label = view.Label(root.transform, text, fontSize,
-            TextAlignmentOptions.MidlineLeft, new Color(0.9f, 0.94f, 0.98f));
-        label.GetComponent<LayoutElement>().ignoreLayout = true;
-        label.rectTransform.anchorMin = new Vector2(0.035f, 0.08f);
-        label.rectTransform.anchorMax = new Vector2(0.965f, 0.92f);
-        label.rectTransform.offsetMin = label.rectTransform.offsetMax = Vector2.zero;
-        return button;
-    }
-
-    private void FitReplyArea()
-    {
-        var area = view.canvas.transform.Find("Active Conversation/Reply Area") as RectTransform;
-        if (area == null) return;
-        var layout = replies.GetComponent<VerticalLayoutGroup>();
-        float needed = 36 + layout.padding.vertical;
-        int count = 0;
-        foreach (Transform child in replies)
+        finally
         {
-            if (!child.gameObject.activeSelf) continue;
-            var size = child.GetComponent<LayoutElement>();
-            needed += size != null ? Mathf.Max(size.minHeight, size.preferredHeight) : 42;
-            count++;
+            refreshing = false;
         }
-        needed += Mathf.Max(0, count - 1) * layout.spacing;
-        float parentHeight = Mathf.Max(1, ((RectTransform)area.parent).rect.height);
-        float fraction = Mathf.Clamp(needed / parentHeight, 0.16f, 0.50f);
-        area.anchorMax = new Vector2(1, fraction);
-        ((RectTransform)historyScroll.transform).anchorMin = new Vector2(0, fraction + 0.015f);
+    }
+    private IEnumerator RestoreHistoryScroll(bool stickToBottom, float previousPosition)
+    {
+        // Wait for deferred Destroy calls and ContentSizeFitter/layout calculations.
+        yield return null;
+        Canvas.ForceUpdateCanvases();
+
+        if (history != null)
+            LayoutRebuilder.ForceRebuildLayoutImmediate(history);
+
+        Canvas.ForceUpdateCanvases();
+        yield return new WaitForEndOfFrame();
+        Canvas.ForceUpdateCanvases();
+
+        if (historyScroll != null)
+        {
+            historyScroll.StopMovement();
+            historyScroll.verticalNormalizedPosition =
+                stickToBottom ? 0f : Mathf.Clamp01(previousPosition);
+        }
+
+        historyScrollRoutine = null;
     }
 
     private void AddBubble(MessagingSession.Entry entry)
@@ -517,6 +511,12 @@ public sealed class MonitorMessagingApp : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (historyScrollRoutine != null)
+            StopCoroutine(historyScrollRoutine);
+
+        if (externalReplyBar != null)
+            externalReplyBar.Hide();
+
         if (session != null) session.Changed -= Refresh;
         if (bubbleSprite != null) Destroy(bubbleSprite);
         if (bubbleTexture != null) Destroy(bubbleTexture);

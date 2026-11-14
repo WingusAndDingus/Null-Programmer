@@ -48,6 +48,25 @@ public sealed class JsonMessageDialogueController : MonoBehaviour
     private MessagingSession session;
     private int lastRequestedDay = -1;
 
+    // Internal thoughts belong to the conversation currently open on the monitor.
+    // If the player switches contacts while a thought is displayed, dismiss it.
+    private string selectedContactId;
+    private string activeInternalDialogueContactId;
+
+    public void SetSelectedConversation(string contactId)
+    {
+        selectedContactId = contactId;
+
+        if (!string.IsNullOrEmpty(activeInternalDialogueContactId) &&
+            !string.Equals(activeInternalDialogueContactId, selectedContactId, StringComparison.Ordinal))
+        {
+            if (DialogueManager.Instance != null)
+                DialogueManager.Instance.HideDialogueUI();
+
+            activeInternalDialogueContactId = null;
+        }
+    }
+
     private void Awake()
     {
         session = MessagingSession.Get();
@@ -326,12 +345,16 @@ public sealed class JsonMessageDialogueController : MonoBehaviour
             if (line == null || string.IsNullOrWhiteSpace(line.text))
                 continue;
 
-            if (messageIntervalSeconds > 0f)
-                yield return new WaitForSecondsRealtime(messageIntervalSeconds);
-
             string channel = (line.channel ?? "chat").Trim().ToLowerInvariant();
+
+            // Internal thoughts are immediate: they do not wait for the chat-message
+            // pacing timer. Only show a thought while its associated contact is open.
+            // Switching contacts cancels the thought so it cannot comment on the wrong DM.
             if (channel == "internal")
             {
+                if (!string.Equals(selectedContactId, state.contactId, StringComparison.Ordinal))
+                    continue;
+
                 DialogueManager manager = DialogueManager.Instance;
                 if (manager == null)
                 {
@@ -347,14 +370,37 @@ public sealed class JsonMessageDialogueController : MonoBehaviour
                     displayDuration = 3.5f
                 };
 
+                activeInternalDialogueContactId = state.contactId;
                 Task playback = manager.DisplayLineAndWaitAsync(dialogueLine);
-                while (!playback.IsCompleted)
+
+                while (!playback.IsCompleted &&
+                       string.Equals(selectedContactId, state.contactId, StringComparison.Ordinal))
+                {
                     yield return null;
+                }
+
+                // SetSelectedConversation normally dismisses the panel synchronously.
+                // This is a defensive fallback if the selected contact changed by another path.
+                if (!playback.IsCompleted &&
+                    !string.Equals(selectedContactId, state.contactId, StringComparison.Ordinal))
+                {
+                    manager.HideDialogueUI();
+                }
 
                 if (playback.IsFaulted)
                     Debug.LogException(playback.Exception, this);
+
+                if (string.Equals(activeInternalDialogueContactId, state.contactId, StringComparison.Ordinal))
+                    activeInternalDialogueContactId = null;
+
+                continue;
             }
-            else if (channel == "system")
+
+            // Chat and system messages are paced; internal thoughts above are not.
+            if (messageIntervalSeconds > 0f)
+                yield return new WaitForSecondsRealtime(messageIntervalSeconds);
+
+            if (channel == "system")
             {
                 session.ReceiveSystem(state.contactId, StripSystemPrefix(line.text));
             }
