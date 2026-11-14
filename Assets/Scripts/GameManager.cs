@@ -48,8 +48,10 @@ public class GameManager : MonoBehaviour
     public event Action<int> DayChanged; //Syed's new implementation
     // messaging characters stats
     public int MomTrust { get; private set; }
+    public int MomConcern { get; private set; }
     public int MarkTrust { get; private set; }
     public int AshleyTrust { get; private set; }
+    public int AshleyGuarded { get; private set; }
     private readonly HashSet<string> storyFlags = new HashSet<string>(StringComparer.Ordinal);
     // =========================================================
     // Weekend Choice
@@ -258,8 +260,10 @@ public class GameManager : MonoBehaviour
         SelectedWeekendChoice = null;
         rewardedMilestones.Clear();
         MomTrust = 0;
+        MomConcern = 0;
         MarkTrust = 0;
         AshleyTrust = 0;
+        AshleyGuarded = 0;
         storyFlags.Clear();
 
         if (transform.parent != null)
@@ -448,6 +452,12 @@ public class GameManager : MonoBehaviour
                 break;
             case "DetectiveStat":
                 ChangeDetectiveStat(amount);
+                break;
+            case "MomConcern":
+                MomConcern = Mathf.Max(0, MomConcern + amount);
+                break;
+            case "AshleyGuarded":
+                AshleyGuarded = Mathf.Max(0, AshleyGuarded + amount);
                 break;
             default:
                 Debug.LogWarning($"[GameManager] Unknown JSON dialogue stat key '{key}'.");

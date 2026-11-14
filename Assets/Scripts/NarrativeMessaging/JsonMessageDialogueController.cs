@@ -1,226 +1,391 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 
 /// <summary>
-/// Runs one JSON-authored messaging conversation through the existing
-/// NarrativeMessageInbox, MessagingSession, and MonitorMessagingApp.
-/// Attach this component to the same GameObject as MonitorMessagingApp.
+/// Loads every daily JSON conversation from Resources and runs each contact's
+/// branching dialogue through the existing NarrativeMessageInbox/MessagingSession.
+/// Attach this to the same GameObject as MonitorMessagingApp.
 /// </summary>
 public sealed class JsonMessageDialogueController : MonoBehaviour
 {
-    [Header("Dialogue JSON")]
-    [SerializeField] private TextAsset dialogueJson;
-    [SerializeField] private Sprite contactPortrait;
+    [Header("Automatic JSON Loading")]
+    [Tooltip("Place the JSON files in Assets/Resources/Messages Data. Do not include 'Resources/' here.")]
+    [SerializeField] private string resourcesFolder = "Messages Data";
+    [Tooltip("Optional alternative to Resources: assign all conversation JSON TextAssets here once.")]
+    [SerializeField] private TextAsset[] dialogueFileOverrides;
 
-    [Header("Day 3 Test Options")]
-    [Tooltip("Enable to test the branch where Mom has already told Bjarne about his birthday.")]
+    [Header("Presentation")]
+    [Min(0f)][SerializeField] private float messageIntervalSeconds = 1f;
+    [SerializeField] private JsonMessageContactPortrait[] contactPortraits;
+
+    [Header("Day 3 Testing Only")]
+    [Tooltip("Temporarily sets C02_Birthday before Day 3 conversations start.")]
     [SerializeField] private bool debugBirthdayAlreadyKnown;
-    [Tooltip("Enable to test the branch where Bjarne already knows he was intoxicated from Day 2.")]
+    [Tooltip("Temporarily sets C06_Intoxicated before Day 3 conversations start.")]
     [SerializeField] private bool debugIntoxicationAlreadyKnown;
 
-    private JsonMessageDialogueFile dialogue;
-    private JsonMessageNode currentNode;
-    private MessageConversation runtimeConversation;
+    private sealed class RuntimeConversation
+    {
+        public JsonMessageDialogueFile data;
+        public JsonMessageNode currentNode;
+        public MessageConversation contact;
+        public string contactId;
+        public List<JsonMessageChoice> visibleChoices = new List<JsonMessageChoice>();
+        public bool processing;
+        public bool finished;
+    }
+
+    private readonly Dictionary<string, RuntimeConversation> activeConversations =
+        new Dictionary<string, RuntimeConversation>(StringComparer.Ordinal);
+    private readonly HashSet<string> startedConversationIds =
+        new HashSet<string>(StringComparer.Ordinal);
+
+    private List<JsonMessageDialogueFile> loadedFiles;
     private MessagingSession session;
-    private List<JsonMessageChoice> visibleChoices = new List<JsonMessageChoice>();
-    private string runtimeConversationId;
-    private bool started;
-    private bool finished;
+    private int lastRequestedDay = -1;
+
+    private void Awake()
+    {
+        session = MessagingSession.Get();
+        LoadDialogueFiles();
+    }
 
     public bool HandlesConversation(string conversationId)
     {
-        return runtimeConversation != null &&
-               string.Equals(runtimeConversation.id, conversationId, StringComparison.Ordinal);
+        return !string.IsNullOrEmpty(conversationId) &&
+               activeConversations.ContainsKey(conversationId);
     }
 
-    /// <summary>Called by MonitorMessagingApp whenever the in-game day changes.</summary>
+    /// <summary>Called by MonitorMessagingApp when the current in-game day is known/changes.</summary>
     public void TryStartForDay(int currentDay)
     {
-        if (started || dialogueJson == null)
+        if (lastRequestedDay == currentDay)
             return;
 
-        JsonMessageDialogueFile parsed;
-        try
+        lastRequestedDay = currentDay;
+        LoadDialogueFiles();
+
+        List<JsonMessageDialogueFile> todaysFiles = loadedFiles
+            .Where(file => file != null && file.day == currentDay)
+            .OrderBy(file => Mathf.Max(0f, file.delaySeconds))
+            .ThenBy(file => file.contact, StringComparer.OrdinalIgnoreCase)
+            .ToList();
+
+        foreach (JsonMessageDialogueFile file in todaysFiles)
         {
-            parsed = JsonUtility.FromJson<JsonMessageDialogueFile>(dialogueJson.text);
+            string id = string.IsNullOrWhiteSpace(file.conversationId)
+                ? "Day" + currentDay + "_" + file.contact
+                : file.conversationId;
+
+            if (!startedConversationIds.Add(id))
+                continue;
+
+            StartCoroutine(StartConversationAfterDelay(file, currentDay));
         }
-        catch (Exception exception)
+
+        Debug.Log("[JsonMessageDialogueController] Scheduled " + todaysFiles.Count +
+                  " conversation(s) for Day " + currentDay + ".", this);
+    }
+
+    private void LoadDialogueFiles()
+    {
+        if (loadedFiles != null)
+            return;
+
+        loadedFiles = new List<JsonMessageDialogueFile>();
+        TextAsset[] assets = dialogueFileOverrides != null && dialogueFileOverrides.Length > 0
+            ? dialogueFileOverrides
+            : Resources.LoadAll<TextAsset>(resourcesFolder);
+
+        if (assets == null || assets.Length == 0)
         {
-            Debug.LogError("[JsonMessageDialogueController] Could not parse dialogue JSON: " + exception.Message, this);
+            Debug.LogError("[JsonMessageDialogueController] No JSON TextAssets found. Move the dialogue files to " +
+                           "Assets/Resources/" + resourcesFolder + " or assign Dialogue File Overrides.", this);
             return;
         }
 
-        if (parsed == null || parsed.day != currentDay)
-            return;
-
-        if (string.IsNullOrWhiteSpace(parsed.contact) ||
-            string.IsNullOrWhiteSpace(parsed.startNode) ||
-            parsed.nodes == null || parsed.nodes.Length == 0)
+        foreach (TextAsset asset in assets)
         {
-            Debug.LogError("[JsonMessageDialogueController] JSON is missing contact, startNode, or nodes.", this);
-            return;
+            if (asset == null || string.IsNullOrWhiteSpace(asset.text) ||
+                !asset.text.Contains("\"conversationId\""))
+                continue;
+
+            try
+            {
+                JsonMessageDialogueFile parsed = JsonUtility.FromJson<JsonMessageDialogueFile>(asset.text);
+                // manifest.json and the secret-ending file are intentionally skipped here:
+                // they do not represent a normal day/contact conversation.
+                if (parsed == null || parsed.day < 1 || parsed.day > 5 ||
+                    string.IsNullOrWhiteSpace(parsed.contact) ||
+                    string.IsNullOrWhiteSpace(parsed.startNode) || parsed.nodes == null || parsed.nodes.Length == 0 ||
+                    (!string.IsNullOrWhiteSpace(parsed.conversationId) &&
+                     parsed.conversationId.StartsWith("SecretEnding_", StringComparison.OrdinalIgnoreCase)))
+                    continue;
+
+                loadedFiles.Add(parsed);
+            }
+            catch (Exception exception)
+            {
+                Debug.LogWarning("[JsonMessageDialogueController] Skipping '" + asset.name + "': " +
+                                 exception.Message, asset);
+            }
         }
 
-        dialogue = parsed;
+        Debug.Log("[JsonMessageDialogueController] Loaded " + loadedFiles.Count +
+                  " day/contact dialogue file(s).", this);
+    }
+
+    private IEnumerator StartConversationAfterDelay(JsonMessageDialogueFile data, int currentDay)
+    {
+        // delaySeconds is the target arrival time of the first actual contact message.
+        // On a brand-new thread, the system banner appears one message interval earlier,
+        // so the first contact message still arrives at the requested timestamp.
+        float delay = Mathf.Max(0f, data.delaySeconds);
+        string contactId = "narrative_contact_" + NormalizeContactKey(data.contact);
+        bool newThreadNeedsBanner = session.GetThread(contactId) == null &&
+            !string.IsNullOrWhiteSpace(NormalizeSystemBanner(data.systemBanner));
+        bool hasChatOpening = data.openingMessages != null &&
+            data.openingMessages.Any(opening => opening != null &&
+                !string.IsNullOrWhiteSpace(opening.text) && IsChatChannel(opening.channel));
+        if (newThreadNeedsBanner && hasChatOpening)
+            delay = Mathf.Max(0f, delay - messageIntervalSeconds);
+
+        if (delay > 0f)
+            yield return new WaitForSecondsRealtime(delay);
+
+        // Do not deliver a delayed message if the player has already advanced to another day.
+        if (GameManager.EnsureInstance().CurrentDay != currentDay)
+            yield break;
+
+        yield return StartCoroutine(StartConversation(data, currentDay));
+    }
+
+    private IEnumerator StartConversation(JsonMessageDialogueFile data, int currentDay)
+    {
         session = MessagingSession.Get();
+        string contactKey = NormalizeContactKey(data.contact);
+        string contactId = "narrative_contact_" + contactKey;
+        bool threadAlreadyExists = session.GetThread(contactId) != null;
 
-        // Optional test switches let you exercise both conditional branches without
-        // needing to replay Days 1 and 2 every time.
-        GameManager game = GameManager.EnsureInstance();
-        if (debugBirthdayAlreadyKnown)
-            game.SetStoryFlag("C02_Birthday", true);
-        if (debugIntoxicationAlreadyKnown)
-            game.SetStoryFlag("C06_Intoxicated", true);
+        JsonMessageOpening[] openings = data.openingMessages ?? new JsonMessageOpening[0];
+        int firstChatOpeningIndex = Array.FindIndex(openings, opening => opening != null &&
+            !string.IsNullOrWhiteSpace(opening.text) && IsChatChannel(opening.channel));
 
-        string contactKey = NormalizeContactKey(dialogue.contact);
-        runtimeConversationId = "narrative_contact_" + contactKey;
+        string firstChatText = firstChatOpeningIndex >= 0
+            ? openings[firstChatOpeningIndex].text
+            : "";
+        string banner = NormalizeSystemBanner(data.systemBanner);
+        bool showSystemBanner = !threadAlreadyExists && !string.IsNullOrWhiteSpace(banner);
 
-        JsonMessageOpening[] openings = dialogue.openingMessages ?? new JsonMessageOpening[0];
-        string firstOpening = openings.Length > 0 && openings[0] != null
-            ? openings[0].text
-            : "...";
+        string firstDeliveredText = showSystemBanner
+            ? banner
+            : (!string.IsNullOrWhiteSpace(firstChatText) ? firstChatText : "...");
 
-        if (!string.IsNullOrWhiteSpace(dialogue.systemBanner))
-            firstOpening = dialogue.systemBanner + "\n\n" + firstOpening;
+        string messageId = (string.IsNullOrWhiteSpace(data.conversationId)
+            ? "Day" + currentDay + "_" + data.contact
+            : data.conversationId) + "_opening";
 
         var openingMessage = new NarrativeMessageData
         {
-            messageId = (string.IsNullOrWhiteSpace(dialogue.conversationId)
-                ? "json_day_" + currentDay
-                : dialogue.conversationId) + "_opening",
+            messageId = messageId,
             contactKey = contactKey,
-            contactName = dialogue.contact,
-            portrait = contactPortrait,
-            text = firstOpening,
+            contactName = data.contact,
+            portrait = FindPortrait(data.contact),
+            text = firstDeliveredText,
+            isSystem = showSystemBanner,
             replies = new MessageConversation.Reply[0],
             waitForReply = false
         };
 
-        // Reuse the project's existing narrative inbox. This also reuses the same
-        // Mark thread created by earlier narrative messages (if one already exists).
+        // The first banner is its own system-styled Entry. The contact's first real
+        // message is delivered separately below, with the normal incoming-message sound.
         NarrativeMessageInbox inbox = NarrativeMessageInbox.Get();
         inbox.Deliver(openingMessage, currentDay);
 
-        runtimeConversation = inbox.Conversations.FirstOrDefault(c =>
-            c != null && c.id == runtimeConversationId);
+        MessageConversation runtimeContact = inbox.Conversations.FirstOrDefault(c =>
+            c != null && string.Equals(c.id, contactId, StringComparison.Ordinal));
 
-        if (runtimeConversation == null)
+        if (runtimeContact == null)
         {
-            Debug.LogError("[JsonMessageDialogueController] Could not find the runtime contact '" +
-                           runtimeConversationId + "' after delivering its opening message.", this);
-            return;
+            Debug.LogError("[JsonMessageDialogueController] Could not create contact '" + contactId + "'.", this);
+            yield break;
         }
 
-        // Any additional opening messages become separate incoming bubbles.
-        for (int i = 1; i < openings.Length; i++)
+        var state = new RuntimeConversation
         {
-            if (openings[i] == null || string.IsNullOrWhiteSpace(openings[i].text))
+            data = data,
+            contactId = contactId,
+            contact = runtimeContact
+        };
+        activeConversations[contactId] = state;
+
+        GameManager game = GameManager.EnsureInstance();
+        if (currentDay == 3)
+        {
+            if (debugBirthdayAlreadyKnown) game.SetStoryFlag("C02_Birthday", true);
+            if (debugIntoxicationAlreadyKnown) game.SetStoryFlag("C06_Intoxicated", true);
+        }
+
+        state.currentNode = FindNode(state, data.startNode);
+        if (state.currentNode == null)
+        {
+            Debug.LogError("[JsonMessageDialogueController] Start node '" + data.startNode +
+                           "' was not found in " + data.conversationId + ".", this);
+            yield break;
+        }
+
+        ApplyEffects(state, state.currentNode.onEnter);
+
+        var linesToPlay = new List<JsonMessageLine>();
+
+        // If the opening message itself was a real chat line, it was already delivered
+        // through NarrativeMessageInbox; skip that one to avoid duplicating it.
+        for (int i = 0; i < openings.Length; i++)
+        {
+            JsonMessageOpening opening = openings[i];
+            if (opening == null || string.IsNullOrWhiteSpace(opening.text))
                 continue;
-            session.Receive(runtimeConversationId, FormatLine(
-                new JsonMessageLine
-                {
-                    speaker = openings[i].speaker,
-                    text = openings[i].text,
-                    channel = openings[i].channel
-                }));
+            if (!showSystemBanner && i == firstChatOpeningIndex)
+                continue;
+
+            linesToPlay.Add(new JsonMessageLine
+            {
+                speaker = opening.speaker,
+                text = opening.text,
+                channel = opening.channel
+            });
         }
 
-        currentNode = FindNode(dialogue.startNode);
-        if (currentNode == null)
-        {
-            Debug.LogError("[JsonMessageDialogueController] Start node '" + dialogue.startNode + "' was not found.", this);
-            return;
-        }
+        AddLines(linesToPlay, state.currentNode.lines);
+        yield return StartCoroutine(PlayLines(state, linesToPlay));
 
-        ApplyEffects(currentNode.onEnter);
-        SetVisibleChoices(currentNode);
+        SetVisibleChoices(state, state.currentNode);
+        session.SetAwaitingReply(contactId, state.visibleChoices.Count > 0);
+        state.finished = state.visibleChoices.Count == 0;
 
-        // Usually the start node has no lines (the opening message is the first line),
-        // but this supports start nodes that do contain additional dialogue.
-        string[] startLines = GetLineTexts(currentNode.lines);
-        session.AppendDialogueExchange(runtimeConversationId, null, startLines, visibleChoices.Count > 0);
-
-        started = true;
-        finished = visibleChoices.Count == 0;
-        Debug.Log("[JsonMessageDialogueController] Started JSON conversation '" +
-                  dialogue.conversationId + "' for " + dialogue.contact + ".", this);
+        Debug.Log("[JsonMessageDialogueController] Started '" + data.conversationId +
+                  "' for " + data.contact + " on Day " + currentDay + ".", this);
     }
 
-    /// <summary>
-    /// Called by MonitorMessagingApp instead of MessagingSession.Reply for a
-    /// conversation owned by this JSON controller.
-    /// </summary>
+    /// <summary>Called by MonitorMessagingApp instead of MessagingSession.Reply for JSON contacts.</summary>
     public bool TrySelectChoice(string conversationId, int choiceIndex)
     {
-        if (!started || finished || !HandlesConversation(conversationId))
+        if (!activeConversations.TryGetValue(conversationId, out RuntimeConversation state) ||
+            state.finished || state.processing || choiceIndex < 0 ||
+            choiceIndex >= state.visibleChoices.Count)
             return false;
 
-        if (choiceIndex < 0 || choiceIndex >= visibleChoices.Count)
-        {
-            Debug.LogWarning("[JsonMessageDialogueController] Choice index is out of range.", this);
-            return false;
-        }
-
-        JsonMessageChoice selectedChoice = visibleChoices[choiceIndex];
-        if (selectedChoice == null)
+        JsonMessageChoice choice = state.visibleChoices[choiceIndex];
+        if (choice == null)
             return false;
 
-        // Apply the player's chosen response effects before entering the next node.
-        ApplyEffects(selectedChoice.effects);
+        state.processing = true;
+        state.visibleChoices.Clear();
+        state.contact.replies = new MessageConversation.Reply[0];
+        session.AppendPlayerMessage(conversationId, choice.text);
+        session.SetAwaitingReply(conversationId, false);
 
-        JsonMessageNode nextNode = FindNode(selectedChoice.nextNode);
+        ApplyEffects(state, choice.effects);
+        JsonMessageNode nextNode = FindNode(state, choice.nextNode);
         if (nextNode == null)
         {
             Debug.LogError("[JsonMessageDialogueController] Choice points to missing node '" +
-                           selectedChoice.nextNode + "'. Ending this conversation safely.", this);
-            runtimeConversation.replies = new MessageConversation.Reply[0];
-            visibleChoices.Clear();
-            finished = true;
-            session.AppendDialogueExchange(runtimeConversationId, selectedChoice.text,
-                new string[0], false);
+                           choice.nextNode + "' in " + state.data.conversationId + ".", this);
+            state.finished = true;
+            state.processing = false;
+            session.SetAwaitingReply(conversationId, false);
             return true;
         }
 
-        currentNode = nextNode;
-        ApplyEffects(currentNode.onEnter);
-        SetVisibleChoices(currentNode);
-
-        bool waitingForPlayer = visibleChoices.Count > 0;
-        string[] incomingLines = GetLineTexts(currentNode.lines);
-
-        // This appends the outgoing player response and all NPC/internal lines as one
-        // session update, then tells the existing UI whether another choice is available.
-        session.AppendDialogueExchange(runtimeConversationId, selectedChoice.text,
-            incomingLines, waitingForPlayer);
-
-        finished = !waitingForPlayer;
+        state.currentNode = nextNode;
+        ApplyEffects(state, state.currentNode.onEnter);
+        StartCoroutine(ContinueAfterChoice(state));
         return true;
     }
 
-    private void SetVisibleChoices(JsonMessageNode node)
+    private IEnumerator ContinueAfterChoice(RuntimeConversation state)
     {
-        visibleChoices.Clear();
+        yield return StartCoroutine(PlayLines(state, ToList(state.currentNode.lines)));
+        SetVisibleChoices(state, state.currentNode);
+        state.finished = state.visibleChoices.Count == 0;
+        state.processing = false;
+        session.SetAwaitingReply(state.contactId, state.visibleChoices.Count > 0);
+    }
 
+    private IEnumerator PlayLines(RuntimeConversation state, List<JsonMessageLine> lines)
+    {
+        if (lines == null)
+            yield break;
+
+        foreach (JsonMessageLine line in lines)
+        {
+            if (line == null || string.IsNullOrWhiteSpace(line.text))
+                continue;
+
+            if (messageIntervalSeconds > 0f)
+                yield return new WaitForSecondsRealtime(messageIntervalSeconds);
+
+            string channel = (line.channel ?? "chat").Trim().ToLowerInvariant();
+            if (channel == "internal")
+            {
+                DialogueManager manager = DialogueManager.Instance;
+                if (manager == null)
+                {
+                    Debug.LogWarning("[JsonMessageDialogueController] Internal line skipped because DialogueManager.Instance is null: " + line.text, this);
+                    continue;
+                }
+
+                var dialogueLine = new DialogueLine
+                {
+                    speakerName = string.IsNullOrWhiteSpace(line.speaker) ? "Inner Voice" : line.speaker,
+                    personality = ParsePersonality(line.speaker),
+                    text = line.text,
+                    displayDuration = 3.5f
+                };
+
+                Task playback = manager.DisplayLineAndWaitAsync(dialogueLine);
+                while (!playback.IsCompleted)
+                    yield return null;
+
+                if (playback.IsFaulted)
+                    Debug.LogException(playback.Exception, this);
+            }
+            else if (channel == "system")
+            {
+                session.ReceiveSystem(state.contactId, StripSystemPrefix(line.text));
+            }
+            else
+            {
+                // MessagingSession plays the global Message SFX here. AudioDirector is
+                // persistent and is not tied to which monitor is currently selected.
+                session.Receive(state.contactId, line.text);
+            }
+        }
+    }
+
+    private void SetVisibleChoices(RuntimeConversation state, JsonMessageNode node)
+    {
+        state.visibleChoices.Clear();
         if (node != null && node.choices != null)
         {
             foreach (JsonMessageChoice choice in node.choices)
             {
                 if (choice != null && EvaluateConditions(choice.conditions))
-                    visibleChoices.Add(choice);
+                    state.visibleChoices.Add(choice);
             }
         }
 
-        runtimeConversation.replies = visibleChoices
-            .Select(choice => new MessageConversation.Reply
-            {
-                text = choice.text,
-                response = "",
-                connectednessDelta = 0,
-                suspicionDelta = 0
-            })
-            .ToArray();
+        state.contact.replies = state.visibleChoices.Select(choice => new MessageConversation.Reply
+        {
+            text = choice.text,
+            response = "",
+            connectednessDelta = 0,
+            suspicionDelta = 0
+        }).ToArray();
     }
 
     private bool EvaluateConditions(JsonMessageCondition[] conditions)
@@ -231,92 +396,109 @@ public sealed class JsonMessageDialogueController : MonoBehaviour
         GameManager game = GameManager.EnsureInstance();
         foreach (JsonMessageCondition condition in conditions)
         {
-            if (condition == null)
-                continue;
-
+            if (condition == null) continue;
             bool passed;
             switch ((condition.type ?? "").Trim().ToLowerInvariant())
             {
                 case "flag":
                     passed = game.HasStoryFlag(condition.key) == condition.boolValue;
                     break;
-
                 default:
                     Debug.LogWarning("[JsonMessageDialogueController] Unsupported condition type '" +
-                                     condition.type + "'. Choice will be hidden.", this);
+                                     condition.type + "'. Choice hidden.", this);
                     passed = false;
                     break;
             }
-
-            // All listed conditions must pass.
-            if (!passed)
-                return false;
+            if (!passed) return false;
         }
-
         return true;
     }
 
-    private void ApplyEffects(JsonMessageEffect[] effects)
+    private void ApplyEffects(RuntimeConversation state, JsonMessageEffect[] effects)
     {
-        if (effects == null)
-            return;
-
+        if (effects == null) return;
         GameManager game = GameManager.EnsureInstance();
         foreach (JsonMessageEffect effect in effects)
         {
-            if (effect == null || string.IsNullOrWhiteSpace(effect.type))
-                continue;
-
+            if (effect == null || string.IsNullOrWhiteSpace(effect.type)) continue;
             switch (effect.type.Trim().ToLowerInvariant())
             {
                 case "setflag":
                     game.SetStoryFlag(effect.key, effect.boolValue);
                     break;
-
                 case "addstat":
                     game.AddStoryStat(effect.key, effect.intValue);
                     break;
-
                 default:
-                    Debug.LogWarning("[JsonMessageDialogueController] Unsupported effect type '" +
-                                     effect.type + "'.", this);
+                    Debug.LogWarning("[JsonMessageDialogueController] Unsupported effect type '" + effect.type + "'.", this);
                     break;
             }
         }
     }
 
-    private JsonMessageNode FindNode(string nodeId)
+    private static JsonMessageNode FindNode(RuntimeConversation state, string nodeId)
     {
-        if (dialogue == null || dialogue.nodes == null || string.IsNullOrWhiteSpace(nodeId))
+        if (state == null || state.data == null || state.data.nodes == null || string.IsNullOrWhiteSpace(nodeId))
             return null;
-
-        return dialogue.nodes.FirstOrDefault(node => node != null &&
+        return state.data.nodes.FirstOrDefault(node => node != null &&
             string.Equals(node.id, nodeId, StringComparison.Ordinal));
     }
 
-    private static string[] GetLineTexts(JsonMessageLine[] lines)
+    private static List<JsonMessageLine> ToList(JsonMessageLine[] lines)
     {
-        if (lines == null || lines.Length == 0)
-            return new string[0];
-
-        return lines
-            .Where(line => line != null && !string.IsNullOrWhiteSpace(line.text))
-            .Select(FormatLine)
-            .ToArray();
+        return lines == null ? new List<JsonMessageLine>() : lines.Where(line => line != null).ToList();
     }
 
-    private static string FormatLine(JsonMessageLine line)
+    private static void AddLines(List<JsonMessageLine> destination, JsonMessageLine[] lines)
     {
-        string channel = (line.channel ?? "chat").Trim().ToLowerInvariant();
-        if (channel == "internal")
-            return "[" + (string.IsNullOrWhiteSpace(line.speaker) ? "Internal" : line.speaker) + "] " + line.text;
-        if (channel == "system")
-            return "[System] " + line.text;
-        return line.text;
+        if (lines == null) return;
+        destination.AddRange(lines.Where(line => line != null));
+    }
+
+    private Sprite FindPortrait(string contact)
+    {
+        if (contactPortraits == null) return null;
+        JsonMessageContactPortrait match = contactPortraits.FirstOrDefault(entry => entry != null &&
+            string.Equals(entry.contact, contact, StringComparison.OrdinalIgnoreCase));
+        return match != null ? match.portrait : null;
+    }
+
+    private static bool IsChatChannel(string channel)
+    {
+        string value = (channel ?? "chat").Trim().ToLowerInvariant();
+        return value != "internal" && value != "system";
     }
 
     private static string NormalizeContactKey(string contact)
     {
         return (contact ?? "contact").Trim().ToLowerInvariant().Replace(" ", "_");
+    }
+
+    private static string NormalizeSystemBanner(string banner)
+    {
+        return StripSystemPrefix(banner);
+    }
+
+    private static string StripSystemPrefix(string text)
+    {
+        if (string.IsNullOrWhiteSpace(text)) return "";
+        string value = text.Trim();
+        if (value.StartsWith("System:", StringComparison.OrdinalIgnoreCase))
+            value = value.Substring("System:".Length).Trim();
+        return value;
+    }
+
+    private static HeadPersonality ParsePersonality(string speaker)
+    {
+        string key = new string((speaker ?? "").Where(char.IsLetterOrDigit).ToArray()).ToLowerInvariant();
+        switch (key)
+        {
+            case "grandarchitect": return HeadPersonality.GrandArchitect;
+            case "pragmatist": return HeadPersonality.Pragmatist;
+            case "detective": return HeadPersonality.Detective;
+            case "sentinel": return HeadPersonality.Sentinel;
+            case "genius": return HeadPersonality.Genius;
+            default: return HeadPersonality.InternalMonologue;
+        }
     }
 }

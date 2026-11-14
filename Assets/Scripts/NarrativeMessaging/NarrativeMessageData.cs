@@ -10,6 +10,8 @@ public sealed class NarrativeMessageData
     public string contactName = "Friend";
     public Sprite portrait;
     [TextArea(3, 8)] public string text;
+    [Tooltip("Render this as a system banner instead of a contact message.")]
+    public bool isSystem;
     public MessageConversation.Reply[] replies = new MessageConversation.Reply[0];
     [Tooltip("Keep this narrative step active until the player replies on the right monitor.")]
     public bool waitForReply;

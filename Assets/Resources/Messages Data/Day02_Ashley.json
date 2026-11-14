@@ -1,6 +1,7 @@
 {
   "conversationId": "Day02_Ashley",
   "day": 2,
+  "delaySeconds": 60,
   "contact": "Ashley",
   "description": "Ashley’s first message is angry and confusing. A defensive response makes her guarded; a blunt “who is this?” reveals the relationship but damages trust.",
   "systemBanner": "System: (unable to load older messages)",

@@ -8,6 +8,7 @@ public sealed class NarrativeMessageInbox : MonoBehaviour
     private readonly HashSet<string> replied = new HashSet<string>();
     private readonly Dictionary<string, string> activeMessage = new Dictionary<string, string>();
     private MessagingSession session;
+
     public IEnumerable<MessageConversation> Conversations => contacts.Values;
 
     public static NarrativeMessageInbox Get()
@@ -27,13 +28,18 @@ public sealed class NarrativeMessageInbox : MonoBehaviour
 
     public void Deliver(NarrativeMessageData message, int day)
     {
+        if (message == null || string.IsNullOrWhiteSpace(message.messageId) ||
+            string.IsNullOrWhiteSpace(message.contactKey) || string.IsNullOrWhiteSpace(message.text))
+            return;
         if (delivered.Contains(message.messageId)) return;
+
         string contactId = "narrative_contact_" + message.contactKey.Trim().ToLowerInvariant();
         if (activeMessage.TryGetValue(contactId, out string previous) && !replied.Contains(previous))
         {
-            // Keep history, but only the latest message's reply options are active.
-            Debug.LogWarning("A new message from " + message.contactName + " replaces that contact's unanswered reply options.");
+            Debug.LogWarning("A new message from " + message.contactName +
+                             " replaces that contact's unanswered reply options.");
         }
+
         if (!contacts.TryGetValue(contactId, out var conversation))
         {
             conversation = ScriptableObject.CreateInstance<MessageConversation>();
@@ -43,6 +49,7 @@ public sealed class NarrativeMessageInbox : MonoBehaviour
             conversation.availableFromDay = 1;
             contacts.Add(contactId, conversation);
         }
+
         conversation.contactName = message.contactName;
         conversation.avatar = message.portrait;
         conversation.openingMessage = message.text;
@@ -51,12 +58,15 @@ public sealed class NarrativeMessageInbox : MonoBehaviour
         delivered.Add(message.messageId);
 
         var thread = session.GetThread(contactId);
-        if (thread == null) session.Unlock(conversation, day);
+        if (thread == null)
+        {
+            session.Unlock(conversation, day, message.isSystem);
+        }
         else
         {
             thread.replied = false;
             thread.replyIndex = -1;
-            session.Receive(contactId, message.text);
+            session.Receive(contactId, message.text, message.isSystem, !message.isSystem);
         }
     }
 

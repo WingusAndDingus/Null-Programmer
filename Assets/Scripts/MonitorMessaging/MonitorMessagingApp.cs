@@ -26,6 +26,8 @@ public sealed class MonitorMessagingApp : MonoBehaviour
 
     private MessagingWindowView view;
     private JsonMessageDialogueController jsonDialogueController;
+    private bool hasRenderedHistory;
+    public Color systemBubbleColor = new Color(0.025f, 0.075f, 0.15f, 0.98f);
     private MessagingSession session;
     private MessageConversation selected;
     private bool refreshing;
@@ -182,7 +184,11 @@ public sealed class MonitorMessagingApp : MonoBehaviour
         var historyArea = (RectTransform)historyScroll.transform;
         historyArea.anchorMin = new Vector2(0, 0.315f);
         historyScroll.movementType = ScrollRect.MovementType.Clamped;
-        historyScroll.scrollSensitivity = 32;
+        historyScroll.scrollSensitivity = 32f;
+        historyScroll.enabled = true;
+        historyScroll.horizontal = false;
+        historyScroll.vertical = true;
+        historyScroll.inertia = true;
 
         var viewport = (RectTransform)replies.parent;
         var mask = viewport.GetComponent<RectMask2D>();
@@ -294,14 +300,18 @@ public sealed class MonitorMessagingApp : MonoBehaviour
             return;
         }
 
-        if (session.Reply(selected, index))
-            Refresh();
+        if (session.Reply(selected, index)) Refresh();
+
     }
 
 
     private void Refresh()
     {
         if (session == null || refreshing || view == null) return;
+        float previousScrollPosition = historyScroll != null
+        ? historyScroll.verticalNormalizedPosition
+        : 0f;
+        bool shouldStickToBottom = !hasRenderedHistory || previousScrollPosition <= 0.03f;
         refreshing = true;
         try
         {
@@ -315,7 +325,7 @@ public sealed class MonitorMessagingApp : MonoBehaviour
                 var thread = session.GetThread(conversation.id);
                 if (thread == null) continue;
                 var captured = conversation;
-                string preview = thread.messages.Count > 0 ? thread.messages[thread.messages.Count - 1].text : "";
+                string preview = thread.replied ? "" : "Unread";
                 view.AddContact(conversation, preview, session.Unread(conversation.id),
                     conversation == selected, () => Select(captured));
             }
@@ -355,7 +365,16 @@ public sealed class MonitorMessagingApp : MonoBehaviour
             }
             FitReplyArea();
             Canvas.ForceUpdateCanvases();
-            if (historyScroll != null) historyScroll.verticalNormalizedPosition = 0;
+            Canvas.ForceUpdateCanvases();
+            if (history != null)
+                LayoutRebuilder.ForceRebuildLayoutImmediate(history);
+            Canvas.ForceUpdateCanvases();
+
+            if (historyScroll != null)
+                historyScroll.verticalNormalizedPosition = shouldStickToBottom ? 0f : previousScrollPosition;
+
+            hasRenderedHistory = true;
+
         }
         finally { refreshing = false; }
     }
@@ -416,18 +435,23 @@ public sealed class MonitorMessagingApp : MonoBehaviour
     {
         var row = new GameObject("Message Row", typeof(RectTransform), typeof(LayoutElement));
         row.transform.SetParent(history, false);
-        var bubble = new GameObject(entry.fromPlayer ? "Your Message" : "Incoming Message",
-            typeof(RectTransform), typeof(Image));
+
+        string bubbleName = entry.isSystem ? "System Message" :
+            (entry.fromPlayer ? "Your Message" : "Incoming Message");
+        var bubble = new GameObject(bubbleName, typeof(RectTransform), typeof(Image));
         bubble.transform.SetParent(row.transform, false);
+
         var image = bubble.GetComponent<Image>();
         image.sprite = GetBubbleSprite();
         image.type = Image.Type.Sliced;
         image.pixelsPerUnitMultiplier = 1;
-        image.color = entry.fromPlayer ? outgoingBubbleColor : incomingBubbleColor;
+        image.color = entry.isSystem ? systemBubbleColor :
+            (entry.fromPlayer ? outgoingBubbleColor : incomingBubbleColor);
         image.raycastTarget = false;
 
+        var alignment = entry.isSystem ? TextAlignmentOptions.Center : TextAlignmentOptions.TopLeft;
         var message = view.Label(bubble.transform, entry.text ?? "", chatFontSize,
-            TextAlignmentOptions.TopLeft, Color.white);
+            alignment, Color.white);
         message.enableAutoSizing = false;
         message.textWrappingMode = TextWrappingModes.Normal;
         message.overflowMode = TextOverflowModes.Overflow;
@@ -438,21 +462,28 @@ public sealed class MonitorMessagingApp : MonoBehaviour
         float minWidth = Mathf.Min(90, maxWidth);
         float naturalWidth = message.GetPreferredValues(message.text, Mathf.Infinity, Mathf.Infinity).x;
         float width = Mathf.Clamp(naturalWidth + padding * 2, minWidth, maxWidth);
-        float textHeight = message.GetPreferredValues(message.text, Mathf.Max(1, width - padding * 2), Mathf.Infinity).y;
+        if (entry.isSystem)
+            width = Mathf.Min(maxWidth * 0.82f, Mathf.Max(width, 220f));
+
+        float textHeight = message.GetPreferredValues(
+            message.text, Mathf.Max(1, width - padding * 2), Mathf.Infinity).y;
         float height = Mathf.Max(chatFontSize + padding * 2, textHeight + padding * 2);
-        var sizing = row.GetComponent<LayoutElement>();
-        sizing.minHeight = sizing.preferredHeight = height;
+        row.GetComponent<LayoutElement>().minHeight = height;
+        row.GetComponent<LayoutElement>().preferredHeight = height;
+
+        float horizontalAnchor = entry.isSystem ? 0.5f : (entry.fromPlayer ? 1f : 0f);
         var rect = bubble.GetComponent<RectTransform>();
-        float side = entry.fromPlayer ? 1 : 0;
-        rect.anchorMin = rect.anchorMax = new Vector2(side, 1);
-        rect.pivot = new Vector2(side, 1);
+        rect.anchorMin = rect.anchorMax = new Vector2(horizontalAnchor, 1f);
+        rect.pivot = new Vector2(horizontalAnchor, 1f);
         rect.anchoredPosition = Vector2.zero;
         rect.sizeDelta = new Vector2(width, height);
+
         message.rectTransform.anchorMin = Vector2.zero;
         message.rectTransform.anchorMax = Vector2.one;
         message.rectTransform.offsetMin = new Vector2(padding, padding);
         message.rectTransform.offsetMax = new Vector2(-padding, -padding);
     }
+
 
     private Sprite GetBubbleSprite()
     {

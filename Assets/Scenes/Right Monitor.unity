@@ -1568,6 +1568,7 @@ MonoBehaviour:
   maximumBubbleWidth: 0.76
   incomingBubbleColor: {r: 0.1, g: 0.17, b: 0.25, a: 0.97}
   outgoingBubbleColor: {r: 0.16, g: 0.3, b: 0.5, a: 0.98}
+  systemBubbleColor: {r: 0.025, g: 0.075, b: 0.15, a: 0.98}
 --- !u!114 &1691462020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1641,8 +1642,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea3071497122ddb4fa163f6a358c8b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JsonMessageDialogueController
-  dialogueJson: {fileID: 4900000, guid: 20e0663af5f963146835594439dc4524, type: 3}
-  contactPortrait: {fileID: 7531357685092984243, guid: d43a047ccac5604488ee0299c23d88ac, type: 3}
+  resourcesFolder: Messages Data
+  dialogueFileOverrides: []
+  messageIntervalSeconds: 1
+  contactPortraits:
+  - contact: Mark
+    portrait: {fileID: 7531357685092984243, guid: d43a047ccac5604488ee0299c23d88ac, type: 3}
+  - contact: Ashley
+    portrait: {fileID: -3887695232143692394, guid: 1383733328b78af4fa743cabdb513eac, type: 3}
+  - contact: Mom
+    portrait: {fileID: -52697938039961796, guid: f5b63497d2ada324aa6d0b71f2910711, type: 3}
   debugBirthdayAlreadyKnown: 0
   debugIntoxicationAlreadyKnown: 0
 --- !u!1 &1699225721

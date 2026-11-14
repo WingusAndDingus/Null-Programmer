@@ -1,12 +1,11 @@
 using System;
 
-// These classes mirror the structure of the JSON files in Assets/Scripts/Messages Data.
-// The unique names avoid colliding with the existing DialogueLine / DialogueChoice classes.
 [Serializable]
 public sealed class JsonMessageDialogueFile
 {
     public string conversationId;
     public int day;
+    public float delaySeconds;
     public string contact;
     public string description;
     public string systemBanner;
@@ -66,4 +65,11 @@ public sealed class JsonMessageEffect
     public string key;
     public bool boolValue;
     public int intValue;
+}
+
+[Serializable]
+public sealed class JsonMessageContactPortrait
+{
+    public string contact;
+    public UnityEngine.Sprite portrait;
 }
