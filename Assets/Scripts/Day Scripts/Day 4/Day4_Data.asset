@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DaySequenceData
   dayNumber: 4
   steps:
-  - message:
-      messageId: 9447e7332b044eaea720aa0590e62024
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 5011dbea56404aedbf67994fad292c8f
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -23,25 +25,14 @@ MonoBehaviour:
       replies: []
       waitForReply: 0
     stepID: Start
-    speakerName: Steve
+    speakerName: Me
     personality: 0
-    lineText: '"Goodmorning Sir. I''ve been thinking we need to refactor our battleship code and include a GameManager class."'
+    lineText: Thursday... I hope today goes well.
+    voiceClip: {fileID: 0}
     displayDuration: 5
     lineVariants: []
-    choices:
-    - choiceText: Sounds like a good idea I suppose
-      personality: 0
-      targetStepOnClick: 1a
-      suspicionChange: 0
-      requiredLevel: 0
-      choiceGroup: 
-    - choiceText: Hmm sounds like a lot of work
-      personality: 0
-      targetStepOnClick: 1b
-      suspicionChange: 5
-      requiredLevel: 0
-      choiceGroup: 
-    nextStepID: 1
+    choices: []
+    nextStepID: WaitZoom
     alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
@@ -49,11 +40,201 @@ MonoBehaviour:
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
+    NewSteveExpression: 3
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: b1381adf97f74be59822f87ab0b55de9
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: WaitZoom
+    speakerName: 
+    personality: 0
+    lineText: 
+    voiceClip: {fileID: 0}
+    displayDuration: 0
+    lineVariants: []
+    choices: []
+    nextStepID: steve_exp1
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 1
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 3
+    targetSceneName: Sleep
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 48453e21ee054cafa34c00d33e7f8fd1
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: steve_exp1
+    speakerName: 
+    personality: 0
+    lineText: 
+    voiceClip: {fileID: 0}
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: SteveTalks
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 9
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 3
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 9447e7332b044eaea720aa0590e62024
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: SteveTalks
+    speakerName: Steve
+    personality: 0
+    lineText: '"Goodmorning Sir. I''ve been thinking we need to refactor our battleship code and include a GameManager class."'
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+    lineVariants: []
+    choices: []
+    nextStepID: steve_exp2
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 3
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: ea3b8a8fdb8741f1a41f976904fd10a1
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: steve_exp2
+    speakerName: 
+    personality: 0
+    lineText: 
+    voiceClip: {fileID: 0}
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: MultipleChoice
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 9
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: d6ddd5a1304b4f82bfb43688488063ea
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: MultipleChoice
+    speakerName: Steve
+    personality: 0
+    lineText: '"What do you think?"'
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+    lineVariants: []
+    choices:
+    - choiceText: Sounds like a good idea I suppose
+      personality: 0
+      personalityStatChange: 1
+      targetStepOnClick: exp_change_a
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: 
+    - choiceText: Hmm sounds like a lot of work
+      personality: 0
+      personalityStatChange: 1
+      targetStepOnClick: exp_change_b
+      suspicionChange: 5
+      requiredLevel: 0
+      choiceGroup: 
+    nextStepID: 1a
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 3
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
       messageId: 2b6d61a82335471aa8dbbe00a193a4da
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: exp_change_b
+    speakerName: Steve
+    personality: 0
+    lineText: 
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+    lineVariants: []
+    choices: []
+    nextStepID: 1b
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 9
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 1
+    NewSteveExpression: 2
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 6d0ac38578744f51ba33965263f43836
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -64,6 +245,7 @@ MonoBehaviour:
     speakerName: Steve
     personality: 0
     lineText: Well ok.. why don't you take a look in the UML app, I added an outline for the GameManager class.
+    voiceClip: {fileID: 0}
     displayDuration: 5
     lineVariants: []
     choices: []
@@ -78,8 +260,39 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
+  - musicCue: 0
+    soundCue: 0
+    message:
       messageId: f097be846eee47d794df619aa3679582
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: exp_change_a
+    speakerName: Steve
+    personality: 0
+    lineText: 
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+    lineVariants: []
+    choices: []
+    nextStepID: 1a
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 9
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 1
+    NewSteveExpression: 1
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 8187c4c99acf44b3bc669dd54c87b481
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -90,6 +303,7 @@ MonoBehaviour:
     speakerName: Steve
     personality: 0
     lineText: Great, why don't you take a look in the UML app, I added an outline for the GameManager class.
+    voiceClip: {fileID: 0}
     displayDuration: 5
     lineVariants: []
     choices: []
@@ -104,7 +318,9 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
+  - musicCue: 0
+    soundCue: 0
+    message:
       messageId: 0b7d320a847245ff8a141ae0f52431d8
       contactKey: friend
       contactName: Friend
@@ -116,10 +332,11 @@ MonoBehaviour:
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 0
     lineVariants: []
     choices: []
-    nextStepID: 2
+    nextStepID: exp_change1
     alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
@@ -130,7 +347,38 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: d90e62ea7fc743419064ac1c6473fc88
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: exp_change1
+    speakerName: 
+    personality: 0
+    lineText: 
+    voiceClip: {fileID: 0}
+    displayDuration: 0
+    lineVariants: []
+    choices: []
+    nextStepID: 2
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 9
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 1
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
       messageId: 02d25f7eb02842fdad6061947b30d841
       contactKey: friend
       contactName: Friend
@@ -142,6 +390,7 @@ MonoBehaviour:
     speakerName: Detective
     personality: 6
     lineText: '"Steve wants us to look at the UML app, click the third icon on your taskbar to open it"'
+    voiceClip: {fileID: 0}
     displayDuration: 5
     lineVariants: []
     choices: []
@@ -156,7 +405,9 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
+  - musicCue: 0
+    soundCue: 0
+    message:
       messageId: b7113f81eae54521bd25e56e65dab5de
       contactKey: friend
       contactName: Friend
@@ -168,6 +419,7 @@ MonoBehaviour:
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 0
     lineVariants: []
     choices: []
@@ -182,7 +434,9 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
+  - musicCue: 0
+    soundCue: 0
+    message:
       messageId: 0fc64442563445d9b4c71be481001a10
       contactKey: friend
       contactName: Friend
@@ -194,6 +448,7 @@ MonoBehaviour:
     speakerName: Steve
     personality: 0
     lineText: '"Are you seeing the UML? Click on the GameManager class at the top to read more about it."'
+    voiceClip: {fileID: 0}
     displayDuration: 5
     lineVariants: []
     choices: []
@@ -208,7 +463,9 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
+  - musicCue: 0
+    soundCue: 0
+    message:
       messageId: 3e5e37a8844d4bf5bd306c4c2ce3adde
       contactKey: friend
       contactName: Friend
@@ -220,6 +477,7 @@ MonoBehaviour:
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 0
     lineVariants: []
     choices: []
@@ -234,7 +492,9 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
+  - musicCue: 0
+    soundCue: 0
+    message:
       messageId: 9d653d67c3f64e988d28340684eff6c4
       contactKey: friend
       contactName: Friend
@@ -246,6 +506,7 @@ MonoBehaviour:
     speakerName: Steve
     personality: 0
     lineText: '"The problem is I''m not sure how to implement this...'
+    voiceClip: {fileID: 0}
     displayDuration: 5
     lineVariants: []
     choices: []
@@ -260,7 +521,9 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
+  - musicCue: 0
+    soundCue: 0
+    message:
       messageId: a80bbd06395c4dcb9619df50c65cb06c
       contactKey: friend
       contactName: Friend
@@ -272,10 +535,11 @@ MonoBehaviour:
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 0
     lineVariants: []
     choices: []
-    nextStepID: 5
+    nextStepID: 5_exp
     alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
@@ -286,8 +550,39 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
+  - musicCue: 0
+    soundCue: 0
+    message:
       messageId: 370dd438d5cb41e9a9b1b74b6c8ccaba
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: 5_exp
+    speakerName: Steve
+    personality: 0
+    lineText: 
+    voiceClip: {fileID: 0}
+    displayDuration: 7
+    lineVariants: []
+    choices: []
+    nextStepID: 5
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 9
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 2
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 4d056e35ee1b4437b8ee195df2742d25
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -298,10 +593,11 @@ MonoBehaviour:
     speakerName: Steve
     personality: 0
     lineText: '"You see I er attempted to implement it but it turned into a bit of a mess... I installed an app on your desktop which should allow you to refactor it, would you mind giving it a shot for me?"'
+    voiceClip: {fileID: 0}
     displayDuration: 7
     lineVariants: []
     choices: []
-    nextStepID: 5-wait
+    nextStepID: 5_exp2
     alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
@@ -312,7 +608,38 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 86f0287d1eb34467b5b6d4a59b7a3d75
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: 5_exp2
+    speakerName: Steve
+    personality: 0
+    lineText: 
+    voiceClip: {fileID: 0}
+    displayDuration: 7
+    lineVariants: []
+    choices: []
+    nextStepID: 5-wait
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 9
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
       messageId: c66f163501e740a2865b40a858c3a7ff
       contactKey: friend
       contactName: Friend
@@ -324,6 +651,7 @@ MonoBehaviour:
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 0
     lineVariants: []
     choices: []
@@ -338,7 +666,9 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
+  - musicCue: 0
+    soundCue: 0
+    message:
       messageId: 511fab118d104d26a44a5806e7f13c01
       contactKey: friend
       contactName: Friend
@@ -350,6 +680,7 @@ MonoBehaviour:
     speakerName: Grand Architect
     personality: 2
     lineText: '"This seems like a challenge for me. Let''s checkout this app Steve sent us."'
+    voiceClip: {fileID: 0}
     displayDuration: 5
     lineVariants: []
     choices: []
@@ -364,7 +695,9 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
+  - musicCue: 0
+    soundCue: 0
+    message:
       messageId: adf3defad3b242afb0e4481d4215e89a
       contactKey: friend
       contactName: Friend
@@ -376,6 +709,7 @@ MonoBehaviour:
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 0
     lineVariants: []
     choices: []
@@ -390,7 +724,9 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
+  - musicCue: 0
+    soundCue: 0
+    message:
       messageId: 4cd0b69b10ae487196de34ed18817d58
       contactKey: friend
       contactName: Friend
@@ -402,6 +738,7 @@ MonoBehaviour:
     speakerName: Pragmatist
     personality: 3
     lineText: '"Well it couldn''t hurt to give it a try I guess"'
+    voiceClip: {fileID: 0}
     displayDuration: 3
     lineVariants: []
     choices: []
@@ -416,7 +753,9 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
+  - musicCue: 0
+    soundCue: 0
+    message:
       messageId: 1b2fec4d9d324542bca6670c1fdab88b
       contactKey: friend
       contactName: Friend
@@ -428,6 +767,7 @@ MonoBehaviour:
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 0
     lineVariants: []
     choices: []
@@ -442,7 +782,9 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
+  - musicCue: 0
+    soundCue: 0
+    message:
       messageId: 46cda816ac294a2b93115c91b8d174bc
       contactKey: friend
       contactName: Friend
@@ -454,6 +796,7 @@ MonoBehaviour:
     speakerName: 
     personality: 6
     lineText: '"Ok let''s open up the app. Click on the new icon on the taskbar. The 4th one"'
+    voiceClip: {fileID: 0}
     displayDuration: 5
     lineVariants: []
     choices: []
@@ -468,7 +811,9 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
+  - musicCue: 0
+    soundCue: 0
+    message:
       messageId: b2989031cf7b4ebcb132b6812a4cd465
       contactKey: friend
       contactName: Friend
@@ -480,11 +825,12 @@ MonoBehaviour:
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 0
     lineVariants: []
     choices: []
-    nextStepID: Refacto_Failure
-    alternateNextStepID: Refacto_Failure
+    nextStepID: fail_expression
+    alternateNextStepID: fail_expression
     awardSkillKey: 
     narrativeEventKey: 
     stepType: 15
@@ -494,8 +840,39 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
+  - musicCue: 0
+    soundCue: 0
+    message:
       messageId: 869c7a13ca1d415baeacdd0d3edc2103
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: success_expression
+    speakerName: Steve
+    personality: 0
+    lineText: 
+    voiceClip: {fileID: 0}
+    displayDuration: 5
+    lineVariants: []
+    choices: []
+    nextStepID: Refacto_Success
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 9
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 1
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: f995a7ea5b1c4358859a3fba3d253334
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -506,10 +883,11 @@ MonoBehaviour:
     speakerName: Steve
     personality: 0
     lineText: '"Incredible work! I can''t believe you were able to refactor it so quickly! I have a lot to learn still"'
+    voiceClip: {fileID: 0}
     displayDuration: 5
     lineVariants: []
     choices: []
-    nextStepID: day_end
+    nextStepID: day_end_exp
     alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
@@ -520,8 +898,39 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
+  - musicCue: 0
+    soundCue: 0
+    message:
       messageId: c7d4637ef81747adb1f419d1de49f706
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: fail_expression
+    speakerName: Steve
+    personality: 0
+    lineText: 
+    voiceClip: {fileID: 0}
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: Refacto_Failure
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 9
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 2
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 55a39fc0571844db9154c7047fe7839b
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -532,6 +941,65 @@ MonoBehaviour:
     speakerName: Steve
     personality: 0
     lineText: '"I thought you could do it, I guess I''ll have to fix it myself."'
+    voiceClip: {fileID: 0}
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: day_end_exp
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: f21b9762d823434fab6d8964aaddf260
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: day_end_exp
+    speakerName: 
+    personality: 0
+    lineText: 
+    voiceClip: {fileID: 0}
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: day_end_text
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 9
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 4
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 2b692297b8eb4f229d68e18659dc41d9
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      replies: []
+      waitForReply: 0
+    stepID: day_end_text
+    speakerName: 
+    personality: 0
+    lineText: '"Well good work today, I''ll see you tomorrow!"'
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
@@ -543,11 +1011,13 @@ MonoBehaviour:
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
-    NewSteveExpression: 0
+    NewSteveExpression: 4
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: f21b9762d823434fab6d8964aaddf260
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 03504ed339c34ba8858ac63deed76d4b
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -558,6 +1028,7 @@ MonoBehaviour:
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
@@ -569,6 +1040,6 @@ MonoBehaviour:
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
-    NewSteveExpression: 0
+    NewSteveExpression: 4
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
