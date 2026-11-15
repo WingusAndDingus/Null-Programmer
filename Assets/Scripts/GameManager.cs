@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Collections;
+using System.Threading.Tasks;
+using UnityEngine.SceneManagement;
 /// <summary>
 /// Shared session state: player stats, monitor zoom, window state, and the email reply demo.
 /// </summary>
@@ -58,16 +60,67 @@ public class GameManager : MonoBehaviour
     // =========================================================
 
     public WeekendChoice? SelectedWeekendChoice { get; private set; }
+    public GameEndingType? SelectedEnding { get; private set; }
 
     public bool HasSelectedWeekendChoice => SelectedWeekendChoice.HasValue;
 
     // =========================================================
     // Weekend Choice Availability
     // =========================================================
+    [Header("Weekend & Ending Thresholds")]
+    [Tooltip("Steve weekend is available only while suspicion is strictly below this value.")]
+    [SerializeField, Min(0)] private int weekendSteveMaxSuspicionExclusive = 50;
+
+    [Tooltip("Studying alone is available once CodeQuality reaches this value.")]
+    [SerializeField, Min(0)] private int weekendStudyMinCodeQuality = 40;
+
+    [Tooltip("Friends/family weekend is available only while Connectedness is strictly above this value.")]
+    [SerializeField, Min(0)] private int weekendConnectionsMinConnectednessExclusive = 50;
+
+    [Tooltip("CodeQuality at or above this value counts as high quality for endings.")]
+    [SerializeField, Min(0)] private int highCodeQualityThreshold = 70;
+
+    [Tooltip("CodeQuality at or above this value counts as moderate quality; below it is low quality.")]
+    [SerializeField, Min(0)] private int moderateCodeQualityThreshold = 40;
+
+    [Tooltip("SteveSuspicion at or above this value counts as high suspicion for endings.")]
+    [SerializeField, Min(0)] private int highSuspicionEndingThreshold = 70;
+
+    public int HighCodeQualityThreshold => highCodeQualityThreshold;
+    public int ModerateCodeQualityThreshold => moderateCodeQualityThreshold;
+    public int HighSuspicionEndingThreshold => highSuspicionEndingThreshold;
+
+    public const int TotalClueCount = 10;
+    private static readonly HashSet<string> KnownClueIds = new HashSet<string>(StringComparer.Ordinal)
+    {
+        "C01_BjarneName",
+        "C02_Birthday",
+        "C03_AshleyGirlfriend",
+        "C04_StoodUp",
+        "C05_MarkBestFriend",
+        "C06_Intoxicated",
+        "C07_WorkStress",
+        "C08_PreviousBreakup",
+        "C09_EmotionalDistance",
+        "C10_FewFriends"
+    };
+
+    private readonly HashSet<string> discoveredClues = new HashSet<string>(StringComparer.Ordinal);
+    private readonly Queue<string> detectiveClueReactionQueue = new Queue<string>();
+    private AudioSource clueDiscoveryAudioSource;
+    [Header("Clue Discovery Audio")]
+    [SerializeField] private AudioClip clueDiscoveryClip;
+    [SerializeField, Range(0f, 1f)] private float clueDiscoveryVolume = 0.85f;
+    private bool playingDetectiveClueReaction;
+
+    public int DiscoveredCluesCount => discoveredClues.Count;
+    public IReadOnlyCollection<string> DiscoveredClues => discoveredClues;
+    public event Action<string, int> ClueDiscovered;
+
 
     public bool CanSpendWeekendWithSteve()
     {
-        bool result = SteveSuspicion < 50;
+        bool result = SteveSuspicion < weekendSteveMaxSuspicionExclusive;
         Debug.Log($"[GameManager] CanSpendWeekendWithSteve evaluated. SteveSuspicion: {SteveSuspicion}, Result: {result}");
         return result;
     }
@@ -75,14 +128,14 @@ public class GameManager : MonoBehaviour
     public bool CanStudyThisWeekend()
     {
         int architectLevel = PersonalitySkills.GetSavedLevel(Personality.Architect);
-        bool result = architectLevel > 3;
+        bool result = architectLevel > 3 && CodeQuality >= weekendStudyMinCodeQuality;
         Debug.Log($"[GameManager] CanStudyThisWeekend evaluated. ArchitectLevel: {architectLevel}, Result: {result}");
         return result;
     }
 
     public bool CanReconnectThisWeekend()
     {
-        bool result = Connectedness > 50;
+        bool result = Connectedness > weekendConnectionsMinConnectednessExclusive;
         Debug.Log($"[GameManager] CanReconnectThisWeekend evaluated. Connectedness: {Connectedness}, Result: {result}");
         return result;
     }
@@ -265,6 +318,11 @@ public class GameManager : MonoBehaviour
         AshleyTrust = 0;
         AshleyGuarded = 0;
         storyFlags.Clear();
+        discoveredClues.Clear();
+        detectiveClueReactionQueue.Clear();
+        playingDetectiveClueReaction = false;
+        SelectedEnding = null;
+        EnsureClueDiscoveryAudioSource();
 
         if (transform.parent != null)
         {
@@ -405,19 +463,148 @@ public class GameManager : MonoBehaviour
     }
     public bool HasStoryFlag(string key)
     {
-        return !string.IsNullOrWhiteSpace(key) && storyFlags.Contains(key);
+        return !string.IsNullOrWhiteSpace(key) &&
+               (storyFlags.Contains(key) || discoveredClues.Contains(key));
+
     }
 
     public void SetStoryFlag(string key, bool value)
     {
         if (string.IsNullOrWhiteSpace(key)) return;
 
-        if (value)
-            storyFlags.Add(key);
-        else
-            storyFlags.Remove(key);
+        // Clues are permanent discoveries. Existing JSON effects that set a clue
+        // story flag will automatically register the clue, play its sound, and queue
+        // the Detective's reaction without changing JsonMessageDialogueController.
+        if (KnownClueIds.Contains(key))
+        {
+            if (value) DiscoverClue(key);
+            else Debug.LogWarning("[GameManager] Clue discoveries are permanent and cannot be unset: " + key);
+            return;
+        }
+
+        if (value) storyFlags.Add(key);
+        else storyFlags.Remove(key);
 
         Debug.Log($"[GameManager] Story flag '{key}' set to {value}.");
+    }
+
+    public bool HasDiscoveredClue(string clueId)
+    {
+        return !string.IsNullOrWhiteSpace(clueId) && discoveredClues.Contains(clueId);
+    }
+
+    public bool DiscoverClue(string clueId)
+    {
+        if (string.IsNullOrWhiteSpace(clueId) || !KnownClueIds.Contains(clueId))
+        {
+            Debug.LogWarning("[GameManager] Unknown clue ID: " + clueId);
+            return false;
+        }
+
+        // Repeated effects must not award duplicate sounds/reactions/counts.
+        if (!discoveredClues.Add(clueId))
+            return false;
+
+        storyFlags.Add(clueId);
+        EnsureClueDiscoveryAudioSource();
+        if (clueDiscoveryClip != null && clueDiscoveryAudioSource != null)
+            clueDiscoveryAudioSource.PlayOneShot(clueDiscoveryClip, clueDiscoveryVolume);
+
+        Debug.Log($"[GameManager] Clue discovered: {clueId} ({discoveredClues.Count}/{TotalClueCount}).");
+        ClueDiscovered?.Invoke(clueId, discoveredClues.Count);
+
+        detectiveClueReactionQueue.Enqueue(clueId);
+        if (!playingDetectiveClueReaction)
+            StartCoroutine(PlayDetectiveClueReactions());
+
+        return true;
+    }
+
+    private void EnsureClueDiscoveryAudioSource()
+    {
+        if (clueDiscoveryAudioSource == null)
+            clueDiscoveryAudioSource = GetComponent<AudioSource>();
+        if (clueDiscoveryAudioSource == null)
+            clueDiscoveryAudioSource = gameObject.AddComponent<AudioSource>();
+
+        clueDiscoveryAudioSource.playOnAwake = false;
+        clueDiscoveryAudioSource.loop = false;
+        clueDiscoveryAudioSource.spatialBlend = 0f;
+    }
+
+    private IEnumerator PlayDetectiveClueReactions()
+    {
+        playingDetectiveClueReaction = true;
+
+        while (detectiveClueReactionQueue.Count > 0)
+        {
+            string clueId = detectiveClueReactionQueue.Dequeue();
+
+            // The dialogue UI is persistent, but it may not be present yet during
+            // initial scene loading. Wait briefly for it rather than losing the clue.
+            float waited = 0f;
+            while (DialogueManager.Instance == null && waited < 8f)
+            {
+                yield return new WaitForSecondsRealtime(0.25f);
+                waited += 0.25f;
+            }
+
+            if (DialogueManager.Instance == null)
+            {
+                Debug.LogWarning("[GameManager] Could not show Detective reaction; DialogueManager was unavailable for clue " + clueId);
+                continue;
+            }
+
+            string reaction = GetDetectiveClueReaction(clueId);
+            if (string.IsNullOrWhiteSpace(reaction))
+                continue;
+
+            DialogueLine line = new DialogueLine
+            {
+                speakerName = "The Detective",
+                personality = HeadPersonality.Detective,
+                text = reaction,
+                displayDuration = 3.5f
+            };
+
+            Task playback = DialogueManager.Instance.DisplayLineAndWaitAsync(line);
+            while (playback != null && !playback.IsCompleted)
+                yield return null;
+
+            if (playback != null && playback.IsFaulted)
+                Debug.LogException(playback.Exception);
+        }
+
+        playingDetectiveClueReaction = false;
+    }
+
+    private static string GetDetectiveClueReaction(string clueId)
+    {
+        switch (clueId)
+        {
+            case "C01_BjarneName":
+                return "Bjarne. That's our name. Not a username or a project label. A name. Start there.";
+            case "C02_Birthday":
+                return "Forty. A milestone, and we can't remember celebrating it. I wonder what we were trying to forget.";
+            case "C03_AshleyGirlfriend":
+                return "Ashley is our girlfriend. She expected something from us. This is more than an angry message.";
+            case "C04_StoodUp":
+                return "We stood Ashley up. The date mattered to her. Whatever happened that weekend wasn't just a harmless night out.";
+            case "C05_MarkBestFriend":
+                return "Mark. Our best friend. Someone kept a place for us even when we disappeared.";
+            case "C06_Intoxicated":
+                return "A voicemail left in that state. We were trying to reach someone. Why couldn't we say what we needed while sober?";
+            case "C07_WorkStress":
+                return "Work was weighing on us long before Saturday. The warning signs weren't subtle. We kept filing them under later.";
+            case "C08_PreviousBreakup":
+                return "They had already broken up once. This wasn't one bad evening; it was a pattern that nearly ended things before.";
+            case "C09_EmotionalDistance":
+                return "We stopped telling people how we felt. We weren't just busy; we were closing the door while people were still knocking.";
+            case "C10_FewFriends":
+                return "Mark was almost the only friend left. We reduced an entire life to one contact and a work inbox.";
+            default:
+                return "Another piece of the past. Keep going; the pattern is becoming clearer.";
+        }
     }
 
     public void AddStoryStat(string key, int amount)
@@ -651,18 +838,58 @@ public class GameManager : MonoBehaviour
         Debug.Log($"[GameManager] BringWindowToFront brought windowId '{windowId}' to front with stack order {state.StackOrder}");
     }
     // =========================================================
-    // Secret Ending / Clue Tracking
+    // Endings
     // =========================================================
-    private readonly HashSet<string> discoveredClues = new HashSet<string>();
 
-    public int DiscoveredCluesCount => discoveredClues.Count;
-
-    public void DiscoverClue(string clueID)
+    public GameEndingType DetermineEnding()
     {
-        if (!string.IsNullOrWhiteSpace(clueID) && !discoveredClues.Contains(clueID))
+        int detectiveLevel = PersonalitySkills.GetSavedLevel(Personality.Detective);
+
+        // Secret ending must take priority over every ordinary ending.
+        if (detectiveLevel >= PersonalitySkills.MaxLevel &&
+            DiscoveredCluesCount >= TotalClueCount)
         {
-            discoveredClues.Add(clueID);
-            Debug.Log($"[GameManager] Clue discovered: '{clueID}'. Total clues found: {DiscoveredCluesCount}");
+            SelectedEnding = GameEndingType.SegmentationFaultOfSoul;
+            return SelectedEnding.Value;
         }
+
+        bool highQuality = CodeQuality >= highCodeQualityThreshold;
+        bool moderateQuality = CodeQuality >= moderateCodeQualityThreshold && !highQuality;
+        bool lowQuality = CodeQuality < moderateCodeQualityThreshold;
+        bool suspicionHigh = SteveSuspicion >= highSuspicionEndingThreshold;
+
+        // High-quality project outcomes depend on how the player spent the weekend.
+        if (highQuality)
+        {
+            if (SelectedWeekendChoice == WeekendChoice.Steve)
+                return StoreEnding(GameEndingType.UltimateMentor);
+            if (SelectedWeekendChoice == WeekendChoice.Study)
+                return StoreEnding(GameEndingType.PerfectionistTrap);
+            if (SelectedWeekendChoice == WeekendChoice.PersonalConnections)
+                return StoreEnding(GameEndingType.ArchitectRedemption);
+        }
+
+        // A low-quality project rescued by Steve is the precarious-but-surviving outcome.
+        if (lowQuality && SelectedWeekendChoice == WeekendChoice.Steve)
+            return StoreEnding(GameEndingType.ImposterProtocol);
+
+        // Steve's suspicion and project quality determine the two termination outcomes.
+        if (suspicionHigh && lowQuality)
+            return StoreEnding(GameEndingType.ObsoleteAndDeprecated);
+
+        if (suspicionHigh && moderateQuality)
+            return StoreEnding(GameEndingType.ObsoleteSoftRelaunch);
+
+        // The original design does not specify every possible combination (for example,
+        // low quality + low suspicion + a friends weekend). Keep those unassigned runs
+        // on the less-severe fallback until a dedicated neutral ending is authored.
+        return StoreEnding(GameEndingType.ObsoleteSoftRelaunch);
+    }
+
+    private GameEndingType StoreEnding(GameEndingType ending)
+    {
+        SelectedEnding = ending;
+        Debug.Log("[GameManager] Selected ending: " + ending);
+        return ending;
     }
 }

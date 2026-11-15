@@ -1,69 +1,177 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameEndEvaluator : MonoBehaviour
+/// <summary>
+/// The seven intended outcomes. This enum replaces the duplicate definition
+/// that currently lives in Assets/Scripts/Day Scripts/GameEndingManager.cs.
+/// </summary>
+public enum GameEndingType
+{
+    ObsoleteAndDeprecated,
+    ObsoleteSoftRelaunch,
+    ImposterProtocol,
+    PerfectionistTrap,
+    UltimateMentor,
+    ArchitectRedemption,
+    SegmentationFaultOfSoul
+}
+
+/// <summary>
+/// Uses GameManager's recorded run state to present the selected ending in the
+/// existing GameEndScreen scene. Keep this component in the active DesktopUI scene
+/// so DayNarrativeExecutor can find it when FinalDay_Data reaches TriggerGameEnd.
+/// </summary>
+public sealed class GameEndEvaluator : MonoBehaviour
 {
     [Header("UML Assets")]
+    [Tooltip("The clean/reference UML shown for Steve and for high-quality player work.")]
     public Sprite standardUmlSprite;
+
+    [Tooltip("The player's less-structured UML shown when code quality is below the high-quality threshold.")]
     public Sprite bloatedUmlSprite;
 
-    [Header("Ending Text: The Perfectionist Trap")]
-    public string successTitle = "Ending: The Perfectionist Trap";
-    public Color successTitleColor = Color.white; 
-    [TextArea(3, 10)] 
-    public string successText = "Steve: 'Your use of OOP kept the code incredibly clean. Because we seperated the project into classes the code is maintainable and reusable.'\n\nResult: You log off at 5:00PM, close your workstation, and enjoy a well earned rest.";
+    [Header("End Screen")]
+    [SerializeField] private string endScreenSceneName = "GameEndScreen";
 
-    [Header("Ending Text: Coupled and Deprecated")]
-    public string failTitle = "Ending: Coupled and Deprecated";
-    public Color failTitleColor = new Color(0.9f, 0.2f, 0.2f, 1f);
-    [TextArea(3, 10)] 
-    public string failText = "Management: 'Steve demonstrated real senior dev talent and upstaged your project. You have clearly lost your edge. You are terminated.'\n\nResult: You let The Pragmatist cram everything into main.cpp, making it unmaintainable.";
+    // Retained so existing serialized Inspector data is not needlessly discarded.
+    [Header("Legacy two-ending fields (not used by the seven-ending evaluator)")]
+    [HideInInspector] public string successTitle = "Ending: The Perfectionist Trap";
+    [HideInInspector] public Color successTitleColor = Color.white;
+    [HideInInspector, TextArea(3, 10)] public string successText = "";
+    [HideInInspector] public string failTitle = "Ending: Coupled and Deprecated";
+    [HideInInspector] public Color failTitleColor = new Color(0.9f, 0.2f, 0.2f, 1f);
+    [HideInInspector, TextArea(3, 10)] public string failText = "";
+
+    private bool triggerInProgress;
+    private bool waitingForEndScreen;
 
     public void TriggerFinalEvaluation()
     {
-        // Subscribe to the scene loaded event to inject data once the UI is ready
+        if (triggerInProgress)
+        {
+            Debug.LogWarning("[GameEndEvaluator] Final evaluation was already triggered.", this);
+            return;
+        }
+
+        GameManager game = GameManager.EnsureInstance();
+        GameEndingType ending = game.DetermineEnding();
+        Debug.Log("[GameEndEvaluator] Final ending decided: " + ending, this);
+
+        triggerInProgress = true;
+
+        Scene loadedScene = SceneManager.GetSceneByName(endScreenSceneName);
+        if (loadedScene.IsValid() && loadedScene.isLoaded)
+        {
+            InjectEndingData();
+            return;
+        }
+
+        waitingForEndScreen = true;
         SceneManager.sceneLoaded += OnEndScreenLoaded;
-        
-        // Load the UI scene additively over the desktop
-        SceneManager.LoadScene("GameEndScreen", LoadSceneMode.Additive);
+        SceneManager.LoadScene(endScreenSceneName, LoadSceneMode.Additive);
     }
 
     private void OnEndScreenLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "GameEndScreen")
-        {
-            SceneManager.sceneLoaded -= OnEndScreenLoaded;
+        if (!waitingForEndScreen || scene.name != endScreenSceneName)
+            return;
 
-            GameEndManager uiManager = FindAnyObjectByType<GameEndManager>();
-            if (uiManager != null)
-            {
-                InjectEndingData(uiManager);
-            }
-            else
-            {
-                Debug.LogError("GameEndManager not found in the loaded scene");
-            }
-        }
+        waitingForEndScreen = false;
+        SceneManager.sceneLoaded -= OnEndScreenLoaded;
+        InjectEndingData();
     }
 
-    private void InjectEndingData(GameEndManager uiManager)
+    private void InjectEndingData()
     {
-        // 1. Fetch current stats from GameManager
-        int codeQuality = GameManager.Instance.CodeQuality;
-        int suspicion = GameManager.Instance.SteveSuspicion;
-        
-        // 2. Determine ending from metrics
-        bool isPerfectionistTrap = (codeQuality >= 50) && (suspicion < 50);
+        GameEndManager uiManager = FindAnyObjectByType<GameEndManager>();
+        if (uiManager == null)
+        {
+            Debug.LogError("[GameEndEvaluator] GameEndManager was not found in GameEndScreen.", this);
+            triggerInProgress = false;
+            return;
+        }
 
-        // 3. Pass the data to GameEndManager (now including Title Color)
-        if (isPerfectionistTrap)
+        GameManager game = GameManager.EnsureInstance();
+        GameEndingType ending = game.SelectedEnding ?? game.DetermineEnding();
+
+        string title;
+        string body;
+        Color titleColor;
+
+        switch (ending)
         {
-            // Success: Player UML matches the standard UML template
-            uiManager.SetupEndScreen(successTitle, successText, standardUmlSprite, standardUmlSprite, successTitleColor);
+            case GameEndingType.ObsoleteAndDeprecated:
+                title = "Ending: Obsolete & Deprecated";
+                body =
+                    "Management: \"Your implementation is not at the level expected of a senior developer. Steve presented a stronger independent version of Battleship, and we have decided to replace your work. Your employment is terminated effective immediately.\"\n\n" +
+                    "Steve takes over the project. The code you struggled to rebuild is left behind, and the people who tried to reach you are still waiting for an answer.";
+                titleColor = new Color(0.92f, 0.30f, 0.30f, 1f);
+                break;
+
+            case GameEndingType.ObsoleteSoftRelaunch:
+                title = "Ending: Obsolete, with a Soft Relaunch";
+                body =
+                    "The evaluation is over, but the result is not the clean recovery you hoped for. Your implementation was underwhelming for a senior developer. The following morning, an email informs you that your position is being ended; Steve later presents an alternative that management prefers.\n\n" +
+                    "It is not the immediate public replacement of the worst outcome, but the direction is painfully clear.";
+                titleColor = new Color(0.91f, 0.62f, 0.30f, 1f);
+                break;
+
+            case GameEndingType.ImposterProtocol:
+                title = "Ending: Imposter Protocol";
+                body =
+                    "Steve spent the weekend helping repair the project, and together you got it across the finish line. Management accepts the result, so you keep your position.\n\n" +
+                    "But you know how much of the work Steve had to rescue. Your future is safe for now, not secure. You have another chance to relearn the craft instead of pretending you never lost it.";
+                titleColor = new Color(0.88f, 0.75f, 0.40f, 1f);
+                break;
+
+            case GameEndingType.PerfectionistTrap:
+                title = "Ending: The Perfectionist Trap";
+                body =
+                    "The project is excellent. The architecture is clean, the implementation is polished, and management is impressed.\n\n" +
+                    "Then the workday ends. There is no Steve beside you, no message from your friends, and no one waiting for you at home. The familiar emptiness returns. You feel a sharp sense of deja vu: you have built something impressive while quietly dismantling the rest of your life.";
+                titleColor = new Color(0.72f, 0.82f, 0.95f, 1f);
+                break;
+
+            case GameEndingType.UltimateMentor:
+                title = "Ending: The Ultimate Mentor";
+                body =
+                    "The project is strong, and Steve has become a genuine collaborator rather than someone watching for you to slip. During the presentation, you publicly share the credit and acknowledge how much you learned from working together.\n\n" +
+                    "Steve does the same for you. The two of you leave the review as friends and as a team. For once, success does not require shutting everyone else out.";
+                titleColor = new Color(0.48f, 0.84f, 0.67f, 1f);
+                break;
+
+            case GameEndingType.ArchitectRedemption:
+                title = "Ending: The Architect's Redemption";
+                body =
+                    "You present a high-quality project, but this time the achievement is not the only thing that matters. You chose to reconnect with the people who care about you, and you begin to understand that being a good developer is not the same as making work your entire identity.\n\n" +
+                    "The Grand Architect's best design is not another class diagram. It is a life with room for both meaningful work and meaningful relationships.";
+                titleColor = new Color(0.48f, 0.84f, 0.67f, 1f);
+                break;
+
+            case GameEndingType.SegmentationFaultOfSoul:
+                title = "Secret Ending: Segmentation Fault of the Soul";
+                body =
+                    "The recovered clues finally fit together. Your name is Bjarne. You had just turned forty. Ashley had planned a date because she wanted to talk about how far you had withdrawn from her. You stood her up. You had been under mounting pressure at work, and your circle of friends had dwindled until Mark was almost the only one still reaching out.\n\n" +
+                    "That weekend, overwhelmed and unable to face the people trying to help, you drank heavily and blacked out. The memory loss was not a conspiracy or a clever trick: it followed a personal collapse you had tried to outrun. The three voices were fragments of the ways you had learned to cope: the Architect who tried to impose order, the Pragmatist who wanted to avoid the pain, and the Detective who kept searching for an explanation.\n\n" +
+                    "You cannot rewrite that weekend. You can decide what you do with the truth now.";
+                titleColor = new Color(0.70f, 0.78f, 1f, 1f);
+                break;
+
+            default:
+                title = "Ending: Obsolete, with a Soft Relaunch";
+                body = "The evaluation is complete. Your result leaves the future uncertain, and there is still work to do to rebuild both your skills and your relationships.";
+                titleColor = new Color(0.91f, 0.62f, 0.30f, 1f);
+                break;
         }
-        else
-        {
-            uiManager.SetupEndScreen(failTitle, failText, bloatedUmlSprite, standardUmlSprite, failTitleColor);
-        }
+
+        bool highQuality = game.CodeQuality >= game.HighCodeQualityThreshold;
+        Sprite playerUml = highQuality ? standardUmlSprite : bloatedUmlSprite;
+        uiManager.SetupEndScreen(title, body, playerUml, standardUmlSprite, titleColor);
+    }
+
+    private void OnDestroy()
+    {
+        if (waitingForEndScreen)
+            SceneManager.sceneLoaded -= OnEndScreenLoaded;
     }
 }

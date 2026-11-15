@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -35,13 +38,14 @@ public class WeekendChoiceController : MonoBehaviour
 
     private GameManager gameManager;
 
-    // This is only the current UI selection.
-    // It is not stored permanently until Confirm is pressed.
+    // This is only the current UI selection. It is committed to GameManager on Confirm.
     private WeekendChoice? pendingChoice;
 
-    // Prevents the confirmation process from running twice.
-    private bool isConfirming;
+    // A choice gets its personality reaction only once during this visit to the weekend screen.
+    private readonly HashSet<WeekendChoice> choicesWithCommentary = new HashSet<WeekendChoice>();
 
+    private bool isConfirming;
+    private bool isPlayingCommentary;
 
     private void Start()
     {
@@ -50,14 +54,12 @@ public class WeekendChoiceController : MonoBehaviour
         SetupToggleGroup();
         SetupChoiceAvailability();
         SetupToggleListeners();
+        SetupPointerClickRelays();
 
-        // Start with no weekend choice selected.
         ClearSelection();
-
-        // Confirmation is impossible until something is selected.
-        confirmButton.interactable = false;
+        if (confirmButton != null)
+            confirmButton.interactable = false;
     }
-
 
     // =========================================================
     // Setup
@@ -65,93 +67,84 @@ public class WeekendChoiceController : MonoBehaviour
 
     private void SetupToggleGroup()
     {
-        steveToggle.group = weekendToggleGroup;
-        studyToggle.group = weekendToggleGroup;
-        connectionsToggle.group = weekendToggleGroup;
-        wallowToggle.group = weekendToggleGroup;
+        if (weekendToggleGroup == null)
+        {
+            Debug.LogError("[WeekendChoiceController] Weekend Toggle Group is not assigned.", this);
+            return;
+        }
 
-        // Initially allow every toggle to be off,
-        // because the player has not selected anything yet.
+        if (steveToggle != null) steveToggle.group = weekendToggleGroup;
+        if (studyToggle != null) studyToggle.group = weekendToggleGroup;
+        if (connectionsToggle != null) connectionsToggle.group = weekendToggleGroup;
+        if (wallowToggle != null) wallowToggle.group = weekendToggleGroup;
+
+        // The player starts with nothing selected and may switch between available choices.
         weekendToggleGroup.allowSwitchOff = true;
     }
 
     public void SetupChoiceAvailability()
     {
-        bool steveAvailable =
-            gameManager.IsWeekendChoiceAvailable(
-                WeekendChoice.Steve
-            );
+        if (gameManager == null)
+            gameManager = GameManager.EnsureInstance();
 
-        bool studyAvailable =
-            gameManager.IsWeekendChoiceAvailable(
-                WeekendChoice.Study
-            );
+        bool steveAvailable = gameManager.IsWeekendChoiceAvailable(WeekendChoice.Steve);
+        bool studyAvailable = gameManager.IsWeekendChoiceAvailable(WeekendChoice.Study);
+        bool connectionsAvailable = gameManager.IsWeekendChoiceAvailable(WeekendChoice.PersonalConnections);
 
-        bool connectionsAvailable =
-            gameManager.IsWeekendChoiceAvailable(
-                WeekendChoice.PersonalConnections
-            );
+        // Wallow is deliberately always accessible, even if another option is available.
+        const bool wallowAvailable = true;
 
-        // Wallow is always available.
-        bool wallowAvailable = true;
+        SetChoiceAvailability(steveToggle, steveLabel, steveAvailable);
+        SetChoiceAvailability(studyToggle, studyLabel, studyAvailable);
+        SetChoiceAvailability(connectionsToggle, connectionsLabel, connectionsAvailable);
+        SetChoiceAvailability(wallowToggle, wallowLabel, wallowAvailable);
+    }
 
-
-        steveToggle.interactable = steveAvailable;
-        studyToggle.interactable = studyAvailable;
-        connectionsToggle.interactable = connectionsAvailable;
-        wallowToggle.interactable = wallowAvailable;
-
-
-        steveLabel.color =
-            steveAvailable
-                ? availableTextColor
-                : unavailableTextColor;
-
-        studyLabel.color =
-            studyAvailable
-                ? availableTextColor
-                : unavailableTextColor;
-
-        connectionsLabel.color =
-            connectionsAvailable
-                ? availableTextColor
-                : unavailableTextColor;
-
-        wallowLabel.color =
-            wallowAvailable
-                ? availableTextColor
-                : unavailableTextColor;
+    private void SetChoiceAvailability(Toggle toggle, TMP_Text label, bool available)
+    {
+        if (toggle != null) toggle.interactable = available;
+        if (label != null) label.color = available ? availableTextColor : unavailableTextColor;
     }
 
     private void SetupToggleListeners()
     {
-        steveToggle.onValueChanged.AddListener(
-            OnSteveToggleChanged
-        );
+        if (steveToggle != null) steveToggle.onValueChanged.AddListener(OnSteveToggleChanged);
+        if (studyToggle != null) studyToggle.onValueChanged.AddListener(OnStudyToggleChanged);
+        if (connectionsToggle != null) connectionsToggle.onValueChanged.AddListener(OnConnectionsToggleChanged);
+        if (wallowToggle != null) wallowToggle.onValueChanged.AddListener(OnWallowToggleChanged);
+    }
 
-        studyToggle.onValueChanged.AddListener(
-            OnStudyToggleChanged
-        );
+    private void SetupPointerClickRelays()
+    {
+        // A disabled Toggle does not raise onValueChanged. The relay still receives pointer
+        // clicks, allowing locked options to explain why they are unavailable.
+        AddPointerClickRelay(steveToggle, WeekendChoice.Steve);
+        AddPointerClickRelay(studyToggle, WeekendChoice.Study);
+        AddPointerClickRelay(connectionsToggle, WeekendChoice.PersonalConnections);
+        AddPointerClickRelay(wallowToggle, WeekendChoice.Wallow);
+    }
 
-        connectionsToggle.onValueChanged.AddListener(
-            OnConnectionsToggleChanged
-        );
+    private void AddPointerClickRelay(Toggle toggle, WeekendChoice choice)
+    {
+        if (toggle == null) return;
 
-        wallowToggle.onValueChanged.AddListener(
-            OnWallowToggleChanged
-        );
+        WeekendChoiceClickRelay relay = toggle.GetComponent<WeekendChoiceClickRelay>();
+        if (relay == null)
+            relay = toggle.gameObject.AddComponent<WeekendChoiceClickRelay>();
+
+        WeekendChoice capturedChoice = choice;
+        relay.Initialize(() => OnWeekendOptionClicked(capturedChoice));
     }
 
     private void ClearSelection()
     {
         pendingChoice = null;
 
-        steveToggle.SetIsOnWithoutNotify(false);
-        studyToggle.SetIsOnWithoutNotify(false);
-        connectionsToggle.SetIsOnWithoutNotify(false);
-        wallowToggle.SetIsOnWithoutNotify(false);
+        if (steveToggle != null) steveToggle.SetIsOnWithoutNotify(false);
+        if (studyToggle != null) studyToggle.SetIsOnWithoutNotify(false);
+        if (connectionsToggle != null) connectionsToggle.SetIsOnWithoutNotify(false);
+        if (wallowToggle != null) wallowToggle.SetIsOnWithoutNotify(false);
     }
-
 
     // =========================================================
     // Toggle Events
@@ -159,59 +152,227 @@ public class WeekendChoiceController : MonoBehaviour
 
     private void OnSteveToggleChanged(bool isOn)
     {
-        if (isOn)
-        {
-            SelectChoice(WeekendChoice.Steve);
-        }
+        if (isOn) SelectChoice(WeekendChoice.Steve);
     }
 
     private void OnStudyToggleChanged(bool isOn)
     {
-        if (isOn)
-        {
-            SelectChoice(WeekendChoice.Study);
-        }
+        if (isOn) SelectChoice(WeekendChoice.Study);
     }
 
     private void OnConnectionsToggleChanged(bool isOn)
     {
-        if (isOn)
-        {
-            SelectChoice(WeekendChoice.PersonalConnections);
-        }
+        if (isOn) SelectChoice(WeekendChoice.PersonalConnections);
     }
 
     private void OnWallowToggleChanged(bool isOn)
     {
-        if (isOn)
-        {
-            SelectChoice(WeekendChoice.Wallow);
-        }
+        if (isOn) SelectChoice(WeekendChoice.Wallow);
     }
 
-
     // =========================================================
-    // Selection
+    // Selection and first-click commentary
     // =========================================================
 
     private void SelectChoice(WeekendChoice choice)
     {
-        if (!gameManager.IsWeekendChoiceAvailable(choice))
-        {
+        if (isConfirming || isPlayingCommentary || !gameManager.IsWeekendChoiceAvailable(choice))
             return;
-        }
 
         pendingChoice = choice;
 
-        // Once the player has selected something, don't let them
-        // return to a state where nothing is selected.
-        //
-        // They can still freely switch to another available choice.
-        weekendToggleGroup.allowSwitchOff = false;
+        if (weekendToggleGroup != null)
+            weekendToggleGroup.allowSwitchOff = false;
 
-        confirmButton.interactable = true;
+        if (confirmButton != null)
+            confirmButton.interactable = true;
     }
 
+    private void OnWeekendOptionClicked(WeekendChoice choice)
+    {
+        if (isConfirming || isPlayingCommentary || choicesWithCommentary.Contains(choice))
+            return;
+
+        DialogueManager dialogue = DialogueManager.Instance;
+        if (dialogue == null)
+        {
+            Debug.LogWarning("[WeekendChoiceController] DialogueManager is unavailable; weekend-choice commentary was skipped.", this);
+            return;
+        }
+
+        choicesWithCommentary.Add(choice);
+
+        // Commit the visual selection here as well as in Toggle.onValueChanged.
+        // This removes any ordering dependency between Unity's Toggle pointer handler
+        // and the click relay that also needs to work for disabled (locked) Toggles.
+        if (gameManager.IsWeekendChoiceAvailable(choice))
+        {
+            SetToggleSelectionWithoutNotify(choice);
+            pendingChoice = choice;
+            if (weekendToggleGroup != null)
+                weekendToggleGroup.allowSwitchOff = false;
+        }
+
+        _ = PlayChoiceCommentaryAsync(choice, dialogue);
+    }
+
+    private void SetToggleSelectionWithoutNotify(WeekendChoice choice)
+    {
+        if (steveToggle != null) steveToggle.SetIsOnWithoutNotify(choice == WeekendChoice.Steve);
+        if (studyToggle != null) studyToggle.SetIsOnWithoutNotify(choice == WeekendChoice.Study);
+        if (connectionsToggle != null) connectionsToggle.SetIsOnWithoutNotify(choice == WeekendChoice.PersonalConnections);
+        if (wallowToggle != null) wallowToggle.SetIsOnWithoutNotify(choice == WeekendChoice.Wallow);
+    }
+
+    private async Task PlayChoiceCommentaryAsync(WeekendChoice choice, DialogueManager dialogue)
+    {
+        isPlayingCommentary = true;
+        SetChoiceControlsInteractable(false);
+
+        try
+        {
+            List<DialogueLine> lines = BuildCommentary(choice);
+            foreach (DialogueLine line in lines)
+            {
+                if (line == null || string.IsNullOrWhiteSpace(line.text))
+                    continue;
+
+                await dialogue.DisplayLineAndWaitAsync(line);
+            }
+        }
+        catch (Exception exception)
+        {
+            Debug.LogException(exception, this);
+        }
+        finally
+        {
+            isPlayingCommentary = false;
+            SetupChoiceAvailability();
+
+            if (confirmButton != null)
+            {
+                confirmButton.interactable = pendingChoice.HasValue &&
+                    gameManager.IsWeekendChoiceAvailable(pendingChoice.Value);
+            }
+        }
+    }
+
+    private void SetChoiceControlsInteractable(bool interactable)
+    {
+        if (steveToggle != null) steveToggle.interactable = interactable && gameManager.IsWeekendChoiceAvailable(WeekendChoice.Steve);
+        if (studyToggle != null) studyToggle.interactable = interactable && gameManager.IsWeekendChoiceAvailable(WeekendChoice.Study);
+        if (connectionsToggle != null) connectionsToggle.interactable = interactable && gameManager.IsWeekendChoiceAvailable(WeekendChoice.PersonalConnections);
+        if (wallowToggle != null) wallowToggle.interactable = interactable; // Wallow always remains an available option.
+
+        if (confirmButton != null)
+            confirmButton.interactable = interactable && pendingChoice.HasValue &&
+                gameManager.IsWeekendChoiceAvailable(pendingChoice.Value);
+    }
+
+    private List<DialogueLine> BuildCommentary(WeekendChoice choice)
+    {
+        switch (choice)
+        {
+            case WeekendChoice.Study:
+                return gameManager.IsWeekendChoiceAvailable(WeekendChoice.Study)
+                    ? new List<DialogueLine>
+                    {
+                        Voice(HeadPersonality.GrandArchitect,
+                            "Excellent choice. A quiet weekend with the documentation, a clear plan, and time to rebuild the skills we once took for granted. Let's make something worthy of our old reputation.")
+                    }
+                    : new List<DialogueLine>
+                    {
+                        Voice(HeadPersonality.GrandArchitect,
+                            "Ah. I would welcome a weekend of study, but our current programming skills are not quite where they need to be. We must first rebuild the foundations before attempting to restore the architecture.")
+                    };
+
+            case WeekendChoice.Steve:
+                return gameManager.IsWeekendChoiceAvailable(WeekendChoice.Steve)
+                    ? new List<DialogueLine>
+                    {
+                        Voice(HeadPersonality.Pragmatist,
+                            "The best part of work isn't working. It's getting to know your coworkers. Coffee, conversation, and maybe letting Steve do the explaining for once.")
+                    }
+                    : new List<DialogueLine>
+                    {
+                        Voice(HeadPersonality.Pragmatist,
+                            "A relaxing weekend with the colleague who currently suspects we're hiding something? That sounds less like team bonding and more like an interrogation with pastries.")
+                    };
+
+            case WeekendChoice.PersonalConnections:
+                if (gameManager.IsWeekendChoiceAvailable(WeekendChoice.PersonalConnections))
+                {
+                    return new List<DialogueLine>
+                    {
+                        Voice(HeadPersonality.Detective,
+                            "Perfect. More time with friends and family means more chances to piece together our past. Perhaps we'll finally learn what happened to us."),
+                        Voice(HeadPersonality.Pragmatist,
+                            "And we'll get to spend time with our loved ones."),
+                        Voice(HeadPersonality.Detective,
+                            "Yes, yes. That too.")
+                    };
+                }
+
+                return new List<DialogueLine>
+                {
+                    Voice(HeadPersonality.Pragmatist,
+                        "We could reach out, certainly. Though based on our reply rate, the group chat may have declared us legally deceased."),
+                    Voice(HeadPersonality.Detective,
+                        "Our connections are thinner than we thought. We need to rebuild trust before expecting everyone to clear their weekend for us.")
+                };
+
+            case WeekendChoice.Wallow:
+                bool anotherOptionAvailable =
+                    gameManager.IsWeekendChoiceAvailable(WeekendChoice.Steve) ||
+                    gameManager.IsWeekendChoiceAvailable(WeekendChoice.Study) ||
+                    gameManager.IsWeekendChoiceAvailable(WeekendChoice.PersonalConnections);
+
+                if (anotherOptionAvailable)
+                {
+                    return new List<DialogueLine>
+                    {
+                        Voice(HeadPersonality.Pragmatist,
+                            "We have perfectly good plans available, and you want to spend the weekend as a sentient duvet? Bold strategy."),
+                        Voice(HeadPersonality.GrandArchitect,
+                            "Rest is valuable. But choosing isolation when a path back to people or purpose is open is not the same as restoring ourselves."),
+                        Voice(HeadPersonality.Detective,
+                            "It may be avoidance. Perhaps we should ask why doing nothing feels safer than any of the alternatives.")
+                    };
+                }
+
+                return new List<DialogueLine>
+                {
+                    Voice(HeadPersonality.Pragmatist,
+                        "Well... at least nobody can accuse us of overcommitting. Our weekend calendar is beautifully, tragically empty."),
+                    Voice(HeadPersonality.GrandArchitect,
+                        "A quiet weekend might offer some rest. Still, I would rather it were a choice made freely than the only door left open."),
+                    Voice(HeadPersonality.Detective,
+                        "No invitations, no study plan, no Steve. Just silence. Perhaps that is the clue itself: we've let our world become very small.")
+                };
+
+            default:
+                return new List<DialogueLine>();
+        }
+    }
+
+    private static DialogueLine Voice(HeadPersonality personality, string text)
+    {
+        string speaker = personality switch
+        {
+            HeadPersonality.GrandArchitect => "The Grand Architect",
+            HeadPersonality.Pragmatist => "The Pragmatist",
+            HeadPersonality.Detective => "The Detective",
+            _ => ""
+        };
+
+        return new DialogueLine
+        {
+            speakerName = speaker,
+            personality = personality,
+            text = text,
+            displayDuration = 3.5f
+        };
+    }
 
     // =========================================================
     // Confirmation
@@ -219,44 +380,22 @@ public class WeekendChoiceController : MonoBehaviour
 
     public void ConfirmChoice()
     {
-        // Protect against repeated confirmation clicks.
-        if (isConfirming)
-        {
+        if (isConfirming || isPlayingCommentary || !pendingChoice.HasValue)
             return;
-        }
-
-        // No selection has been made.
-        if (!pendingChoice.HasValue)
-        {
-            return;
-        }
 
         WeekendChoice choice = pendingChoice.Value;
-
-        // GameManager performs the final validation and
-        // permanently records the choice.
         if (!gameManager.TryConfirmWeekendChoice(choice))
-        {
             return;
-        }
 
         isConfirming = true;
-
-        // Immediately disable the UI before loading the next scene.
-        confirmButton.interactable = false;
-
-        steveToggle.interactable = false;
-        studyToggle.interactable = false;
-        connectionsToggle.interactable = false;
-        wallowToggle.interactable = false;
+        if (confirmButton != null) confirmButton.interactable = false;
+        if (steveToggle != null) steveToggle.interactable = false;
+        if (studyToggle != null) studyToggle.interactable = false;
+        if (connectionsToggle != null) connectionsToggle.interactable = false;
+        if (wallowToggle != null) wallowToggle.interactable = false;
 
         LoadWeekendScene(choice);
     }
-
-
-    // =========================================================
-    // Scene Loading
-    // =========================================================
 
     private void LoadWeekendScene(WeekendChoice choice)
     {
@@ -265,42 +404,23 @@ public class WeekendChoiceController : MonoBehaviour
             case WeekendChoice.Steve:
                 SceneManager.LoadScene(steveSceneName);
                 break;
-
             case WeekendChoice.Study:
                 SceneManager.LoadScene(studySceneName);
                 break;
-
             case WeekendChoice.PersonalConnections:
                 SceneManager.LoadScene(connectionsSceneName);
                 break;
-
             case WeekendChoice.Wallow:
                 SceneManager.LoadScene(wallowSceneName);
                 break;
         }
     }
 
-
-    // =========================================================
-    // Cleanup
-    // =========================================================
-
     private void OnDestroy()
     {
-        steveToggle.onValueChanged.RemoveListener(
-            OnSteveToggleChanged
-        );
-
-        studyToggle.onValueChanged.RemoveListener(
-            OnStudyToggleChanged
-        );
-
-        connectionsToggle.onValueChanged.RemoveListener(
-            OnConnectionsToggleChanged
-        );
-
-        wallowToggle.onValueChanged.RemoveListener(
-            OnWallowToggleChanged
-        );
+        if (steveToggle != null) steveToggle.onValueChanged.RemoveListener(OnSteveToggleChanged);
+        if (studyToggle != null) studyToggle.onValueChanged.RemoveListener(OnStudyToggleChanged);
+        if (connectionsToggle != null) connectionsToggle.onValueChanged.RemoveListener(OnConnectionsToggleChanged);
+        if (wallowToggle != null) wallowToggle.onValueChanged.RemoveListener(OnWallowToggleChanged);
     }
 }

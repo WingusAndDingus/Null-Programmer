@@ -10209,7 +10209,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c1877421afd8af458d8c40eb7e8d820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  <CurrentDay>k__BackingField: 3
+  <CurrentDay>k__BackingField: 6
+  weekendSteveMaxSuspicionExclusive: 50
+  weekendStudyMinCodeQuality: 40
+  weekendConnectionsMinConnectednessExclusive: 50
+  highCodeQualityThreshold: 70
+  moderateCodeQualityThreshold: 40
+  highSuspicionEndingThreshold: 70
+  clueDiscoveryClip: {fileID: 8300000, guid: 9edfcdbd5952da8468715945108d6a75, type: 3}
+  clueDiscoveryVolume: 0.85
 --- !u!4 &1946025654
 Transform:
   m_ObjectHideFlags: 0
@@ -11395,18 +11403,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: NarrativeManager
       objectReference: {fileID: 0}
-    - target: {fileID: 7904637182536935973, guid: c8dd5049553ca2d43ab8e8c45b839c89, type: 3}
-      propertyPath: daySequences.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7904637182536935973, guid: c8dd5049553ca2d43ab8e8c45b839c89, type: 3}
-      propertyPath: 'daySequences.Array.data[5]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 1d03b591423eef94993fe6af64b307c7, type: 2}
-    - target: {fileID: 7904637182536935973, guid: c8dd5049553ca2d43ab8e8c45b839c89, type: 3}
-      propertyPath: 'daySequences.Array.data[6]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 4238e50aad03092449ee91e18db4417a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

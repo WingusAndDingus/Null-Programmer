@@ -52,6 +52,8 @@ public class DesktopWidget : MonoBehaviour
             3 => "Wednesday",
             4 => "Thursday",
             5 => "Friday",
+            6 => "Saturday",
+            7 => "Monday",
             _ => $"Day {dayNumber}"
         };
     }
