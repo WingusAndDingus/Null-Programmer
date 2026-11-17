@@ -92,6 +92,16 @@
           "speaker": "Mom",
           "text": "You always had a knack for making things. I suppose some things never change.",
           "channel": "chat"
+        },
+        {
+          "speaker": "Grand Architect",
+          "text": "Taking things apart to understand them. A respectable foundation for any engineer.",
+          "channel": "internal"
+        },
+        {
+          "speaker": "Pragmatist",
+          "text": "Sounds like we were already violating warranties as a child.",
+          "channel": "internal"
         }
       ],
       "choices": [
@@ -118,16 +128,6 @@
           "speaker": "Mom",
           "text": "I just wish you'd give yourself a little more time to enjoy what you've accomplished.",
           "channel": "chat"
-        },
-        {
-          "speaker": "Grand Architect",
-          "text": "Taking things apart to understand them. A respectable foundation for any engineer.",
-          "channel": "internal"
-        },
-        {
-          "speaker": "Pragmatist",
-          "text": "Sounds like we were already violating warranties as a child.",
-          "channel": "internal"
         }
       ],
       "choices": [
