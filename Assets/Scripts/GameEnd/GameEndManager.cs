@@ -73,6 +73,7 @@ public class GameEndManager : MonoBehaviour
 
     public void RecompileGame()
     {
+        RefactoFightApp.ResetAppLock();
         // 1. Destroy the current GameManager
         if (GameManager.Instance != null)
         {
