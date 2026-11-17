@@ -5328,7 +5328,7 @@ MonoBehaviour:
   draggableWindow: {fileID: 2103916635}
   windowBody: {fileID: 950594682}
   titleBar: {fileID: 2103916634}
-  codePanel: {fileID: 1954569207}
+  codePanel: {fileID: 0}
   fileTab: {fileID: 162712293}
   topRightControls:
   - {fileID: 507526527}
