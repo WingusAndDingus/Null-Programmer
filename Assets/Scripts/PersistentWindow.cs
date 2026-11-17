@@ -37,6 +37,7 @@ public class PersistentWindow : MonoBehaviour
         CacheWindowDetails();
         if (string.IsNullOrWhiteSpace(cachedWindowId))
             Debug.LogWarning("PersistentWindow needs a valid WindowIdentity for normal window persistence.", this);
+
         // Existing windows remain closed initially. Opening is user-driven.
     }
 
@@ -59,8 +60,8 @@ public class PersistentWindow : MonoBehaviour
     {
         CacheWindowDetails();
 
-        // Route before touching the legacy window. Unity considers a destroyed
-        // GameObject null, even though a managed reference may still remain.
+        // Preserve the existing Day 3 workshop behavior. If the workshop accepts
+        // the IDE launch, it owns the interaction instead of the normal desktop IDE.
         if (routesToDay3Workshop &&
             NullProgrammer.Day3Workshop.WorkshopSession.TryOpenFromIDE())
             return;

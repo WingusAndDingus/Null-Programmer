@@ -15,14 +15,22 @@ public class SteveIdeWindowController : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
+        if (Instance != null && Instance != this)
         {
-            Instance = this;
+            // This component lives on the IDE Window. Destroying gameObject here
+            // would destroy the entire fresh IDE if a stale singleton ever existed.
+            // Remove only the duplicate controller component instead.
+            Destroy(this);
+            return;
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+
+        Instance = this;
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+            Instance = null;
     }
 
     private void Start()
@@ -53,7 +61,8 @@ public class SteveIdeWindowController : MonoBehaviour
             }
 
             // 2. Force the Sorting Group order to 9 if it exists
-            UnityEngine.Rendering.SortingGroup sortingGroup = idePanel.GetComponent<UnityEngine.Rendering.SortingGroup>();
+            UnityEngine.Rendering.SortingGroup sortingGroup =
+                idePanel.GetComponent<UnityEngine.Rendering.SortingGroup>();
             if (sortingGroup != null)
             {
                 sortingGroup.sortingOrder = 9;
@@ -75,7 +84,8 @@ public class SteveIdeWindowController : MonoBehaviour
         }
         else
         {
-            Debug.LogError("[SteveIdeWindowController] DirectCodeTyping component not assigned or found!");
+            Debug.LogError(
+                "[SteveIdeWindowController] DirectCodeTyping component not assigned or found!");
         }
     }
 

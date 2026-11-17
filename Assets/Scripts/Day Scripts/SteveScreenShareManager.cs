@@ -10,16 +10,24 @@ public class SteveScreenShareManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
+        // IMPORTANT: this component is attached to the IDE Window itself.
+        // Do NOT detach this GameObject or mark it DontDestroyOnLoad, because doing
+        // so would make the entire IDE Window survive monitor scene changes.
+        if (Instance != null && Instance != this)
         {
-            Instance = this;
-            if (transform.parent != null) transform.SetParent(null);
-            DontDestroyOnLoad(gameObject);
+            // Never destroy the whole IDE Window just because a duplicate manager
+            // exists. Remove only this duplicate component.
+            Destroy(this);
+            return;
         }
-        else if (Instance != this)
-        {
-            Destroy(gameObject);
-        }
+
+        Instance = this;
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+            Instance = null;
     }
 
     /// <summary>
@@ -35,15 +43,19 @@ public class SteveScreenShareManager : MonoBehaviour
 
         activeChallengeTask = new TaskCompletionSource<string>();
 
-        // Directly find the IDE controller in the scene (including inactive objects) and open it!
-        SteveIdeWindowController ideController = FindAnyObjectByType<SteveIdeWindowController>(FindObjectsInactive.Include);
+        // Directly find the IDE controller in the scene (including inactive objects) and open it.
+        SteveIdeWindowController ideController =
+            FindAnyObjectByType<SteveIdeWindowController>(FindObjectsInactive.Include);
+
         if (ideController != null)
         {
             ideController.OpenIde(challenge);
         }
         else
         {
-            Debug.LogError("[SteveScreenShareManager] Could not find any SteveIdeWindowController in the scene! Make sure it is added to your IDE panel.");
+            Debug.LogError(
+                "[SteveScreenShareManager] Could not find any SteveIdeWindowController in the scene! " +
+                "Make sure it is added to your IDE panel.");
         }
 
         return activeChallengeTask.Task;
