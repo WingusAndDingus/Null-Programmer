@@ -22,6 +22,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: Start
@@ -51,6 +52,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: Day1_SitDown
@@ -80,6 +82,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: Day1_ReadEmail
@@ -109,6 +112,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: SetSteveHello
@@ -138,6 +142,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: Day1_WaitZoom
@@ -167,6 +172,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: SteveGreeting
@@ -196,6 +202,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: SteveGreeting2
@@ -225,6 +232,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: Day1_FirstChoice
@@ -268,6 +276,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: FirstChoiceSteveChange
@@ -297,6 +306,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: FirstSteveChangeLilWait
@@ -326,6 +336,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: Day1_GeniusWarning
@@ -355,6 +366,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: SetSteveDefault
@@ -384,6 +396,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: Day1_SteveScreenShareRequest
@@ -413,6 +426,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: Day1_RunScreenShare
@@ -442,6 +456,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: Day1_WaitScreenShare
@@ -471,6 +486,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: Day1_SFMLQuiz
@@ -514,6 +530,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: SFMLQuiz_Correct
@@ -543,6 +560,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: SFMLQuiz_InCorrect
@@ -572,6 +590,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: Day1_SteveNextQuestion
@@ -601,6 +620,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: Day1_SecondChoices
@@ -644,6 +664,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: ResponsibleStart
@@ -673,6 +694,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: ReadSFMLDoc
@@ -709,6 +731,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: IrresponsibleStart
@@ -738,6 +761,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: StevesWatchin
@@ -767,6 +791,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: ScreenShareEvent
@@ -796,6 +821,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: EndDay1
@@ -825,6 +851,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: EndDay2
@@ -854,6 +881,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: EndDay3
@@ -883,6 +911,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: EndDay4
@@ -893,7 +922,7 @@ MonoBehaviour:
     displayDuration: 0
     lineVariants: []
     choices: []
-    nextStepID: EndDay
+    nextStepID: EndDayO
     alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
@@ -912,6 +941,44 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: EndDayO
+    speakerName: 
+    personality: 0
+    lineText: 
+    voiceClip: {fileID: 0}
+    displayDuration: 0
+    lineVariants: []
+    choices:
+    - choiceText: Call it a day
+      personality: 4
+      personalityStatChange: 0
+      targetStepOnClick: EndDay
+      suspicionChange: 0
+      requiredLevel: 0
+      choiceGroup: 
+    nextStepID: 
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 2
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 5fa30a4e21cc4cb68301f28f7d353244
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: EndDay

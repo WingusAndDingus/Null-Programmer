@@ -243,6 +243,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c1877421afd8af458d8c40eb7e8d820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  <CurrentDay>k__BackingField: 1
+  weekendSteveMaxSuspicionExclusive: 50
+  weekendStudyMinCodeQuality: 40
+  weekendConnectionsMinConnectednessExclusive: 50
+  highCodeQualityThreshold: 70
+  moderateCodeQualityThreshold: 40
+  highSuspicionEndingThreshold: 70
+  clueDiscoveryClip: {fileID: 0}
+  clueDiscoveryVolume: 0.85
 --- !u!4 &386227185
 Transform:
   m_ObjectHideFlags: 0
@@ -1799,8 +1808,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 609, y: 343}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 1014.8596, y: 554.6364}
+  m_SizeDelta: {x: 162.6358, y: 148.1725}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1931993193
 MonoBehaviour:

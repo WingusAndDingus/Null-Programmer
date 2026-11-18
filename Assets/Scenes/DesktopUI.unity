@@ -5478,10 +5478,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dialogue Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 9180191505814602805, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
-      propertyPath: m_SortingOrder
-      value: 100
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -10356,7 +10352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c1877421afd8af458d8c40eb7e8d820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  <CurrentDay>k__BackingField: 6
+  <CurrentDay>k__BackingField: 1
   weekendSteveMaxSuspicionExclusive: 50
   weekendStudyMinCodeQuality: 40
   weekendConnectionsMinConnectednessExclusive: 50
