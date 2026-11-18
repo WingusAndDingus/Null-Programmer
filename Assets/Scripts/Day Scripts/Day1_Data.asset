@@ -340,8 +340,8 @@ MonoBehaviour:
       replies: []
       waitForReply: 0
     stepID: Day1_GeniusWarning
-    speakerName: The Genius
-    personality: 5
+    speakerName: The Detective
+    personality: 6
     lineText: Looks like if we let on too much about our current predicament, Steve might wizen up to us. Who knows if we can trust him? Don't worry though, I always know what to say to sound smart.
     voiceClip: {fileID: 0}
     displayDuration: 6
@@ -926,7 +926,7 @@ MonoBehaviour:
     alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
-    stepType: 10
+    stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 2
@@ -953,7 +953,7 @@ MonoBehaviour:
     lineVariants: []
     choices:
     - choiceText: Call it a day
-      personality: 4
+      personality: 0
       personalityStatChange: 0
       targetStepOnClick: EndDay
       suspicionChange: 0

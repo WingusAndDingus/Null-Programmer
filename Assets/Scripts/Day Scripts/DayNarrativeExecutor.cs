@@ -58,10 +58,13 @@ public class DayNarrativeExecutor : MonoBehaviour
 
         bool isCenterMonitor = scene.name == SceneSwitcher.CenterMonitorScene;
         bool hasPendingDialogue = DialogueManager.Instance != null && DialogueManager.Instance.HasPendingDialogue;
-        // Keep the live await across a monitor switch during dialogue. Other
-        // departures still let DesktopUI restart its scene-local work on return.
+        bool hasPendingCodeChallenge = SteveScreenShareManager.HasPendingChallenge;
+        bool hasPendingCodingChallenge = SteveScreenShareManager.HasPendingChallenge;
+        // Keep the live narrative await while dialogue OR an IDE challenge is pending.
+        // Otherwise a monitor switch destroys the executor mid-challenge.
         if (!SceneSwitcher.IsMonitorScene(scene.name) ||
-            (wasOnCenterMonitor && !isCenterMonitor && !hasPendingDialogue))
+            (wasOnCenterMonitor && !isCenterMonitor &&
+             !hasPendingDialogue && !hasPendingCodingChallenge))
         {
             Destroy(gameObject);
             return;

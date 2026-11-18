@@ -764,6 +764,17 @@ public class GameManager : MonoBehaviour
         GetWindowState(windowId).IsOpen = isOpen;
     }
 
+    public bool TryGetWindowOpen(string windowId, out bool isOpen)
+    {
+        if (windowStates.TryGetValue(windowId, out WindowState state))
+        {
+            isOpen = state.IsOpen;
+            return true;
+        }
+        isOpen = false;
+        return false;
+    }
+
     public bool IsWindowOpen(string windowId)
     {
         bool isOpen = GetWindowState(windowId).IsOpen;

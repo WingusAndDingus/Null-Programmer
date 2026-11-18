@@ -12,6 +12,17 @@ public class DirectCodeTyping : MonoBehaviour
     private int cursorIndex = 0;
     private bool isSubscribed = false;
 
+    public string CurrentCode => currentCodeContent;
+    public int CursorIndex => cursorIndex;
+
+    public void RestoreEditing(string code, int cursor)
+    {
+        StartEditing(code);
+        cursorIndex = Mathf.Clamp(cursor, 0, currentCodeContent.Length);
+        UpdateDisplay();
+    }
+
+
     private void Update()
     {
         if (isEditingActive && !isSubscribed && Keyboard.current != null)

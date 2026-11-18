@@ -43,6 +43,9 @@ public class ZoomScreenShareController : MonoBehaviour
     [SerializeField] private GameObject screensharePopup;    // "Steve is screen sharing..." notification
     [SerializeField] private GameObject screenShareDisplay;  // Game Object containing the VideoPlayer / Quad / SpriteRenderer
 
+    [Header("Tutorial Skip Button")]
+    [SerializeField] private GameObject skipTutorialButton;
+
     [Header("Video Settings")]
     [SerializeField] private VideoPlayer screenShareVideoPlayer;
 
@@ -409,18 +412,46 @@ public class ZoomScreenShareController : MonoBehaviour
             GameplayEvents.TriggerScreenShareEnded();
         }
     }
+
     private GameObject FindSkipButtonObject()
     {
-        // Resources.FindObjectsOfTypeAll finds loaded objects in memory, including inactive ones and DDOL objects
-        foreach (var btn in Resources.FindObjectsOfTypeAll<Button>())
+        // First look for the button under the current DialogueManager.
+        if (DialogueManager.Instance != null)
         {
-            if (btn.gameObject.name == "SkipButton")
+            var buttons = DialogueManager.Instance
+                .GetComponentsInChildren<Button>(true);
+
+            foreach (var button in buttons)
             {
-                return btn.gameObject;
+                if (button.name == "SkipButton")
+                {
+                    skipTutorialButton = button.gameObject;
+                    return skipTutorialButton;
+                }
             }
         }
+
+        // Otherwise search all loaded scene objects,
+        // including inactive GameObjects.
+        foreach (var button in Resources.FindObjectsOfTypeAll<Button>())
+        {
+            if (button == null || button.name != "SkipButton")
+                continue;
+
+            var scene = button.gameObject.scene;
+
+            if (!scene.IsValid() || !scene.isLoaded)
+                continue;
+
+            skipTutorialButton = button.gameObject;
+            return skipTutorialButton;
+        }
+
+        // Clear any reference to a destroyed scene object.
+        skipTutorialButton = null;
         return null;
     }
+
 
     // ------------------------------------------------------------------------
     // 3. DIALOGUE CUE EXECUTION

@@ -45,6 +45,17 @@ public static class DialogueChoiceLayout
             positions = new Vector2[count],
             heights = new float[count]
         };
+        // A single "continue" choice should be at the top-left of the choice
+        // viewport rather than centered. Coordinates are relative to its top-center.
+        if (count == 1)
+        {
+            result.positions[0] = new Vector2(
+                -viewport.x * 0.5f + padding + width * 0.5f,
+                -padding);
+            result.heights[0] = rowHeights[0];
+            return result;
+        }
+
         float y = padding + (result.contentHeight - total) * 0.5f;
         for (int row = 0; row < rows; row++)
         {

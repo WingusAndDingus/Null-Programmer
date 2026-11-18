@@ -371,7 +371,7 @@ public class DialogueManager : MonoBehaviour
         overlayCanvas.sortingOrder = 1500;
         var hitArea = viewport.GetComponent<Image>();
         hitArea.color = Color.clear;
-        hitArea.raycastTarget = true;
+        hitArea.raycastTarget = false; // Transparent viewport must not intercept clicks outside bubbles.
 
         var content = new GameObject("Choice Content", typeof(RectTransform));
         content.layer = viewport.layer;
@@ -426,6 +426,7 @@ public class DialogueManager : MonoBehaviour
         choiceContent.anchoredPosition = Vector2.zero;
         choiceScroll.StopMovement();
         choiceScroll.vertical = !usingDay5ChoicePlacement && plan.contentHeight > size.y + 0.5f;
+        choiceScroll.enabled = choiceScroll.vertical;
         for (int i = 0; i < activeBubbles.Count; i++)
         {
             var bubble = activeBubbles[i].GetComponent<DialogueBubble>();
@@ -582,9 +583,15 @@ public class DialogueManager : MonoBehaviour
 
         if (choiceViewport != null && choiceViewport.gameObject.activeSelf)
         {
-            if (RectTransformUtility.RectangleContainsScreenPoint(choiceViewport, mousePosition, null))
+            // Block only clicks actually over a thought bubble, not over the
+            // enormous transparent viewport that contains the bubbles.
+            foreach (var bubbleObject in activeBubbles)
             {
-                return true;
+                if (bubbleObject == null || !bubbleObject.activeInHierarchy) continue;
+                var bubbleRect = bubbleObject.GetComponent<RectTransform>();
+                if (bubbleRect != null &&
+                    RectTransformUtility.RectangleContainsScreenPoint(bubbleRect, mousePosition, null))
+                    return true;
             }
         }
 

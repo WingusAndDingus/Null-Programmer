@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -15,28 +16,50 @@ public class SteveIdeWindowController : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
+        if (Instance != null && Instance != this)
         {
-            Instance = this;
+            // Never destroy the scene's IDE hierarchy because of a stale singleton.
+            Destroy(this);
+            return;
         }
-        else
+        Instance = this;
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
         {
-            Destroy(gameObject);
+            if (SteveScreenShareManager.HasPendingChallenge && codeTyping != null)
+                SteveScreenShareManager.SaveEditingState(codeTyping.CurrentCode, codeTyping.CursorIndex);
+            Instance = null;
         }
     }
 
     private void Start()
     {
-        if (idePanel != null)
-        {
-            idePanel.SetActive(false);
-        }
-
+        if (idePanel != null) idePanel.SetActive(false);
         if (codeTyping == null)
-        {
             codeTyping = GetComponentInChildren<DirectCodeTyping>(true);
+        StartCoroutine(RestoreDesktopWindowNextFrame());
+    }
+
+    private IEnumerator RestoreDesktopWindowNextFrame()
+    {
+        // Wait for the other scene components' Start methods to finish.
+        yield return null;
+        if (SteveScreenShareManager.HasPendingChallenge) yield break;
+
+        var identity = GetComponent<WindowIdentity>();
+        var manager = GameManager.Instance;
+        if (identity != null && identity.HasValidId && manager != null &&
+            manager.TryGetWindowOpen(identity.Id, out bool wasOpen) && wasOpen &&
+            idePanel != null)
+        {
+            idePanel.SetActive(true);
         }
     }
+
+    public DirectCodeTyping CodeTyping => codeTyping;
 
     public void OpenIde(SteveChallengeData challenge)
     {
