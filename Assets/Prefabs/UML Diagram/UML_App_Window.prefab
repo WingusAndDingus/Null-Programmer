@@ -2029,6 +2029,10 @@ PrefabInstance:
       propertyPath: startNode
       value: 
       objectReference: {fileID: 6079694926383923116}
+    - target: {fileID: 7231929046407878932, guid: 81609e16e47b0ab44bc50e236fe2cb56, type: 3}
+      propertyPath: connectionType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8140931662573061080, guid: 81609e16e47b0ab44bc50e236fe2cb56, type: 3}
       propertyPath: m_Name
       value: ConnectionLine (1)
