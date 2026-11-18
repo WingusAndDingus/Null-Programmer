@@ -79,7 +79,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -977,7 +977,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5885049871431260646}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.5}
   m_LocalScale: {x: 0.00125, y: 0.00155, z: 0.016481481}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1017,7 +1017,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 500
   m_TargetDisplay: 0
 --- !u!114 &3500314712779630838
 MonoBehaviour:
@@ -1659,6 +1659,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PersistentWindow
   windowIdentity: {fileID: 3127829113962466558}
   windowRoot: {fileID: 8125400020480111991}
+  routesToDay3Workshop: 0
 --- !u!1 &8390302315538210499
 GameObject:
   m_ObjectHideFlags: 0
@@ -2028,6 +2029,10 @@ PrefabInstance:
       propertyPath: startNode
       value: 
       objectReference: {fileID: 6079694926383923116}
+    - target: {fileID: 7231929046407878932, guid: 81609e16e47b0ab44bc50e236fe2cb56, type: 3}
+      propertyPath: connectionType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8140931662573061080, guid: 81609e16e47b0ab44bc50e236fe2cb56, type: 3}
       propertyPath: m_Name
       value: ConnectionLine (1)
@@ -2824,10 +2829,6 @@ PrefabInstance:
       propertyPath: startNode
       value: 
       objectReference: {fileID: 6079694926383923116}
-    - target: {fileID: 7231929046407878932, guid: 81609e16e47b0ab44bc50e236fe2cb56, type: 3}
-      propertyPath: connectionType
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8140931662573061080, guid: 81609e16e47b0ab44bc50e236fe2cb56, type: 3}
       propertyPath: m_Name
       value: ConnectionLine
