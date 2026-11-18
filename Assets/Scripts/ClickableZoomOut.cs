@@ -6,7 +6,7 @@ public class ClickableZoomOut : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (DialogueManager.BlocksMonitorClick() || RefactoFightApp.IsFightActive) return;
+        if (DialogueManager.BlocksMonitorClick() || RefactoFightApp.IsFightActive || GameEndManager.IsEndScreenActive) return;
         cameraZoom.ZoomOut();
     }
 }

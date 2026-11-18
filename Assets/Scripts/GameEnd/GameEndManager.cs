@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class GameEndManager : MonoBehaviour
 {
+    public static bool IsEndScreenActive { get; private set; } = false;
+
     [Header("UI References")]
     public CanvasGroup canvasGroup;
     public TextMeshProUGUI endingTitleText;
@@ -18,7 +20,6 @@ public class GameEndManager : MonoBehaviour
     [Header("Settings")]
     public float fadeDuration = 1.5f;
 
-    private Sprite playerUmlSprite;
     private Sprite standardUmlSprite;
 
     void Start()
@@ -28,13 +29,14 @@ public class GameEndManager : MonoBehaviour
     }
 
     
-    public void SetupEndScreen(string title, string feedback, Sprite playerUML, Sprite standardUML, Color titleColor)
+    public void SetupEndScreen(string title, string feedback, Sprite standardUML, Color titleColor)
     {
+        IsEndScreenActive = true;
+        
         endingTitleText.text = title;
         endingTitleText.color = titleColor; 
         feedbackText.text = feedback;
         
-        playerUmlSprite = playerUML;
         standardUmlSprite = standardUML;
 
         if (canvasGroup != null) StartCoroutine(FadeInRoutine());
@@ -54,12 +56,6 @@ public class GameEndManager : MonoBehaviour
 
     // --- Button Methods ---
 
-    public void OpenPlayerUML()
-    {
-        fullScreenDisplayImage.sprite = playerUmlSprite;
-        fullScreenPanel.SetActive(true);
-    }
-
     public void OpenSteveUML()
     {
         fullScreenDisplayImage.sprite = standardUmlSprite;
@@ -73,6 +69,7 @@ public class GameEndManager : MonoBehaviour
 
     public void RecompileGame()
     {
+        IsEndScreenActive = false;
         RefactoFightApp.ResetAppLock();
         // 1. Destroy the current GameManager
         if (GameManager.Instance != null)
@@ -86,5 +83,10 @@ public class GameEndManager : MonoBehaviour
 
         // 3. Restart the game
         SceneManager.LoadScene("StartScreen", LoadSceneMode.Single);
+    }
+
+    private void OnDestroy()
+    {
+        IsEndScreenActive = false;
     }
 }

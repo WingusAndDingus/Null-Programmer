@@ -23,12 +23,9 @@ public enum GameEndingType
 /// </summary>
 public sealed class GameEndEvaluator : MonoBehaviour
 {
-    [Header("UML Assets")]
+    [Header("UML Asset")]
     [Tooltip("The clean/reference UML shown for Steve and for high-quality player work.")]
     public Sprite standardUmlSprite;
-
-    [Tooltip("The player's less-structured UML shown when code quality is below the high-quality threshold.")]
-    public Sprite bloatedUmlSprite;
 
     [Header("End Screen")]
     [SerializeField] private string endScreenSceneName = "GameEndScreen";
@@ -164,9 +161,7 @@ public sealed class GameEndEvaluator : MonoBehaviour
                 break;
         }
 
-        bool highQuality = game.CodeQuality >= game.HighCodeQualityThreshold;
-        Sprite playerUml = highQuality ? standardUmlSprite : bloatedUmlSprite;
-        uiManager.SetupEndScreen(title, body, playerUml, standardUmlSprite, titleColor);
+        uiManager.SetupEndScreen(title, body, standardUmlSprite, titleColor);
     }
 
     private void OnDestroy()
