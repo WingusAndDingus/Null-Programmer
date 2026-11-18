@@ -32,10 +32,17 @@ public sealed class IntegratedMailInbox : MonoBehaviour
 
     [Header("Default email")]
     [SerializeField] private string sender = "Project Management";
-    [SerializeField] private string subject = "Minesweeper Project - Getting Started";
-    [SerializeField, TextArea(8, 20)] private string body =
-        "Hi,\n\nYou're leading our new Minesweeper project, built in C++ using SFML 3.0. We'll review the finished application at the end of the next two weeks.\n\nFor today, get the development environment ready and confirm that you can open an SFML window. We'll send additional requirements as the project progresses.\n\nSteve will be working alongside you. He's eager to learn how you approach a project like this, so please keep him involved.\n\nWith your experience, I'm sure we're in good hands.\n\nBest,\nProject Management";
+    [SerializeField] private string subject = "Battleship Project - Day 1 Setup";
 
+    [SerializeField, TextArea(8, 20)] private string body = "Hi,\n\n" +
+    "You'll be leading development on our new Battleship game in C++ using SFML 3.0. " +
+    "Steve will be working with you throughout the project, and we'll review the finished game before submission.\n\n" +
+    "Today's goal is to get the development environment running. Set up the project, confirm that it builds, " +
+    "and make sure you can open an SFML window. Once that's working, we can move on to drawing the board.\n\n" +
+    "Steve will call to check where things stand. If you haven't started yet, " +
+    "ask him to show you how he normally sets up an SFML project so you're both working from the same setup.\n\n" +
+    "Best,\n" +
+    "Project Management";
     private const string Day5Sender = "Steve";
     private const string Day5Subject = "Battleship bug - can we talk?";
     private const string Day5Body =

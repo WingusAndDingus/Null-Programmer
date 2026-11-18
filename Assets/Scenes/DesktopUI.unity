@@ -10646,20 +10646,17 @@ MonoBehaviour:
   bodyScroll: {fileID: 163509575}
   worldUnitsPerPixel: 0.006259237
   sender: Project Management
-  subject: Minesweeper Project - Getting Started
+  subject: Battleship Project - Day 1 Setup
   body: 'Hi,
 
 
-    You''re leading our new Minesweeper project, built in C++ using SFML 3.0. We''ll review the finished application at the end of the next two weeks.
+    You''ll be leading development on our new Battleship game in C++ using SFML 3.0. Steve will be working alongside you, and we''ll review the finished game before submission.
 
 
-    For today, get the development environment ready and confirm that you can open an SFML window. We''ll send additional requirements as the project progresses.
+    Today''s goal is to get the development environment running.  Once that''s working, you''ll be ready to draw the board''s tile grid.
 
 
-    Steve will be working alongside you. He''s eager to learn how you approach a project like this, so please keep him involved.
-
-
-    With your experience, I''m sure we''re in good hands.
+    Steve will call to check where things stand. If you haven''t started yet, ask him to walk you through his setup so you''re both working from the same starting point.
 
 
     Best,
