@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 using TMPro;
 using System.Threading.Tasks;
 using UnityEditor.Analytics;
-
+// Test
 public class RefactoFightManager : MonoBehaviour
 {
     public static RefactoFightManager Instance;
@@ -145,7 +145,11 @@ public class RefactoFightManager : MonoBehaviour
         StartCoroutine(FadeInScreenRoutine());
 
         // Show Start Menu instead of starting immediately
-        ShowMenu("MAIN.CPP REFACTO-FIGHT!!!", "", true, false, false, false);
+        ShowMenu(
+            "MAIN.CPP REFACTO-FIGHT!!!",
+            "Hit incoming notes at the right time using \n [ D ]   [ F ]   [ J ]   [ K ]\nPress [ ESC ] to Pause",
+            true, false, false, false
+        );
         currentState = BattleState.PreStart;
 
         return battleCompletionSource.Task;
