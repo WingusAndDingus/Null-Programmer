@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 using TMPro;
 using System.Threading.Tasks;
 using UnityEditor.Analytics;
-
+// Test
 public class RefactoFightManager : MonoBehaviour
 {
     public static RefactoFightManager Instance;
