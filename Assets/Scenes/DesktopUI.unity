@@ -2146,6 +2146,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3750261043884817701, guid: 31d23d9bd2e4e4c4aaa76c8d767e0ff8, type: 3}
+      propertyPath: evaluationMedia.managerPortrait
+      value: 
+      objectReference: {fileID: 21300000, guid: ac6013df8c2f7fc428b5ead68af79b5f, type: 3}
+    - target: {fileID: 3750261043884817701, guid: 31d23d9bd2e4e4c4aaa76c8d767e0ff8, type: 3}
+      propertyPath: evaluationMedia.steveBackupVideo
+      value: 
+      objectReference: {fileID: 32900000, guid: a3a8531f5447cff4daab623b1d719bef, type: 3}
+    - target: {fileID: 3750261043884817701, guid: 31d23d9bd2e4e4c4aaa76c8d767e0ff8, type: 3}
+      propertyPath: evaluationMedia.ultimateMentor.projectVideo
+      value: 
+      objectReference: {fileID: 32900000, guid: a3a8531f5447cff4daab623b1d719bef, type: 3}
+    - target: {fileID: 3750261043884817701, guid: 31d23d9bd2e4e4c4aaa76c8d767e0ff8, type: 3}
+      propertyPath: evaluationMedia.imposterProtocol.projectVideo
+      value: 
+      objectReference: {fileID: 32900000, guid: a3a8531f5447cff4daab623b1d719bef, type: 3}
+    - target: {fileID: 3750261043884817701, guid: 31d23d9bd2e4e4c4aaa76c8d767e0ff8, type: 3}
+      propertyPath: evaluationMedia.perfectionistTrap.projectVideo
+      value: 
+      objectReference: {fileID: 32900000, guid: a3a8531f5447cff4daab623b1d719bef, type: 3}
+    - target: {fileID: 3750261043884817701, guid: 31d23d9bd2e4e4c4aaa76c8d767e0ff8, type: 3}
+      propertyPath: evaluationMedia.architectRedemption.projectVideo
+      value: 
+      objectReference: {fileID: 32900000, guid: a3a8531f5447cff4daab623b1d719bef, type: 3}
+    - target: {fileID: 3750261043884817701, guid: 31d23d9bd2e4e4c4aaa76c8d767e0ff8, type: 3}
+      propertyPath: evaluationMedia.obsoleteSoftRelaunch.projectVideo
+      value: 
+      objectReference: {fileID: 32900000, guid: a3a8531f5447cff4daab623b1d719bef, type: 3}
+    - target: {fileID: 3750261043884817701, guid: 31d23d9bd2e4e4c4aaa76c8d767e0ff8, type: 3}
+      propertyPath: evaluationMedia.obsoleteAndDeprecated.projectVideo
+      value: 
+      objectReference: {fileID: 32900000, guid: a3a8531f5447cff4daab623b1d719bef, type: 3}
+    - target: {fileID: 3750261043884817701, guid: 31d23d9bd2e4e4c4aaa76c8d767e0ff8, type: 3}
+      propertyPath: evaluationMedia.segmentationFaultOfSoul.epilogueStills.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3750261043884817701, guid: 31d23d9bd2e4e4c4aaa76c8d767e0ff8, type: 3}
+      propertyPath: 'evaluationMedia.segmentationFaultOfSoul.epilogueStills.Array.data[0]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 7f261ac75914e134e8f27a61f9e8a70f, type: 3}
+    - target: {fileID: 3750261043884817701, guid: 31d23d9bd2e4e4c4aaa76c8d767e0ff8, type: 3}
+      propertyPath: 'evaluationMedia.segmentationFaultOfSoul.epilogueStills.Array.data[1]'
+      value: 
+      objectReference: {fileID: 21300000, guid: 70994734016c9e949a00568bca162e14, type: 3}
     - target: {fileID: 8399807063111382268, guid: 31d23d9bd2e4e4c4aaa76c8d767e0ff8, type: 3}
       propertyPath: m_Name
       value: StoryEvaluator

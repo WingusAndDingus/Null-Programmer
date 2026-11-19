@@ -7,7 +7,9 @@ public class ClickableSceneSwitch : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (DialogueManager.BlocksMonitorClick() || RefactoFightApp.IsFightActive || GameEndManager.IsEndScreenActive) return;
+        if (DialogueManager.BlocksMonitorClick() || RefactoFightApp.IsFightActive
+            || GameEndManager.IsEndScreenActive || GameEndEvaluator.IsPresentationActive) return;
         sceneSwitcher.LoadScene(sceneName);
     }
 }
+

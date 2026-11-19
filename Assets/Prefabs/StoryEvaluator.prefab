@@ -46,6 +46,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameEndEvaluator
   standardUmlSprite: {fileID: -2542554413032244280, guid: 10e436621399d9e42aa010d05b86887c, type: 3}
   bloatedUmlSprite: {fileID: -2542554413032244280, guid: 10e436621399d9e42aa010d05b86887c, type: 3}
+  evaluationMedia:
+    managerPortrait: {fileID: 0}
+    stevePortrait: {fileID: -197049010887534538, guid: e05563952a9d1854284d253fe1ed0fae, type: 3}
+    steveBackupVideo: {fileID: 0}
+    playVideoAudio: 0
+    obsoleteAndDeprecated:
+      projectVideo: {fileID: 0}
+      epilogueStills: []
+    obsoleteSoftRelaunch:
+      projectVideo: {fileID: 0}
+      epilogueStills: []
+    imposterProtocol:
+      projectVideo: {fileID: 0}
+      epilogueStills: []
+    perfectionistTrap:
+      projectVideo: {fileID: 0}
+      epilogueStills:
+      - {fileID: 1475343250139577164, guid: 000897bc56cdd81478bcc7964516ab6a, type: 3}
+    ultimateMentor:
+      projectVideo: {fileID: 0}
+      epilogueStills:
+      - {fileID: -4931502355079248088, guid: 77bd279e7183a1a459d8e980433082db, type: 3}
+    architectRedemption:
+      projectVideo: {fileID: 0}
+      epilogueStills:
+      - {fileID: -3625206906886889846, guid: 6fb2a6c474ce2244c9757de7a693355e, type: 3}
+    segmentationFaultOfSoul:
+      projectVideo: {fileID: 0}
+      epilogueStills:
+      - {fileID: -1022521149719562137, guid: 459789c9eab60f84ca45967f90d096fb, type: 3}
   successTitle: 'Ending: The Perfectionist Trap'
   successText: 'Steve: ''Your use of OOP kept the code incredibly clean. Because we seperated the project into classes the code is maintainable and reusable.''
 
@@ -56,3 +86,4 @@ MonoBehaviour:
 
 
     Result: You let The Pragmatist cram everything into main.cpp, making it unmaintainable.'
+

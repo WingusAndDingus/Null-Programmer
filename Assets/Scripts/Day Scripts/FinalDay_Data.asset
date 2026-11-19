@@ -23,10 +23,10 @@ MonoBehaviour:
       replies: []
       waitForReply: 0
     stepID: Start
-    speakerName: Steve
+    speakerName:
     personality: 0
-    lineText: Let's take a look at the final Battleship repository before we submit it to management.
-    displayDuration: 5
+    lineText:
+    displayDuration: 0
     lineVariants: []
     choices: []
     nextStepID: Pause
@@ -92,3 +92,4 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
+

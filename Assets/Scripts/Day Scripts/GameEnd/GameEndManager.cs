@@ -21,6 +21,7 @@ public class GameEndManager : MonoBehaviour
     public float fadeDuration = 1.5f;
 
     private Sprite standardUmlSprite;
+    private bool showUml = true;
 
     void Start()
     {
@@ -29,7 +30,8 @@ public class GameEndManager : MonoBehaviour
     }
 
     
-    public void SetupEndScreen(string title, string feedback, Sprite standardUML, Color titleColor)
+    public void SetupEndScreen(string title, string feedback, Sprite standardUML, Color titleColor,
+        bool showUml = true)
     {
         IsEndScreenActive = true;
         
@@ -38,6 +40,8 @@ public class GameEndManager : MonoBehaviour
         feedbackText.text = feedback;
         
         standardUmlSprite = standardUML;
+        this.showUml = showUml;
+        SetUmlButtonVisible(showUml);
 
         if (canvasGroup != null) StartCoroutine(FadeInRoutine());
     }
@@ -54,10 +58,28 @@ public class GameEndManager : MonoBehaviour
         canvasGroup.alpha = 1f;
     }
 
+    private void SetUmlButtonVisible(bool visible)
+    {
+        foreach (Button button in GetComponentsInChildren<Button>(true))
+        {
+            for (int i = 0; i < button.onClick.GetPersistentEventCount(); i++)
+            {
+                if (button.onClick.GetPersistentTarget(i) == this &&
+                    button.onClick.GetPersistentMethodName(i) == nameof(OpenSteveUML))
+                {
+                    button.gameObject.SetActive(visible);
+                    break;
+                }
+            }
+        }
+    }
+
     // --- Button Methods ---
 
     public void OpenSteveUML()
     {
+        if (!showUml) return;
+
         fullScreenDisplayImage.sprite = standardUmlSprite;
         fullScreenPanel.SetActive(true);
     }

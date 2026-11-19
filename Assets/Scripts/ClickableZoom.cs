@@ -6,7 +6,9 @@ public class ClickableZoom : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (DialogueManager.BlocksMonitorClick() || RefactoFightApp.IsFightActive || GameEndManager.IsEndScreenActive) return;
+        if (DialogueManager.BlocksMonitorClick() || RefactoFightApp.IsFightActive
+            || GameEndManager.IsEndScreenActive || GameEndEvaluator.IsPresentationActive) return;
         cameraZoom.ZoomIn();
     }
 }
+

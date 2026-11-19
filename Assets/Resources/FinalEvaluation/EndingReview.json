@@ -1,0 +1,578 @@
+{
+  "opening": [
+    {
+      "speaker": "Manager",
+      "text": "Morning, Bjarne. Hi, Steve. I've got the review notes open. Can you show me a turn of Battleship and tell me what happens between the click and the result?"
+    },
+    {
+      "speaker": "Steve",
+      "text": "Yep. Bjarne, you can share first."
+    }
+  ],
+  "routes": [
+    {
+      "ending": "ObsoleteAndDeprecated",
+      "beats": [
+        {
+          "view": "project",
+          "title": "Bjarne's shared screen",
+          "detail": "Battleship | Player build",
+          "lines": [
+            {
+              "speaker": "Me",
+              "text": "This is the board. I click a square, SFML gives me the mouse event, and then the game checks for a ship."
+            },
+            {
+              "speaker": "Manager",
+              "text": "That was a hit. Can you click the same square again?"
+            },
+            {
+              "speaker": "Me",
+              "text": "Sure. It should ignore ... Oh. The hit count went up again."
+            },
+            {
+              "speaker": "The Grand Architect",
+              "text": "The click handler is changing the score before it checks the cell.",
+              "personality": "GrandArchitect"
+            },
+            {
+              "speaker": "Me",
+              "text": "I can put a guard in the handler. Give me a minute to show you how the rest of the turn—"
+            },
+            {
+              "speaker": "Steve",
+              "text": "Can I share? I have a separate build running."
+            }
+          ]
+        },
+        {
+          "view": "backup",
+          "title": "Steve's shared screen",
+          "detail": "Battleship | Independent build",
+          "lines": [
+            {
+              "speaker": "Steve",
+              "text": "This is the version I put together when I couldn't get a stable build. Same square, second click. The board rejects the shot and the turn stays where it was."
+            },
+            {
+              "speaker": "Manager",
+              "text": "Where does that check live?"
+            },
+            {
+              "speaker": "Steve",
+              "text": "In the board. SFML sends the coordinates and draws the result. The board has the final say on whether a shot counts."
+            },
+            {
+              "speaker": "Me",
+              "text": "You built another game? When were you going to tell me?"
+            },
+            {
+              "speaker": "Steve",
+              "text": "I thought you'd get yours working in time. I should've told you on Friday."
+            }
+          ]
+        },
+        {
+          "view": "call",
+          "title": "Review decision",
+          "detail": "Manager and Steve",
+          "lines": [
+            {
+              "speaker": "Manager",
+              "text": "We're going forward with Steve's version. Steve, you'll take over as lead. Bjarne, stay on for a minute."
+            },
+            {
+              "speaker": "Steve",
+              "text": "Bjarne, I—"
+            },
+            {
+              "speaker": "Manager",
+              "text": "Steve, I'll call you back."
+            },
+            {
+              "speaker": "Manager",
+              "text": "Bjarne, we're ending your employment effective today. I'll send the handover details to your personal address."
+            }
+          ]
+        },
+        {
+          "view": "scene",
+          "title": "After the call",
+          "detail": "The desktop",
+          "lines": [
+            {
+              "speaker": "Me",
+              "text": "Steve's name is already on the next review invite."
+            },
+            {
+              "speaker": "Me",
+              "text": "Mine's still in the corner of the screen. I wonder how long that takes to disappear."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ending": "ObsoleteSoftRelaunch",
+      "beats": [
+        {
+          "view": "project",
+          "title": "Bjarne's shared screen",
+          "detail": "Battleship | Player build",
+          "lines": [
+            {
+              "speaker": "Me",
+              "text": "SFML gives us the mouse position. I convert it to a row and column, and the board returns a hit or a miss. This one is a miss, so now the other side gets a turn."
+            },
+            {
+              "speaker": "Manager",
+              "text": "Thanks. If design asks for a different board size, what would you touch?"
+            },
+            {
+              "speaker": "Me",
+              "text": "The board size comes from a setting. I'd check the layout and click mapping together. I can send you a short note with the places I'd test first."
+            },
+            {
+              "speaker": "Steve",
+              "text": "I have a build I can send along too, if that's useful."
+            },
+            {
+              "speaker": "Manager",
+              "text": "Send me the link after we wrap, Steve. Bjarne, I'll follow up tomorrow morning once I've reviewed both."
+            },
+            {
+              "speaker": "Me",
+              "text": "Okay. I'll watch for it."
+            }
+          ]
+        },
+        {
+          "view": "scene",
+          "title": "The next morning",
+          "detail": "8:03 a.m.",
+          "lines": [
+            {
+              "speaker": "Me",
+              "text": "That'll be the review decision."
+            }
+          ]
+        },
+        {
+          "view": "email",
+          "title": "Battleship review outcome",
+          "detail": "Bjarne,\n\nYour submission fell short of what we needed from the project lead. Steve walked us through his alternative after the call, and we are moving forward with his build. Your employment ends today. HR will contact you at your personal address.\n\nManagement",
+          "lines": [
+            {
+              "speaker": "Me",
+              "text": "I spent last night writing the notes. I kept thinking if I explained it better, I'd get another review."
+            },
+            {
+              "speaker": "The Pragmatist",
+              "text": "Save a copy for yourself. You still did that work.",
+              "personality": "Pragmatist"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ending": "ImposterProtocol",
+      "beats": [
+        {
+          "view": "project",
+          "title": "Bjarne's shared screen",
+          "detail": "Battleship | Weekend build",
+          "lines": [
+            {
+              "speaker": "Me",
+              "text": "Here's a hit. I can click the same tile all I want now. See how the turn stays put?"
+            },
+            {
+              "speaker": "Manager",
+              "text": "Good catch. What made that fail before?"
+            },
+            {
+              "speaker": "Me",
+              "text": "We were applying the shot twice. Steve, can you walk through what you changed in the turn loop?"
+            },
+            {
+              "speaker": "Steve",
+              "text": "I moved the turn change after validation. Bjarne found a second bug by clicking outside the grid between shots. We checked both cases before we sent the build."
+            },
+            {
+              "speaker": "Manager",
+              "text": "Okay. Let's ship this version. Bjarne, you're still the lead. Walk me through the turn code yourself at our next check-in."
+            },
+            {
+              "speaker": "Me",
+              "text": "I will."
+            }
+          ]
+        },
+        {
+          "view": "scene",
+          "title": "Once management signs off",
+          "detail": "A private call with Steve",
+          "lines": [
+            {
+              "speaker": "Me",
+              "text": "When the boss asked about the turn loop, I knew the symptom. I couldn't have found the right file with her watching."
+            },
+            {
+              "speaker": "Steve",
+              "text": "Then let's start there. I'll share my screen on Monday. You can stop me every time I skip a step."
+            },
+            {
+              "speaker": "The Pragmatist",
+              "text": "We could finally ask what half those file names mean.",
+              "personality": "Pragmatist"
+            },
+            {
+              "speaker": "Me",
+              "text": "Thanks. I think I'm going to stop you a lot."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ending": "PerfectionistTrap",
+      "beats": [
+        {
+          "view": "project",
+          "title": "Bjarne's shared screen",
+          "detail": "Battleship | Release candidate",
+          "lines": [
+            {
+              "speaker": "Me",
+              "text": "SFML handles input and paints what the game gives it. The board checks each shot and returns the result. I can run the board tests without opening a window."
+            },
+            {
+              "speaker": "Manager",
+              "text": "Show me what happens when you take the last shot."
+            },
+            {
+              "speaker": "Me",
+              "text": "The match moves to Game Over. Clicking the grid won't fire again. Restart creates a fresh board and clears the turn state."
+            },
+            {
+              "speaker": "Steve",
+              "text": "I tried to break restart this morning. I couldn't."
+            },
+            {
+              "speaker": "Manager",
+              "text": "Sign off on it, Bjarne. You've got a release candidate. Take the evening."
+            },
+            {
+              "speaker": "Me",
+              "text": "Thanks. I just want to check one more thing before I go."
+            }
+          ]
+        },
+        {
+          "view": "scene",
+          "title": "11:17 p.m.",
+          "detail": "The desk lamp is still on",
+          "lines": [
+            {
+              "speaker": "The Grand Architect",
+              "text": "The tests passed before dinner.",
+              "personality": "GrandArchitect"
+            },
+            {
+              "speaker": "Me",
+              "text": "I know. The hover color was a little hard to see."
+            },
+            {
+              "speaker": "Me",
+              "text": "I opened Ashley's chat to show her the build. The last thing in there was a dinner invite I never answered."
+            },
+            {
+              "speaker": "The Pragmatist",
+              "text": "Is there anybody else you'd like to tell?",
+              "personality": "Pragmatist"
+            },
+            {
+              "speaker": "Me",
+              "text": "This feels familiar. The desk lamp. A cold plate. Everyone else went home hours ago."
+            },
+            {
+              "speaker": "Me",
+              "text": "I can remember this feeling better than I can remember the people I wanted to call."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ending": "UltimateMentor",
+      "beats": [
+        {
+          "view": "project",
+          "title": "Bjarne and Steve share the build",
+          "detail": "Battleship | Joint demo",
+          "lines": [
+            {
+              "speaker": "Me",
+              "text": "Before I start, put Steve's name beside mine on the review. He wrote the turn tests and caught the input bug that made a double click count as two shots."
+            },
+            {
+              "speaker": "Steve",
+              "text": "Bjarne talked me through keeping the board independent of SFML. I could run my tests without waiting for the window to open."
+            },
+            {
+              "speaker": "Me",
+              "text": "Here's a valid shot. The board returns a hit and the view highlights the cell. Steve, show them what happens if they click it again."
+            },
+            {
+              "speaker": "Steve",
+              "text": "Same cell, no extra hit and no turn change. I wrote the test after it ate my best round."
+            },
+            {
+              "speaker": "Manager",
+              "text": "Looks good. Both of you will be on the release. Steve, I'd like you in the design review for the next one."
+            },
+            {
+              "speaker": "Me",
+              "text": "Send him the invite directly. He should have a seat there whether I can make it or not."
+            }
+          ]
+        },
+        {
+          "view": "scene",
+          "title": "After work",
+          "detail": "Coffee with Steve",
+          "lines": [
+            {
+              "speaker": "Steve",
+              "text": "I spent the first two days trying to work out if you knew what you were doing."
+            },
+            {
+              "speaker": "Me",
+              "text": "How long did it take to decide?"
+            },
+            {
+              "speaker": "Steve",
+              "text": "I'll let you know."
+            },
+            {
+              "speaker": "Me",
+              "text": "Fair. Want to do this again next week? I'm leaving the laptop at home this time."
+            },
+            {
+              "speaker": "Steve",
+              "text": "Sure. On one condition. You stop taking bites out of my pastry."
+            },
+            {
+              "speaker": "The Pragmatist",
+              "text": "That's a surprisingly expensive friendship.",
+              "personality": "Pragmatist"
+            },
+            {
+              "speaker": "Me",
+              "text": "I'll get you another one."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ending": "ArchitectRedemption",
+      "beats": [
+        {
+          "view": "project",
+          "title": "Bjarne's shared screen",
+          "detail": "Battleship | Release candidate",
+          "lines": [
+            {
+              "speaker": "Me",
+              "text": "I'll take a shot here. The board validates the move, the turn controller decides who's up next, and SFML draws the updated board."
+            },
+            {
+              "speaker": "Manager",
+              "text": "What if we change how the board looks for the next release?"
+            },
+            {
+              "speaker": "Me",
+              "text": "Steve can try a different layout without touching the turn rules. The tests cover those separately. I'll send you the handoff before I clock out."
+            },
+            {
+              "speaker": "Steve",
+              "text": "Already ran them on a clean checkout. We're good."
+            },
+            {
+              "speaker": "Manager",
+              "text": "Approved. Bjarne, can you stay tonight to look at the first round of polish?"
+            },
+            {
+              "speaker": "Me",
+              "text": "I've got plans after work. Put it on my calendar for tomorrow and I'll take a look then."
+            },
+            {
+              "speaker": "Manager",
+              "text": "That works. Have a good night."
+            }
+          ]
+        },
+        {
+          "view": "scene",
+          "title": "After work",
+          "detail": "A table with friends and family",
+          "lines": [
+            {
+              "speaker": "Mom",
+              "text": "Try some of this, sweetie. Mark's already taken a second helping."
+            },
+            {
+              "speaker": "Mark",
+              "text": "It was getting cold. I had a responsibility."
+            },
+            {
+              "speaker": "Me",
+              "text": "Sorry I used to keep saying I'd call and then wait for one of you to try again."
+            },
+            {
+              "speaker": "Ashley",
+              "text": "I don't need you to be good at apologizing. I need to know you'll tell me when you're having a hard time."
+            },
+            {
+              "speaker": "Me",
+              "text": "I can start there. Can we take a walk after dinner? There's something I want to tell you."
+            },
+            {
+              "speaker": "Ashley",
+              "text": "Yeah. Leave your phone here."
+            },
+            {
+              "speaker": "Me",
+              "text": "Okay."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ending": "SegmentationFaultOfSoul",
+      "beats": [
+        {
+          "view": "scene",
+          "title": "The apartment",
+          "detail": "Bjarne reading Mark’s first message",
+          "lines": [
+            {
+              "speaker": "Me",
+              "text": "I keep coming back to Mark's first message. When I read it the first time, I didn't even know who he was."
+            },
+            {
+              "speaker": "The Detective",
+              "text": "Mark didn't have his phone. You called him before he knew anything was wrong.",
+              "personality": "Detective"
+            },
+            {
+              "speaker": "Me",
+              "text": "I remember trying not to sound drunk. There was a point in the voicemail where I stopped talking because I could hear my own breathing."
+            },
+            {
+              "speaker": "The Pragmatist",
+              "text": "You were trying to work up to asking him to come over.",
+              "personality": "Pragmatist"
+            },
+            {
+              "speaker": "Me",
+              "text": "I wanted to ask him to sit with me. I think I ended up asking if he'd ever seen me fail at anything."
+            },
+            {
+              "speaker": "The Grand Architect",
+              "text": "At work they used to put you on calls when everyone else was stuck. You took the late calls too. You liked knowing exactly what they needed from you.",
+              "personality": "GrandArchitect"
+            },
+            {
+              "speaker": "Me",
+              "text": "If I needed somebody to help me, I figured they might look back at all those times I helped them and wonder if I'd just been lucky."
+            },
+            {
+              "speaker": "The Detective",
+              "text": "What did Ashley need from you that night?",
+              "personality": "Detective"
+            },
+            {
+              "speaker": "Me",
+              "text": "To show up. After we broke up, I told her I'd say when things got bad. She made that reservation so we could talk somewhere I wouldn't have a laptop open."
+            },
+            {
+              "speaker": "The Pragmatist",
+              "text": "You typed 'still at work.'",
+              "personality": "Pragmatist"
+            },
+            {
+              "speaker": "Me",
+              "text": "I was home. I'd been home for hours. I sat in my coat because if I took it off, I'd have to admit I'd decided to stay."
+            },
+            {
+              "speaker": "The Grand Architect",
+              "text": "We could make rules for getting through the next release. I kept asking you to try one more week.",
+              "personality": "GrandArchitect"
+            },
+            {
+              "speaker": "The Pragmatist",
+              "text": "I kept finding things we could put off until morning. The calls. The reply to your mom. Eating something.",
+              "personality": "Pragmatist"
+            },
+            {
+              "speaker": "Me",
+              "text": "It was my fortieth. Mom wanted to know how I was doing. I kept opening her text because I could answer everything except that."
+            }
+          ]
+        },
+        {
+          "view": "scene",
+          "title": "The last thing you remember",
+          "detail": "Your phone on the kitchen floor",
+          "lines": [
+            {
+              "speaker": "Me",
+              "text": "I'd already been drinking when I called Mark. I drank more after I set the phone down. I wanted to get through half a minute without thinking about who I'd let down."
+            },
+            {
+              "speaker": "The Detective",
+              "text": "You had a breakdown. You blacked out. That's where the trail stops.",
+              "personality": "Detective"
+            },
+            {
+              "speaker": "Me",
+              "text": "The next thing I remember is waking up and not knowing what to call myself. You three were already talking."
+            },
+            {
+              "speaker": "The Grand Architect",
+              "text": "I knew what to do with a project. So I told you to find one.",
+              "personality": "GrandArchitect"
+            },
+            {
+              "speaker": "The Pragmatist",
+              "text": "I wanted you to get through the day without opening anything that hurt.",
+              "personality": "Pragmatist"
+            },
+            {
+              "speaker": "The Detective",
+              "text": "I thought if we found exactly what happened, we could make it unhappen.",
+              "personality": "Detective"
+            },
+            {
+              "speaker": "Me",
+              "text": "I thought I'd have to remember everything before I could tell anyone. I can at least tell them what I know."
+            },
+            {
+              "speaker": "The Detective",
+              "text": "Who do you want to call first?",
+              "personality": "Detective"
+            },
+            {
+              "speaker": "Me",
+              "text": "Mark. If he picks up, I'm going to ask him to come over. I'll stay on the phone until I actually say it."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
