@@ -1,3 +1,4 @@
+using NullProgrammer.Showcase;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -63,6 +64,11 @@ public class GameManager : MonoBehaviour
     public GameEndingType? SelectedEnding { get; private set; }
 
     public bool HasSelectedWeekendChoice => SelectedWeekendChoice.HasValue;
+
+    private int[] showcaseSkillLevels;
+    private GameEndingType? showcaseEndingOverride;
+    internal bool ShowcaseWeekendUnlocked { get; private set; }
+    internal static IEnumerable<string> ShowcaseClueIds => KnownClueIds;
 
     // =========================================================
     // Weekend Choice Availability
@@ -148,6 +154,7 @@ public class GameManager : MonoBehaviour
 
     public bool IsWeekendChoiceAvailable(WeekendChoice choice)
     {
+        if (ShowcaseWeekendUnlocked && Enum.IsDefined(typeof(WeekendChoice), choice)) return true;
         Debug.Log($"[GameManager] IsWeekendChoiceAvailable called for choice: {choice}");
         switch (choice)
         {
@@ -854,14 +861,23 @@ public class GameManager : MonoBehaviour
 
     public GameEndingType DetermineEnding()
     {
+        return StoreEnding(PreviewShowcaseEnding());
+    }
+
+    internal GameEndingType PreviewShowcaseEnding()
+    {
+        return showcaseEndingOverride ?? EvaluateEnding();
+    }
+
+    private GameEndingType EvaluateEnding()
+    {
         int detectiveLevel = PersonalitySkills.GetSavedLevel(Personality.Detective);
 
         // Secret ending must take priority over every ordinary ending.
         if (detectiveLevel >= PersonalitySkills.MaxLevel &&
             DiscoveredCluesCount >= TotalClueCount)
         {
-            SelectedEnding = GameEndingType.SegmentationFaultOfSoul;
-            return SelectedEnding.Value;
+            return GameEndingType.SegmentationFaultOfSoul;
         }
 
         bool highQuality = CodeQuality >= highCodeQualityThreshold;
@@ -873,28 +889,149 @@ public class GameManager : MonoBehaviour
         if (highQuality)
         {
             if (SelectedWeekendChoice == WeekendChoice.Steve)
-                return StoreEnding(GameEndingType.UltimateMentor);
+                return GameEndingType.UltimateMentor;
             if (SelectedWeekendChoice == WeekendChoice.Study)
-                return StoreEnding(GameEndingType.PerfectionistTrap);
+                return GameEndingType.PerfectionistTrap;
             if (SelectedWeekendChoice == WeekendChoice.PersonalConnections)
-                return StoreEnding(GameEndingType.ArchitectRedemption);
+                return GameEndingType.ArchitectRedemption;
         }
 
         // A low-quality project rescued by Steve is the precarious-but-surviving outcome.
         if (lowQuality && SelectedWeekendChoice == WeekendChoice.Steve)
-            return StoreEnding(GameEndingType.ImposterProtocol);
+            return GameEndingType.ImposterProtocol;
 
         // Steve's suspicion and project quality determine the two termination outcomes.
         if (suspicionHigh && lowQuality)
-            return StoreEnding(GameEndingType.ObsoleteAndDeprecated);
+            return GameEndingType.ObsoleteAndDeprecated;
 
         if (suspicionHigh && moderateQuality)
-            return StoreEnding(GameEndingType.ObsoleteSoftRelaunch);
+            return GameEndingType.ObsoleteSoftRelaunch;
 
         // The original design does not specify every possible combination (for example,
         // low quality + low suspicion + a friends weekend). Keep those unassigned runs
         // on the less-severe fallback until a dedicated neutral ending is authored.
-        return StoreEnding(GameEndingType.ObsoleteSoftRelaunch);
+        return GameEndingType.ObsoleteSoftRelaunch;
+    }
+
+    internal int? GetShowcaseSkillLevel(Personality personality)
+    {
+        return showcaseSkillLevels?[(int)personality];
+    }
+
+    internal bool TryInvestShowcaseSkill(Personality personality)
+    {
+        if (showcaseSkillLevels == null) return false;
+        showcaseSkillLevels[(int)personality]++;
+        return true;
+    }
+
+    internal void ApplyShowcaseState(ShowcaseState state)
+    {
+        CodeQuality = state.CodeQuality;
+        Connectedness = state.Connectedness;
+        GrandArchitectStat = state.Architect;
+        PragmatistStat = state.Pragmatist;
+        DetectiveStat = state.Detective;
+        UnspentSkillPoints = Mathf.Max(0, state.SkillPoints);
+        int previousSuspicion = SteveSuspicion;
+        SteveSuspicion = Mathf.Clamp(state.Suspicion, 0, MaxSuspicion);
+        SelectedWeekendChoice = state.Weekend;
+        ShowcaseWeekendUnlocked = state.UnlockWeekend;
+        SelectedEnding = null;
+        showcaseEndingOverride = null;
+
+        showcaseSkillLevels = new int[state.Levels.Length];
+        foreach (Personality personality in ShowcaseState.Personalities)
+        {
+            int index = (int)personality;
+            showcaseSkillLevels[index] = Mathf.Clamp(state.Levels[index], 0, PersonalitySkills.MaxLevel);
+        }
+
+        // Editing evidence should not replay discovery dialogue or sound.
+        discoveredClues.Clear();
+        foreach (string clue in state.Clues)
+            if (KnownClueIds.Contains(clue)) discoveredClues.Add(clue);
+
+        if (SteveSuspicion != previousSuspicion) SuspicionChanged?.Invoke(SteveSuspicion);
+    }
+
+    internal void ApplyShowcaseEnding(GameEndingType ending)
+    {
+        ShowcaseState state = ShowcaseState.Capture(this);
+        state.Clues.Clear();
+        state.Levels[(int)Personality.Detective] = 0;
+        state.Weekend = WeekendChoice.Wallow;
+        state.Suspicion = 0;
+
+        // Use the current Inspector thresholds, so these are normal game outcomes
+        // whenever the threshold configuration allows the requested route.
+        int lowQuality = Math.Min(HighCodeQualityThreshold, ModerateCodeQualityThreshold) - 1;
+        switch (ending)
+        {
+            case GameEndingType.ObsoleteAndDeprecated:
+                state.CodeQuality = lowQuality;
+                state.Suspicion = HighSuspicionEndingThreshold;
+                break;
+            case GameEndingType.ObsoleteSoftRelaunch:
+                state.CodeQuality = ModerateCodeQualityThreshold;
+                state.Suspicion = HighSuspicionEndingThreshold;
+                break;
+            case GameEndingType.ImposterProtocol:
+                state.CodeQuality = lowQuality;
+                state.Weekend = WeekendChoice.Steve;
+                break;
+            case GameEndingType.PerfectionistTrap:
+                state.CodeQuality = HighCodeQualityThreshold;
+                state.Weekend = WeekendChoice.Study;
+                state.Levels[(int)Personality.Architect] = PersonalitySkills.MaxLevel;
+                break;
+            case GameEndingType.UltimateMentor:
+                state.CodeQuality = HighCodeQualityThreshold;
+                state.Weekend = WeekendChoice.Steve;
+                break;
+            case GameEndingType.ArchitectRedemption:
+                state.CodeQuality = HighCodeQualityThreshold;
+                state.Weekend = WeekendChoice.PersonalConnections;
+                state.Connectedness = weekendConnectionsMinConnectednessExclusive < int.MaxValue
+                    ? weekendConnectionsMinConnectednessExclusive + 1 : int.MaxValue;
+                break;
+            case GameEndingType.SegmentationFaultOfSoul:
+                state.Levels[(int)Personality.Detective] = PersonalitySkills.MaxLevel;
+                state.Clues.UnionWith(KnownClueIds);
+                break;
+        }
+
+        ApplyShowcaseState(state);
+        if (EvaluateEnding() != ending)
+        {
+            // Keep every showcase button usable with custom, unreachable thresholds.
+            showcaseEndingOverride = ending;
+            Debug.LogWarning($"[Showcase] Current thresholds cannot reach {ending} with its preset. Using the requested route for this preview.", this);
+        }
+    }
+
+    internal void CancelShowcaseClueReactions()
+    {
+        StopAllCoroutines();
+        detectiveClueReactionQueue.Clear();
+        playingDetectiveClueReaction = false;
+    }
+
+    internal void PrepareShowcaseJump(int day)
+    {
+        CancelShowcaseClueReactions();
+        ClearZoomState();
+        windowStates.Clear();
+        nextWindowStackOrder = 0;
+        EmailRead = false;
+        Day5EmailRead = false;
+        ReplyAvailable = false;
+        ReplyStage = 0;
+        LastReplyFeedback = "";
+        SelectedEnding = null;
+        SetZoomedIn(true);
+        setStep("Start");
+        setCurrentDay(day);
     }
 
     private GameEndingType StoreEnding(GameEndingType ending)

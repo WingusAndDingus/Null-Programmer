@@ -44,6 +44,8 @@ namespace NullProgrammer.Audio
 
         private void Update()
         {
+            if (NullProgrammer.Showcase.ShowcasePanel.IsOpen) return;
+
             if (Keyboard.current != null &&
                 Keyboard.current.escapeKey.wasPressedThisFrame)
             {

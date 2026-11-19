@@ -31,7 +31,7 @@ public class DirectCodeTyping : MonoBehaviour
             isSubscribed = true;
         }
 
-        if (!isEditingActive || Keyboard.current == null) return;
+        if (!isEditingActive || Keyboard.current == null || NullProgrammer.Showcase.ShowcasePanel.IsOpen) return;
 
         // Handle Arrow Keys for Navigation
         if (Keyboard.current.leftArrowKey.wasPressedThisFrame)
@@ -94,7 +94,7 @@ public class DirectCodeTyping : MonoBehaviour
 
     private void OnTextInput(char c)
     {
-        if (!isEditingActive) return;
+        if (!isEditingActive || NullProgrammer.Showcase.ShowcasePanel.IsOpen) return;
 
         // Ignore text input entirely if Ctrl is pressed (prevents submit newline injection)
         if (Keyboard.current != null && Keyboard.current.ctrlKey.isPressed) return;

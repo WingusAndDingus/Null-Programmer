@@ -59,7 +59,7 @@ public class PersonalitySkills : MonoBehaviour
     // Dialogue can read invested levels even when the Sleep scene is not loaded.
     public static int GetSavedLevel(Personality personality)
     {
-        return LoadData().levels[(int)personality];
+        return GameManager.Instance?.GetShowcaseSkillLevel(personality) ?? LoadData().levels[(int)personality];
     }
 
     public static bool TryAwardMilestone(string milestoneID)
@@ -84,7 +84,7 @@ public class PersonalitySkills : MonoBehaviour
 
     public int GetLevel(Personality personality)
     {
-        return data.levels[(int)personality];
+        return GameManager.Instance?.GetShowcaseSkillLevel(personality) ?? data.levels[(int)personality];
     }
 
     public bool HasLevel(Personality personality, int requiredLevel)
@@ -145,11 +145,19 @@ public class PersonalitySkills : MonoBehaviour
             GameManager.Instance.SpendSkillPoint();
         }
 
+        if (GameManager.Instance != null && GameManager.Instance.TryInvestShowcaseSkill(definition.personality))
+        {
+            Changed?.Invoke();
+            return true;
+        }
+
         data.levels[(int)definition.personality]++;
         Save();
         return true;
     }
 
+
+    internal void RefreshShowcaseLevels() => Changed?.Invoke();
 
     private void Save()
     {

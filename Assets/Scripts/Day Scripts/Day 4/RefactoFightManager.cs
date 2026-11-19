@@ -292,9 +292,26 @@ public class RefactoFightManager : MonoBehaviour
     }
 
     private float audioMusicEnvelope = 1f;
+    private bool pausedForShowcase;
 
     private void Update()
     {
+        if (NullProgrammer.Showcase.ShowcasePanel.IsOpen)
+        {
+            if (currentState == BattleState.Playing)
+            {
+                PauseGame();
+                pausedForShowcase = true;
+            }
+            return;
+        }
+        if (pausedForShowcase)
+        {
+            pausedForShowcase = false;
+            OnResumeClicked();
+            return;
+        }
+
         if (musicSource != null) musicSource.volume = audioMusicEnvelope * NullProgrammer.Audio.GameAudio.MusicLevel;
         if (sfxSource != null) sfxSource.volume = NullProgrammer.Audio.GameAudio.EffectsLevel;
         // Handle Pause Input

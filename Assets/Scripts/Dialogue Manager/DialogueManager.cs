@@ -139,7 +139,7 @@ public class DialogueManager : MonoBehaviour
 
     public void OnDialogueClicked()
     {
-        if (dialogueHidden || NullProgrammer.Audio.AudioSettingsPanel.IsOpen ||
+        if (dialogueHidden || NullProgrammer.Audio.AudioSettingsPanel.IsOpen || NullProgrammer.Showcase.ShowcasePanel.IsOpen ||
             currentPlayingLine == null || lastAdvanceFrame == Time.frameCount) return;
         lastAdvanceFrame = Time.frameCount;
 
@@ -206,7 +206,7 @@ public class DialogueManager : MonoBehaviour
         // Phase 1: Type out characters progressively
         for (int i = 0; i <= totalChars; i++)
         {
-            while (dialogueHidden) yield return null;
+            while (dialogueHidden || NullProgrammer.Showcase.ShowcasePanel.IsOpen) yield return null;
             if (IsTypingComplete) break;
 
             if (dialogueText != null)

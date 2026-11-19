@@ -90,7 +90,7 @@ public class WakeUpSequence : MonoBehaviour
             bool mouseClicked = Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame;
             bool keyPressed = Keyboard.current != null && (Keyboard.current.spaceKey.wasPressedThisFrame || Keyboard.current.enterKey.wasPressedThisFrame);
 
-            if (mouseClicked || keyPressed)
+            if (!NullProgrammer.Showcase.ShowcasePanel.IsOpen && (mouseClicked || keyPressed))
             {
                 advanced = true;
             }
