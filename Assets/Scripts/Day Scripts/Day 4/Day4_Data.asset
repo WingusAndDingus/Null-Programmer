@@ -22,6 +22,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: Start
@@ -51,6 +52,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: WaitZoom
@@ -80,6 +82,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: steve_exp1
@@ -109,6 +112,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: SteveTalks
@@ -138,6 +142,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: steve_exp2
@@ -167,6 +172,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: MultipleChoice
@@ -210,6 +216,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: exp_change_b
@@ -239,6 +246,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: 1b
@@ -268,6 +276,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: exp_change_a
@@ -297,6 +306,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: 1a
@@ -326,6 +336,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: 1-wait
@@ -355,6 +366,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: exp_change1
@@ -384,6 +396,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: 2
@@ -413,6 +426,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: 2-wait
@@ -442,6 +456,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: 3
@@ -471,6 +486,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: 3-wait
@@ -500,6 +516,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: 4
@@ -529,6 +546,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: 4-wait
@@ -558,6 +576,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: 5_exp
@@ -587,6 +606,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: 5
@@ -616,6 +636,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: 5_exp2
@@ -645,6 +666,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: 5-wait
@@ -674,6 +696,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: 6
@@ -703,6 +726,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: 6-wait
@@ -732,6 +756,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: 7
@@ -761,6 +786,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: 7-wait
@@ -790,6 +816,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: 8
@@ -819,6 +846,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: Play_Minigame
@@ -829,7 +857,7 @@ MonoBehaviour:
     displayDuration: 0
     lineVariants: []
     choices: []
-    nextStepID: fail_expression
+    nextStepID: success_expression
     alternateNextStepID: fail_expression
     awardSkillKey: 
     narrativeEventKey: 
@@ -848,6 +876,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: success_expression
@@ -877,6 +906,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: Refacto_Success
@@ -906,6 +936,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: fail_expression
@@ -935,6 +966,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: Refacto_Failure
@@ -964,6 +996,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: day_end_exp
@@ -993,6 +1026,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: day_end_text
@@ -1022,6 +1056,7 @@ MonoBehaviour:
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: day_end
