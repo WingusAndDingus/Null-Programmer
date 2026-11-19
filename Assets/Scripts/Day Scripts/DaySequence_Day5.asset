@@ -14,18 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DaySequenceData
   dayNumber: 5
   steps:
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 73436661b7d143bd87baeb74f6cd1674
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: Start
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -40,18 +44,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 7d5a6d73caa64cb5891d88ee6cadc27d
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_AfterEmailDelay
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -66,18 +74,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 2da9b957052b4e9a9e9589c43c2546d3
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_WaitForCall
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -92,18 +104,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: bdcb0cbc01ef49cbac2c718978815fb0
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_SetSteve_Hello
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -118,18 +134,22 @@ MonoBehaviour:
     NewSteveExpression: 3
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 134d97f5abb3430aa48a391e182a62f3
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Steve_Turn_Logic
     speakerName: Steve
     personality: 0
     lineText: Hey. Good news. I cleaned up the turn logic.
+    voiceClip: {fileID: 0}
     displayDuration: 3.8999999
     lineVariants: []
     choices: []
@@ -144,18 +164,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 34ffc6c877434521a3cca24347ce359a
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Me_BadNews
     speakerName: Me
     personality: 0
     lineText: And the bad news?
+    voiceClip: {fileID: 0}
     displayDuration: 3
     lineVariants: []
     choices: []
@@ -170,18 +194,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: a67c9c0363ca48e58c99426ff2ffd033
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_SetSteve_DefaultAfterGreeting
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -196,18 +224,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 6271e3f4366f4b0492f218538f22830a
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Steve_Bug
     speakerName: Steve
     personality: 0
     lineText: Sometimes the computer shoots you after you've already won.
+    voiceClip: {fileID: 0}
     displayDuration: 4.5
     lineVariants: []
     choices: []
@@ -222,18 +254,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 60b8984855864e71b7e1f6f91890f1f0
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Me_Efficient
     speakerName: Me
     personality: 0
     lineText: Efficient.
+    voiceClip: {fileID: 0}
     displayDuration: 2.5500002
     lineVariants: []
     choices: []
@@ -248,18 +284,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: a05e7c3fcd59440e9c9a8e7682083d96
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Steve_Posthumous
     speakerName: Steve
     personality: 0
     lineText: I'm calling it "posthumous retaliation."
+    voiceClip: {fileID: 0}
     displayDuration: 4.2
     lineVariants: []
     choices: []
@@ -274,18 +314,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 58dcd1bf45fe4b90802784b290dfdebf
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Internal_Opening
     speakerName: Me
     personality: 1
     lineText: Wonderful. He's debugging something he doesn't understand with someone who can't remember understanding it.
+    voiceClip: {fileID: 0}
     displayDuration: 5.3999996
     lineVariants: []
     choices: []
@@ -300,18 +344,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: f050bdc44aa84efb95ab482d537746bb
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Steve_MovedThings
     speakerName: Steve
     personality: 0
     lineText: I moved a few things around. The original order looked unnecessarily picky.
+    voiceClip: {fileID: 0}
     displayDuration: 4.8
     lineVariants: []
     choices: []
@@ -326,18 +374,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 9f9d0e1f871b4b079b443a2f3cc8e797
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Me_ShowMe
     speakerName: Me
     personality: 0
     lineText: Show me.
+    voiceClip: {fileID: 0}
     displayDuration: 2.6999998
     lineVariants: []
     choices: []
@@ -352,18 +404,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 133a8e2954f04ca195d13987d365bd50
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_StartShare
     speakerName: Steve
     personality: 0
     lineText: Here. This is the part.
+    voiceClip: {fileID: 0}
     displayDuration: 3.3000002
     lineVariants: []
     choices: []
@@ -378,18 +434,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 796a1094d52a4788a736e0893ff560bc
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_ShareDelay
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -404,18 +464,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: bccc148bc84043e58bab91fac25b7575
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_SetSteve_BugSuspicious
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -430,18 +494,22 @@ MonoBehaviour:
     NewSteveExpression: 2
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: b33bfdb777b34ab0ad0e112cb6ff60df
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_BugQuestion
     speakerName: Steve
     personality: 0
     lineText: The win check is still there. Why does moving it down break anything?
+    voiceClip: {fileID: 0}
     displayDuration: 4.8
     lineVariants: []
     choices: []
@@ -456,24 +524,30 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 4b00663dc1dc4f36903330d25880b498
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_DetectiveAdvice
     speakerName: The Detective
     personality: 6
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 5.7
     lineVariants:
     - requiredLevel: 0
       lineText: We know the corpse fired the gun. Perhaps begin with the deeply suspicious fact that the corpse was supposed to be dead.
+      voiceClip: {fileID: 0}
     - requiredLevel: 2
       lineText: Start at the impossible outcome and work backward. The AI attacks after the winning shot, so trace every call between resolving that shot and declaring victory.
+      voiceClip: {fileID: 0}
     choices: []
     nextStepID: D5_BugChoices
     alternateNextStepID: 
@@ -486,18 +560,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 8c2e102205c642b5bbb4171d9558f770
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_BugChoices
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices:
@@ -533,18 +611,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 46b44251acf04c35a7d1d3b3e57292f4
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_SetSteve_BugCorrectImpressed
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -559,18 +641,22 @@ MonoBehaviour:
     NewSteveExpression: 1
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 16acd5c024c24e84bd7ebf9b16b7ccb8
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_SetSteve_BugWrongWatchingSus
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -585,18 +671,22 @@ MonoBehaviour:
     NewSteveExpression: 6
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: b54be2ba66434643beb8caae37f39ed2
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Bug_Correct
     speakerName: Steve
     personality: 0
     lineText: Oh. So I didn't forget the win condition. I just asked the question after I'd already let the AI shoot.
+    voiceClip: {fileID: 0}
     displayDuration: 5.55
     lineVariants: []
     choices: []
@@ -611,18 +701,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: f71e51d814d84c639a9f088813832d29
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Bug_Correct_Me
     speakerName: Me
     personality: 0
     lineText: Exactly.
+    voiceClip: {fileID: 0}
     displayDuration: 2.6999998
     lineVariants: []
     choices: []
@@ -637,18 +731,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 119d394ccb4d42fcad7c50148273199b
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Bug_Incomplete
     speakerName: Steve
     personality: 0
     lineText: Okay, but why is that place wrong?
+    voiceClip: {fileID: 0}
     displayDuration: 3.8999999
     lineVariants: []
     choices: []
@@ -663,18 +761,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 43e4b47b90da4767a4f9c05f7b9e50b3
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Bug_Incomplete_Me
     speakerName: Me
     personality: 0
     lineText: Because the player's action hasn't finished resolving. You transferred control before checking its consequences.
+    voiceClip: {fileID: 0}
     displayDuration: 5.55
     lineVariants: []
     choices: []
@@ -689,18 +791,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 06265c2b05b4436e8439c3c8d2cb5b46
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_SetSteve_BugIncompleteWatchingOk
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -715,18 +821,22 @@ MonoBehaviour:
     NewSteveExpression: 5
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 38830a4ed86c4c2ea3f8835e120f01f8
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Bug_Incomplete_Steve
     speakerName: Steve
     personality: 0
     lineText: Right. So the placement is wrong because the sequence is wrong.
+    voiceClip: {fileID: 0}
     displayDuration: 4.5
     lineVariants: []
     choices: []
@@ -741,18 +851,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: ad09c418a98643f38c7eb08db0a13be8
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Bug_Wrong
     speakerName: Steve
     personality: 0
     lineText: But the AI doesn't use SFML input.
+    voiceClip: {fileID: 0}
     displayDuration: 3.75
     lineVariants: []
     choices: []
@@ -767,18 +881,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: ce90c551b9064e6da204c45dd10dff32
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Bug_Wrong_Thought
     speakerName: Me
     personality: 1
     lineText: He's asking distressingly good questions today.
+    voiceClip: {fileID: 0}
     displayDuration: 3.75
     lineVariants: []
     choices: []
@@ -793,18 +911,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 5b64d805dbb040b68365752df1942b70
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_SetSteve_BugConvergeDefault
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -819,18 +941,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: f407e8b86212463fb78f49986147062b
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_SFML_Steve
     speakerName: Steve
     personality: 0
     lineText: So SFML basically tells us, "the mouse was clicked."
+    voiceClip: {fileID: 0}
     displayDuration: 4.3500004
     lineVariants: []
     choices: []
@@ -845,18 +971,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: c0c63d80c06e48ccbff97207277d8b6f
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_SFML_Me
     speakerName: Me
     personality: 0
     lineText: Right. SFML reports the input event. Our game decides whether that click is legal, what it changes, and whether another turn should happen afterward.
+    voiceClip: {fileID: 0}
     displayDuration: 6.2999997
     lineVariants: []
     choices: []
@@ -871,18 +1001,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: bbc2f50c833742aa9279188ebd1574df
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_TraceIntro
     speakerName: Me
     personality: 1
     lineText: All right. Let's trace the turn one step at a time.
+    voiceClip: {fileID: 0}
     displayDuration: 4.5
     lineVariants: []
     choices: []
@@ -897,18 +1031,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: b0a43a7907ac4bf89ec35376c2c7d50c
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_TraceTurn
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -923,18 +1061,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 62780b0135aa41cd981fbde534625a78
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_TraceReflection
     speakerName: Me
     personality: 1
     lineText: There it is. Input, resolve the action, update the state, check whether the match ended, then hand over control.
+    voiceClip: {fileID: 0}
     displayDuration: 7.6499996
     lineVariants: []
     choices: []
@@ -949,18 +1091,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: a52ec5accb074bfc8d5d5feed522c7be
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_SetSteve_InvariantSuspicious
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -975,18 +1121,22 @@ MonoBehaviour:
     NewSteveExpression: 2
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: c8204c5fa54d4ed6aca3cc0a15391e52
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_CheckEverywhere
     speakerName: Steve
     personality: 0
     lineText: Okay. So should I just keep adding if (!game_over) everywhere?
+    voiceClip: {fileID: 0}
     displayDuration: 4.6499996
     lineVariants: []
     choices: []
@@ -1001,24 +1151,30 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: dd296d86cf1447468ee906062c1c17b5
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_ArchitectAdvice
     speakerName: The Grand Architect
     personality: 2
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 6
     lineVariants:
     - requiredLevel: 0
       lineText: Checks everywhere would certainly be... thorough. A fortress with seventeen gates and no obvious front door. There ought to be a cleaner rule.
+      voiceClip: {fileID: 0}
     - requiredLevel: 2
       lineText: Think in terms of an invariant. Once the game enters a terminal state, no valid transition should lead from that state into another turn.
+      voiceClip: {fileID: 0}
     choices: []
     nextStepID: D5_InvariantChoices
     alternateNextStepID: 
@@ -1031,18 +1187,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 4217c82c942245288a9a63ded6d5e075
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_InvariantChoices
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices:
@@ -1078,18 +1238,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: d276336224644666b0b4ac07e40b607a
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_SetSteve_InvariantCorrectWatchingOk
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -1104,18 +1268,22 @@ MonoBehaviour:
     NewSteveExpression: 5
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: f8c53b1413e34a249be93eeddbe588f3
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_SetSteve_InvariantWrongWatchingSus
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -1130,18 +1298,22 @@ MonoBehaviour:
     NewSteveExpression: 6
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: b0275d1557ea4215a3df5029625fc8ab
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Invariant_Correct
     speakerName: Steve
     personality: 0
     lineText: 'So the important thing is the rule: game over means there is no next turn.'
+    voiceClip: {fileID: 0}
     displayDuration: 4.8
     lineVariants: []
     choices: []
@@ -1156,18 +1328,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 149ebb35a428499180a3b5fc4b4c0f2c
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Invariant_Correct_Me
     speakerName: Me
     personality: 0
     lineText: Exactly.
+    voiceClip: {fileID: 0}
     displayDuration: 2.6999998
     lineVariants: []
     choices: []
@@ -1182,18 +1358,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 68049e63793c4591afebf56e997c6305
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Invariant_Incomplete
     speakerName: Me
     personality: 0
     lineText: That would reduce duplication, but the important part is why the check exists.
+    voiceClip: {fileID: 0}
     displayDuration: 4.5
     lineVariants: []
     choices: []
@@ -1208,18 +1388,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: b5e194df46a040d9a907579dcae49b06
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Invariant_Incomplete_Me2
     speakerName: Me
     personality: 0
     lineText: Once the match reaches a terminal state, nothing should transition it into another turn.
+    voiceClip: {fileID: 0}
     displayDuration: 4.95
     lineVariants: []
     choices: []
@@ -1234,18 +1418,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: dbc96e7d8089447693c495ea6166495f
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_SetSteve_InvariantIncompleteWatchingOk
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -1260,18 +1448,22 @@ MonoBehaviour:
     NewSteveExpression: 5
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: cbbbb92f0371431587cfc16de6652b15
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Invariant_Incomplete_Steve
     speakerName: Steve
     personality: 0
     lineText: Right. The structure matters more than where I hide the Boolean.
+    voiceClip: {fileID: 0}
     displayDuration: 4.5
     lineVariants: []
     choices: []
@@ -1286,18 +1478,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 56af82b3d9d848dba7d6e4ea8c6ac9fd
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Invariant_Wrong
     speakerName: Steve
     personality: 0
     lineText: I already tried that. The code started looking like it was afraid of itself.
+    voiceClip: {fileID: 0}
     displayDuration: 5.1000004
     lineVariants: []
     choices: []
@@ -1312,18 +1508,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: cd0ba9ade0eb42e0b4220db14a579131
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Invariant_Wrong_Me
     speakerName: Me
     personality: 0
     lineText: A reasonable response under the circumstances. The cleaner rule is that a terminal state has no transition into another turn.
+    voiceClip: {fileID: 0}
     displayDuration: 6
     lineVariants: []
     choices: []
@@ -1338,18 +1538,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 840cc2f3f28245a3af6baaedc60c14f1
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_SetSteve_InvariantConvergeDefault
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -1364,18 +1568,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 8829c0213cff421ea7bcfb78c627c005
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_StateTransition
     speakerName: Steve
     personality: 0
     lineText: So we're really defining which state changes are legal.
+    voiceClip: {fileID: 0}
     displayDuration: 4.2
     lineVariants: []
     choices: []
@@ -1390,18 +1598,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 9da65db36c1b4180b159d711c4b9771f
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_StateExactly
     speakerName: Me
     personality: 0
     lineText: Exactly.
+    voiceClip: {fileID: 0}
     displayDuration: 2.6999998
     lineVariants: []
     choices: []
@@ -1416,18 +1628,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: f531ab4fc89846109282546e09dfbb6f
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_SetSteve_FrameSuspicious
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -1442,18 +1658,22 @@ MonoBehaviour:
     NewSteveExpression: 2
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: c94307bc648a42f2a3d3973ddb48a056
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_FrameQuestion
     speakerName: Steve
     personality: 0
     lineText: If Battleship alternates turns, shouldn't the main loop alternate too? Player loop, AI loop, player loop? Why does SFML keep running while we're waiting for somebody to move?
+    voiceClip: {fileID: 0}
     displayDuration: 10.049999
     lineVariants: []
     choices: []
@@ -1468,24 +1688,30 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 561c5bb2eabf428cacd32f7a813464f2
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_PragmatistAdvice
     speakerName: The Pragmatist
     personality: 3
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 9.299999
     lineVariants:
     - requiredLevel: 0
       lineText: Because freezing the entire program until somebody clicks would be a spectacularly efficient way to make it look broken.
+      voiceClip: {fileID: 0}
     - requiredLevel: 2
       lineText: Don't confuse the application's heartbeat with the game's turn system. Keep polling events, updating what needs updating, and drawing frames. Advance the Battleship turn only when a valid game action occurs.
+      voiceClip: {fileID: 0}
     choices: []
     nextStepID: D5_FrameChoices
     alternateNextStepID: 
@@ -1498,18 +1724,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 041d965dd64541a3a2d104a8e12c5995
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_FrameChoices
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices:
@@ -1545,18 +1775,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 9a119334acfa4a29871b1148a73fba0f
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_SetSteve_FrameCorrectWatchingOk
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -1571,18 +1805,22 @@ MonoBehaviour:
     NewSteveExpression: 5
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: b663e0a0d86649ceb2385ebb3e054a94
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_SetSteve_FrameWrongWatchingSus
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -1597,18 +1835,22 @@ MonoBehaviour:
     NewSteveExpression: 6
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 8aba05d10eab4df3866876110fa70048
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Frame_Correct
     speakerName: Steve
     personality: 0
     lineText: So we could draw sixty frames without completing a single turn.
+    voiceClip: {fileID: 0}
     displayDuration: 4.6499996
     lineVariants: []
     choices: []
@@ -1623,18 +1865,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: de5690d43a4947088be4aaf36d0498ae
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Frame_Correct_Me
     speakerName: Me
     personality: 0
     lineText: Or six hundred.
+    voiceClip: {fileID: 0}
     displayDuration: 3
     lineVariants: []
     choices: []
@@ -1649,18 +1895,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: ade3fca928464a929bc2de85a07707b1
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Frame_Incomplete
     speakerName: Me
     personality: 0
     lineText: Rendering is part of it, but input and updates continue too. The important distinction is that a frame isn't a gameplay turn.
+    voiceClip: {fileID: 0}
     displayDuration: 6
     lineVariants: []
     choices: []
@@ -1675,18 +1925,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: bf5a9a49face46759d777fe8a12f8471
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_SetSteve_FrameIncompleteWatchingOk
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -1701,18 +1955,22 @@ MonoBehaviour:
     NewSteveExpression: 5
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: dfcfab79ceaf4eeaa801c9ded2ebf6a7
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Frame_Incomplete_Steve
     speakerName: Steve
     personality: 0
     lineText: Right. The application keeps running while the game waits.
+    voiceClip: {fileID: 0}
     displayDuration: 4.5
     lineVariants: []
     choices: []
@@ -1727,18 +1985,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 44e0aa8134624b65b6306617a40eac5a
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Frame_Wrong
     speakerName: Steve
     personality: 0
     lineText: At sixty frames per second?
+    voiceClip: {fileID: 0}
     displayDuration: 3.6000001
     lineVariants: []
     choices: []
@@ -1753,18 +2015,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 884764b3563a4dcc9bfecff604f09ea4
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Frame_Wrong_Thought
     speakerName: Me
     personality: 1
     lineText: Competitive Battleship has become considerably more dangerous.
+    voiceClip: {fileID: 0}
     displayDuration: 4.2
     lineVariants: []
     choices: []
@@ -1779,18 +2045,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 075d98fbab7c4810b208fb7d8aa5abcf
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_SetSteve_FrameConvergeDefault
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -1805,18 +2075,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 674bd8b1defe4228a25d94cbd28f61d2
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Frame_Joke
     speakerName: Steve
     personality: 0
     lineText: Finally, software that accurately simulates meetings.
+    voiceClip: {fileID: 0}
     displayDuration: 4.2
     lineVariants: []
     choices: []
@@ -1831,18 +2105,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 2c7829609e584fad9dcd3f943845f4d3
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_SetSteve_FinalWatchingOk
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -1857,18 +2135,22 @@ MonoBehaviour:
     NewSteveExpression: 5
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: eb3fe8c371294d02a83515b52cbd1ff4
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Final_Start
     speakerName: Steve
     personality: 0
     lineText: All right. I moved the terminal check back where it belongs. Running it now.
+    voiceClip: {fileID: 0}
     displayDuration: 4.95
     lineVariants: []
     choices: []
@@ -1883,18 +2165,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 5b420d7f62784ebfa7577a15bec0f3e2
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Final_Fires
     speakerName: Steve
     personality: 0
     lineText: Player fires...
+    voiceClip: {fileID: 0}
     displayDuration: 3
     lineVariants: []
     choices: []
@@ -1909,18 +2195,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 0525f921863c404a8ab3a7bdfa4d276e
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Final_ShipDown
     speakerName: Steve
     personality: 0
     lineText: Last ship goes down...
+    voiceClip: {fileID: 0}
     displayDuration: 3.3000002
     lineVariants: []
     choices: []
@@ -1935,18 +2225,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: aa46873b7a984f5fbe768bcb7ff31e29
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Final_Victory
     speakerName: Steve
     personality: 0
     lineText: Victory screen.
+    voiceClip: {fileID: 0}
     displayDuration: 3
     lineVariants: []
     choices: []
@@ -1961,18 +2255,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 21c3fab2f09d457f9ce153fb0bd82c92
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_SetSteve_FinalImpressed
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -1987,18 +2285,22 @@ MonoBehaviour:
     NewSteveExpression: 1
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: a9c0a5376c2745c094a9ea98ecc393b7
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Final_NoReturnFire
     speakerName: Steve
     personality: 0
     lineText: And the computer did not shoot me from beyond the grave.
+    voiceClip: {fileID: 0}
     displayDuration: 4.6499996
     lineVariants: []
     choices: []
@@ -2013,18 +2315,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 2023ee81b937461cb48aaa2bb220c650
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Final_Promising
     speakerName: Me
     personality: 0
     lineText: Promising.
+    voiceClip: {fileID: 0}
     displayDuration: 2.6999998
     lineVariants: []
     choices: []
@@ -2039,18 +2345,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 7da4e8de6bda4f809a64def4c58d92b3
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Final_DeadAI
     speakerName: Steve
     personality: 0
     lineText: We've successfully taught artificial intelligence to recognize when it's dead.
+    voiceClip: {fileID: 0}
     displayDuration: 5.1000004
     lineVariants: []
     choices: []
@@ -2065,18 +2375,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 63789372001b49c9b09b9d497df858a0
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Final_Resume
     speakerName: Me
     personality: 0
     lineText: Put it on the resume.
+    voiceClip: {fileID: 0}
     displayDuration: 3
     lineVariants: []
     choices: []
@@ -2091,18 +2405,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 35ad8f6b933749f59c11973f81d56e3c
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_SetSteve_CloseDefault
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -2117,18 +2435,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: eba8046f8bcc49988b7d4c0375dd2a41
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Close_Understand
     speakerName: Steve
     personality: 0
     lineText: I think I'm actually starting to understand this stuff.
+    voiceClip: {fileID: 0}
     displayDuration: 4.5
     lineVariants: []
     choices: []
@@ -2143,18 +2465,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 817a38a2f0b940889679b56e9196146a
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Close_TerribleCode
     speakerName: Steve
     personality: 0
     lineText: Which means pretty soon I'll be able to recognize my own terrible code.
+    voiceClip: {fileID: 0}
     displayDuration: 4.95
     lineVariants: []
     choices: []
@@ -2169,18 +2495,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 2b945ab690da49d194f26994f7409398
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Close_Choices
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices:
@@ -2216,18 +2546,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 7c495cd4c55e4f2d83c2920e0985d287
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_SetSteve_CloseFriendlyImpressed
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -2242,18 +2576,22 @@ MonoBehaviour:
     NewSteveExpression: 1
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 41e903b8e6d140ba8d4f94c051febae5
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_SetSteve_CloseDryDefault
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -2268,18 +2606,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: f036a3a3f5654a879ce86a19b13f0be2
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_SetSteve_CloseDismissiveSuspicious
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -2294,18 +2636,22 @@ MonoBehaviour:
     NewSteveExpression: 2
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: d52bcbebd82c4dc4bbba374fe97d3132
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Close_Friendly
     speakerName: Steve
     personality: 0
     lineText: Ha. Deal.
+    voiceClip: {fileID: 0}
     displayDuration: 3
     lineVariants: []
     choices: []
@@ -2320,18 +2666,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: f7f32b846ea3484396fb8655f23cc885
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Close_Dry
     speakerName: Steve
     personality: 0
     lineText: Best thing you've said all afternoon.
+    voiceClip: {fileID: 0}
     displayDuration: 3.6000001
     lineVariants: []
     choices: []
@@ -2346,18 +2696,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 6ae6d5d6c9474fdf923994d18e2c0ad4
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Close_Dismissive
     speakerName: Steve
     personality: 0
     lineText: ...Right. Sure.
+    voiceClip: {fileID: 0}
     displayDuration: 3.6000001
     lineVariants: []
     choices: []
@@ -2372,18 +2726,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: a5bad4acb6c64697b90544885db2512f
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_SetSteve_EndDefault
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -2398,18 +2756,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: b27f9c0f9de24e7dbe53a89c6147a607
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_End_StevePush
     speakerName: Steve
     personality: 0
     lineText: I'll push the fix.
+    voiceClip: {fileID: 0}
     displayDuration: 3.4499998
     lineVariants: []
     choices: []
@@ -2424,18 +2786,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: b82e64d06d55470e8294b606c93d20d3
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_End_GreatWeekend
     speakerName: Me
     personality: 0
     lineText: Awesome. Have a great weekend!
+    voiceClip: {fileID: 0}
     displayDuration: 3.75
     lineVariants: []
     choices: []
@@ -2450,18 +2816,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: d43c436e857f4344bc71dc06f8423d14
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_SetSteve_Bye
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -2476,18 +2846,22 @@ MonoBehaviour:
     NewSteveExpression: 4
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 6f7d16fc6ff543b0a853821f170b9f62
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_End_YouToo
     speakerName: Steve
     personality: 0
     lineText: You too.
+    voiceClip: {fileID: 0}
     displayDuration: 2.6999998
     lineVariants: []
     choices: []
@@ -2502,18 +2876,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 5794db484a724d7da47d666bcb9e23f7
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_End_RevengeEmail
     speakerName: Steve
     personality: 0
     lineText: And if the AI emails you demanding revenge, don't answer.
+    voiceClip: {fileID: 0}
     displayDuration: 4.5
     lineVariants: []
     choices: []
@@ -2528,18 +2906,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 8c7cabd3f0b348ababb8d50c539c780b
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_EndScreenShare
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -2554,18 +2936,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 8957ba0d05de4d0ca12eea586523f80a
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_EndZoom
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -2580,12 +2966,15 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
+  - musicCue: 0
+    soundCue: 0
+    message:
       messageId: D5_Message_Maya_WeekendInvite
       contactKey: maya
       contactName: Maya
       portrait: {fileID: 0}
       text: Hey, stranger. Any chance we can convince you to leave your apartment this weekend?
+      isSystem: 0
       replies:
       - text: Depends. What are you trying to convince me to do?
         response: Lunch tomorrow. Marcus found this place right on the Bay. Apparently the view is good enough that Alex has already threatened to take forty pictures of it.
@@ -2604,6 +2993,7 @@ MonoBehaviour:
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -2618,12 +3008,15 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
+  - musicCue: 0
+    soundCue: 0
+    message:
       messageId: D5_Message_Marcus_WeekendFollowup
       contactKey: marcus
       contactName: Marcus
       portrait: {fileID: 0}
       text: Maya mentioned lunch tomorrow, so I figured I'd make the official pitch too.
+      isSystem: 0
       replies:
       - text: What's the plan?
         response: Lunch at that waterfront place by the Bay. Rachel and Alex are coming too. You should join us.
@@ -2642,6 +3035,7 @@ MonoBehaviour:
     speakerName: 
     personality: 0
     lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 3.5
     lineVariants: []
     choices: []
@@ -2656,18 +3050,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 827fe23ae02a4dfaa3635f626c54d984
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Internal_Action
     speakerName: Me
     personality: 1
     lineText: Action. Resolution. Terminal state. Transition.
+    voiceClip: {fileID: 0}
     displayDuration: 4.05
     lineVariants: []
     choices: []
@@ -2682,18 +3080,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: d0c83796597c49fb896d05d6ef7e831c
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Internal_Remember
     speakerName: Me
     personality: 1
     lineText: I remember the pattern.
+    voiceClip: {fileID: 0}
     displayDuration: 3.6000001
     lineVariants: []
     choices: []
@@ -2708,18 +3110,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 2e8038d221e64c5cae824400696340a6
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Internal_NotEverything
     speakerName: Me
     personality: 1
     lineText: Not everything.
+    voiceClip: {fileID: 0}
     displayDuration: 3
     lineVariants: []
     choices: []
@@ -2734,18 +3140,22 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 2f0da0e538d94e268fdb62ed7867dcdb
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Internal_UsedToBeMine
     speakerName: Me
     personality: 1
     lineText: But enough to know it used to be mine.
+    voiceClip: {fileID: 0}
     displayDuration: 4.2
     lineVariants: []
     choices: []
@@ -2760,18 +3170,52 @@ MonoBehaviour:
     NewSteveExpression: 0
     targetSceneName: Night Screen
     steveChallenge: {fileID: 0}
-  - message:
-      messageId: 
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: fc2ee78bc9f14045a15304f16e755b66
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
       text: 
+      isSystem: 0
       replies: []
       waitForReply: 0
     stepID: D5_Internal_Something
     speakerName: Me
     personality: 1
     lineText: That's something.
+    voiceClip: {fileID: 0}
+    displayDuration: 3.3000002
+    lineVariants: []
+    choices: []
+    nextStepID: Ending
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 1c0f0d81404c40fea88e581511a40d3c
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: Ending
+    speakerName: Me
+    personality: 1
+    lineText: That's something.
+    voiceClip: {fileID: 0}
     displayDuration: 3.3000002
     lineVariants: []
     choices: []
@@ -2779,7 +3223,7 @@ MonoBehaviour:
     alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
-    stepType: 0
+    stepType: 10
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 10

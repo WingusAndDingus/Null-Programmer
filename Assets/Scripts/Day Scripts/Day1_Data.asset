@@ -953,7 +953,7 @@ MonoBehaviour:
     lineVariants: []
     choices:
     - choiceText: Call it a day
-      personality: 0
+      personality: 4
       personalityStatChange: 0
       targetStepOnClick: EndDay
       suspicionChange: 0
