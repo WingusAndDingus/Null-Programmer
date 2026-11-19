@@ -36,6 +36,11 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Vector2[] twoBubbleLayout = new Vector2[] { new Vector2(-350, 0), new Vector2(350, 0) };
     [SerializeField] private Vector2[] threeBubbleLayout = new Vector2[] { new Vector2(-350, -50), new Vector2(350, -50), new Vector2(0, 200) };
     [SerializeField] private Vector2[] fourBubbleLayout = new Vector2[] { new Vector2(-350, 150), new Vector2(350, 150), new Vector2(-350, -150), new Vector2(350, -150) };
+    [Header("Responsive Choice Layout (editable at runtime in Inspector)")]
+    [SerializeField, Min(180f)] private float singleChoiceWidth = 390f;
+    [SerializeField] private Vector2 singleChoiceOffset = new Vector2(-15f, 0f);
+    [SerializeField, Min(180f)] private float multipleChoiceWidth = 480f;
+
     private RectTransform choiceViewport;
     private RectTransform choiceContent;
     private ScrollRect choiceScroll;
@@ -421,7 +426,8 @@ public class DialogueManager : MonoBehaviour
         Vector2 size = choiceViewport.rect.size;
         float scale = choiceCanvas.rootCanvas.scaleFactor;
         var plan = DialogueChoiceLayout.Calculate(size, activeBubbles.Count, scale,
-            (i, width, fontSize) => activeBubbles[i].GetComponent<DialogueBubble>().MeasureHeight(width, fontSize));
+            (i, width, fontSize) => activeBubbles[i].GetComponent<DialogueBubble>().MeasureHeight(width, fontSize),
+            singleChoiceWidth, multipleChoiceWidth, singleChoiceOffset);
         choiceContent.sizeDelta = new Vector2(size.x, plan.contentHeight);
         choiceContent.anchoredPosition = Vector2.zero;
         choiceScroll.StopMovement();

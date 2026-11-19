@@ -1567,6 +1567,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4712983925247572158, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: singleChoiceOffset.x
+      value: -15
+      objectReference: {fileID: 0}
     - target: {fileID: 5064182711307269253, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
       propertyPath: m_Color.a
       value: 0.12156863

@@ -16,6 +16,12 @@ public class DialogueBubble : MonoBehaviour
     [SerializeField] private Vector2 textPadding = new Vector2(30f, 26f);
     [SerializeField] private float minimumHeight = 160f;
 
+    [Header("Choice Text Layout (editable on Thought Bubble prefab)")]
+    [SerializeField] private TextAlignmentOptions choiceTextAlignment = TextAlignmentOptions.Center;
+    [Tooltip("Move the text without moving the bubble. X: positive right, negative left. Y: positive up, negative down.")]
+    [SerializeField] private Vector2 choiceTextOffset = Vector2.zero;
+    [SerializeField, Range(0.1f, 1f)] private float authoredTextWidthFraction = 0.60f;
+
     [Header("Authored Thought Bubble Alignment")]
     [Tooltip("Moves text upward inside the original thought-bubble artwork so it stays visually centered in the bubble shape.")]
     [SerializeField] private float authoredBubbleTextUpwardOffset = 30f;
@@ -79,7 +85,8 @@ public class DialogueBubble : MonoBehaviour
 
         optionIndex = index;
         message = option.text ?? "";
-        personalityName = PersonalityName(option.personality);
+        // Personality identity remains visible through the bubble color only.
+        personalityName = "";
         onSelectCallback = callback;
         selected = false;
         isInitialized = false;
@@ -94,7 +101,7 @@ public class DialogueBubble : MonoBehaviour
         optionText.textWrappingMode = TextWrappingModes.Normal;
         optionText.overflowMode = TextOverflowModes.Truncate;
         optionText.margin = Vector4.zero;
-        optionText.alignment = TextAlignmentOptions.TopLeft;
+        optionText.alignment = choiceTextAlignment;
         optionText.maxVisibleCharacters = int.MaxValue;
 
         color.a = 1f;
@@ -105,25 +112,13 @@ public class DialogueBubble : MonoBehaviour
         Color ink = color.grayscale > 0.48f ? new Color(0.07f, 0.09f, 0.12f) : Color.white;
         optionText.color = ink;
 
-        if (!string.IsNullOrEmpty(personalityName) && personalityText == null)
-        {
-            var heading = new GameObject("Personality", typeof(RectTransform), typeof(TextMeshProUGUI));
-            heading.layer = gameObject.layer;
-            heading.transform.SetParent(transform, false);
-            personalityText = heading.GetComponent<TMP_Text>();
-        }
+        // Hide any old heading from a prefab or an already-created bubble.
         if (personalityText != null)
+            personalityText.gameObject.SetActive(false);
+        foreach (var childText in GetComponentsInChildren<TMP_Text>(true))
         {
-            personalityText.gameObject.SetActive(!string.IsNullOrEmpty(personalityName));
-            personalityText.font = optionText.font;
-            personalityText.text = personalityName;
-            personalityText.color = ink;
-            personalityText.fontStyle = FontStyles.Bold;
-            personalityText.enableAutoSizing = false;
-            personalityText.richText = false;
-            personalityText.raycastTarget = true; //we need this to make sure it can capture a mouse click
-            personalityText.alignment = TextAlignmentOptions.TopLeft;
-            personalityText.margin = Vector4.zero;
+            if (childText != optionText && childText.gameObject.name == "Personality")
+                childText.gameObject.SetActive(false);
         }
         var shadow = GetComponent<Shadow>();
         if (shadow == null) shadow = gameObject.AddComponent<Shadow>();
@@ -132,8 +127,8 @@ public class DialogueBubble : MonoBehaviour
         shadow.useGraphicAlpha = true;
     }
 
-    private float HeadingHeight(float fontSize) => string.IsNullOrEmpty(personalityName) ? 0f : fontSize * 0.85f + 12f;
-    private float HorizontalPadding(float width) => useRoundedCards ? textPadding.x : width * 0.2f;
+    private float HeadingHeight(float fontSize) => 0f;
+    private float HorizontalPadding(float width) => useRoundedCards ? textPadding.x : width * (1f - authoredTextWidthFraction) * 0.5f;
 
     private float MeasureBodyHeight(float width, float fontSize)
     {
@@ -176,11 +171,8 @@ public class DialogueBubble : MonoBehaviour
             Mathf.Max(0f, height - textBlockHeight));
 
         PlaceText(optionText.rectTransform, HorizontalPadding(width), top + headingHeight, bodyHeight);
-        if (personalityText != null)
-        {
-            personalityText.fontSize = fontSize * 0.67f;
-            PlaceText(personalityText.rectTransform, HorizontalPadding(width), top, headingHeight);
-        }
+        optionText.rectTransform.anchoredPosition += choiceTextOffset;
+
     }
 
     private static void PlaceText(RectTransform rect, float padding, float top, float height)

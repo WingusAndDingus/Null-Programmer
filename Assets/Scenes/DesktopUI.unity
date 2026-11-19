@@ -11025,6 +11025,18 @@ PrefabInstance:
       propertyPath: speechAudioSource
       value: 
       objectReference: {fileID: 1303940878}
+    - target: {fileID: 4712983925247572158, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: multipleChoiceWidth
+      value: 550
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712983925247572158, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: twoBubbleLayout.Array.data[0].x
+      value: -360
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712983925247572158, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: twoBubbleLayout.Array.data[1].x
+      value: 360
+      objectReference: {fileID: 0}
     - target: {fileID: 7389324595331560007, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
       propertyPath: m_Pivot.x
       value: 0

@@ -497,14 +497,14 @@ MonoBehaviour:
     displayDuration: 3
     lineVariants: []
     choices:
-    - choiceText: The Correct Answer :)
+    - choiceText: Download the correct version of SFML, extract it into your project folder, and create a new C++ project. Once everything finishes loading, configure the project to find the SFML library and connect the necessary components.
       personality: 0
       personalityStatChange: 1
       targetStepOnClick: SFMLQuiz_Correct
       suspicionChange: 0
       requiredLevel: 0
       choiceGroup: 
-    - choiceText: The Wrong Answer :(
+    - choiceText: Download the correct version of SFML, extract it into your project folder, and create a new C++ project. Once everything finishes loading, just tell the project where SFML is located and let the computer handle the rest. That's why we have computers, after all.
       personality: 0
       personalityStatChange: 1
       targetStepOnClick: SFMLQuiz_InCorrect
