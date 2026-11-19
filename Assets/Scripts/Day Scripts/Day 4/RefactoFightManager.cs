@@ -6,13 +6,21 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
 using System.Threading.Tasks;
-using UnityEditor.Analytics;
+using UnityEngine.EventSystems;
 // Test
 public class RefactoFightManager : MonoBehaviour
 {
     public static RefactoFightManager Instance;
 
     public enum BattleState { PreStart, Playing, Paused, GameOver }
+    
+    public enum DifficultyLevel { Easy, Medium, Hard }
+    public DifficultyLevel currentDifficulty = DifficultyLevel.Hard;
+
+    // Active difficulty values (default to Hard)
+    private float maxFleetHP = 100f;
+    private float missDamage = 10f;
+    private float mcqHealAmount = 25f;
     public BattleState currentState = BattleState.PreStart;
 
     [Header("Audio Engine")]
@@ -44,6 +52,12 @@ public class RefactoFightManager : MonoBehaviour
     [Header("MCQ Timing Settings")]
     [SerializeField] private float mcqReadDelay = 3.0f; // Time to read before notes drop
     [SerializeField] private float mcqTravelTime = 4.0f; // Time it takes notes to fall (slower than regular notes)
+
+    [Header("Difficulty UI")]
+    [SerializeField] private GameObject difficultyButtonGroup;
+    [SerializeField] private Button easyButton;
+    [SerializeField] private Button mediumButton;
+    [SerializeField] private Button hardButton;
 
     private double mcqStartTime;
     private bool mcqNotesSpawned = false;
@@ -113,6 +127,7 @@ public class RefactoFightManager : MonoBehaviour
     private const float PERFECT_WINDOW = 0.08f;
     private const float GOOD_WINDOW = 0.16f;
     private const float EARLY_WINDOW = 0.40f;
+    private const float MCQ_HIT_WINDOW = 1.25f;
 
     private TaskCompletionSource<bool> battleCompletionSource;
 
@@ -122,6 +137,9 @@ public class RefactoFightManager : MonoBehaviour
         if (statsPanel != null) statsPanel.SetActive(false);
         if (mcqPanel != null) mcqPanel.SetActive(false);
         if (floatingQuestionText != null) floatingQuestionText.gameObject.SetActive(false);
+        if (easyButton != null) easyButton.onClick.AddListener(SelectEasy);
+        if (mediumButton != null) mediumButton.onClick.AddListener(SelectMedium);
+        if (hardButton != null) hardButton.onClick.AddListener(SelectHard);
     }
 
     private void Start()
@@ -137,6 +155,7 @@ public class RefactoFightManager : MonoBehaviour
 
     public Task<bool> StartBossBattleAsync()
     {
+        SetDifficulty(DifficultyLevel.Hard);
         battleCompletionSource = new TaskCompletionSource<bool>();
         gameObject.SetActive(true);
         
@@ -156,7 +175,39 @@ public class RefactoFightManager : MonoBehaviour
     }
 
     // --- Menu Button Handlers ---
+    public void SelectEasy() => SetDifficulty(DifficultyLevel.Easy);
+    public void SelectMedium() => SetDifficulty(DifficultyLevel.Medium);
+    public void SelectHard() => SetDifficulty(DifficultyLevel.Hard);
 
+    public void SetDifficulty(DifficultyLevel difficulty)
+    {
+        currentDifficulty = difficulty;
+
+        switch (difficulty)
+        {
+            case DifficultyLevel.Easy:
+                maxFleetHP = 200f;
+                missDamage = 4f;
+                mcqHealAmount = 50f;
+                break;
+            case DifficultyLevel.Medium:
+                maxFleetHP = 150f;
+                missDamage = 7f;
+                mcqHealAmount = 35f;
+                break;
+            case DifficultyLevel.Hard:
+            default:
+                maxFleetHP = 100f;
+                missDamage = 10f;
+                mcqHealAmount = 25f;
+                break;
+        }
+
+        // Highlight the active button (Selected button dims slightly so player sees active choice)
+        if (easyButton != null) easyButton.interactable = (difficulty != DifficultyLevel.Easy);
+        if (mediumButton != null) mediumButton.interactable = (difficulty != DifficultyLevel.Medium);
+        if (hardButton != null) hardButton.interactable = (difficulty != DifficultyLevel.Hard);
+    }
     public void OnStartClicked()
     {
         menuPanel.SetActive(false);
@@ -207,7 +258,7 @@ public class RefactoFightManager : MonoBehaviour
     {
         currentPhaseIndex = 0;
         bossHP = 100f;
-        fleetHP = 100f;
+        fleetHP = maxFleetHP;
         UpdateHPUI();
         
         perfectHits = 0; goodHits = 0; misses = 0; earlyMisses = 0;
@@ -344,7 +395,7 @@ public class RefactoFightManager : MonoBehaviour
         ShowMenu("PAUSED", "", false, true, true, false);
     }
 
-    private void ShowMenu(string title, string stats, bool start, bool resume, bool restart, bool cont)
+    private void ShowMenu(string title, string stats, bool start, bool resume, bool restart, bool cont, bool showDifficulty = false)
     {
         menuPanel.SetActive(true);
         menuTitleText.text = title;
@@ -354,6 +405,7 @@ public class RefactoFightManager : MonoBehaviour
         resumeButton.SetActive(resume);
         restartButton.SetActive(restart);
         continueButton.SetActive(cont);
+        if (difficultyButtonGroup != null) difficultyButtonGroup.SetActive(start || showDifficulty);
     }
 
     // --- Spawning Logic ---
@@ -453,8 +505,9 @@ public class RefactoFightManager : MonoBehaviour
             if (targetNoteIndex != -1)
             {
                 ActiveNote targetNote = activeNotes[targetNoteIndex];
+                float activeHitWindow = targetNote.isAnswer ? MCQ_HIT_WINDOW : GOOD_WINDOW;
 
-                if (smallestDiff <= GOOD_WINDOW)
+                if (smallestDiff <= activeHitWindow)
                 {
                     targetNote.hit = true;
                     if (targetNote.isAnswer)
@@ -492,7 +545,7 @@ public class RefactoFightManager : MonoBehaviour
 
         if (isCorrect)
         {
-            RegisterHit("CORRECT!", 0f, -25f, Color.green, 1.5f, lane); 
+            RegisterHit("CORRECT!", 0f, -mcqHealAmount, Color.green, 1.5f, lane); 
             pendingArchitectStat += 10; 
         }
         else
@@ -526,7 +579,7 @@ public class RefactoFightManager : MonoBehaviour
         activeTextCoroutine = StartCoroutine(AnimateFeedbackText(feedback, color, scale, false));
 
         bossHP = Mathf.Max(1f, bossHP - bossDamage); 
-        fleetHP = Mathf.Min(100f, Mathf.Max(0f, fleetHP - fleetDamage)); 
+        fleetHP = Mathf.Min(maxFleetHP, Mathf.Max(0f, fleetHP - fleetDamage)); 
         UpdateHPUI();
 
         
@@ -546,7 +599,7 @@ public class RefactoFightManager : MonoBehaviour
         if (activeTextCoroutine != null) StopCoroutine(activeTextCoroutine);
         activeTextCoroutine = StartCoroutine(AnimateFeedbackText("MISS!", Color.red, 1.2f, true));
 
-        fleetHP = Mathf.Max(0f, fleetHP - 10f);
+        fleetHP = Mathf.Max(0f, fleetHP - missDamage);
         UpdateHPUI();
 
         StartCoroutine(FlashFleetAndShakeRoutine());
@@ -565,7 +618,7 @@ public class RefactoFightManager : MonoBehaviour
         if (activeTextCoroutine != null) StopCoroutine(activeTextCoroutine);
         activeTextCoroutine = StartCoroutine(AnimateFeedbackText("TOO EARLY!", new Color(1f, 0.5f, 0f), 1.2f, true));
 
-        fleetHP = Mathf.Max(0f, fleetHP - 10f);
+        fleetHP = Mathf.Max(0f, fleetHP - missDamage);
         UpdateHPUI();
 
         StartCoroutine(FlashFleetAndShakeRoutine());
@@ -581,7 +634,7 @@ public class RefactoFightManager : MonoBehaviour
     private void UpdateHPUI()
     {
         if (bossHealthBar != null) bossHealthBar.value = bossHP / 100f;
-        if (fleetHealthBar != null) fleetHealthBar.value = fleetHP / 100f;
+        if (fleetHealthBar != null) fleetHealthBar.value = fleetHP / maxFleetHP;
     }
 
     private void EndBattle(bool won)
@@ -613,7 +666,7 @@ public class RefactoFightManager : MonoBehaviour
         statsStr += won ? $"<color=green>Code Quality Earned: +{pendingCodeQuality}</color>" : $"<color=red>Code Quality Penalty: {pendingCodeQuality}</color>";
 
         // Show the Result Menu
-        ShowMenu(title, statsStr, false, false, true, true);
+        ShowMenu(title, statsStr, false, false, true, true, !won);
     }
 
     // --- Coroutines (Flashes, Text, Particles) ---
