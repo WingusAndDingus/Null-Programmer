@@ -365,8 +365,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DayBrowserRouter
   dayUrls:
   - day: 1
-    url: https://www.sfml-dev.org/
+    url: https://www.sfml-dev.org/documentation/3.1.0/
+  - day: 2
+    url: https://www.sfml-dev.org/documentation/3.1.0/classsf_1_1RenderWindow.html
+  - day: 3
+    url: https://www.sfml-dev.org/tutorials/3.1/graphics/draw/
+  - day: 4
+    url: https://www.sfml-dev.org/tutorials/3.1/window/events/
   - day: 5
+    url: https://www.sfml-dev.org/tutorials/3.1/graphics/vertex-array/
+  - day: 6
     url: https://www.sfml-dev.org/tutorials/3.1/window/events/
   stepUrls: []
 --- !u!1 &3492718845349960260
