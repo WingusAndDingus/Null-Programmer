@@ -7,9 +7,11 @@ public class ClickableSceneSwitch : MonoBehaviour
 
     private void OnMouseDown()
     {
+        GameManager game = GameManager.Instance;
+        if (game != null && game.CurrentDay == 7 && SceneSwitcher.IsMonitorScene(sceneName)) return;
+
         if (DialogueManager.BlocksMonitorClick() || RefactoFightApp.IsFightActive
             || GameEndManager.IsEndScreenActive || GameEndEvaluator.IsPresentationActive) return;
         sceneSwitcher.LoadScene(sceneName);
     }
 }
-

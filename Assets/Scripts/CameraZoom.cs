@@ -14,6 +14,16 @@ public class CameraZoom : MonoBehaviour
 
     private void Start()
     {
+        GameManager game = GameManager.Instance;
+        if (game == null) return;
+
+        // Day 7 can inherit the zoomed-out view from the previous desktop scene.
+        if (game.CurrentDay == 7 && gameObject.scene.name == SceneSwitcher.CenterMonitorScene
+            && !game.IsZoomedIn)
+        {
+            game.SetZoomedIn(true);
+        }
+
         ApplyCurrentView();
     }
 
@@ -30,12 +40,10 @@ public class CameraZoom : MonoBehaviour
 
     public void ZoomOut()
     {
-        if (!GameManager.Instance.IsZoomedIn)
-        {
-            return;
-        }
+        GameManager game = GameManager.Instance;
+        if (game == null || game.CurrentDay == 7 || !game.IsZoomedIn) return;
 
-        GameManager.Instance.SetZoomedIn(false);
+        game.SetZoomedIn(false);
         ApplyCurrentView();
     }
 
