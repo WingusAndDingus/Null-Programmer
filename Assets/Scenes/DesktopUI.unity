@@ -9855,7 +9855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c1877421afd8af458d8c40eb7e8d820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  <CurrentDay>k__BackingField: 1
+  <CurrentDay>k__BackingField: 5
   weekendSteveMaxSuspicionExclusive: 50
   weekendStudyMinCodeQuality: 40
   weekendConnectionsMinConnectednessExclusive: 50
@@ -11025,6 +11025,18 @@ PrefabInstance:
       propertyPath: speechAudioSource
       value: 
       objectReference: {fileID: 1303940878}
+    - target: {fileID: 4712983925247572158, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: multipleChoiceWidth
+      value: 550
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712983925247572158, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: twoBubbleLayout.Array.data[0].x
+      value: -360
+      objectReference: {fileID: 0}
+    - target: {fileID: 4712983925247572158, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
+      propertyPath: twoBubbleLayout.Array.data[1].x
+      value: 360
+      objectReference: {fileID: 0}
     - target: {fileID: 7389324595331560007, guid: d0ff81f992c201e4981e781949da4d1c, type: 3}
       propertyPath: m_Pivot.x
       value: 0

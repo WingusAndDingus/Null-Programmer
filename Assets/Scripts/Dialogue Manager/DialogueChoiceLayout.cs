@@ -15,7 +15,7 @@ public static class DialogueChoiceLayout
     }
 
     public static Plan Calculate(Vector2 viewport, int count, float canvasScale,
-        Func<int, float, float, float> measureHeight)
+        Func<int, float, float, float> measureHeight, float singleWidth = 400f, float multiWidth = 580f, Vector2 singleOffset = default)
     {
         if (count < 1) throw new ArgumentOutOfRangeException(nameof(count));
         const float gap = 24f;
@@ -25,7 +25,8 @@ public static class DialogueChoiceLayout
         float minimumWidth = Mathf.Max(340f, 230f / canvasScale);
         int desiredColumns = count >= 4 ? 2 : Mathf.Min(count, 3);
         int columns = Mathf.Clamp(Mathf.FloorToInt((innerWidth + gap) / (minimumWidth + gap)), 1, desiredColumns);
-        float width = Mathf.Min(Mathf.Max(580f, minimumWidth), (innerWidth - gap * (columns - 1)) / columns);
+        float requestedWidth = count == 1 ? singleWidth : multiWidth;
+        float width = Mathf.Min(Mathf.Max(180f, requestedWidth), (innerWidth - gap * (columns - 1)) / columns);
         float fontSize = Mathf.Max(30f, 14f / canvasScale);
         int rows = Mathf.CeilToInt((float)count / columns);
         var rowHeights = new float[rows];
@@ -50,8 +51,8 @@ public static class DialogueChoiceLayout
         if (count == 1)
         {
             result.positions[0] = new Vector2(
-                -viewport.x * 0.5f + padding + width * 0.5f,
-                -padding);
+                -viewport.x * 0.5f + padding + width * 0.5f + singleOffset.x,
+                -padding + singleOffset.y);
             result.heights[0] = rowHeights[0];
             return result;
         }
