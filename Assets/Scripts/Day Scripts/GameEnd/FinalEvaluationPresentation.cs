@@ -6,15 +6,19 @@ using UnityEngine.Video;
 
 public sealed class FinalEvaluationPresentation : MonoBehaviour
 {
-    private static readonly Color Background = new Color32(10, 17, 27, 252);
+    private static readonly Color Background = new Color32(10, 17, 27, 255);
     private static readonly Color Panel = new Color32(22, 32, 46, 255);
     private static readonly Color Stage = new Color32(14, 24, 37, 255);
     private static readonly Color Ink = new Color32(236, 242, 247, 255);
     private static readonly Color Accent = new Color32(129, 209, 229, 255);
     private static readonly Color Muted = new Color32(169, 194, 208, 255);
 
+    private Transform monitorBottomLeft;
+    private Transform monitorTopRight;
+    private Camera monitorCamera;
     private RectTransform call;
     private RectTransform scene;
+    private RectTransform sceneCard;
     private RectTransform stage;
     private TMP_Text callTitle;
     private TMP_Text stageTitle;
@@ -23,6 +27,7 @@ public sealed class FinalEvaluationPresentation : MonoBehaviour
     private TMP_Text sceneTitle;
     private TMP_Text sceneDetail;
     private Image still;
+    private AspectRatioFitter stillFitter;
     private RawImage footage;
     private Button join;
     private VideoPlayer player;
@@ -56,32 +61,39 @@ public sealed class FinalEvaluationPresentation : MonoBehaviour
 
     private void Build(RectTransform root, FinalEvaluationMedia media, bool includeCall)
     {
-        Image background = Surface(root, "Backdrop", Background, 0, 0, 1, 1);
-        background.raycastTarget = true;
-
-        scene = Surface(root, "Epilogue", Panel, .05f, .28f, .95f, .94f).rectTransform;
-        still = Surface(scene, "Scene still", Color.white, .03f, .18f, .97f, .86f);
-        still.preserveAspect = true;
+        Image sceneBackdrop = Surface(root, "Epilogue", Background, 0, 0, 1, 1);
+        sceneBackdrop.raycastTarget = true;
+        scene = sceneBackdrop.rectTransform;
+        scene.gameObject.AddComponent<RectMask2D>();
+        still = Surface(scene, "Scene still", Color.white, 0, 0, 1, 1);
+        stillFitter = still.gameObject.AddComponent<AspectRatioFitter>();
+        stillFitter.aspectMode = AspectRatioFitter.AspectMode.EnvelopeParent;
+        still.gameObject.SetActive(false);
         scene.gameObject.SetActive(false);
 
         if (!includeCall)
         {
-            Anchor(still.rectTransform, 0, 0, 1, 1);
             if (EventSystem.current != null)
                 EventSystem.current.SetSelectedGameObject(null);
             return;
         }
 
-        sceneLabel = Label(scene, "", 23, Accent, .04f, .88f, .96f, .98f, TextAlignmentOptions.MidlineLeft);
-        sceneTitle = Label(scene, "", 44, Ink, .06f, .53f, .94f, .80f);
-        sceneDetail = Label(scene, "", 30, Muted, .06f, .11f, .94f, .49f);
+        sceneCard = Surface(scene, "Title or inbox card", Panel, .05f, .28f, .95f, .94f).rectTransform;
+        sceneLabel = Label(sceneCard, "", 23, Accent, .04f, .88f, .96f, .98f, TextAlignmentOptions.MidlineLeft);
+        sceneTitle = Label(sceneCard, "", 44, Ink, .06f, .53f, .94f, .80f);
+        sceneDetail = Label(sceneCard, "", 30, Muted, .06f, .11f, .94f, .49f);
 
         BuildCall(root, media);
     }
 
     private void BuildCall(RectTransform root, FinalEvaluationMedia media)
     {
-        call = Surface(root, "Zoom", Panel, .05f, .28f, .95f, .94f).rectTransform;
+        Image callWindow = Surface(root, "Zoom", Panel, .05f, .28f, .95f, .94f);
+        callWindow.raycastTarget = true;
+        call = callWindow.rectTransform;
+        call.gameObject.AddComponent<RectMask2D>();
+        FindMonitorCorners();
+        FitCallToMonitor();
         callTitle = Label(call, "Zoom / Incoming call", 32, Accent,
             .03f, .87f, .97f, .98f, TextAlignmentOptions.MidlineLeft);
 
@@ -139,11 +151,60 @@ public sealed class FinalEvaluationPresentation : MonoBehaviour
         player.errorReceived += OnVideoError;
     }
 
+    private void FindMonitorCorners()
+    {
+        foreach (GameObject root in gameObject.scene.GetRootGameObjects())
+        {
+            // DesktopUI uses "Desk image 2_0"; also accept the unspaced name.
+            if (root.name != "Desk image 2_0" && root.name != "Desk image2_0") continue;
+
+            Transform desktop = root.transform.Find("background1_0");
+            if (desktop == null) continue;
+
+            monitorBottomLeft = desktop.Find("BottomLeft");
+            monitorTopRight = desktop.Find("TopRight");
+            if (monitorBottomLeft != null && monitorTopRight != null) return;
+        }
+
+        Debug.LogWarning("[Final Evaluation] Center monitor markers were not found. Using the fallback Zoom layout.", this);
+    }
+
+    private void LateUpdate()
+    {
+        if (call != null && call.gameObject.activeInHierarchy)
+            FitCallToMonitor();
+    }
+
+    private void FitCallToMonitor()
+    {
+        if (monitorBottomLeft == null || monitorTopRight == null) return;
+        if (monitorCamera == null) monitorCamera = Camera.main;
+        if (monitorCamera == null || Screen.width <= 0 || Screen.height <= 0) return;
+
+        Vector3 a = monitorCamera.WorldToScreenPoint(monitorBottomLeft.position);
+        Vector3 b = monitorCamera.WorldToScreenPoint(monitorTopRight.position);
+        if (a.z <= 0 || b.z <= 0)
+        {
+            Anchor(call, 0, 0, 0, 0);
+            return;
+        }
+
+        // Overlay anchors are normalized against the full Game view. This
+        // keeps the visible window usable if the camera crops a monitor edge.
+        float left = Mathf.Clamp01(Mathf.Min(a.x, b.x) / Screen.width);
+        float bottom = Mathf.Clamp01(Mathf.Min(a.y, b.y) / Screen.height);
+        float right = Mathf.Clamp01(Mathf.Max(a.x, b.x) / Screen.width);
+        float top = Mathf.Clamp01(Mathf.Max(a.y, b.y) / Screen.height);
+        if (call.anchorMin != new Vector2(left, bottom) || call.anchorMax != new Vector2(right, top))
+            Anchor(call, left, bottom, right, top);
+    }
+
     internal void ShowCall(string title, string detail)
     {
         StopVideo();
         scene.gameObject.SetActive(false);
         call.gameObject.SetActive(true);
+        FitCallToMonitor();
         callTitle.text = "Zoom / Battleship project review";
         stageTitle.text = title;
         stageDetail.text = detail;
@@ -170,21 +231,25 @@ public sealed class FinalEvaluationPresentation : MonoBehaviour
 
     internal void ShowScene(string title, string detail, Sprite sprite)
     {
-        scene.gameObject.SetActive(true);
         still.sprite = sprite;
+        if (sprite != null)
+            stillFitter.aspectRatio = sprite.rect.width / sprite.rect.height;
         still.gameObject.SetActive(sprite != null);
+        scene.gameObject.SetActive(true);
         if (call == null) return;
 
         StopVideo();
         call.gameObject.SetActive(false);
-        sceneLabel.text = sprite == null ? "" : title;
-        sceneTitle.text = sprite == null ? title : "";
-        sceneTitle.gameObject.SetActive(sprite == null);
+        sceneCard.gameObject.SetActive(sprite == null);
+        if (sprite != null) return;
+
+        sceneLabel.text = "";
+        sceneTitle.text = title;
         sceneTitle.alignment = TextAlignmentOptions.Center;
         Anchor(sceneTitle.rectTransform, .06f, .53f, .94f, .80f);
         sceneDetail.text = detail;
         sceneDetail.alignment = TextAlignmentOptions.Center;
-        Anchor(sceneDetail.rectTransform, .06f, .04f, .94f, sprite == null ? .49f : .17f);
+        Anchor(sceneDetail.rectTransform, .06f, .04f, .94f, .49f);
     }
 
     internal void ShowEmail(string subject, string message)
