@@ -122,6 +122,9 @@ public sealed class GameEndEvaluator : MonoBehaviour
                 case "backup":
                     presentation.ShowDemo(beat.title, beat.detail, media.steveBackupVideo);
                     break;
+                case "steve":
+                    presentation.ShowSteveCall();
+                    break;
                 case "scene":
                     Sprite still = stills != null && sceneIndex < stills.Length ? stills[sceneIndex] : null;
                     presentation.ShowScene(beat.title, beat.detail, still);

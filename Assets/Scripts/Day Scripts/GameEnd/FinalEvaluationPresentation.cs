@@ -19,7 +19,10 @@ public sealed class FinalEvaluationPresentation : MonoBehaviour
     private RectTransform call;
     private RectTransform scene;
     private RectTransform sceneCard;
-    private RectTransform stage;
+    private RectTransform reviewPanel;
+    private RectTransform managerTile;
+    private GameObject privateSteveWindow;
+    private bool privateSteveWasVisible;
     private TMP_Text callTitle;
     private TMP_Text stageTitle;
     private TMP_Text stageDetail;
@@ -88,20 +91,25 @@ public sealed class FinalEvaluationPresentation : MonoBehaviour
 
     private void BuildCall(RectTransform root, FinalEvaluationMedia media)
     {
-        Image callWindow = Surface(root, "Zoom", Panel, .05f, .28f, .95f, .94f);
-        callWindow.raycastTarget = true;
-        call = callWindow.rectTransform;
+        // Keep the monitor clipping and pointer shield without painting over the desktop.
+        Image callViewport = Surface(root, "Zoom viewport", Color.clear, .05f, .28f, .95f, .94f);
+        callViewport.raycastTarget = true;
+        call = callViewport.rectTransform;
         call.gameObject.AddComponent<RectMask2D>();
         FindMonitorCorners();
         FitCallToMonitor();
-        callTitle = Label(call, "Zoom / Incoming call", 32, Accent,
-            .03f, .87f, .97f, .98f, TextAlignmentOptions.MidlineLeft);
 
-        stage = Surface(call, "Shared screen", Stage, .03f, .05f, .73f, .85f).rectTransform;
-        stageTitle = Label(stage, "", 42, Ink, .07f, .60f, .93f, .82f);
-        stageDetail = Label(stage, "", 29, Muted, .10f, .25f, .90f, .59f);
-        MakeParticipant(call, "Manager", "M", media.managerPortrait, .46f, .85f);
-        MakeParticipant(call, "Steve", "S", media.stevePortrait, .05f, .44f);
+        reviewPanel = Surface(call, "Review", Stage, .035f, .065f, .72f, .935f).rectTransform;
+        callTitle = Label(reviewPanel, "Zoom / Incoming call", 29, Accent,
+            .045f, .81f, .955f, .97f, TextAlignmentOptions.MidlineLeft);
+
+        var stage = new GameObject("Review content", typeof(RectTransform)).GetComponent<RectTransform>();
+        stage.SetParent(reviewPanel, false);
+        Anchor(stage, .025f, .035f, .975f, .80f);
+        stageTitle = Label(stage, "", 42, Ink, .07f, .60f, .93f, .87f);
+        stageDetail = Label(stage, "", 29, Muted, .10f, .27f, .90f, .59f);
+        managerTile = MakeParticipant(call, "Manager", "M", media.managerPortrait, .515f, .935f);
+        MakeParticipant(call, "Steve", "S", media.stevePortrait, .065f, .485f);
 
         Image joinImage = Surface(stage, "Join call", new Color32(36, 100, 125, 255), .32f, .12f, .68f, .29f);
         joinImage.raycastTarget = true;
@@ -201,8 +209,11 @@ public sealed class FinalEvaluationPresentation : MonoBehaviour
 
     internal void ShowCall(string title, string detail)
     {
+        CloseSteveCall();
         StopVideo();
         scene.gameObject.SetActive(false);
+        reviewPanel.gameObject.SetActive(true);
+        managerTile.gameObject.SetActive(true);
         call.gameObject.SetActive(true);
         FitCallToMonitor();
         callTitle.text = "Zoom / Battleship project review";
@@ -229,8 +240,46 @@ public sealed class FinalEvaluationPresentation : MonoBehaviour
         player.Prepare();
     }
 
+    internal void ShowSteveCall()
+    {
+        StopVideo();
+        CloseSteveCall();
+        scene.gameObject.SetActive(false);
+
+        ZoomScreenShareController zoom = ZoomScreenShareController.Instance;
+        Transform portrait = zoom != null ? zoom.transform.Find("ZoomPanel") : null;
+        if (portrait != null && portrait.parent.gameObject.activeInHierarchy)
+        {
+            call.gameObject.SetActive(false);
+            privateSteveWindow = portrait.gameObject;
+            privateSteveWasVisible = privateSteveWindow.activeSelf;
+            privateSteveWindow.SetActive(true);
+            return;
+        }
+
+        // DesktopUI normally supplies the native portrait; the evaluation tile
+        // also allows the dialogue to run in a test scene without the prefab.
+        reviewPanel.gameObject.SetActive(false);
+        managerTile.gameObject.SetActive(false);
+        call.gameObject.SetActive(true);
+        FitCallToMonitor();
+    }
+
+    private void CloseSteveCall()
+    {
+        if (privateSteveWindow != null)
+            privateSteveWindow.SetActive(privateSteveWasVisible);
+        privateSteveWindow = null;
+    }
+
+    private void OnDisable()
+    {
+        CloseSteveCall();
+    }
+
     internal void ShowScene(string title, string detail, Sprite sprite)
     {
+        CloseSteveCall();
         still.sprite = sprite;
         if (sprite != null)
             stillFitter.aspectRatio = sprite.rect.width / sprite.rect.height;
@@ -332,7 +381,7 @@ public sealed class FinalEvaluationPresentation : MonoBehaviour
         }
     }
 
-    private static void MakeParticipant(RectTransform parent, string name, string initial, Sprite portrait,
+    private static RectTransform MakeParticipant(RectTransform parent, string name, string initial, Sprite portrait,
         float bottom, float top)
     {
         var tile = Surface(parent, name, Stage, .75f, bottom, .97f, top).rectTransform;
@@ -347,6 +396,7 @@ public sealed class FinalEvaluationPresentation : MonoBehaviour
             avatar.preserveAspect = true;
         }
         Label(tile, name, 26, Ink, .05f, .01f, .95f, .23f);
+        return tile;
     }
 
     private static Image Surface(RectTransform parent, string name, Color color,
