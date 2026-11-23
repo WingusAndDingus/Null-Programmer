@@ -10071,6 +10071,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8292342479610629997, guid: c5be93629f4db2649a7b7c0055dbcf3e, type: 3}
+      propertyPath: backgroundClickObjects.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292342479610629997, guid: c5be93629f4db2649a7b7c0055dbcf3e, type: 3}
+      propertyPath: backgroundClickHandlers.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8292342479610629997, guid: c5be93629f4db2649a7b7c0055dbcf3e, type: 3}
+      propertyPath: 'backgroundClickObjects.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1145619651}
+    - target: {fileID: 8292342479610629997, guid: c5be93629f4db2649a7b7c0055dbcf3e, type: 3}
+      propertyPath: 'backgroundClickObjects.Array.data[1]'
+      value: 
+      objectReference: {fileID: 403919669}
+    - target: {fileID: 8292342479610629997, guid: c5be93629f4db2649a7b7c0055dbcf3e, type: 3}
+      propertyPath: 'backgroundClickObjects.Array.data[2]'
+      value: 
+      objectReference: {fileID: 901139309}
+    - target: {fileID: 8292342479610629997, guid: c5be93629f4db2649a7b7c0055dbcf3e, type: 3}
+      propertyPath: 'backgroundClickObjects.Array.data[3]'
+      value: 
+      objectReference: {fileID: 620766348}
+    - target: {fileID: 8292342479610629997, guid: c5be93629f4db2649a7b7c0055dbcf3e, type: 3}
+      propertyPath: 'backgroundClickHandlers.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1145619654}
+    - target: {fileID: 8292342479610629997, guid: c5be93629f4db2649a7b7c0055dbcf3e, type: 3}
+      propertyPath: 'backgroundClickHandlers.Array.data[1]'
+      value: 
+      objectReference: {fileID: 403919673}
+    - target: {fileID: 8292342479610629997, guid: c5be93629f4db2649a7b7c0055dbcf3e, type: 3}
+      propertyPath: 'backgroundClickHandlers.Array.data[2]'
+      value: 
+      objectReference: {fileID: 901139312}
+    - target: {fileID: 8292342479610629997, guid: c5be93629f4db2649a7b7c0055dbcf3e, type: 3}
+      propertyPath: 'backgroundClickHandlers.Array.data[3]'
+      value: 
+      objectReference: {fileID: 620766351}
     - target: {fileID: 9131883009000410226, guid: c5be93629f4db2649a7b7c0055dbcf3e, type: 3}
       propertyPath: testDay
       value: 5

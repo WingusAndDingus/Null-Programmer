@@ -31,6 +31,10 @@ public class Day5TraceTurnMiniGame : MonoBehaviour
     [SerializeField] private Button resetButton;
     [SerializeField] private Button submitButton;
 
+    [Header("Background Input Lock")]
+    [Tooltip("Assign the background monitor/zoom click-zone GameObjects that should be blocked while the minigame is open.")]
+    [SerializeField] private GameObject[] backgroundClickObjects;
+
     [Header("Optional consequence")]
     [SerializeField] private int wrongAttemptsBeforeSuspicion = 2;
     [SerializeField] private int suspicionIncrease = 1;
@@ -41,6 +45,14 @@ public class Day5TraceTurnMiniGame : MonoBehaviour
     private int wrongAttempts;
     private bool completing;
     private int lastSubmitFrame = -1;
+
+    // Preserve the exact pre-minigame enabled state of each collider
+    // so this minigame never enables something that was already disabled.
+    private readonly List<Collider> locked3DColliders = new List<Collider>();
+    private readonly List<bool> locked3DColliderStates = new List<bool>();
+    private readonly List<Collider2D> locked2DColliders = new List<Collider2D>();
+    private readonly List<bool> locked2DColliderStates = new List<bool>();
+    private bool backgroundInputLocked;
 
     private void Awake()
     {
@@ -88,6 +100,7 @@ public class Day5TraceTurnMiniGame : MonoBehaviour
                 stepActive = false;
                 completing = false;
                 if (miniGameRoot != null) miniGameRoot.SetActive(false);
+                RestoreBackgroundInput();
             }
             return;
         }
@@ -101,6 +114,8 @@ public class Day5TraceTurnMiniGame : MonoBehaviour
 
     private void OpenMiniGame()
     {
+        LockBackgroundInput();
+
         wrongAttempts = 0;
         suspicionApplied = false;
         completing = false;
@@ -241,7 +256,83 @@ public class Day5TraceTurnMiniGame : MonoBehaviour
         yield return new WaitForSecondsRealtime(5.0f);
 
         if (miniGameRoot != null) miniGameRoot.SetActive(false);
+        RestoreBackgroundInput();
         GameplayEvents.TriggerNarrativeEvent(DefaultCompletionEventKey);
+    }
+
+    private void LockBackgroundInput()
+    {
+        if (backgroundInputLocked) return;
+
+        backgroundInputLocked = true;
+        locked3DColliders.Clear();
+        locked3DColliderStates.Clear();
+        locked2DColliders.Clear();
+        locked2DColliderStates.Clear();
+
+        if (backgroundClickObjects == null) return;
+
+        foreach (GameObject clickObject in backgroundClickObjects)
+        {
+            if (clickObject == null) continue;
+
+            // OnMouseDown-based click zones require a Collider or Collider2D.
+            // Disable only those colliders rather than the whole GameObject so
+            // visuals and unrelated components remain untouched.
+            Collider[] colliders3D = clickObject.GetComponents<Collider>();
+            foreach (Collider collider3D in colliders3D)
+            {
+                if (collider3D == null) continue;
+
+                locked3DColliders.Add(collider3D);
+                locked3DColliderStates.Add(collider3D.enabled);
+                collider3D.enabled = false;
+            }
+
+            Collider2D[] colliders2D = clickObject.GetComponents<Collider2D>();
+            foreach (Collider2D collider2D in colliders2D)
+            {
+                if (collider2D == null) continue;
+
+                locked2DColliders.Add(collider2D);
+                locked2DColliderStates.Add(collider2D.enabled);
+                collider2D.enabled = false;
+            }
+        }
+    }
+
+    private void RestoreBackgroundInput()
+    {
+        if (!backgroundInputLocked) return;
+
+        backgroundInputLocked = false;
+
+        for (int i = 0; i < locked3DColliders.Count && i < locked3DColliderStates.Count; i++)
+        {
+            if (locked3DColliders[i] != null)
+            {
+                locked3DColliders[i].enabled = locked3DColliderStates[i];
+            }
+        }
+
+        for (int i = 0; i < locked2DColliders.Count && i < locked2DColliderStates.Count; i++)
+        {
+            if (locked2DColliders[i] != null)
+            {
+                locked2DColliders[i].enabled = locked2DColliderStates[i];
+            }
+        }
+
+        locked3DColliders.Clear();
+        locked3DColliderStates.Clear();
+        locked2DColliders.Clear();
+        locked2DColliderStates.Clear();
+    }
+
+    private void OnDisable()
+    {
+        // Safety net for scene changes or an unexpected controller shutdown.
+        RestoreBackgroundInput();
     }
 
     private void UpdateSubmitButton()
