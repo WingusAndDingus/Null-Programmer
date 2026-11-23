@@ -17,7 +17,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 73436661b7d143bd87baeb74f6cd1674
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -47,7 +47,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 7d5a6d73caa64cb5891d88ee6cadc27d
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -77,7 +77,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 2da9b957052b4e9a9e9589c43c2546d3
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -107,7 +107,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: bdcb0cbc01ef49cbac2c718978815fb0
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -137,7 +137,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 134d97f5abb3430aa48a391e182a62f3
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -167,7 +167,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 34ffc6c877434521a3cca24347ce359a
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -197,7 +197,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: a67c9c0363ca48e58c99426ff2ffd033
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -227,7 +227,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 6271e3f4366f4b0492f218538f22830a
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -257,7 +257,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 60b8984855864e71b7e1f6f91890f1f0
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -287,7 +287,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: a05e7c3fcd59440e9c9a8e7682083d96
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -317,7 +317,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 58dcd1bf45fe4b90802784b290dfdebf
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -347,7 +347,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: f050bdc44aa84efb95ab482d537746bb
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -377,7 +377,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 9f9d0e1f871b4b079b443a2f3cc8e797
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -407,7 +407,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 133a8e2954f04ca195d13987d365bd50
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -437,7 +437,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 796a1094d52a4788a736e0893ff560bc
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -467,7 +467,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: bccc148bc84043e58bab91fac25b7575
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -497,7 +497,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: b33bfdb777b34ab0ad0e112cb6ff60df
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -527,7 +527,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 4b00663dc1dc4f36903330d25880b498
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -563,7 +563,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 8c2e102205c642b5bbb4171d9558f770
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -614,7 +614,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 46b44251acf04c35a7d1d3b3e57292f4
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -644,7 +644,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 16acd5c024c24e84bd7ebf9b16b7ccb8
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -674,7 +674,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: b54be2ba66434643beb8caae37f39ed2
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -704,7 +704,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: f71e51d814d84c639a9f088813832d29
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -734,7 +734,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 119d394ccb4d42fcad7c50148273199b
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -764,7 +764,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 43e4b47b90da4767a4f9c05f7b9e50b3
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -794,7 +794,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 06265c2b05b4436e8439c3c8d2cb5b46
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -824,7 +824,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 38830a4ed86c4c2ea3f8835e120f01f8
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -854,7 +854,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: ad09c418a98643f38c7eb08db0a13be8
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -884,7 +884,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: ce90c551b9064e6da204c45dd10dff32
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -914,7 +914,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 5b64d805dbb040b68365752df1942b70
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -944,7 +944,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: f407e8b86212463fb78f49986147062b
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -974,7 +974,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: c0c63d80c06e48ccbff97207277d8b6f
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1004,7 +1004,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: bbc2f50c833742aa9279188ebd1574df
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1034,7 +1034,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: b0a43a7907ac4bf89ec35376c2c7d50c
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1064,7 +1064,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 62780b0135aa41cd981fbde534625a78
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1082,7 +1082,7 @@ MonoBehaviour:
     choices: []
     nextStepID: D5_SetSteve_InvariantSuspicious
     alternateNextStepID: 
-    awardSkillKey: 
+    awardSkillKey: D5_TraceTurnCompleted
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
@@ -1094,7 +1094,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: a52ec5accb074bfc8d5d5feed522c7be
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1124,7 +1124,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: c8204c5fa54d4ed6aca3cc0a15391e52
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1154,7 +1154,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: dd296d86cf1447468ee906062c1c17b5
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1190,7 +1190,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 4217c82c942245288a9a63ded6d5e075
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1241,7 +1241,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: d276336224644666b0b4ac07e40b607a
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1271,7 +1271,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: f8c53b1413e34a249be93eeddbe588f3
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1301,7 +1301,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: b0275d1557ea4215a3df5029625fc8ab
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1331,7 +1331,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 149ebb35a428499180a3b5fc4b4c0f2c
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1361,7 +1361,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 68049e63793c4591afebf56e997c6305
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1391,7 +1391,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: b5e194df46a040d9a907579dcae49b06
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1421,7 +1421,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: dbc96e7d8089447693c495ea6166495f
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1451,7 +1451,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: cbbbb92f0371431587cfc16de6652b15
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1481,7 +1481,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 56af82b3d9d848dba7d6e4ea8c6ac9fd
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1511,7 +1511,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: cd0ba9ade0eb42e0b4220db14a579131
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1541,7 +1541,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 840cc2f3f28245a3af6baaedc60c14f1
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1571,7 +1571,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 8829c0213cff421ea7bcfb78c627c005
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1601,7 +1601,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 9da65db36c1b4180b159d711c4b9771f
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1631,7 +1631,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: f531ab4fc89846109282546e09dfbb6f
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1661,7 +1661,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: c94307bc648a42f2a3d3973ddb48a056
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1691,7 +1691,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 561c5bb2eabf428cacd32f7a813464f2
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1727,7 +1727,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 041d965dd64541a3a2d104a8e12c5995
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1778,7 +1778,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 9a119334acfa4a29871b1148a73fba0f
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1808,7 +1808,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: b663e0a0d86649ceb2385ebb3e054a94
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1838,7 +1838,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 8aba05d10eab4df3866876110fa70048
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1868,7 +1868,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: de5690d43a4947088be4aaf36d0498ae
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1898,7 +1898,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: ade3fca928464a929bc2de85a07707b1
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1928,7 +1928,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: bf5a9a49face46759d777fe8a12f8471
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1958,7 +1958,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: dfcfab79ceaf4eeaa801c9ded2ebf6a7
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -1988,7 +1988,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 44e0aa8134624b65b6306617a40eac5a
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2018,7 +2018,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 884764b3563a4dcc9bfecff604f09ea4
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2048,7 +2048,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 075d98fbab7c4810b208fb7d8aa5abcf
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2078,7 +2078,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 674bd8b1defe4228a25d94cbd28f61d2
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2108,7 +2108,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 2c7829609e584fad9dcd3f943845f4d3
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2138,7 +2138,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: eb3fe8c371294d02a83515b52cbd1ff4
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2168,7 +2168,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 5b420d7f62784ebfa7577a15bec0f3e2
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2198,7 +2198,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 0525f921863c404a8ab3a7bdfa4d276e
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2228,7 +2228,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: aa46873b7a984f5fbe768bcb7ff31e29
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2258,7 +2258,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 21c3fab2f09d457f9ce153fb0bd82c92
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2288,7 +2288,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: a9c0a5376c2745c094a9ea98ecc393b7
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2306,7 +2306,7 @@ MonoBehaviour:
     choices: []
     nextStepID: D5_Final_Promising
     alternateNextStepID: 
-    awardSkillKey: 
+    awardSkillKey: D5_FinalFixVerified
     narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
@@ -2318,7 +2318,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 2023ee81b937461cb48aaa2bb220c650
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2348,7 +2348,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 7da4e8de6bda4f809a64def4c58d92b3
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2378,7 +2378,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 63789372001b49c9b09b9d497df858a0
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2408,7 +2408,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 35ad8f6b933749f59c11973f81d56e3c
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2438,7 +2438,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: eba8046f8bcc49988b7d4c0375dd2a41
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2468,7 +2468,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 817a38a2f0b940889679b56e9196146a
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2498,7 +2498,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 2b945ab690da49d194f26994f7409398
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2549,7 +2549,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 7c495cd4c55e4f2d83c2920e0985d287
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2579,7 +2579,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 41e903b8e6d140ba8d4f94c051febae5
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2609,7 +2609,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: f036a3a3f5654a879ce86a19b13f0be2
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2639,7 +2639,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: d52bcbebd82c4dc4bbba374fe97d3132
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2669,7 +2669,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: f7f32b846ea3484396fb8655f23cc885
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2699,7 +2699,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 6ae6d5d6c9474fdf923994d18e2c0ad4
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2729,7 +2729,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: a5bad4acb6c64697b90544885db2512f
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2759,7 +2759,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: b27f9c0f9de24e7dbe53a89c6147a607
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2789,7 +2789,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: b82e64d06d55470e8294b606c93d20d3
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2819,7 +2819,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: d43c436e857f4344bc71dc06f8423d14
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2849,7 +2849,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 6f7d16fc6ff543b0a853821f170b9f62
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2879,7 +2879,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 5794db484a724d7da47d666bcb9e23f7
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2909,7 +2909,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 8c7cabd3f0b348ababb8d50c539c780b
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -2939,7 +2939,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 8957ba0d05de4d0ca12eea586523f80a
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -3053,7 +3053,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 827fe23ae02a4dfaa3635f626c54d984
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -3083,7 +3083,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: d0c83796597c49fb896d05d6ef7e831c
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -3113,7 +3113,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 2e8038d221e64c5cae824400696340a6
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -3143,7 +3143,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 2f0da0e538d94e268fdb62ed7867dcdb
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -3173,7 +3173,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: fc2ee78bc9f14045a15304f16e755b66
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -3189,7 +3189,7 @@ MonoBehaviour:
     displayDuration: 3.3000002
     lineVariants: []
     choices: []
-    nextStepID: Ending
+    nextStepID: D5_SwitchToNight
     alternateNextStepID: 
     awardSkillKey: 
     narrativeEventKey: 
@@ -3203,7 +3203,7 @@ MonoBehaviour:
   - musicCue: 0
     soundCue: 0
     message:
-      messageId: 1c0f0d81404c40fea88e581511a40d3c
+      messageId: 
       contactKey: friend
       contactName: Friend
       portrait: {fileID: 0}
@@ -3211,12 +3211,12 @@ MonoBehaviour:
       isSystem: 0
       replies: []
       waitForReply: 0
-    stepID: Ending
-    speakerName: Me
-    personality: 1
-    lineText: That's something.
+    stepID: D5_SwitchToNight
+    speakerName: 
+    personality: 0
+    lineText: 
     voiceClip: {fileID: 0}
-    displayDuration: 3.3000002
+    displayDuration: 3.5
     lineVariants: []
     choices: []
     nextStepID: 
