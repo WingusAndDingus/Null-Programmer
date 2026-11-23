@@ -422,7 +422,19 @@ public static class Day5SequenceBuilder
         steps.Add(Line("D5_Internal_UsedToBeMine", "Me",
             "But enough to know it used to be mine.", "D5_Internal_Something", 2.8f, HeadPersonality.InternalMonologue));
         steps.Add(Line("D5_Internal_Something", "Me",
-            "That's something.", null, 2.2f, HeadPersonality.InternalMonologue));
+            "That's something.", "D5_SwitchToNight", 2.2f, HeadPersonality.InternalMonologue));
+
+        // ------------------------------------------------------------------
+        // End of Day 5 - transition to the night screen.
+        // The Night Screen handles the bed interaction that leads to the
+        // skill screen, so Day 5 should stop here after loading that scene.
+        // ------------------------------------------------------------------
+        NarrativeStep switchToNight = Step(
+            "D5_SwitchToNight",
+            NarrativeStepType.SwitchToNightScene
+        );
+        switchToNight.targetSceneName = "Night Screen";
+        steps.Add(switchToNight);
 
         return steps;
     }
