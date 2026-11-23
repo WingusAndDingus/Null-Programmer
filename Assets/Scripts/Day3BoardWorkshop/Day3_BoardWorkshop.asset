@@ -3,523 +3,726 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject:
-    fileID: 0
-  m_PrefabInstance:
-    fileID: 0
-  m_PrefabAsset:
-    fileID: 0
-  m_GameObject:
-    fileID: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script:
-    fileID: 11500000
-    guid: 657659d256d74ba448affc6a2a8763d3
-    type: 3
+  m_Script: {fileID: 11500000, guid: 657659d256d74ba448affc6a2a8763d3, type: 3}
   m_Name: Day3_BoardWorkshop
   m_EditorClassIdentifier: Assembly-CSharp::DaySequenceData
   dayNumber: 3
   steps:
-  - stepID: Start
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: f49545fdc59d4dee8fd9da4160fa5853
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: Start
     speakerName: Me
     personality: 0
-    lineText: Wednesday. The tiles finally form a grid. Steve has sent the next task. I should read his email and
-      close the inbox.
+    lineText: Wednesday. The tiles finally form a grid. Steve has sent the next task. I should read his email and close the inbox.
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
     nextStepID: D3_Call
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 1002
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_Call
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: dd65054893b44d12aff9a1399b657126
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_Call
     speakerName: Me
     personality: 0
-    lineText: ''
+    lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
     nextStepID: D3_SteveBrief
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 1
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_SteveBrief
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: b9ab1c7dfa734336a71bc5ab630d46da
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_SteveBrief
     speakerName: Steve
     personality: 0
-    lineText: Yesterday's Tile grid is working. Today the Board has to coordinate ships across those tiles. I've
-      left an unfinished build in the IDE. Can you test its placement logic?
+    lineText: Yesterday's Tile grid is working. Today the Board has to coordinate ships across those tiles. I've left an unfinished build in the IDE. Can you test its placement logic?
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
     nextStepID: D3_YouBrief
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_YouBrief
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 34ad63a7de6846159f2e80673764fcaa
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_YouBrief
     speakerName: Me
     personality: 0
     lineText: I'll check the occupied cells, edge cases, and whether the graphics match the data.
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
     nextStepID: D3_SteveRule
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_SteveRule
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 29f1ac4c6fd44f128ef5b867300aaeac
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_SteveRule
     speakerName: Steve
     personality: 0
-    lineText: 'One important rule: a rejected placement must leave the original board alone. Let me know when the
-      build passes its checks.'
+    lineText: 'One important rule: a rejected placement must leave the original board alone. Let me know when the build passes its checks.'
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
     nextStepID: D3_EndCall
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_EndCall
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 2d77c2bdddcf41c2a14f65eece63f1ec
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_EndCall
     speakerName: Me
     personality: 0
-    lineText: ''
+    lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
     nextStepID: D3_ArchitectIntro
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 14
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_ArchitectIntro
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 8c2855a4e60540738aea7d8589f6210e
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_ArchitectIntro
     speakerName: The Grand Architect
     personality: 2
-    lineText: A Tile represents one cell. The Board owns the grid and coordinates operations that involve several
-      cells. Let us start with the direction a ship grows.
+    lineText: A Tile represents one cell. The Board owns the grid and coordinates operations that involve several cells. Let us start with the direction a ship grows.
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
     nextStepID: D3_SentinelIntro
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_SentinelIntro
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 0535ff39fcb14e29995a1a5cbc956a9b
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_SentinelIntro
     speakerName: The Sentinel
     personality: 4
-    lineText: We can test privately without pretending everything works. Click the IDE, place a vertical ship, and
-      watch which cells the code actually changes.
+    lineText: We can test privately without pretending everything works. Click the IDE, place a vertical ship, and watch which cells the code actually changes.
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
     nextStepID: D3_Test0
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_Test0
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 611b2d0567ee41a88eacea972a4a1fa9
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_Test0
     speakerName: Me
     personality: 0
-    lineText: ''
+    lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
     nextStepID: D3_OrientationReview
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 1001
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_OrientationReview
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 973e450a50324afaafc05719cee43187
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_OrientationReview
     speakerName: The Grand Architect
     personality: 2
-    lineText: A vertical ship changes its row for each segment; a horizontal ship changes its column. The Board
-      keeps that row/column convention consistent.
+    lineText: A vertical ship changes its row for each segment; a horizontal ship changes its column. The Board keeps that row/column convention consistent.
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants:
     - requiredLevel: 2
-      lineText: The occupied-cell function separates board coordinates from pixels. Each segment is start + i times
-        a direction vector; the tiles need not guess their neighbors.
+      lineText: The occupied-cell function separates board coordinates from pixels. Each segment is start + i times a direction vector; the tiles need not guess their neighbors.
+      voiceClip: {fileID: 0}
     choices: []
     nextStepID: D3_OrientationCheck
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_Test1
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 63484bc062164230b9a00d86022e7db3
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_Test1
     speakerName: Me
     personality: 0
-    lineText: ''
+    lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
     nextStepID: D3_BoundsReview
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 1001
     exerciseIndex: 1
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_BoundsReview
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 011fc3a46d334561b43c04734c7d1f1e
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_BoundsReview
     speakerName: The Sentinel
     personality: 4
-    lineText: Checking the starting tile is not enough. Every segment needs a valid row and column before the Board
-      reads or writes that tile.
+    lineText: Checking the starting tile is not enough. Every segment needs a valid row and column before the Board reads or writes that tile.
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants:
     - requiredLevel: 2
-      lineText: The invariant is 0 <= row < rows and 0 <= column < columns for every segment. Equal-to-size is outside
-        the array; test a rectangular board and both orientations.
+      lineText: The invariant is 0 <= row < rows and 0 <= column < columns for every segment. Equal-to-size is outside the array; test a rectangular board and both orientations.
+      voiceClip: {fileID: 0}
     choices: []
     nextStepID: D3_BoundsCheck
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_Test2
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 9c2a6d0d1ee149008928a4989210133a
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_Test2
     speakerName: Me
     personality: 0
-    lineText: ''
+    lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
     nextStepID: D3_OverlapReview
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 1001
     exerciseIndex: 2
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_OverlapReview
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: ad8e671cc0b847339e7efd15f11f28ee
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_OverlapReview
     speakerName: The Sentinel
     personality: 4
-    lineText: The broken loop wrote the first segments before discovering a collision. Checking the complete footprint
-      first prevents half a ship from surviving a rejected placement.
+    lineText: The broken loop wrote the first segments before discovering a collision. Checking the complete footprint first prevents half a ship from surviving a rejected placement.
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants:
     - requiredLevel: 2
-      lineText: 'Treat placement as a small transaction: construct the candidate cells, validate all of them, then
-        commit the mutation. Failure preserves the previous board exactly.'
+      lineText: 'Treat placement as a small transaction: construct the candidate cells, validate all of them, then commit the mutation. Failure preserves the previous board exactly.'
+      voiceClip: {fileID: 0}
     choices: []
     nextStepID: D3_FriendMessage
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_Test3
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 0da8741028ec407d9879a3b80c94e10c
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_Test3
     speakerName: Me
     personality: 0
-    lineText: ''
+    lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
     nextStepID: D3_RenderReview
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 1001
     exerciseIndex: 3
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_RenderReview
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 11cbd935e54a402592cbb9cfe33448ee
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_RenderReview
     speakerName: The Grand Architect
     personality: 2
-    lineText: The Board data was right, but the drawing used the wrong mapping. Columns become x, rows become y,
-      and cellSize converts those units into pixels.
+    lineText: The Board data was right, but the drawing used the wrong mapping. Columns become x, rows become y, and cellSize converts those units into pixels.
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants:
     - requiredLevel: 2
-      lineText: With the shape origin at its top-left and no board offset, setPosition({column * cellSize, row *
-        cellSize}) aligns graphics to data. setSize describes the length along the correct axis.
+      lineText: With the shape origin at its top-left and no board offset, setPosition({column * cellSize, row * cellSize}) aligns graphics to data. setSize describes the length along the correct axis.
+      voiceClip: {fileID: 0}
     choices: []
     nextStepID: D3_RenderCheck
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_OrientationCheck
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 0669ed31a461415b8188fe16b880b86a
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_OrientationCheck
     speakerName: The Grand Architect
     personality: 2
     lineText: If a ship is vertical, which coordinate changes for each segment?
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices:
     - choiceText: The row changes; the column stays fixed.
       personality: 2
+      personalityStatChange: 1
       targetStepOnClick: D3_OrientationCorrect
       suspicionChange: 0
       requiredLevel: 0
-      choiceGroup: ''
-      personalityStatChange: 1
+      choiceGroup: 
     - choiceText: The column changes; the row stays fixed.
       personality: 4
+      personalityStatChange: 0
       targetStepOnClick: D3_OrientationRetry
       suspicionChange: 0
       requiredLevel: 0
-      choiceGroup: ''
-      personalityStatChange: 0
-    nextStepID: ''
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+      choiceGroup: 
+    nextStepID: 
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 2
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_OrientationRetry
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: c947a2a7891d42ba8a54327499626b1e
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_OrientationRetry
     speakerName: The Grand Architect
     personality: 2
-    lineText: You've swapped the axes, Sentinel. Changing the column moves across the board; a vertical ship changes
-      its row while keeping its column fixed.
+    lineText: You've swapped the axes, Sentinel. Changing the column moves across the board; a vertical ship changes its row while keeping its column fixed.
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
     nextStepID: D3_OrientationCheck
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_OrientationCorrect
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 796a9fd16a9447b6957d1358e18746ae
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_OrientationCorrect
     speakerName: The Grand Architect
     personality: 2
-    lineText: 'Exactly. Each segment advances one row down the board while staying in the same column. Next, try
-      a ship near the bottom edge: its starting cell can be valid even when later segments are not.'
+    lineText: 'Exactly. Each segment advances one row down the board while staying in the same column. Next, try a ship near the bottom edge: its starting cell can be valid even when later segments are not.'
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
     nextStepID: D3_Test1
-    alternateNextStepID: ''
+    alternateNextStepID: 
     awardSkillKey: Day3.Board.Knowledge.Orientation
-    narrativeEventKey: ''
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_BoundsCheck
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 3f7baae6a316419dbc339afba5236ebf
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_BoundsCheck
     speakerName: The Sentinel
     personality: 4
     lineText: There are eight columns numbered from zero. Is column eight valid?
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices:
     - choiceText: There are eight columns, so column eight should fit.
       personality: 2
+      personalityStatChange: 0
       targetStepOnClick: D3_BoundsRetry
       suspicionChange: 0
       requiredLevel: 0
-      choiceGroup: ''
-      personalityStatChange: 0
+      choiceGroup: 
     - choiceText: No. Valid columns are zero through seven.
       personality: 4
+      personalityStatChange: 1
       targetStepOnClick: D3_BoundsCorrect
       suspicionChange: 0
       requiredLevel: 0
-      choiceGroup: ''
-      personalityStatChange: 1
-    nextStepID: ''
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+      choiceGroup: 
+    nextStepID: 
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 2
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_BoundsRetry
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: f3c9ab1f1c8d40039c66d7148bfb53b9
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_BoundsRetry
     speakerName: The Sentinel
     personality: 4
-    lineText: Architect, eight is the number of columns, not the last index. With zero-based indexing the columns
-      are zero through seven, so column eight is outside the board.
+    lineText: Architect, eight is the number of columns, not the last index. With zero-based indexing the columns are zero through seven, so column eight is outside the board.
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
     nextStepID: D3_BoundsCheck
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_BoundsCorrect
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 11f3e384457f4918a85f3ed86062bb67
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_BoundsCorrect
     speakerName: The Sentinel
     personality: 4
-    lineText: Good. Next we need to reject overlap without leaving partial changes. The existing ship is blue; try
-      starting to its left.
+    lineText: Good. Next we need to reject overlap without leaving partial changes. The existing ship is blue; try starting to its left.
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
     nextStepID: D3_Test2
-    alternateNextStepID: ''
+    alternateNextStepID: 
     awardSkillKey: Day3.Board.Knowledge.Bounds
-    narrativeEventKey: ''
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_FriendMessage
-    speakerName: Me
-    personality: 0
-    lineText: ''
-    displayDuration: 4
-    lineVariants: []
-    choices: []
-    nextStepID: D3_OverlapCheck
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
-    stepType: 1000
-    exerciseIndex: 0
-    suspicionChange: 0
-    delayDuration: 0
-    NewSteveExpression: 0
-    targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
     message:
       messageId: 96233abcd9f14613a28008f6d99424ba
       contactKey: friend
       contactName: Friend
-      portrait:
-        fileID: 21300000
-        guid: aa787758b18f479586e00f1ae714dd74
-        type: 3
+      portrait: {fileID: 21300000, guid: aa787758b18f479586e00f1ae714dd74, type: 3}
       text: Hey, how is the project going? Remember to take a break when you get a chance.
+      isSystem: 0
       replies:
       - text: Getting there. I found a bug and actually understand it now.
         response: That sounds like progress! Catch up after work?
@@ -529,339 +732,515 @@ MonoBehaviour:
         response: No rush. Good luck with it!
         connectednessDelta: 0
         suspicionDelta: 0
-      waitForReply: false
-  - stepID: D3_OverlapCheck
+      waitForReply: 0
+    stepID: D3_FriendMessage
+    speakerName: Me
+    personality: 0
+    lineText: 
+    voiceClip: {fileID: 0}
+    displayDuration: 4
+    lineVariants: []
+    choices: []
+    nextStepID: D3_OverlapCheck
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 1000
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 0
+    NewSteveExpression: 0
+    targetSceneName: Sleep
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 5a0bed05be9342d1833d80f06907f7cd
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_OverlapCheck
     speakerName: The Sentinel
     personality: 4
     lineText: Why did we separate validation from writing the cells?
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices:
     - choiceText: So failure cannot leave the board partly modified.
       personality: 4
+      personalityStatChange: 1
       targetStepOnClick: D3_OverlapCorrect
       suspicionChange: 0
       requiredLevel: 0
-      choiceGroup: ''
-      personalityStatChange: 1
+      choiceGroup: 
     - choiceText: So the ship graphic draws faster.
       personality: 2
+      personalityStatChange: 0
       targetStepOnClick: D3_OverlapRetry
       suspicionChange: 0
       requiredLevel: 0
-      choiceGroup: ''
-      personalityStatChange: 0
-    nextStepID: ''
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+      choiceGroup: 
+    nextStepID: 
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 2
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_OverlapRetry
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 3c412057d8c24324b833c7be37c3652a
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_OverlapRetry
     speakerName: The Sentinel
     personality: 4
-    lineText: Architect, drawing speed does not explain the leftover cells. Checking and writing one segment at
-      a time can leave a partial ship behind; validate the entire footprint before writing any cells.
+    lineText: Architect, drawing speed does not explain the leftover cells. Checking and writing one segment at a time can leave a partial ship behind; validate the entire footprint before writing any cells.
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
     nextStepID: D3_OverlapCheck
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_OverlapCorrect
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 444006d2fc7a455daefe81eb603dbeb9
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_OverlapCorrect
     speakerName: The Sentinel
     personality: 4
-    lineText: Exactly. Validate every target cell first, then commit the placement. A rejected ship must leave the
-      board unchanged; next we can check whether the SFML graphic matches those cells.
+    lineText: Exactly. Validate every target cell first, then commit the placement. A rejected ship must leave the board unchanged; next we can check whether the SFML graphic matches those cells.
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
     nextStepID: D3_Test3
-    alternateNextStepID: ''
+    alternateNextStepID: 
     awardSkillKey: Day3.Board.Knowledge.Atomicity
-    narrativeEventKey: ''
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_RenderCheck
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 0f469a8f551549b39e699c23697d54d7
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_RenderCheck
     speakerName: The Grand Architect
     personality: 2
-    lineText: The occupied cells are correct but the ship appears in the wrong place. Where should we investigate
-      first?
+    lineText: The occupied cells are correct but the ship appears in the wrong place. Where should we investigate first?
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices:
     - choiceText: Change the occupied cells until they match the graphic.
       personality: 4
+      personalityStatChange: 0
       targetStepOnClick: D3_RenderRetry
       suspicionChange: 0
       requiredLevel: 0
-      choiceGroup: ''
-      personalityStatChange: 0
+      choiceGroup: 
     - choiceText: The conversion from row/column to pixel position.
       personality: 2
+      personalityStatChange: 1
       targetStepOnClick: D3_RenderCorrect
       suspicionChange: 0
       requiredLevel: 0
-      choiceGroup: ''
-      personalityStatChange: 1
-    nextStepID: ''
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+      choiceGroup: 
+    nextStepID: 
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 2
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_RenderRetry
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 97659e14bc3c4636b8537ae7452879bb
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_RenderRetry
     speakerName: The Grand Architect
     personality: 2
-    lineText: 'Sentinel, moving correct board data would only hide the drawing error. Keep the occupied cells and
-      fix the SFML position: column becomes x and row becomes y, both scaled by cell size.'
+    lineText: 'Sentinel, moving correct board data would only hide the drawing error. Keep the occupied cells and fix the SFML position: column becomes x and row becomes y, both scaled by cell size.'
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
     nextStepID: D3_RenderCheck
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_RenderCorrect
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 22850e89c54e4843a08cc043e6cc46fa
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_RenderCorrect
     speakerName: The Grand Architect
     personality: 2
-    lineText: 'Exactly. Now run the whole build: orientation, boundaries, overlap, unchanged state on failure, and
-      visual alignment.'
+    lineText: 'Exactly. Now run the whole build: orientation, boundaries, overlap, unchanged state on failure, and visual alignment.'
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
     nextStepID: D3_Final
-    alternateNextStepID: ''
+    alternateNextStepID: 
     awardSkillKey: Day3.Board.Knowledge.Rendering
-    narrativeEventKey: ''
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_Final
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: afe0ab14a3f24202b212a94ed45fb651
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_Final
     speakerName: Me
     personality: 0
-    lineText: ''
+    lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
     nextStepID: D3_FinalVoices
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 1001
     exerciseIndex: 4
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_FinalVoices
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 5022cf85ac8f47278e4b4fdb5bc26d7b
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_FinalVoices
     speakerName: The Sentinel
     personality: 4
-    lineText: 'The regression suite passes. You can use the same habit in Minesweeper: keep cell data consistent,
-      protect array boundaries, and make the SFML view reflect that data.'
+    lineText: 'The regression suite passes. You can use the same habit in Minesweeper: keep cell data consistent, protect array boundaries, and make the SFML view reflect that data.'
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
     nextStepID: D3_ReportCall
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_ReportCall
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: a03dadc658f44b7099d9c46579ac18ef
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_ReportCall
     speakerName: Me
     personality: 0
-    lineText: ''
+    lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
     nextStepID: D3_SteveQuestion
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 1
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_SteveQuestion
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: bc26073eed1e42199ebf5296798b6c46
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_SteveQuestion
     speakerName: Steve
     personality: 0
     lineText: The build looks better. What prevented the overlap bug from leaving partial ships?
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices:
     - choiceText: I validate every target cell before writing any of them.
       personality: 0
+      personalityStatChange: 1
       targetStepOnClick: D3_ReportGood
       suspicionChange: -5
       requiredLevel: 0
-      choiceGroup: ''
-      personalityStatChange: 1
+      choiceGroup: 
     - choiceText: I made the ship sprite cover the leftover cells.
       personality: 0
+      personalityStatChange: 1
       targetStepOnClick: D3_ReportClarify
       suspicionChange: 3
       requiredLevel: 0
-      choiceGroup: ''
-      personalityStatChange: 1
-    nextStepID: ''
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+      choiceGroup: 
+    nextStepID: 
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 2
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_ReportGood
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 7fc8430e03104a6fb14ff53daf96eee4
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_ReportGood
     speakerName: Steve
     personality: 0
     lineText: Good. That gives us a reliable Board to build attacks on. Keep those regression cases for tomorrow.
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
     nextStepID: D3_CloseFinalCall
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_ReportClarify
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 8a471d2a2bb94b04bb983cdd978cc29b
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_ReportClarify
     speakerName: Steve
     personality: 0
-    lineText: Covering the cells would only hide it. The important fix was checking all cells before changing board
-      data. Keep that distinction in mind.
+    lineText: Covering the cells would only hide it. The important fix was checking all cells before changing board data. Keep that distinction in mind.
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
     nextStepID: D3_CloseFinalCall
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_CloseFinalCall
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: eb1d30a751864c0e80477c12d3369f2a
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_CloseFinalCall
     speakerName: Me
     personality: 0
-    lineText: ''
+    lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
     nextStepID: D3_Complete
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 14
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_Complete
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 5335693f25b74b7f8929c1ee38052ddf
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_Complete
     speakerName: Me
     personality: 0
-    lineText: Wednesday complete. The Board can place ships safely, and I can explain why. Tomorrow we can build
-      on it.
+    lineText: Wednesday complete. The Board can place ships safely, and I can explain why. Tomorrow we can build on it.
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
     nextStepID: D3_Night
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 0
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
     targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
-  - stepID: D3_Night
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 849410f0686045df80d3c5a745ac8217
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D3_Night
     speakerName: Me
     personality: 0
-    lineText: ''
+    lineText: 
+    voiceClip: {fileID: 0}
     displayDuration: 4
     lineVariants: []
     choices: []
-    nextStepID: ''
-    alternateNextStepID: ''
-    awardSkillKey: ''
-    narrativeEventKey: ''
+    nextStepID: 
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
     stepType: 10
     exerciseIndex: 0
     suspicionChange: 0
     delayDuration: 0
     NewSteveExpression: 0
-    targetSceneName: Sleep
-    steveChallenge:
-      fileID: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
