@@ -65,6 +65,12 @@ public class GameManager : MonoBehaviour
 
     public bool HasSelectedWeekendChoice => SelectedWeekendChoice.HasValue;
 
+    // Personality skill progression is session-only. These levels persist across
+    // scene changes because GameManager is DontDestroyOnLoad, but they are never
+    // written to PlayerPrefs and therefore cannot leak into a different run.
+    private int[] personalitySkillLevels = new int[5];
+
+    // Showcase mode temporarily overrides the normal run's levels without changing them.
     private int[] showcaseSkillLevels;
     private GameEndingType? showcaseEndingOverride;
     internal bool ShowcaseWeekendUnlocked { get; private set; }
@@ -322,8 +328,10 @@ public class GameManager : MonoBehaviour
         CurrentStep = "Start";
         SteveSuspicion = 0;
         UnspentSkillPoints = 0;
-        SelectedWeekendChoice = null;
         rewardedMilestones.Clear();
+        personalitySkillLevels = new int[5];
+        showcaseSkillLevels = null;
+        SelectedWeekendChoice = null;
         MomTrust = 0;
         MomConcern = 0;
         MarkTrust = 0;
@@ -370,25 +378,92 @@ public class GameManager : MonoBehaviour
     // =========================================================
     public int UnspentSkillPoints { get; private set; } = 0;
     private readonly HashSet<string> rewardedMilestones = new HashSet<string>();
+
+    /// <summary>
+    /// Compatibility entry point retained for existing callers and UnityEvent bindings.
+    /// New skill code can use TryAwardSkillPoint when it needs to know whether the
+    /// milestone was newly rewarded.
+    /// </summary>
     public void AwardSkillPoint(string milestoneID)
+    {
+        TryAwardSkillPoint(milestoneID);
+    }
+
+    /// <summary>
+    /// Awards one generic personality skill point for a milestone in the current run.
+    /// Duplicate milestone IDs are ignored for this run only. Nothing is persisted to disk.
+    /// </summary>
+    internal bool TryAwardSkillPoint(string milestoneID)
     {
         Debug.Log($"[GameManager] AwardSkillPoint called with milestoneID: '{milestoneID}'");
         if (string.IsNullOrWhiteSpace(milestoneID) || rewardedMilestones.Contains(milestoneID))
         {
-            return;
+            return false;
         }
 
         rewardedMilestones.Add(milestoneID);
         UnspentSkillPoints++;
         NullProgrammer.Audio.GameAudio.Play(NullProgrammer.Audio.SfxCue.Skill);
         Debug.Log($"[GameManager] Skill point awarded for '{milestoneID}'. Total unspent: {UnspentSkillPoints}");
+        return true;
     }
 
+    /// <summary>
+    /// Returns the level used by the current run, or the temporary showcase level while
+    /// showcase mode is active.
+    /// </summary>
+    internal int GetPersonalitySkillLevel(Personality personality)
+    {
+        int index = (int)personality;
+        int[] levels = showcaseSkillLevels ?? personalitySkillLevels;
+
+        if (levels == null || index < 0 || index >= levels.Length)
+        {
+            return 0;
+        }
+
+        return Mathf.Clamp(levels[index], 0, PersonalitySkills.MaxLevel);
+    }
+
+    /// <summary>
+    /// Atomically spends one available point and raises one personality by one level.
+    /// Keeping the spend and level increase together prevents points from being lost
+    /// if an investment cannot be completed.
+    /// </summary>
+    internal bool TryInvestPersonalitySkill(Personality personality)
+    {
+        if (UnspentSkillPoints <= 0) return false;
+
+        int index = (int)personality;
+        int[] levels = showcaseSkillLevels ?? personalitySkillLevels;
+        if (levels == null || index < 0 || index >= levels.Length) return false;
+        if (levels[index] >= PersonalitySkills.MaxLevel) return false;
+
+        levels[index]++;
+        UnspentSkillPoints--;
+
+        Debug.Log($"[GameManager] Invested one skill point in {personality}. " +
+                  $"New level: {levels[index]}, Unspent remaining: {UnspentSkillPoints}");
+        return true;
+    }
+
+    /// <summary>
+    /// Compatibility API retained for older callers. New personality-skill code uses
+    /// TryInvestPersonalitySkill so spending and leveling are atomic.
+    /// </summary>
     public void SpendSkillPoint()
     {
         Debug.Log($"[GameManager] SpendSkillPoint called. Unspent before: {UnspentSkillPoints}");
         UnspentSkillPoints = Mathf.Max(0, UnspentSkillPoints - 1);
         Debug.Log($"[GameManager] Unspent skill points after spend: {UnspentSkillPoints}");
+    }
+
+    internal void ResetPersonalitySkillsForCurrentRun()
+    {
+        UnspentSkillPoints = 0;
+        rewardedMilestones.Clear();
+        personalitySkillLevels = new int[5];
+        showcaseSkillLevels = null;
     }
     public void setCurrentDay(int day)
     {
@@ -412,7 +487,8 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log($"[GameManager] AdvanceToNextDay called. Incrementing from day {CurrentDay}");
         CurrentDay++;
-        UnspentSkillPoints = 0;
+        // Unspent personality skill points carry forward within the same run.
+        // They are reset only when a fresh GameManager session starts.
         CurrentStep = "Start"; //reset for new day
         ClearZoomState();
         DayChanged?.Invoke(CurrentDay); //Syed's new implementation

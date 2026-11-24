@@ -1,90 +1,62 @@
 using UnityEngine;
 using System;
-using System.Collections.Generic;
 
+/// <summary>
+/// Public API and night-allocation controller for personality skills.
+///
+/// Skill progression is intentionally session-only: GameManager owns the current run's
+/// unspent points, rewarded milestone IDs, and invested levels. Nothing in this class
+/// persists personality progression to PlayerPrefs, so a new game cannot inherit skill
+/// state from a previous run.
+/// </summary>
 public class PersonalitySkills : MonoBehaviour
 {
     public const int MaxLevel = (int)PersonalityLevel.Expert;
 
-    [Serializable]
-    private class SaveData
-    {
-        public int availablePoints;
-        public int[] levels = new int[5];
-        public List<string> rewardedMilestones = new List<string>();
-    }
+    // Older builds stored personality progression here. The new run-scoped system never
+    // reads it; remove it when encountered so stale development/test data cannot linger.
+    private const string LegacySaveKey = "NullProgrammer.PersonalitySkills";
 
-    private const string SaveKey = "NullProgrammer.PersonalitySkills";
-
-    private SaveData data;
     private bool nightAllocationOpen;
 
-    // Pull available points directly from the persistent GameManager
-    public int AvailablePoints => GameManager.Instance != null ? GameManager.Instance.UnspentSkillPoints : 0;
+    public int AvailablePoints => GameManager.Instance != null
+        ? GameManager.Instance.UnspentSkillPoints
+        : 0;
+
     public event Action Changed;
 
     private void Awake()
     {
-        data = LoadData();
+        GameManager.EnsureInstance();
+
+        if (PlayerPrefs.HasKey(LegacySaveKey))
+        {
+            PlayerPrefs.DeleteKey(LegacySaveKey);
+            PlayerPrefs.Save();
+            Debug.Log("[PersonalitySkills] Removed legacy persisted personality-skill data.");
+        }
     }
 
-    private static SaveData LoadData()
-    {
-        string json = PlayerPrefs.GetString(SaveKey, "");
-        SaveData data = string.IsNullOrEmpty(json) ? new SaveData() : JsonUtility.FromJson<SaveData>(json);
-
-        if (data == null)
-        {
-            data = new SaveData();
-        }
-
-        if (data.levels == null || data.levels.Length != 5)
-        {
-            data.levels = new int[5];
-        }
-
-        for (int i = 0; i < data.levels.Length; i++)
-        {
-            data.levels[i] = Mathf.Clamp(data.levels[i], 0, MaxLevel);
-        }
-
-        if (data.rewardedMilestones == null)
-        {
-            data.rewardedMilestones = new List<string>();
-        }
-
-        return data;
-    }
-
-    // Dialogue can read invested levels even when the Sleep scene is not loaded.
+    // Kept under the existing public name so dialogue/weekend code does not need a
+    // broad refactor. The value now comes from the current GameManager session only.
     public static int GetSavedLevel(Personality personality)
     {
-        return GameManager.Instance?.GetShowcaseSkillLevel(personality) ?? LoadData().levels[(int)personality];
+        return GameManager.EnsureInstance().GetPersonalitySkillLevel(personality);
     }
 
+    /// <summary>
+    /// Awards a generic point to the current run even when the Night scene (and therefore
+    /// no PersonalitySkills component) is loaded. This is the normal daytime reward path.
+    /// </summary>
     public static bool TryAwardMilestone(string milestoneID)
     {
         if (string.IsNullOrWhiteSpace(milestoneID)) return false;
-        PersonalitySkills skills = FindAnyObjectByType<PersonalitySkills>();
-        if (skills != null)
-        {
-            if (skills.data.rewardedMilestones.Contains(milestoneID)) return false;
-            skills.AwardPoint(milestoneID);
-            return true;
-        }
-
-        SaveData saved = LoadData();
-        if (saved.rewardedMilestones.Contains(milestoneID)) return false;
-        saved.rewardedMilestones.Add(milestoneID);
-        saved.availablePoints++;
-        PlayerPrefs.SetString(SaveKey, JsonUtility.ToJson(saved));
-        PlayerPrefs.Save();
-        return true;
+        return GameManager.EnsureInstance().TryAwardSkillPoint(milestoneID);
     }
 
     public int GetLevel(Personality personality)
     {
-        return GameManager.Instance?.GetShowcaseSkillLevel(personality) ?? data.levels[(int)personality];
+        return GameManager.EnsureInstance().GetPersonalitySkillLevel(personality);
     }
 
     public bool HasLevel(Personality personality, int requiredLevel)
@@ -94,23 +66,10 @@ public class PersonalitySkills : MonoBehaviour
 
     public void AwardPoint(string milestoneID)
     {
-        if (string.IsNullOrWhiteSpace(milestoneID) || data.rewardedMilestones.Contains(milestoneID))
+        if (TryAwardMilestone(milestoneID))
         {
-            return;
+            Changed?.Invoke();
         }
-
-        data.rewardedMilestones.Add(milestoneID);
-
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.AwardSkillPoint(milestoneID);
-        }
-        else
-        {
-            data.availablePoints++;
-        }
-
-        Save();
     }
 
     public void BeginNightAllocation()
@@ -139,40 +98,21 @@ public class PersonalitySkills : MonoBehaviour
             return false;
         }
 
-        // Deduct from GameManager's persistent pool
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.SpendSkillPoint();
-        }
-
-        if (GameManager.Instance != null && GameManager.Instance.TryInvestShowcaseSkill(definition.personality))
+        bool invested = GameManager.EnsureInstance().TryInvestPersonalitySkill(definition.personality);
+        if (invested)
         {
             Changed?.Invoke();
-            return true;
         }
 
-        data.levels[(int)definition.personality]++;
-        Save();
-        return true;
+        return invested;
     }
-
 
     internal void RefreshShowcaseLevels() => Changed?.Invoke();
-
-    private void Save()
-    {
-        PlayerPrefs.SetString(SaveKey, JsonUtility.ToJson(data));
-        PlayerPrefs.Save();
-        Changed?.Invoke();
-    }
 
     [ContextMenu("Reset Skill Progress")]
     private void ResetSkillProgress()
     {
-        PlayerPrefs.DeleteKey(SaveKey);
-        PlayerPrefs.Save();
-
-        data = new SaveData();
+        GameManager.EnsureInstance().ResetPersonalitySkillsForCurrentRun();
         nightAllocationOpen = false;
         Changed?.Invoke();
     }
