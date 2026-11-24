@@ -26,6 +26,36 @@ MonoBehaviour:
       replies: []
       waitForReply: 0
     stepID: Start
+    speakerName: Me
+    personality: 0
+    lineText: Friday. One more day until the weekend!
+    voiceClip: {fileID: 0}
+    displayDuration: 3.8999999
+    lineVariants: []
+    choices: []
+    nextStepID: D5_WaitForEmail
+    alternateNextStepID: 
+    awardSkillKey: 
+    narrativeEventKey: 
+    stepType: 0
+    exerciseIndex: 0
+    suspicionChange: 0
+    delayDuration: 10
+    NewSteveExpression: 0
+    targetSceneName: Night Screen
+    steveChallenge: {fileID: 0}
+  - musicCue: 0
+    soundCue: 0
+    message:
+      messageId: 
+      contactKey: friend
+      contactName: Friend
+      portrait: {fileID: 0}
+      text: 
+      isSystem: 0
+      replies: []
+      waitForReply: 0
+    stepID: D5_WaitForEmail
     speakerName: 
     personality: 0
     lineText: 

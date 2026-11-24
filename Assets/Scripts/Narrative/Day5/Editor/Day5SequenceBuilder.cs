@@ -45,11 +45,18 @@ public static class Day5SequenceBuilder
         var steps = new List<NarrativeStep>();
 
         // ------------------------------------------------------------------
-        // Email first. No incoming call appears until this named event fires.
+        // Opening Day 5 line, then wait for the email before Steve can call.
         // ------------------------------------------------------------------
-        NarrativeStep start = Step("Start", NarrativeStepType.WaitUntilNarrativeEvent, "D5_AfterEmailDelay");
-        start.narrativeEventKey = Day5NarrativeEvents.EmailRead;
-        steps.Add(start);
+        steps.Add(Line("Start", "Me",
+            "Friday. One more day until the weekend!", "D5_WaitForEmail", 2.6f));
+
+        NarrativeStep waitForEmail = Step(
+            "D5_WaitForEmail",
+            NarrativeStepType.WaitUntilNarrativeEvent,
+            "D5_AfterEmailDelay"
+        );
+        waitForEmail.narrativeEventKey = Day5NarrativeEvents.EmailRead;
+        steps.Add(waitForEmail);
 
         NarrativeStep afterEmailDelay = Step("D5_AfterEmailDelay", NarrativeStepType.DelaySeconds, "D5_WaitForCall");
 
