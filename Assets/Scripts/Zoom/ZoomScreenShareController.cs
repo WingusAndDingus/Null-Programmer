@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public enum SteveExpression
 {
@@ -64,6 +65,9 @@ public class ZoomScreenShareController : MonoBehaviour
     private bool shareStarting;
     private bool restoring;
     private bool initialized;
+    // True only when the Day 1 video was paused because the player moved
+    // away from the center monitor. This is separate from dialogue pauses.
+    private bool pausedForMonitorSwitch;
     private SteveExpression currentExpression;
     private bool hasExpression;
 
@@ -200,7 +204,47 @@ public class ZoomScreenShareController : MonoBehaviour
 
     private void Update()
     {
-        if (restoring || !isScreenSharingActive || !useVideoForCurrentShare || isPausedForDialogue || currentCueIndex >= dialogueCues.Count)
+        if (restoring || !isScreenSharingActive || !useVideoForCurrentShare)
+            return;
+
+        bool centerMonitorActive =
+            UnityEngine.SceneManagement.SceneManager.GetActiveScene().name ==
+            SceneSwitcher.CenterMonitorScene;
+
+        // Day 1's SFML tutorial belongs to the center monitor. Pause only the
+        // video timeline while another monitor is active so it cannot reach a
+        // new dialogue cue there. Existing dialogue suspension remains owned
+        // by DialogueManager.
+        if (!centerMonitorActive)
+        {
+            if (!isPausedForDialogue &&
+                !pausedForMonitorSwitch &&
+                screenShareVideoPlayer != null &&
+                screenShareVideoPlayer.enabled &&
+                screenShareVideoPlayer.isPlaying)
+            {
+                screenShareVideoPlayer.Pause();
+                pausedForMonitorSwitch = true;
+            }
+
+            return;
+        }
+
+        // Resume only a monitor-induced pause. A dialogue-induced pause must
+        // still be released by ResumeVideoAfterDialogue().
+        if (pausedForMonitorSwitch)
+        {
+            pausedForMonitorSwitch = false;
+
+            if (!isPausedForDialogue &&
+                screenShareVideoPlayer != null &&
+                screenShareVideoPlayer.enabled)
+            {
+                screenShareVideoPlayer.Play();
+            }
+        }
+
+        if (isPausedForDialogue || currentCueIndex >= dialogueCues.Count)
             return;
 
         if (screenShareVideoPlayer != null && screenShareVideoPlayer.time >= dialogueCues[currentCueIndex].triggerTimestampSeconds)
@@ -273,6 +317,7 @@ public class ZoomScreenShareController : MonoBehaviour
     {
         if (shareStarting || isScreenSharingActive) return;
         shareStarting = true;
+        pausedForMonitorSwitch = false;
         int currentDay = GameManager.EnsureInstance().CurrentDay;
 
         useVideoForCurrentShare = currentDay != 5;
@@ -375,6 +420,7 @@ public class ZoomScreenShareController : MonoBehaviour
         shareStarting = false;
         isPausedForDialogue = false;
         pausedDialogue = null;
+        pausedForMonitorSwitch = false;
         // Find and hide the skip button when tutorial ends
         GameObject skipBtnObj = FindSkipButtonObject();
         if (skipBtnObj != null)

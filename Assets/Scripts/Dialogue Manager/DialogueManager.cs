@@ -51,12 +51,33 @@ public class DialogueManager : MonoBehaviour
     private bool usingDay5ChoicePlacement;
     private CanvasGroup choiceVisibility;
     private bool dialogueHidden;
+    private string choiceDialogueContext;
+    private string activeDialogueContext;
+
+    private sealed class DialoguePlayback
+    {
+        public DialogueLine line;
+        public string context;
+        public TaskCompletionSource<bool> completion;
+        public Coroutine coroutine;
+        public bool suspended;
+        public bool typingComplete;
+        public bool waitingForClick;
+        public int visibleCharacters;
+    }
+
+    private DialoguePlayback activePlayback;
+    private readonly Dictionary<string, DialoguePlayback> suspendedPlaybacks =
+        new Dictionary<string, DialoguePlayback>(StringComparer.Ordinal);
+
     private Button visibilityButton;
     private TMP_Text visibilityLabel;
     private int lastAdvanceFrame = -1;
 
     public bool HasPendingDialogue =>
-        (dialoguePanel != null && dialoguePanel.activeSelf) || activeBubbles.Count > 0;
+        activePlayback != null ||
+        suspendedPlaybacks.Count > 0 ||
+        activeBubbles.Count > 0;
 
     // Zoom & Tutorial are only on one monitor
     private VideoPlayer activeVideoPlayer;
@@ -84,11 +105,7 @@ public class DialogueManager : MonoBehaviour
     private NullProgrammer.Audio.DialogueVoiceoverPlayer dialogueVoiceover;
 
     private DialoguePanelPresentation panelPresentation;
-    private Coroutine activeDialogueCoroutine;
-    private TaskCompletionSource<bool> activeLineCompletion;
     private List<GameObject> activeBubbles = new List<GameObject>();
-    private DialogueLine currentPlayingLine;
-    private bool waitingForClickToContinue = false;
 
     private void Awake()
     {
@@ -110,8 +127,15 @@ public class DialogueManager : MonoBehaviour
         }
 
         panelPresentation = GetComponent<DialoguePanelPresentation>();
+        activeDialogueContext = GetCurrentDialogueContext();
         HideDialogueUI();
     }
+
+    private void OnEnable()
+    {
+        SceneManager.activeSceneChanged += OnActiveSceneChanged;
+    }
+
     //wrapper to allow old code expecting the old function
     public IEnumerator PlayDialogueLine(DialogueLine line)
     {
@@ -126,56 +150,104 @@ public class DialogueManager : MonoBehaviour
 
     public Task DisplayLineAndWaitAsync(DialogueLine line)
     {
+        return DisplayLineAndWaitAsync(line, GetCurrentDialogueContext());
+    }
+
+    /// <summary>
+    /// Plays a dialogue line in a specific scene/monitor context.
+    /// Calls that do not provide a context still use the currently active scene.
+    /// This lets center narrative remain paused while dialogue intentionally
+    /// triggered on Left/Right plays normally.
+    /// </summary>
+    public Task DisplayLineAndWaitAsync(DialogueLine line, string dialogueContext)
+    {
         if (line == null) return Task.CompletedTask;
-        StopActiveLine();
 
-        currentPlayingLine = line;
-        var completion = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
-        activeLineCompletion = completion;
-        activeDialogueCoroutine = StartCoroutine(PlayDialogueLineRoutine(line, () => completion.TrySetResult(true)));
+        string context = string.IsNullOrWhiteSpace(dialogueContext)
+            ? GetCurrentDialogueContext()
+            : dialogueContext;
+        string activeContext = GetCurrentDialogueContext();
 
-        return completion.Task;
+        var playback = new DialoguePlayback
+        {
+            line = line,
+            context = context,
+            completion = new TaskCompletionSource<bool>(
+                TaskCreationOptions.RunContinuationsAsynchronously),
+            suspended = false,
+            typingComplete = false,
+            waitingForClick = false,
+            visibleCharacters = 0
+        };
+
+        // If this dialogue belongs to another monitor, queue it for that context
+        // without disturbing dialogue that is legitimately playing here.
+        if (!string.Equals(context, activeContext, StringComparison.Ordinal))
+        {
+            if (suspendedPlaybacks.TryGetValue(context, out DialoguePlayback stale))
+                StopPlayback(stale, true);
+
+            playback.suspended = true;
+            suspendedPlaybacks[context] = playback;
+            return playback.completion.Task;
+        }
+
+        SwitchDialogueContext(context);
+
+        if (activePlayback != null)
+            StopPlayback(activePlayback, true);
+
+        if (suspendedPlaybacks.TryGetValue(context, out DialoguePlayback existing))
+            StopPlayback(existing, true);
+
+        activePlayback = playback;
+        activeDialogueContext = context;
+        playback.coroutine = StartCoroutine(PlayDialogueLineRoutine(playback));
+        return playback.completion.Task;
     }
 
     public void OnDialogueClicked()
     {
-        if (dialogueHidden || NullProgrammer.Audio.AudioSettingsPanel.IsOpen || NullProgrammer.Showcase.ShowcasePanel.IsOpen ||
-            currentPlayingLine == null || lastAdvanceFrame == Time.frameCount) return;
+        DialoguePlayback playback = activePlayback;
+        if (dialogueHidden ||
+            NullProgrammer.Audio.AudioSettingsPanel.IsOpen ||
+            NullProgrammer.Showcase.ShowcasePanel.IsOpen ||
+            playback == null ||
+            playback.suspended ||
+            lastAdvanceFrame == Time.frameCount) return;
+
         lastAdvanceFrame = Time.frameCount;
 
-        // If typing is still in progress, instantly finish displaying all characters
-        if (!IsTypingComplete)
+        if (!playback.typingComplete)
         {
             if (dialogueBlips != null) dialogueBlips.Stop();
             NullProgrammer.Audio.GameAudio.Play(NullProgrammer.Audio.SfxCue.DialogueReveal);
-            IsTypingComplete = true;
+            playback.typingComplete = true;
+            playback.visibleCharacters = playback.line?.text != null
+                ? playback.line.text.Length
+                : 0;
+
             if (dialogueText != null)
             {
-                dialogueText.maxVisibleCharacters = dialogueText.text.Length;
+                dialogueText.maxVisibleCharacters = playback.visibleCharacters;
                 if (panelPresentation != null)
-                    panelPresentation.FollowTyping(dialogueText.text.Length);
+                    panelPresentation.FollowTyping(playback.visibleCharacters);
             }
-            UpdateProgress(currentPlayingLine.text, dialogueText.text.Length, true);
+
+            SyncPublicProgress(playback);
         }
-        else if (waitingForClickToContinue)
+        else if (playback.waitingForClick)
         {
-            // If typing is already complete, clicking proceeds to the next line!
             NullProgrammer.Audio.GameAudio.Play(NullProgrammer.Audio.SfxCue.DialogueAdvance);
             if (dialogueVoiceover != null) dialogueVoiceover.Stop();
-            waitingForClickToContinue = false;
+            playback.waitingForClick = false;
         }
     }
 
-    private IEnumerator PlayDialogueLineRoutine(DialogueLine line, Action onComplete)
+    private IEnumerator PlayDialogueLineRoutine(DialoguePlayback playback)
     {
-        // Initialize shared click-to-advance state for every dialogue entry point.
-        currentPlayingLine = line;
-        waitingForClickToContinue = false;
-
-        if (dialoguePanel != null) dialoguePanel.SetActive(true);
-        if (speakerText != null) speakerText.text = line.speakerName;
-
-        SetPersonalityStyle(line.personality);
+        DialogueLine line = playback.line;
+        ShowPlayback(playback, true);
 
         if (dialogueBlips == null)
             dialogueBlips = GetComponent<NullProgrammer.Audio.DialogueBlipPlayer>();
@@ -188,66 +260,114 @@ public class DialogueManager : MonoBehaviour
         if (dialogueVoiceover == null)
             dialogueVoiceover = gameObject.AddComponent<NullProgrammer.Audio.DialogueVoiceoverPlayer>();
         dialogueVoiceover.Begin(line, speechAudioSource);
-        dialogueVoiceover.SetHidden(dialogueHidden);
+        dialogueVoiceover.SetHidden(dialogueHidden || playback.suspended);
+
+        int totalChars = line.text != null ? line.text.Length : 0;
+        float typeSpeed = 0.02f;
+
+        for (int i = 0; i <= totalChars; i++)
+        {
+            while (playback.suspended || dialogueHidden ||
+                   NullProgrammer.Showcase.ShowcasePanel.IsOpen)
+            {
+                yield return null;
+            }
+
+            if (playback.typingComplete)
+                break;
+
+            playback.visibleCharacters = i;
+
+            if (activePlayback == playback && dialogueText != null)
+            {
+                dialogueText.maxVisibleCharacters = i;
+                if (panelPresentation != null)
+                    panelPresentation.FollowTyping(i);
+
+                if (i > 0 && i <= dialogueText.textInfo.characterCount)
+                {
+                    bool videoHasAudio =
+                        activeVideoPlayer != null &&
+                        activeVideoPlayer.isPlaying &&
+                        activeVideoPlayer.audioOutputMode != VideoAudioOutputMode.None &&
+                        activeVideoPlayer.audioTrackCount > 0;
+
+                    dialogueBlips.RevealCharacter(
+                        dialogueText.textInfo.characterInfo[i - 1].character,
+                        isActiveAndEnabled &&
+                        dialoguePanel != null &&
+                        dialoguePanel.activeInHierarchy &&
+                        !videoHasAudio);
+                }
+            }
+
+            if (activePlayback == playback)
+                SyncPublicProgress(playback);
+
+            yield return new WaitForSecondsRealtime(typeSpeed);
+        }
+
+        if (dialogueBlips != null && activePlayback == playback)
+            dialogueBlips.Stop();
+
+        playback.visibleCharacters = totalChars;
+        playback.typingComplete = true;
+
+        if (activePlayback == playback)
+        {
+            if (dialogueText != null)
+                dialogueText.maxVisibleCharacters = totalChars;
+            SyncPublicProgress(playback);
+        }
+
+        playback.waitingForClick = true;
+        while (playback.waitingForClick)
+        {
+            while (playback.suspended || dialogueHidden ||
+                   NullProgrammer.Showcase.ShowcasePanel.IsOpen)
+            {
+                yield return null;
+            }
+            yield return null;
+        }
+
+        if (activePlayback == playback)
+        {
+            HideDialoguePanel();
+            activePlayback = null;
+            ApplyDialogueVisibility();
+        }
+
+        playback.coroutine = null;
+        playback.completion.TrySetResult(true);
+    }
+
+    private void ShowPlayback(DialoguePlayback playback, bool resetText)
+    {
+        if (playback == null || playback.line == null)
+            return;
+
+        DialogueLine line = playback.line;
+        if (dialoguePanel != null) dialoguePanel.SetActive(true);
+        if (speakerText != null) speakerText.text = line.speakerName;
+
+        SetPersonalityStyle(line.personality);
 
         if (dialogueText != null)
         {
             dialogueText.text = line.text;
-            dialogueText.maxVisibleCharacters = 0;
+            if (resetText)
+                dialogueText.maxVisibleCharacters = playback.visibleCharacters;
             dialogueText.ForceMeshUpdate();
         }
 
         if (panelPresentation != null) panelPresentation.Show(line);
 
-        UpdateProgress(line.text, 0, false);
-        int totalChars = line.text != null ? line.text.Length : 0;
-        float typeSpeed = 0.02f;
-
-        // Phase 1: Type out characters progressively
-        for (int i = 0; i <= totalChars; i++)
-        {
-            while (dialogueHidden || NullProgrammer.Showcase.ShowcasePanel.IsOpen) yield return null;
-            if (IsTypingComplete) break;
-
-            if (dialogueText != null)
-            {
-                dialogueText.maxVisibleCharacters = i;
-                if (panelPresentation != null) panelPresentation.FollowTyping(i);
-            }
-
-            // TMP's parsed character info excludes formatting tags.
-            if (dialogueText != null && i > 0 && i <= dialogueText.textInfo.characterCount)
-            {
-                bool videoHasAudio = activeVideoPlayer != null && activeVideoPlayer.isPlaying &&
-                    activeVideoPlayer.audioOutputMode != VideoAudioOutputMode.None && activeVideoPlayer.audioTrackCount > 0;
-                dialogueBlips.RevealCharacter(dialogueText.textInfo.characterInfo[i - 1].character,
-                    isActiveAndEnabled && dialoguePanel != null && dialoguePanel.activeInHierarchy && !videoHasAudio);
-            }
-            UpdateProgress(line.text, i, i == totalChars);
-            yield return new WaitForSecondsRealtime(typeSpeed);
-        }
-
-        if (dialogueBlips != null) dialogueBlips.Stop();
-
-        // Ensure fully visible
         if (dialogueText != null)
-        {
-            dialogueText.maxVisibleCharacters = totalChars;
-        }
-        UpdateProgress(line.text, totalChars, true);
+            dialogueText.maxVisibleCharacters = playback.visibleCharacters;
 
-        // Phase 2: Wait indefinitely for player's second click to continue
-        waitingForClickToContinue = true;
-        while (waitingForClickToContinue)
-        {
-            yield return null;
-        }
-
-        HideDialoguePanel();
-        activeDialogueCoroutine = null;
-        activeLineCompletion = null;
-        currentPlayingLine = null;
-        onComplete?.Invoke();
+        SyncPublicProgress(playback);
+        ApplyDialogueVisibility();
     }
 
     public void HideDialoguePanel()
@@ -270,9 +390,34 @@ public class DialogueManager : MonoBehaviour
         CurrentText = text;
         CurrentVisibleCharacters = visibleChars;
         IsTypingComplete = complete;
+        activeDialogueState.currentText = text;
+        activeDialogueState.visibleCharacterCount = visibleChars;
+        activeDialogueState.isComplete = complete;
+
+        if (activePlayback != null)
+        {
+            activePlayback.visibleCharacters = visibleChars;
+            activePlayback.typingComplete = complete;
+        }
     }
 
-    public async Task<int> PresentChoices(DialogueChoiceOption[] options)
+    private void SyncPublicProgress(DialoguePlayback playback)
+    {
+        if (playback == null || playback.line == null)
+            return;
+
+        UpdateProgress(
+            playback.line.text ?? string.Empty,
+            playback.visibleCharacters,
+            playback.typingComplete);
+    }
+
+    public Task<int> PresentChoices(DialogueChoiceOption[] options)
+    {
+        return PresentChoices(options, GetCurrentDialogueContext());
+    }
+
+    public async Task<int> PresentChoices(DialogueChoiceOption[] options, string dialogueContext)
     {
         Debug.Log($"[DialogueManager] PresentChoices called with {options?.Length ?? 0} options.");
 
@@ -281,7 +426,10 @@ public class DialogueManager : MonoBehaviour
         if (choiceBubblePrefab == null)
             throw new InvalidOperationException("Assign the Thought Bubble prefab on the Dialogue Canvas.");
 
-        ClearChoices();
+        choiceDialogueContext = string.IsNullOrWhiteSpace(dialogueContext)
+            ? GetCurrentDialogueContext()
+            : dialogueContext;
+        ClearChoices(false);
         EnsureChoiceViewport();
         ApplyChoiceViewportForCurrentDay();
 
@@ -321,6 +469,7 @@ public class DialogueManager : MonoBehaviour
 
             Canvas.ForceUpdateCanvases();
             LayoutChoices(true);
+            ApplyDialogueVisibility();
 
             return await choiceTask.Task;
         }
@@ -370,7 +519,13 @@ public class DialogueManager : MonoBehaviour
         choiceViewport.offsetMin = choiceViewport.offsetMax = Vector2.zero;
         choiceMask = viewport.GetComponent<RectMask2D>();
         choiceVisibility = viewport.GetComponent<CanvasGroup>();
-        SetGroupVisibility(choiceVisibility, !dialogueHidden);
+        SetGroupVisibility(
+            choiceVisibility,
+            !dialogueHidden &&
+            string.Equals(
+                choiceDialogueContext,
+                GetCurrentDialogueContext(),
+                StringComparison.Ordinal));
         var overlayCanvas = viewport.GetComponent<Canvas>();
         overlayCanvas.overrideSorting = true;
         overlayCanvas.sortingOrder = 1500;
@@ -445,6 +600,10 @@ public class DialogueManager : MonoBehaviour
 
     private void LateUpdate()
     {
+        string context = GetCurrentDialogueContext();
+        if (!string.Equals(activeDialogueContext, context, StringComparison.Ordinal))
+            SwitchDialogueContext(context);
+
         RefreshVisibilityButton();
         if (activeBubbles.Count == 0 || choiceViewport == null) return;
         if ((choiceViewport.rect.size - lastChoiceViewportSize).sqrMagnitude > 0.01f ||
@@ -454,7 +613,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if (dialogueHidden) return;
+        if (dialogueHidden || activePlayback == null) return;
         if (dialoguePanel != null && dialoguePanel.activeSelf)
         {
             bool spacePressed = Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame;
@@ -483,7 +642,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private void ClearChoices()
+    private void ClearChoices(bool clearContext = true)
     {
         foreach (var bubble in activeBubbles)
         {
@@ -493,34 +652,69 @@ public class DialogueManager : MonoBehaviour
         }
         activeBubbles.Clear();
         if (choiceViewport != null) choiceViewport.gameObject.SetActive(false);
+        if (clearContext) choiceDialogueContext = null;
     }
 
     private void OnDisable()
     {
+        SceneManager.activeSceneChanged -= OnActiveSceneChanged;
         if (dialogueBlips != null) dialogueBlips.Stop();
         if (dialogueVoiceover != null) dialogueVoiceover.Stop();
     }
 
     private void StopActiveLine()
     {
-        if (dialogueBlips != null) dialogueBlips.Stop();
-        if (dialogueVoiceover != null) dialogueVoiceover.Stop();
-        if (activeDialogueCoroutine != null)
+        if (activePlayback != null)
+            StopPlayback(activePlayback, true);
+    }
+
+    private void StopPlayback(DialoguePlayback playback, bool cancelCompletion)
+    {
+        if (playback == null)
+            return;
+
+        if (playback.coroutine != null)
         {
-            StopCoroutine(activeDialogueCoroutine);
-            activeDialogueCoroutine = null;
+            StopCoroutine(playback.coroutine);
+            playback.coroutine = null;
         }
 
-        currentPlayingLine = null;
-        waitingForClickToContinue = false;
-        activeLineCompletion?.TrySetCanceled();
-        activeLineCompletion = null;
+        if (activePlayback == playback)
+            activePlayback = null;
+
+        if (!string.IsNullOrEmpty(playback.context) &&
+            suspendedPlaybacks.TryGetValue(playback.context, out DialoguePlayback stored) &&
+            stored == playback)
+        {
+            suspendedPlaybacks.Remove(playback.context);
+        }
+
+        playback.waitingForClick = false;
+        playback.suspended = false;
+
+        if (cancelCompletion)
+            playback.completion?.TrySetCanceled();
+    }
+
+    private void StopAllPlaybackSessions()
+    {
+        if (activePlayback != null)
+            StopPlayback(activePlayback, true);
+
+        DialoguePlayback[] suspended =
+            new List<DialoguePlayback>(suspendedPlaybacks.Values).ToArray();
+
+        for (int i = 0; i < suspended.Length; i++)
+            StopPlayback(suspended[i], true);
+
+        suspendedPlaybacks.Clear();
     }
 
     public void HideDialogueUI()
     {
-        StopActiveLine();
+        StopAllPlaybackSessions();
         ClearChoices();
+        activeDialogueContext = GetCurrentDialogueContext();
 
         if (dialoguePanel != null) dialoguePanel.SetActive(false);
         if (internalMonologueOverlay != null) internalMonologueOverlay.SetActive(false);
@@ -577,6 +771,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (IsPointerOverVisibilityButton(mousePosition)) return true;
         if (dialogueHidden) return false;
+        if (!HasCurrentContextDialogue()) return false;
 
         if (dialoguePanel != null && dialoguePanel.activeSelf)
         {
@@ -613,12 +808,22 @@ public class DialogueManager : MonoBehaviour
 
     private void RefreshVisibilityButton()
     {
-        bool showButton = HasPendingDialogue &&
-            SceneSwitcher.IsMonitorScene(SceneManager.GetActiveScene().name);
-        if (!showButton && dialogueHidden) SetDialogueHidden(false);
-        if (showButton && visibilityButton == null) CreateVisibilityButton();
-        if (visibilityButton != null && visibilityButton.gameObject.activeSelf != showButton)
+        string activeSceneName = GetCurrentDialogueContext();
+        bool showButton =
+            HasCurrentContextDialogue() &&
+            SceneSwitcher.IsMonitorScene(activeSceneName);
+
+        if (!showButton && dialogueHidden && !HasPendingDialogue)
+            SetDialogueHidden(false);
+
+        if (showButton && visibilityButton == null)
+            CreateVisibilityButton();
+
+        if (visibilityButton != null &&
+            visibilityButton.gameObject.activeSelf != showButton)
+        {
             visibilityButton.gameObject.SetActive(showButton);
+        }
     }
 
     private void CreateVisibilityButton()
@@ -657,16 +862,191 @@ public class DialogueManager : MonoBehaviour
         visibilityLabel.text = "Hide Dialogue";
     }
 
+    private string GetCurrentDialogueContext()
+    {
+        Scene activeScene = SceneManager.GetActiveScene();
+        return activeScene.IsValid() ? activeScene.name : string.Empty;
+    }
+
+    private void OnActiveSceneChanged(Scene oldScene, Scene newScene)
+    {
+        if (!newScene.IsValid())
+            return;
+
+        // Monitor-to-monitor changes preserve independent dialogue sessions.
+        if (SceneSwitcher.IsMonitorScene(newScene.name))
+        {
+            SwitchDialogueContext(newScene.name);
+            return;
+        }
+
+        // Leaving the three-monitor desktop is a real scene transition. Do not
+        // carry paused monitor dialogue into night/weekend/other authored scenes.
+        StopAllPlaybackSessions();
+        ClearChoices();
+        activeDialogueContext = newScene.name;
+        HideDialoguePanel();
+    }
+
+    private void SwitchDialogueContext(string newContext)
+    {
+        if (string.IsNullOrEmpty(newContext))
+            return;
+
+        if (string.Equals(activeDialogueContext, newContext, StringComparison.Ordinal))
+        {
+            ApplyDialogueVisibility();
+            return;
+        }
+
+        if (activePlayback != null &&
+            !string.Equals(activePlayback.context, newContext, StringComparison.Ordinal))
+        {
+            SuspendActivePlayback();
+        }
+
+        activeDialogueContext = newContext;
+
+        if (suspendedPlaybacks.TryGetValue(newContext, out DialoguePlayback resume))
+        {
+            suspendedPlaybacks.Remove(newContext);
+            activePlayback = resume;
+            resume.suspended = false;
+
+            // A line explicitly assigned to this monitor may have been queued
+            // while another monitor was active and therefore never started.
+            if (resume.coroutine == null)
+            {
+                resume.coroutine = StartCoroutine(PlayDialogueLineRoutine(resume));
+            }
+            else
+            {
+                // A line that was already visible before the monitor switch
+                // resumes fully revealed (SuspendActivePlayback marks it complete).
+                ShowPlayback(resume, false);
+
+                if (!resume.typingComplete && dialogueVoiceover != null)
+                {
+                    dialogueVoiceover.Begin(resume.line, speechAudioSource);
+                    dialogueVoiceover.SetHidden(dialogueHidden);
+                }
+
+                if (!resume.typingComplete && dialogueBlips != null)
+                    dialogueBlips.Begin(resume.line);
+            }
+        }
+
+        ApplyDialogueVisibility();
+    }
+
+    private void SuspendActivePlayback()
+    {
+        DialoguePlayback playback = activePlayback;
+        if (playback == null)
+            return;
+
+        // Once a visible line has been left behind on another monitor, resume it
+        // fully revealed rather than restarting/resuming the typewriter mid-word.
+        if (!playback.typingComplete)
+        {
+            playback.visibleCharacters = playback.line?.text != null
+                ? playback.line.text.Length
+                : 0;
+            playback.typingComplete = true;
+        }
+
+        playback.suspended = true;
+        suspendedPlaybacks[playback.context ?? string.Empty] = playback;
+        activePlayback = null;
+
+        if (dialogueBlips != null) dialogueBlips.Stop();
+        if (dialogueVoiceover != null) dialogueVoiceover.Stop();
+
+        ApplyDialogueVisibility();
+    }
+
+    private bool HasCurrentContextDialogue()
+    {
+        string context = GetCurrentDialogueContext();
+        bool hasLine =
+            activePlayback != null &&
+            string.Equals(activePlayback.context, context, StringComparison.Ordinal);
+
+        bool hasChoices =
+            activeBubbles.Count > 0 &&
+            !string.IsNullOrEmpty(choiceDialogueContext) &&
+            string.Equals(choiceDialogueContext, context, StringComparison.Ordinal);
+
+        return hasLine || hasChoices;
+    }
+
+    /// <summary>
+    /// Compatibility bridge for the earlier monitor-persistence patch.
+    /// Only center-origin dialogue is suspended; dialogue that originated on a
+    /// side monitor is intentionally left alone. Active-scene changes perform
+    /// the actual resume operation.
+    /// </summary>
+    public void SetMonitorSuspended(bool suspended)
+    {
+        if (!suspended || activePlayback == null)
+            return;
+
+        if (string.Equals(
+            activePlayback.context,
+            SceneSwitcher.CenterMonitorScene,
+            StringComparison.Ordinal))
+        {
+            SuspendActivePlayback();
+        }
+    }
+
+    public bool IsMonitorSuspended =>
+        suspendedPlaybacks.ContainsKey(SceneSwitcher.CenterMonitorScene);
+
     private void SetDialogueHidden(bool hidden)
     {
         dialogueHidden = hidden;
-        if (hidden && dialogueBlips != null) dialogueBlips.Stop();
-        if (dialogueVoiceover != null) dialogueVoiceover.SetHidden(hidden);
-        if (dialoguePanel != null) SetGroupVisibility(dialoguePanel.GetComponent<CanvasGroup>(), !hidden);
+        ApplyDialogueVisibility();
+
+        if (visibilityLabel != null)
+            visibilityLabel.text =
+                dialogueHidden ? "Show Dialogue" : "Hide Dialogue";
+    }
+
+    private void ApplyDialogueVisibility()
+    {
+        string context = GetCurrentDialogueContext();
+        bool lineVisible =
+            !dialogueHidden &&
+            activePlayback != null &&
+            !activePlayback.suspended &&
+            string.Equals(activePlayback.context, context, StringComparison.Ordinal);
+
+        bool choicesVisible =
+            !dialogueHidden &&
+            activeBubbles.Count > 0 &&
+            string.Equals(choiceDialogueContext, context, StringComparison.Ordinal);
+
+        if (!lineVisible && dialogueBlips != null)
+            dialogueBlips.Stop();
+
+        if (dialogueVoiceover != null)
+            dialogueVoiceover.SetHidden(!lineVisible);
+
+        if (dialoguePanel != null)
+            SetGroupVisibility(EnsureCanvasGroup(dialoguePanel), lineVisible);
+
         if (internalMonologueOverlay != null)
-            SetGroupVisibility(internalMonologueOverlay.GetComponent<CanvasGroup>(), !hidden);
-        SetGroupVisibility(choiceVisibility, !hidden);
-        if (visibilityLabel != null) visibilityLabel.text = hidden ? "Show Dialogue" : "Hide Dialogue";
+            SetGroupVisibility(EnsureCanvasGroup(internalMonologueOverlay), lineVisible);
+
+        SetGroupVisibility(choiceVisibility, choicesVisible);
+    }
+
+    private static CanvasGroup EnsureCanvasGroup(GameObject target)
+    {
+        if (target == null) return null;
+        CanvasGroup group = target.GetComponent<CanvasGroup>();
+        return group != null ? group : target.AddComponent<CanvasGroup>();
     }
 
     private static void SetGroupVisibility(CanvasGroup group, bool visible)

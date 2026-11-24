@@ -154,7 +154,7 @@ public class DayNarrativeExecutor : MonoBehaviour
 
             if (DialogueManager.Instance != null)
             {
-                await DialogueManager.Instance.DisplayLineAndWaitAsync(line);
+                await DialogueManager.Instance.DisplayLineAndWaitAsync(line, SceneSwitcher.CenterMonitorScene);
             }
         }
 
@@ -404,7 +404,7 @@ public class DayNarrativeExecutor : MonoBehaviour
             };
         }
 
-        return await DialogueManager.Instance.PresentChoices(options);
+        return await DialogueManager.Instance.PresentChoices(options, SceneSwitcher.CenterMonitorScene);
     }
 
     public async Task RunSteveChallengeAsync(SteveChallengeData challenge, CancellationToken cancellationToken = default)
@@ -419,7 +419,7 @@ public class DayNarrativeExecutor : MonoBehaviour
                 text = challenge.steveDialoguePrompt,
                 displayDuration = 4f
             };
-            await DialogueManager.Instance.DisplayLineAndWaitAsync(promptLine);
+            await DialogueManager.Instance.DisplayLineAndWaitAsync(promptLine, SceneSwitcher.CenterMonitorScene);
         }
 
         // 1.5 Display any configured internal voices using the standard personality color system
@@ -435,7 +435,7 @@ public class DayNarrativeExecutor : MonoBehaviour
                     displayDuration = 3.5f
                 };
 
-                await DialogueManager.Instance.DisplayLineAndWaitAsync(voiceLine);
+                await DialogueManager.Instance.DisplayLineAndWaitAsync(voiceLine, SceneSwitcher.CenterMonitorScene);
             }
         }
 
@@ -467,7 +467,7 @@ public class DayNarrativeExecutor : MonoBehaviour
                     text = "Ok cool, you can stop sharing your screen",
                     displayDuration = 3.5f
                 };
-                await DialogueManager.Instance.DisplayLineAndWaitAsync(successLine);
+                await DialogueManager.Instance.DisplayLineAndWaitAsync(successLine, SceneSwitcher.CenterMonitorScene);
             }
 
             await WaitForCenterMonitorAsync(cancellationToken);
@@ -504,7 +504,7 @@ public class DayNarrativeExecutor : MonoBehaviour
                     text = $"Hmm, that doesn't seem right. Shouldn't it be something like:\n{expectedExample}",
                     displayDuration = 4.5f
                 };
-                await DialogueManager.Instance.DisplayLineAndWaitAsync(failLine1);
+                await DialogueManager.Instance.DisplayLineAndWaitAsync(failLine1, SceneSwitcher.CenterMonitorScene);
 
                 DialogueLine playerRecoveryLine = new DialogueLine
                 {
@@ -513,7 +513,7 @@ public class DayNarrativeExecutor : MonoBehaviour
                     text = "Oh yeah you're right, I was just testing you. haha",
                     displayDuration = 3.5f
                 };
-                await DialogueManager.Instance.DisplayLineAndWaitAsync(playerRecoveryLine);
+                await DialogueManager.Instance.DisplayLineAndWaitAsync(playerRecoveryLine, SceneSwitcher.CenterMonitorScene);
             }
 
             await WaitForCenterMonitorAsync(cancellationToken);
@@ -531,7 +531,7 @@ public class DayNarrativeExecutor : MonoBehaviour
                     text = "Uh ok",
                     displayDuration = 2.5f
                 };
-                await DialogueManager.Instance.DisplayLineAndWaitAsync(failLine2);
+                await DialogueManager.Instance.DisplayLineAndWaitAsync(failLine2, SceneSwitcher.CenterMonitorScene);
             }
 
             Debug.Log("Steve coding challenge failed; recovery dialogue executed.");
