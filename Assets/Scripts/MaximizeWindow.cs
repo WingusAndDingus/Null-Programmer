@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [DisallowMultipleComponent]
 public class MaximizeWindow : MonoBehaviour
 {
-    [Header("Persistence")]
+    [Header("Fallback Scene-Reload Persistence")]
     [SerializeField] private WindowIdentity windowIdentity;
 
     [Header("Required")]
@@ -47,6 +47,8 @@ public class MaximizeWindow : MonoBehaviour
 
     private void Start()
     {
+        // V3 monitor switching keeps this component alive, so this restore path is
+        // only needed when DesktopUI was truly unloaded and a fresh instance starts.
         if (GameManager.Instance == null ||
             windowIdentity == null)
         {
@@ -183,6 +185,7 @@ public class MaximizeWindow : MonoBehaviour
 
         IsMaximized = true;
 
+        // Fallback state for a future true DesktopUI reload.
         if (GameManager.Instance != null)
         {
             GameManager.Instance.SetWindowMaximized(windowIdentity.Id, true);
@@ -193,6 +196,7 @@ public class MaximizeWindow : MonoBehaviour
     {
         RestoreLayout();
 
+        // Keep fallback state synchronized if DesktopUI is later recreated.
         if (GameManager.Instance != null)
         {
             GameManager.Instance.SetWindowMaximized(windowIdentity.Id, false);

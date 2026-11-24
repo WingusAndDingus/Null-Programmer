@@ -6,7 +6,7 @@ using UnityEngine.Rendering;
 
 public class DraggableWindow : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler
 {
-    [Header("Persistence")]
+    [Header("Fallback Scene-Reload Persistence")]
     [SerializeField] private WindowIdentity windowIdentity;
 
     [SerializeField] private Transform windowRoot;
@@ -73,7 +73,8 @@ public class DraggableWindow : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         windowRenderers = windowRoot.GetComponentsInChildren<Renderer>();
         warnedAboutSize = false;
 
-        // Make sure this window has a persistent stack position.
+        // V3 keeps this live object during monitor changes. The GameManager order
+        // is retained as fallback only if DesktopUI is genuinely recreated later.
         if (GameManager.Instance != null)
         {
             GameManager.Instance.GetOrCreateWindowStackOrder(windowIdentity.Id);
@@ -87,7 +88,8 @@ public class DraggableWindow : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         RefreshWindowOrder();
 
-        // Window-position restoration logic is kept here.
+        // Restore only matters for a fresh/re-enabled instance after a true scene
+        // recreation; ordinary V3 monitor changes never disable this component.
         if (DraggingAllowed)
         {
             if (GameManager.Instance != null
@@ -147,6 +149,8 @@ public class DraggableWindow : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         if (eventData.button == PointerEventData.InputButton.Left
             && eventData.pointerId == dragPointerId)
         {
+            // Keep a fallback copy in case a later non-monitor transition unloads
+            // DesktopUI. V3 monitor switching itself preserves the live Transform.
             SaveWindowPosition();
             dragCamera = null;
         }

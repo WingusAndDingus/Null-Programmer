@@ -6,7 +6,7 @@ using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
 /// <summary>
-/// Shared session state: player stats, monitor zoom, window state, and the email reply demo.
+/// Shared session state: player stats, monitor zoom, story/day state, and fallback window state for true scene reloads.
 /// </summary>
 
 public enum WeekendChoice
@@ -242,8 +242,13 @@ public class GameManager : MonoBehaviour
     }
 
     // =========================================================
-    // Window State
+    // Fallback Window State (true DesktopUI unload/reload only)
     // =========================================================
+    // MonitorScenePersistenceManager V3 keeps the live DesktopUI scene loaded
+    // while moving among Center/Left/Right, so monitor switches do NOT depend on
+    // this cache anymore. Keep it for non-monitor transitions that actually unload
+    // DesktopUI and later create fresh window instances. Public APIs are retained
+    // unchanged to protect downstream/team code that may still call them.
 
     private class WindowState
     {
@@ -726,8 +731,11 @@ public class GameManager : MonoBehaviour
 
 
     // =========================================================
-    // Window State Helpers
+    // Fallback Window State API
     // =========================================================
+    // These methods are intentionally retained for source compatibility and for
+    // genuine DesktopUI recreation. They are no longer the primary mechanism for
+    // switching between monitors.
 
     private WindowState GetWindowState(string windowId)
     {
@@ -1021,6 +1029,8 @@ public class GameManager : MonoBehaviour
     {
         CancelShowcaseClueReactions();
         ClearZoomState();
+        // A showcase jump creates a fresh authored desktop, so clear the fallback
+        // scene-reload cache as well.
         windowStates.Clear();
         nextWindowStackOrder = 0;
         EmailRead = false;

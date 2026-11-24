@@ -43,6 +43,8 @@ public class PersistentWindow : MonoBehaviour
     public void CloseWindow()
     {
         CacheWindowDetails();
+        // V3 monitor changes keep this exact object alive. This cache update is
+        // retained only for a later transition that truly unloads DesktopUI.
         var manager = GameManager.Instance;
         if (manager != null && !string.IsNullOrWhiteSpace(cachedWindowId))
         {
@@ -74,6 +76,7 @@ public class PersistentWindow : MonoBehaviour
             return;
         }
 
+        // Fallback bookkeeping for a future true DesktopUI reload.
         var manager = GameManager.Instance;
         if (manager != null && !string.IsNullOrWhiteSpace(cachedWindowId))
         {
