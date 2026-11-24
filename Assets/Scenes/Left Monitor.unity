@@ -197,10 +197,11 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 14.68005, y: 6.35915}
-      - {x: 5.262557, y: 4.823038}
+    - - {x: 14.768969, y: 6.37397}
+      - {x: 5.247737, y: 4.823038}
+      - {x: 5.24776, y: 4.739978}
       - {x: 5.249551, y: -1.5613856}
-      - {x: 14.7971735, y: -1.7977629}
+      - {x: 14.7971735, y: -1.842222}
   m_UseDelaunayMesh: 1
 --- !u!4 &333328606
 Transform:
@@ -225,6 +226,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 369639843895860033, guid: 0511de8042961834e937f07a70cbffcb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 369639843895860033, guid: 0511de8042961834e937f07a70cbffcb, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 369639843895860033, guid: 0511de8042961834e937f07a70cbffcb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 369639843895860033, guid: 0511de8042961834e937f07a70cbffcb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2103231345143837210, guid: 0511de8042961834e937f07a70cbffcb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.13223
@@ -268,6 +285,38 @@ PrefabInstance:
     - target: {fileID: 2397572260538800284, guid: 0511de8042961834e937f07a70cbffcb, type: 3}
       propertyPath: m_Name
       value: PersistentBrowserSystem
+      objectReference: {fileID: 0}
+    - target: {fileID: 5316539884724306217, guid: 0511de8042961834e937f07a70cbffcb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5316539884724306217, guid: 0511de8042961834e937f07a70cbffcb, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5316539884724306217, guid: 0511de8042961834e937f07a70cbffcb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5316539884724306217, guid: 0511de8042961834e937f07a70cbffcb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8378435239169063547, guid: 0511de8042961834e937f07a70cbffcb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8378435239169063547, guid: 0511de8042961834e937f07a70cbffcb, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8378435239169063547, guid: 0511de8042961834e937f07a70cbffcb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8378435239169063547, guid: 0511de8042961834e937f07a70cbffcb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -418,7 +467,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.70002794, y: -0.71837497}
+  m_Offset: {x: 0.8565717, y: -0.60866475}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -428,7 +477,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 12.822917, y: 6.6111693}
+  m_Size: {x: 12.835649, y: 6.6660247}
   m_EdgeRadius: 0
 --- !u!4 &554698687
 Transform:
@@ -813,7 +862,7 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 3.6622233, y: -1.9579499}
+    - - {x: 3.736322, y: -1.9134908}
       - {x: 3.7441025, y: -3.4001586}
       - {x: -3.5457354, y: -3.3913548}
       - {x: -3.5909076, y: -1.3254843}
