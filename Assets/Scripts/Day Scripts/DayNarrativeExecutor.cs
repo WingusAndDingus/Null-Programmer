@@ -343,9 +343,9 @@ public class DayNarrativeExecutor : MonoBehaviour
             {
                 DialogueStepChoice chosen = availableChoices[selectedIndex];
 
-                // Presentation and rewards are separate: a voice may offer an incorrect
-                // suggestion without granting its stat when the player retries.
-                ApplyPersonalityStat(chosen.personality, chosen.personalityStatChange);
+                // Personality progression is handled exclusively by milestone skill points
+                // and night-time investment. Legacy personalityStatChange values are no
+                // longer applied to the old GameManager personality counters.
 
                 // This field already existed in DialogueStepChoice; apply it now.
                 ApplySuspicion(chosen.suspicionChange);
@@ -407,18 +407,6 @@ public class DayNarrativeExecutor : MonoBehaviour
         return await DialogueManager.Instance.PresentChoices(options);
     }
 
-    private void ApplyPersonalityStat(HeadPersonality personality, int points)
-    {
-        if (GameManager.Instance == null) return;
-
-        switch (personality)
-        {
-            case HeadPersonality.GrandArchitect: GameManager.Instance.ChangeGrandArchitectStat(points); break;
-            case HeadPersonality.Pragmatist: GameManager.Instance.ChangePragmatistStat(points); break;
-            case HeadPersonality.Detective: GameManager.Instance.ChangeDetectiveStat(points); break;
-        }
-    }
-
     public async Task RunSteveChallengeAsync(SteveChallengeData challenge, CancellationToken cancellationToken = default)
     {
         // 1. Display Steve's initial dialogue prompt
@@ -468,11 +456,6 @@ public class DayNarrativeExecutor : MonoBehaviour
             if (ZoomScreenShareController.Instance != null)
             {
                 ZoomScreenShareController.Instance.SetSteveExpression(SteveExpression.ImpressedSteve);
-            }
-
-            if (GameManager.Instance != null)
-            {
-                GameManager.Instance.ChangeGrandArchitectStat(1);
             }
 
             if (DialogueManager.Instance != null)
