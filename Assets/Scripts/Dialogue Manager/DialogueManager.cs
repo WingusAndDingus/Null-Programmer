@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using UnityEngine.Video;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -628,6 +629,7 @@ public class DialogueManager : MonoBehaviour
                 {
                     Vector2 mousePos = Mouse.current.position.ReadValue();
                     if (!IsPointerOverVisibilityButton(mousePos) &&
+                        !IsPointerOverSkipTutorialButton(mousePos) &&
                         RectTransformUtility.RectangleContainsScreenPoint(panelRect, mousePos, null))
                     {
                         clickedOnPanel = true;
@@ -770,6 +772,7 @@ public class DialogueManager : MonoBehaviour
     public bool IsPointerOverDialogueUI(Vector2 mousePosition)
     {
         if (IsPointerOverVisibilityButton(mousePosition)) return true;
+        if (IsPointerOverSkipTutorialButton(mousePosition)) return true;
         if (dialogueHidden) return false;
         if (!HasCurrentContextDialogue()) return false;
 
@@ -804,6 +807,36 @@ public class DialogueManager : MonoBehaviour
         return visibilityButton != null && visibilityButton.gameObject.activeInHierarchy &&
             RectTransformUtility.RectangleContainsScreenPoint(
                 (RectTransform)visibilityButton.transform, mousePosition, null);
+    }
+
+    private bool IsPointerOverSkipTutorialButton(Vector2 mousePosition)
+    {
+        if (EventSystem.current == null)
+            return false;
+
+        var pointerData = new PointerEventData(EventSystem.current)
+        {
+            position = mousePosition
+        };
+
+        var results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerData, results);
+
+        foreach (RaycastResult result in results)
+        {
+            if (result.gameObject == null)
+                continue;
+
+            Button button = result.gameObject.GetComponentInParent<Button>();
+            if (button != null &&
+                button.gameObject.activeInHierarchy &&
+                button.gameObject.name == "SkipButton")
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void RefreshVisibilityButton()
