@@ -211,6 +211,20 @@ public class ZoomScreenShareController : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.GetActiveScene().name ==
             SceneSwitcher.CenterMonitorScene;
 
+        // The tutorial Skip button should only be visible on the center monitor.
+        if (skipTutorialButton != null)
+        {
+            skipTutorialButton.SetActive(centerMonitorActive);
+        }
+        else
+        {
+            GameObject skipBtnObj = FindSkipButtonObject();
+            if (skipBtnObj != null)
+            {
+                skipBtnObj.SetActive(centerMonitorActive);
+            }
+        }
+
         // Day 1's SFML tutorial belongs to the center monitor. Pause only the
         // video timeline while another monitor is active so it cannot reach a
         // new dialogue cue there. Existing dialogue suspension remains owned
